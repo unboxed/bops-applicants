@@ -155,7 +155,7 @@ private
   end
 
   def master_ref?
-    ENV.fetch("GITHUB_REF", "") == "refs/heads/master"
+    ENV.fetch("GITHUB_REF", "") == "refs/heads/main"
   end
 
   def production_ref?

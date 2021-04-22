@@ -30,7 +30,6 @@ jobs:
             ${{ runner.os }}-gems-
       - name: Build App
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
           RAILS_ENV: test
         run: |
           gem install bundler
