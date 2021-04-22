@@ -4,3 +4,5 @@
 require_relative "config/application"
 
 Rails.application.load_tasks
+
+task(:default).clear.enhance(%i[bundle_audit brakeman rubocop spec])
