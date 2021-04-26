@@ -1,0 +1,25 @@
+inherit_gem:
+  rubocop-govuk:
+    - config/default.yml
+    - config/rails.yml
+    - config/rspec.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+Rails:
+  Exclude:
+    - "lib/package_builder.rb"
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
