@@ -9,9 +9,9 @@ namespace :deploy do
     PackageBuilder.build!
   end
 
-  desc "Build and deploy the website to the preview stack"
-  task :preview do
-    PackageBuilder.deploy!(:preview)
+  desc "Build and deploy the website to the staging stack"
+  task :staging do
+    PackageBuilder.deploy!(:staging)
   end
 
   desc "Build and deploy the website to the production stack"
