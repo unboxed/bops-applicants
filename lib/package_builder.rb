@@ -7,7 +7,7 @@ require "aws-sdk-s3"
 
 class PackageBuilder
   class << self
-    def build!(environment = :preview)
+    def build!(environment = :staging)
       new(environment).build!
     end
 
@@ -125,7 +125,7 @@ private
 
   def create_deployments!
     create_deployment!("Webservers") do
-      notify_appsignal
+      # notify_appsignal
     end
   end
 
