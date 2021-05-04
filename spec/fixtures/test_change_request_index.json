@@ -35,6 +35,15 @@
       "rejection_reason": "no",
       "approved": false,
       "type": "description_change_request"
+    },
+    {
+      "id": 22,
+      "state": "open",
+      "response_due": "2021-05-25",
+      "proposed_description": "A garden full of roses",
+      "rejection_reason": null,
+      "approved": null,
+      "type": "description_change_request"
     }
   ]
 }

@@ -8,11 +8,14 @@
     </p>
     <div style="margin-top: 50px;">
       <p class="govuk-body"><strong>Previous description</strong><br>
+        <%= @planning_application["description"] %>
       </p>
     </div>
     <div style="margin-top: 30px;">
       <p class="govuk-body"><strong>New description</strong><br>
-        Certificate of lawfulness (proposed) for the construction of a single storey side extension.
+        <% @change_request.each do |change_request| %>
+        <%= change_request["proposed_description"] %>
+        <% end %>
       </p>
     </div>
     <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">

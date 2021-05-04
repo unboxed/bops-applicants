@@ -2,9 +2,9 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">Your planning application</h1>
     <p class="govuk-body">
-      <strong>At:</strong> <%= @planning_application.full_address %> <br>
-      <strong>Date received:</strong> <%= @planning_application.date_received %> <br>
-      <strong>Application number: </strong>@planning_application.reference <br>
+      <strong>At:</strong> <%= full_address(@planning_application) %> <br>
+      <strong>Date received:</strong> <%= date_received(@planning_application) %> <br>
+      <strong>Application number: </strong> <%= reference(@planning_application) %> <br>
       <br>
     </p>
     <p class="govuk-body">
@@ -12,7 +12,7 @@
     </p>
     <div class="govuk-inset-text">
       <p class="govuk-body">
-        If requested changes are not received within 15 working days, by the <strong>REQUEST_FOR_CHANGE_EXPIRY_HERE</strong>
+        If requested changes are not received within 15 working days, by <strong> <%= date_due(latest_request_due(@change_requests)) %></strong>
         your application will be returned and your payment refunded.
       </p>
     </div>
@@ -29,34 +29,30 @@
   </div>
 </div>
 <div class="govuk-grid-row">
-  <div class="govuk-summary-list">
-    <div class="govuk-summary-list__row">
-      <ol class="app-task-list">
-        <li>
-          <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">1. </span> Confirm changes to your application description
-          </h2>
-        </li>
-      </ol>
-      <ul class="app-task-list__items" id="validation-section">
-        <% @change_requests["data"].each do |change_request| %>
-          <li class="app-task-list__item">
-            <span class="app-task-list__task-name">
-              <% if change_request["type"] == "description_change_request" %>
-                Description
-              <% end %>
-            </span>
-            <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
-              <% if change_request["state"] == 'open' %>
-                Not started
-              <% else %>
-                Complete
-              <% end %>
-            </strong>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+  <div class="govuk-grid-column-two-thirds">
+    <ol class="moj-task-list">
+      <li>
+        <h2 class="moj-task-list__section">
+          <span class="moj-task-list__section-number">1. </span>Confirm changes to your application description
+        </h2>
+        <ul class="moj-task-list__items" id="validation-section">
+          <% @change_requests["data"].each do |change_request| %>
+            <li class="moj-task-list__item">
+                <% if change_request["type"] == "description_change_request" %>
+                  <%= link_to "Description", change_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+                <% end %>
+              <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                <% if change_request["state"] == 'open' %>
+                  Not started
+                <% else %>
+                  Complete
+                <% end %>
+              </strong>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+     </ol>
   </div>
 </div>
 
