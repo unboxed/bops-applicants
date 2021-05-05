@@ -12,21 +12,21 @@ class ChangeRequestsController < ApplicationController
   end
 
   def update
-    if @change_request["approved"] == false && @change.request["rejection_reason"].blank?
+    if params["decision_change_request"]["approved"] == "no" && params["decision_change_request"]["rejection_reason"].blank?
       @errors = "Please fill in the reason for disagreeing with the suggested change."
-    elsif @change_request["approved"] == true
-      @errors.clear
+    elsif params["decision_change_request"]["approved"] == "yes"
+      @errors.clear if @errors.present?
       send_approved_description("southwark", params[:planning_application_id], params[:id], params[:change_access_id])
-    elsif @change_request["approved"] == false
-      @errors.clear
-      send_rejected_description("southwark", params[:planning_application_id], params[:id], params[:change_access_id], @change_request["rejection_reason"])
+    elsif params["decision_change_request"]["approved"] == "no"
+      @errors.clear if @errors.present?
+      send_rejected_description("southwark", params[:planning_application_id], params[:id], params[:change_access_id], params["decision_change_request"]["rejection_reason"])
     end
   end
 
 private
 
   def set_change_request
-    @change_request = @change_requests["data"].select { |obj| obj["id"] == params["id"].to_i }
+    @change_request = @change_requests["data"].select { |obj| obj["id"] == params["id"].to_i }.first
   end
 
   def set_change_requests
@@ -37,17 +37,33 @@ private
     @planning_application = planning_application("southwark", params[:planning_application_id])
   end
 
-  def change_requests(subdomain, planning_application_id, change_request_id)
-    request = HTTParty.get(
-      "http://#{subdomain}.lvh.me:3000/api/v1/planning_applications/#{planning_application_id}/change_requests?change_access_id=#{change_request_id}",
-      headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
-    )
-
+  def get_request_successful?(request)
     if request.success?
       JSON.parse(request.body)
     else
       render plain: "Forbidden", status: 401
     end
+  end
+
+  def update_request_successful?(request)
+    if request.success?
+      flash[:notice] = "Change request successfully updated."
+      redirect_to change_requests_path(
+        change_access_id: params[:change_access_id],
+        id: params[:id],
+        planning_application_id: params[:planning_application_id],
+      )
+    else
+      render plain: "Forbidden", status: 401
+    end
+  end
+
+  def change_requests(subdomain, planning_application_id, change_request_id)
+    request = HTTParty.get(
+      "http://#{subdomain}.lvh.me:3000/api/v1/planning_applications/#{planning_application_id}/change_requests?change_access_id=#{change_request_id}",
+      headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
+    )
+    get_request_successful?(request)
   end
 
   def planning_application(subdomain, planning_application_id)
@@ -55,49 +71,33 @@ private
       "http://#{subdomain}.lvh.me:3000/api/v1/planning_applications/#{planning_application_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
     )
-
-    if request.success?
-      JSON.parse(request.body)
-    else
-      render plain: "Forbidden", status: 401
-    end
+    get_request_successful?(request)
   end
 
   def send_approved_description(subdomain, planning_application_id, description_change_request_id, change_access_id)
     request = HTTParty.patch(
-      "http://#{subdomain}.lvh.me:3000/api/v1/planning_applications/#{planning_application_id}",
+      "http://#{subdomain}.lvh.me:3000/api/v1/planning_applications/#{planning_application_id}/description_change_requests/#{description_change_request_id}?change_access_id=#{change_access_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
       body: {
         "data": {
-          "approved": true
-        }
+          "approved": true,
+        },
       },
     )
-
-    if request.success?
-      flash[:notice] = "Change request successfully updated."
-    else
-      render plain: "Forbidden", status: 401
-    end
+    update_request_successful?(request)
   end
 
   def send_rejected_description(subdomain, planning_application_id, description_change_request_id, change_access_id, rejection_reason)
     request = HTTParty.patch(
-      "http://#{subdomain}.lvh.me:3000/api/v1/planning_applications/#{planning_application_id}",
+      "http://#{subdomain}.lvh.me:3000/api/v1/planning_applications/#{planning_application_id}/description_change_requests/#{description_change_request_id}?change_access_id=#{change_access_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
       body: {
         "data": {
           "approved": false,
-          "rejection_reason": "#{rejection_reason}"
-        }
+          "rejection_reason": rejection_reason.to_s,
+        },
       },
     )
-
-    if request.success?
-      flash[:notice] = "Change request successfully updated."
-    else
-      render plain: "Forbidden", status: 401
-    end
+    update_request_successful?(request)
   end
-
 end
