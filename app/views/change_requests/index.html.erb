@@ -39,7 +39,7 @@
           <% @change_requests["data"].each do |change_request| %>
             <li class="moj-task-list__item">
                 <% if change_request["type"] == "description_change_request" %>
-                  <%= link_to "Description", change_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+                  <%= link_to "Description", edit_change_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
                 <% end %>
               <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
                 <% if change_request["state"] == 'open' %>

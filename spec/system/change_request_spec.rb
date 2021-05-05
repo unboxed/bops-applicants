@@ -82,13 +82,4 @@ RSpec.describe "Change requests", type: :system do
 
     expect(page).to have_content("This is a better description")
   end
-
-  xit "can agree with the proposed change" do
-    stub_successful_get_individual_change_request
-    stub_successful_get_planning_application
-
-    visit "/change_requests?planning_application_id=8/change_requests/18/&change_access_id=345443543"
-
-    choose "Yes"
-  end
 end
