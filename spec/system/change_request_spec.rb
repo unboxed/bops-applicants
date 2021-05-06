@@ -14,7 +14,7 @@ RSpec.describe "Change requests", type: :system do
     }
   end
 
-  def stub_successful_get_change_request
+  def stub_successful_get_change_requests
     stub_request(:get, "http://southwark.lvh.me:3000/api/v1/planning_applications/8/change_requests?change_access_id=345443543")
     .with(headers: set_headers)
     .to_return(status: 200, body: File.read(Rails.root.join("spec/fixtures/test_change_request_index.json")), headers: {})
@@ -23,7 +23,7 @@ RSpec.describe "Change requests", type: :system do
   def stub_successful_get_individual_change_request
     stub_request(:get, "http://southwark.lvh.me:3000/api/v1/planning_applications/8/change_requests?change_access_id=345443543")
     .with(headers: set_headers)
-    .to_return(status: 200, body: File.read(Rails.root.join("spec/fixtures/test_individual_change_req.json")), headers: {})
+    .to_return(status: 200, body: File.read(Rails.root.join("spec/fixtures/test_individual_change_request.json")), headers: {})
   end
 
   def stub_successful_get_planning_application
@@ -33,7 +33,7 @@ RSpec.describe "Change requests", type: :system do
   end
 
   it "allows the user to see change requests associated with their application" do
-    stub_successful_get_change_request
+    stub_successful_get_change_requests
     stub_successful_get_planning_application
 
     visit "/change_requests?planning_application_id=8&change_access_id=345443543"
@@ -54,7 +54,7 @@ RSpec.describe "Change requests", type: :system do
   end
 
   it "displays the necessary information about the planning application associated with the change request" do
-    stub_successful_get_change_request
+    stub_successful_get_change_requests
     stub_successful_get_planning_application
 
     visit "/change_requests?planning_application_id=8&change_access_id=345443543"
@@ -65,7 +65,7 @@ RSpec.describe "Change requests", type: :system do
   end
 
   it "displays the due date of the latest change request in the index page" do
-    stub_successful_get_change_request
+    stub_successful_get_change_requests
     stub_successful_get_planning_application
 
     visit "/change_requests?planning_application_id=8&change_access_id=345443543"

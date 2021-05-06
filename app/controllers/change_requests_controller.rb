@@ -13,12 +13,11 @@ class ChangeRequestsController < ApplicationController
 
   def update
     if params["decision_change_request"]["approved"] == "no" && params["decision_change_request"]["rejection_reason"].blank?
-      @errors = "Please fill in the reason for disagreeing with the suggested change."
+      flash[:error] = "Please fill in the reason for disagreeing with the suggested change."
+      render :edit
     elsif params["decision_change_request"]["approved"] == "yes"
-      @errors.clear if @errors.present?
       send_approved_description("southwark", params[:planning_application_id], params[:id], params[:change_access_id])
     elsif params["decision_change_request"]["approved"] == "no"
-      @errors.clear if @errors.present?
       send_rejected_description("southwark", params[:planning_application_id], params[:id], params[:change_access_id], params["decision_change_request"]["rejection_reason"])
     end
   end
