@@ -4,10 +4,12 @@
   "dependencies": {
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
+    "govuk-frontend": "^3.11.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "sass": "^1.32.11",
     "webpack-dev-server": "^3.11.2"
   }
 }

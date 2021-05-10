@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.6.6"
 
+gem "dotenv-rails", require: "dotenv/rails-now"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", "~> 6.1.3.2"
 # Use Puma as the app server
@@ -23,14 +25,23 @@ gem "aws-sdk-s3", require: false
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 
+gem "govuk_design_system_formbuilder"
+gem "httparty"
+
+group :test do
+  gem "webmock", "~> 3.12", ">= 3.12.2"
+end
+
 group :development, :test do
   gem "brakeman", require: false
   gem "bundler-audit", require: false
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
+  gem "capybara"
+  gem "factory_bot_rails"
   gem "rspec-rails", "~> 5.0.0"
   gem "rubocop", require: false
   gem "rubocop-govuk", require: false
+  gem "selenium-webdriver"
 end
 
 group :development do
