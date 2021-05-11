@@ -56,7 +56,7 @@ private
   end
 
   def api_base(subdomain)
-    "#{subdomain}.#{ENV['DOMAIN'] || 'lvh.me:3000'}/api/v1"
+    "#{subdomain}.#{ENV['API_HOST'] || 'lvh.me:3000'}/api/v1"
   end
 
   def change_requests(subdomain, planning_application_id, change_request_id)
