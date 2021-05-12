@@ -61,7 +61,7 @@ private
 
   def change_requests(subdomain, planning_application_id, change_request_id)
     request = HTTParty.get(
-      "http://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/change_requests?change_access_id=#{change_request_id}",
+      "https://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/change_requests?change_access_id=#{change_request_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
     )
     get_request_successful?(request)
@@ -69,7 +69,7 @@ private
 
   def planning_application(subdomain, planning_application_id)
     request = HTTParty.get(
-      "http://#{api_base(subdomain)}/planning_applications/#{planning_application_id}",
+      "https://#{api_base(subdomain)}/planning_applications/#{planning_application_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
     )
     get_request_successful?(request)
@@ -77,7 +77,7 @@ private
 
   def send_approved_description(subdomain, planning_application_id, description_change_request_id, change_access_id)
     request = HTTParty.patch(
-      "http://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/description_change_requests/#{description_change_request_id}?change_access_id=#{change_access_id}",
+      "https://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/description_change_requests/#{description_change_request_id}?change_access_id=#{change_access_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
       body: {
         "data": {
@@ -90,7 +90,7 @@ private
 
   def send_rejected_description(subdomain, planning_application_id, description_change_request_id, change_access_id, rejection_reason)
     request = HTTParty.patch(
-      "http://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/description_change_requests/#{description_change_request_id}?change_access_id=#{change_access_id}",
+      "https://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/description_change_requests/#{description_change_request_id}?change_access_id=#{change_access_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
       body: {
         "data": {
