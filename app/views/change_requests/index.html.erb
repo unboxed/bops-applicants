@@ -43,13 +43,15 @@
                 <% else %>
                   <%= link_to "Description", change_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
                 <% end %>
-              <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
                 <% if change_request["state"] == 'open' %>
-                  Not started
+                  <strong class="govuk-tag govuk-tag--grey" id="eligibility-status">
+                    Not started
+                  </strong>
                 <% else %>
-                  Complete
+                  <strong class="govuk-tag app-task-list__tag" id="eligibility-status">
+                    Complete
+                  </strong>
                 <% end %>
-              </strong>
             </li>
           <% end %>
         </ul>
