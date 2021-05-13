@@ -14,6 +14,7 @@
       "state": "closed",
       "response_due": "2021-05-14",
       "proposed_description": "We want bird houses and a tikki bar in this!",
+      "previous_description": "We want a tikki bar in this!",
       "rejection_reason": null,
       "approved": true,
       "type": "description_change_request"
