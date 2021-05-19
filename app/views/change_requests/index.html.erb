@@ -31,31 +31,13 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <ol class="moj-task-list">
-      <li>
-        <h2 class="moj-task-list__section">
-          <span class="moj-task-list__section-number">1. </span>Confirm changes to your application description
-        </h2>
-        <ul class="moj-task-list__items" id="validation-section">
-          <% @change_requests["data"].each do |change_request| %>
-            <li class="moj-task-list__item">
-                <% if change_request["type"] == "description_change_request" && change_request["state"] == "open" %>
-                  <%= link_to "Description", edit_change_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
-                <% else %>
-                  <%= link_to "Description", change_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
-                <% end %>
-                <% if change_request["state"] == 'open' %>
-                  <strong class="govuk-tag govuk-tag--grey" style="float: right;" id="eligibility-status">
-                    Not started
-                  </strong>
-                <% else %>
-                  <strong class="govuk-tag app-task-list__tag" style="float: right;" id="eligibility-status">
-                    Complete
-                  </strong>
-                <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </li>
+      <% if @change_requests["data"]["description_change_requests"].present? %>
+        <%= render "description_change_requests" %>
+      <% end %>
+
+      <% if @change_requests["data"]["document_change_requests"].present? %>
+        <%= render "document_change_requests" %>
+      <% end %>
      </ol>
   </div>
 </div>
