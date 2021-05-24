@@ -37,7 +37,6 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "capybara"
-  gem "factory_bot_rails"
   gem "rspec-rails", "~> 5.0.0"
   gem "rubocop", require: false
   gem "rubocop-govuk", require: false
