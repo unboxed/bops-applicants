@@ -14,12 +14,6 @@ module ApiSpecHelper
     .to_return(status: 200, body: file_fixture("test_planning_application.json").read, headers: {})
   end
 
-  def stub_successful_get_individual_change_request
-    stub_request(:get, "https://default.lvh.me:3000/api/v1/planning_applications/28/change_requests?change_access_id=345443543")
-    .with(headers: headers)
-    .to_return(status: 200, body: file_fixture("test_individual_change_request.json").read, headers: {})
-  end
-
   def stub_successful_get_change_requests
     stub_request(:get, "https://default.lvh.me:3000/api/v1/planning_applications/28/change_requests?change_access_id=345443543")
     .with(headers: headers)

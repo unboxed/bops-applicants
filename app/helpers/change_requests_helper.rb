@@ -18,6 +18,18 @@ module ChangeRequestsHelper
   end
 
   def latest_request_due(change_requests)
-    change_requests["data"].min { |a, b| b["response_due"] <=> a["response_due"] }
+    flattened_change_requests(change_requests).max_by { |x| x["response_due"] }
+  end
+
+  def flattened_change_requests(change_requests)
+    change_requests["data"]["description_change_requests"] + change_requests["data"]["document_change_requests"]
+  end
+
+  def counter_change_requests_order(change_request)
+    if change_request["data"]["description_change_requests"].blank?
+      "1."
+    else
+      "2."
+    end
   end
 end

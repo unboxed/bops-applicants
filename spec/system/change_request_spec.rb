@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe "Change requests", type: :system do
   before do
     ENV["API_BEARER"] = "123"
+    ENV["PROTOCOL"] = "https"
   end
 
   it "allows the user to see change requests associated with their application" do
@@ -43,15 +44,15 @@ RSpec.describe "Change requests", type: :system do
 
     visit "/change_requests?planning_application_id=28&change_access_id=345443543"
 
-    expect(page).to have_content("If requested changes are not received within 15 working days, by 25 May 2021")
+    expect(page).to have_content("If requested changes are not received within 15 working days, by 10 June 2021")
   end
 
   it "displays the description of the change request on the change request page" do
-    stub_successful_get_individual_change_request
+    stub_successful_get_change_requests
     stub_successful_get_planning_application
 
     visit "/change_requests?planning_application_id=28&change_access_id=345443543"
-    click_link "Description"
+    click_link("Description", match: :first)
 
     expect(page).to have_content("This is a better description")
   end

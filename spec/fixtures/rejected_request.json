@@ -1,50 +1,106 @@
 {
-  "data": [
-    {
-      "id": 18,
-      "state": "open",
-      "response_due": "2021-05-14",
-      "proposed_description": "This is a better description",
-      "rejection_reason": null,
-      "approved": null,
-      "type": "description_change_request"
-    },
-    {
-      "id": 19,
-      "state": "closed",
-      "response_due": "2021-05-14",
-      "proposed_description": "We want bird houses and a tikki bar in this!",
-      "previous_description": "We want a tikki bar in this!",
-      "rejection_reason": null,
-      "approved": true,
-      "type": "description_change_request"
-    },
-    {
-      "id": 20,
-      "state": "closed",
-      "response_due": "2021-05-14",
-      "proposed_description": "I don't see an invite to the housewarming party!",
-      "rejection_reason": "CHIMICHANGAS",
-      "approved": false,
-      "type": "description_change_request"
-    },
-    {
-      "id": 21,
-      "state": "closed",
-      "response_due": "2021-05-18",
-      "proposed_description": "I propose to propose new things",
-      "rejection_reason": "no",
-      "approved": false,
-      "type": "description_change_request"
-    },
-    {
-      "id": 22,
-      "state": "open",
-      "response_due": "2021-05-25",
-      "proposed_description": "A garden full of roses",
-      "rejection_reason": "I wish to build a roman theatre.",
-      "approved": false,
-      "type": "description_change_request"
-    }
-  ]
+  "data": {
+    "description_change_requests": [
+      {
+        "id": 18,
+        "state": "open",
+        "response_due": "2021-05-14",
+        "proposed_description": "This is a better description",
+        "rejection_reason": null,
+        "approved": null,
+        "type": "description_change_request"
+      },
+      {
+        "id": 19,
+        "state": "closed",
+        "response_due": "2021-05-14",
+        "proposed_description": "We want bird houses and a tikki bar in this!",
+        "previous_description": "We want a tikki bar in this!",
+        "rejection_reason": null,
+        "approved": true,
+        "type": "description_change_request"
+      },
+      {
+        "id": 20,
+        "state": "closed",
+        "response_due": "2021-05-14",
+        "proposed_description": "I don't see an invite to the housewarming party!",
+        "rejection_reason": "CHIMICHANGAS",
+        "approved": false,
+        "type": "description_change_request"
+      },
+      {
+        "id": 21,
+        "state": "closed",
+        "response_due": "2021-05-18",
+        "proposed_description": "I propose to propose new things",
+        "rejection_reason": "no",
+        "approved": false,
+        "type": "description_change_request"
+      },
+      {
+        "id": 22,
+        "state": "open",
+        "response_due": "2021-05-25",
+        "proposed_description": "A garden full of roses",
+        "rejection_reason": "I wish to build a roman theatre.",
+        "approved": false,
+        "type": "description_change_request"
+      }
+    ],
+    "document_change_requests": [
+      {
+        "id": 1,
+        "state": "open",
+        "response_due": "2021-06-09",
+        "days_until_response_due": 15,
+        "old_document": {
+          "tags": [
+            "Floor"
+          ],
+          "name": "20210512_162911.jpg",
+          "invalid_document_reason": "Its a sandwhich"
+        },
+        "type": "document_change_request"
+      },
+      {
+        "id": 2,
+        "state": "closed",
+        "response_due": "2021-06-09",
+        "days_until_response_due": 15,
+        "old_document": {
+          "tags": [],
+          "name": "20210428_100223 (1).jpg",
+          "invalid_document_reason": "Its Melissa!!"
+        },
+        "type": "document_change_request"
+      },
+      {
+        "id": 3,
+        "state": "open",
+        "response_due": "2021-06-09",
+        "days_until_response_due": 15,
+        "old_document": {
+          "tags": [
+            "Side"
+          ],
+          "name": "proposed-first-floor-plan.pdf",
+          "invalid_document_reason": "Despicable"
+        },
+        "type": "document_change_request"
+      },
+      {
+        "id": 4,
+        "state": "open",
+        "response_due": "2021-06-09",
+        "days_until_response_due": 15,
+        "old_document": {
+          "tags": [],
+          "name": "20210428_100223.jpg",
+          "invalid_document_reason": "not again"
+        },
+        "type": "document_change_request"
+      }
+    ]
+  }
 }
