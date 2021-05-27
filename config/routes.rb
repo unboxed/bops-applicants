@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :change_requests, only: %i[index]
   resources :description_change_requests, only: %i[show edit update]
   resources :document_change_requests, only: %i[show edit update]
+  resources :document_create_requests, only: %i[show edit update]
 end

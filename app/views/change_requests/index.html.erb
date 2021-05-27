@@ -38,6 +38,10 @@
       <% if @change_requests["data"]["document_change_requests"].present? %>
         <%= render "document_change_requests" %>
       <% end %>
+
+      <% if @change_requests["data"]["document_create_requests"].present? %>
+        <%= render "document_create_requests" %>
+      <% end %>
      </ol>
   </div>
 </div>
