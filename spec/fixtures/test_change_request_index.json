@@ -103,6 +103,30 @@
         },
         "type": "document_change_request"
       }
+    ],
+    "document_create_requests": [
+      {
+        "id": 4,
+        "state": "closed",
+        "response_due": "2021-06-17",
+        "days_until_response_due": 15,
+        "document_request_type": "Floor plan",
+        "document_request_reason": "No floor plan",
+        "new_document": {
+          "name": "proposed-floorplan.png",
+          "url": "http://southwark.lvh.me:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png"
+        },
+        "type": "document_create_request"
+      },
+      {
+        "id": 3,
+        "state": "open",
+        "response_due": "2021-06-16",
+        "days_until_response_due": 14,
+        "document_request_type": "Roman theatre plan",
+        "document_request_reason": "I do not see a vomitorium in this.",
+        "type": "document_create_request"
+      }
     ]
   }
 }
