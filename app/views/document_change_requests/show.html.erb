@@ -25,7 +25,7 @@
           <%= @change_request["old_document"]["invalid_document_reason"] %>
         </p>
       </div>
-      <p class="govuk-body govuk-!-padding-top-6"><strong>File uploaded:</strong><br>
+      <p class="govuk-body govuk-!-padding-top-6"><strong>Document uploaded:</strong><br>
         <%= @change_request["new_document"]["name"] %>
       </p>
       <%= image_tag(@change_request["new_document"]["url"], class: "image-border") %>

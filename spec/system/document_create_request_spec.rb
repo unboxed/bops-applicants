@@ -14,7 +14,7 @@ RSpec.describe "Document create requests", type: :system do
 
     visit "/document_create_requests/3/edit?change_access_id=345443543&planning_application_id=28"
 
-    expect(page).to have_content("File requested:")
+    expect(page).to have_content("Document requested:")
     expect(page).to have_content("Roman theatre plan")
     expect(page).to have_content("Case officer's reason for requesting the document:")
     expect(page).to have_content("I do not see a vomitorium in this.")
@@ -41,7 +41,7 @@ RSpec.describe "Document create requests", type: :system do
 
     visit "/document_create_requests/4?change_access_id=345443543&planning_application_id=28"
 
-    expect(page).to have_content "File requested:"
+    expect(page).to have_content "Document requested:"
     expect(page).to have_content "Floor plan"
     expect(page).to have_content "Case officer's reason for requesting the document:"
     expect(page).to have_content "No floor plan"
