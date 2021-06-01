@@ -43,7 +43,7 @@ RSpec.describe "Document change requests", type: :system do
 
     expect(page).to have_content "Name of file on submission:"
     expect(page).to have_content "paul-volkmer.jpg"
-    expect(page).to have_content "The reason the file needs replacing:"
+    expect(page).to have_content "Case officer's reason for requesting the document:"
     expect(page).to have_content "Its a galaxy."
     expect(page).to have_content "File uploaded:"
     expect(page).to have_content "max-baskakov-catunsplash.jpg"

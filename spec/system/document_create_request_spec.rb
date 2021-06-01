@@ -16,7 +16,7 @@ RSpec.describe "Document create requests", type: :system do
 
     expect(page).to have_content("File requested:")
     expect(page).to have_content("Roman theatre plan")
-    expect(page).to have_content("The reason for the requested file:")
+    expect(page).to have_content("Case officer's reason for requesting the document:")
     expect(page).to have_content("I do not see a vomitorium in this.")
   end
 
@@ -43,7 +43,7 @@ RSpec.describe "Document create requests", type: :system do
 
     expect(page).to have_content "File requested:"
     expect(page).to have_content "Floor plan"
-    expect(page).to have_content "The reason for the requested file:"
+    expect(page).to have_content "Case officer's reason for requesting the document:"
     expect(page).to have_content "No floor plan"
     expect(page).to have_content "proposed-floorplan.png"
   end
