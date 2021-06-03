@@ -42,6 +42,10 @@
       <% if @change_requests["data"]["document_create_requests"].present? %>
         <%= render "document_create_requests" %>
       <% end %>
+
+      <% if @change_requests["data"]["red_line_boundary_change_requests"].present? %>
+        <%= render "red_line_boundary_change_requests" %>
+      <% end %>
      </ol>
   </div>
 </div>
