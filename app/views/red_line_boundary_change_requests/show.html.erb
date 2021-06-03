@@ -2,6 +2,7 @@
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <h2 class="govuk-heading-l">Confirm changes to your application's red line boundary </h2>
       <p class="govuk-body">
         The following changes have been made to your application's red line boundary.
@@ -29,18 +30,26 @@
           Agreed with suggested boundary changes
 =======
       <h2 class="govuk-heading-l">Confirm changes to your application description </h2>
+=======
+      <h2 class="govuk-heading-l">Confirm changes to your application's red line boundary' </h2>
+>>>>>>> dd978a2 (Add redline maps to views)
       <p class="govuk-body">
-        The following changes have been made to your application's description.
+        The following changes have been made to your application's red line boundary.
       </p>
-      <div class="govuk-!-margin-top-8">
-        <p class="govuk-body"><strong>Previous description</strong><br>
-          <%= @change_request["previous_description"] %>
+      <div style="margin-top: 50px;">
+        <p class="govuk-body"><strong>Your original red line boundary</strong><br>
         </p>
       </div>
-      <div class="govuk-!-margin-top-6">
-        <p class="govuk-body"><strong>New description</strong><br>
-          <%= @change_request["proposed_description"] %>
+      <div id="location_map">
+        <%= render "location_map", locals: { div_id: "location_map", geojson: @planning_application["boundary_geojson"] } %>
+      </div>
+      <div style="margin-top: 30px;">
+        <p class="govuk-body"><strong>Proposed red line boundary</strong><br>
+          <%=  %>
         </p>
+      </div>
+      <div id="location_map">
+        <%= render "location_map", locals: { div_id: "location_map", geojson: @change_request["new_geojson"] } %>
       </div>
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
       <% if @change_request["approved"] == false %>

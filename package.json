@@ -9,6 +9,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "leaflet": "^1.7.1",
     "sass": "^1.32.11",
     "webpack-dev-server": "^3.11.2"
   }
