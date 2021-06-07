@@ -1,8 +1,6 @@
 <div class="govuk-grid-row govuk-!-margin-top-7 govuk-!-padding-bottom-8">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
-<<<<<<< HEAD
-<<<<<<< HEAD
       <h2 class="govuk-heading-l">Confirm changes to your application's red line boundary </h2>
       <p class="govuk-body">
         The following changes have been made to your application's red line boundary.
@@ -16,63 +14,24 @@
         <p class="govuk-body"><strong>Proposed red line boundary</strong><br>
         </p>
       </div>
-        <%= render "proposal_map", locals: { div_id: "location_map", geojson: @change_request["new_geojson"] } %>
+      <%= render "proposal_map", locals: { div_id: "location_map", geojson: @change_request["new_geojson"] } %>
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
       <% if @change_request["approved"] == false %>
         <strong class="govuk-tag govuk-tag--red">
           Disagreed with suggested boundary changes
         </strong>
         <p class="govuk-body govuk-!-padding-top-6"><strong>My reason for objecting to the boundary changes: </strong><br>
-          <%= @change_request["reason"] %>
-        </p>
-      <% else %>
-        <strong class="govuk-tag govuk-tag--green">
-          Agreed with suggested boundary changes
-=======
-      <h2 class="govuk-heading-l">Confirm changes to your application description </h2>
-=======
-      <h2 class="govuk-heading-l">Confirm changes to your application's red line boundary' </h2>
->>>>>>> dd978a2 (Add redline maps to views)
-      <p class="govuk-body">
-        The following changes have been made to your application's red line boundary.
-      </p>
-      <div style="margin-top: 50px;">
-        <p class="govuk-body"><strong>Your original red line boundary</strong><br>
-        </p>
-      </div>
-      <div id="location_map">
-        <%= render "location_map", locals: { div_id: "location_map", geojson: @planning_application["boundary_geojson"] } %>
-      </div>
-      <div style="margin-top: 30px;">
-        <p class="govuk-body"><strong>Proposed red line boundary</strong><br>
-          <%=  %>
-        </p>
-      </div>
-      <div id="location_map">
-        <%= render "location_map", locals: { div_id: "location_map", geojson: @change_request["new_geojson"] } %>
-      </div>
-      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-      <% if @change_request["approved"] == false %>
-        <strong class="govuk-tag govuk-tag--red">
-          Disagreed with suggested changes
-        </strong>
-        <p class="govuk-body govuk-!-padding-top-6"><strong>My objection and suggested wording for description: </strong><br>
           <%= @change_request["rejection_reason"] %>
         </p>
       <% else %>
         <strong class="govuk-tag govuk-tag--green">
-          Agreed with suggested changes
->>>>>>> 790cbda (First additions for red line boundary change requests)
+          Agreed with suggested boundary changes
         </strong>
       <% end %>
     </div>
   </div>
 </div>
 
-<<<<<<< HEAD
 <div class="govuk-!-padding-bottom-6">
-=======
-<div class="govuk-!-padding-bottom-8">
->>>>>>> 790cbda (First additions for red line boundary change requests)
   <%= link_to 'Back', change_requests_path(@change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-!-margin-right-1" %>
 </div>

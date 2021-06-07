@@ -101,6 +101,35 @@
         },
         "type": "document_change_request"
       }
+    ],
+    "red_line_boundary_change_requests": [
+      {
+        "id": 10,
+        "state": "open",
+        "response_due": "2021-05-14",
+        "new_geojson": "",
+        "rejection_reason": null,
+        "approved": null,
+        "type": "red_line_boundary_change_request"
+      },
+      {
+        "id": 34,
+        "state": "closed",
+        "response_due": "2021-05-14",
+        "new_geojson": "",
+        "rejection_reason": null,
+        "approved": true,
+        "type": "red_line_boundary_change_request"
+      },
+      {
+        "id": 35,
+        "state": "closed",
+        "response_due": "2021-05-14",
+        "new_geojson": "",
+        "rejection_reason": "I do not agree with this boundary",
+        "approved": false,
+        "type": "red_line_boundary_change_request"
+      }
     ]
   }
 }

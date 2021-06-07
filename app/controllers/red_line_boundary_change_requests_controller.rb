@@ -18,7 +18,7 @@ class RedLineBoundaryChangeRequestsController < ChangeRequestsController
     end
   end
 
-  private
+private
 
   def set_change_request
     @change_request = @change_requests["data"]["red_line_boundary_change_requests"].select { |obj| obj["id"] == params["id"].to_i }.first
@@ -30,28 +30,28 @@ class RedLineBoundaryChangeRequestsController < ChangeRequestsController
 
   def approve_request(subdomain, planning_application_id, change_request_id, change_access_id)
     request = HTTParty.patch(
-        "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/red_line_boundary_change_requests/#{change_request_id}?change_access_id=#{change_access_id}",
-        headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
-        body: {
-            "data": {
-                "approved": true,
-            },
+      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/red_line_boundary_change_requests/#{change_request_id}?change_access_id=#{change_access_id}",
+      headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
+      body: {
+        "data": {
+          "approved": true,
         },
-        )
+      },
+    )
     update_request_successful?(request)
   end
 
   def reject_request(subdomain, planning_application_id, change_request_id, change_access_id, rejection_reason)
     request = HTTParty.patch(
-        "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/red_line_boundary_change_requests/#{change_request_id}?change_access_id=#{change_access_id}",
-        headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
-        body: {
-            "data": {
-                "approved": false,
-                "rejection_reason": rejection_reason.to_s,
-            },
+      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/red_line_boundary_change_requests/#{change_request_id}?change_access_id=#{change_access_id}",
+      headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
+      body: {
+        "data": {
+          "approved": false,
+          "rejection_reason": rejection_reason,
         },
-        )
+      },
+    )
     update_request_successful?(request)
   end
 
@@ -59,10 +59,10 @@ class RedLineBoundaryChangeRequestsController < ChangeRequestsController
     if request.success?
       flash[:notice] = "Change request successfully updated."
       redirect_to change_requests_path(
-                      change_access_id: params[:change_access_id],
-                      id: params[:id],
-                      planning_application_id: params[:planning_application_id],
-                      )
+        change_access_id: params[:change_access_id],
+        id: params[:id],
+        planning_application_id: params[:planning_application_id],
+      )
     else
       render plain: "Forbidden", status: 401
     end
