@@ -34,9 +34,11 @@ module ChangeRequestsHelper
   end
 
   def counter_document_requests_order(change_request)
-    if change_request["data"]["description_change_requests"].present? && change_request["data"]["document_change_requests"].present?
+    if change_request["data"]["description_change_requests"].present? && change_request["data"]["document_change_requests"].present? && change_request["data"]["red_line_boundary_change_requests"].present?
+      "4."
+    elsif (change_request["data"]["description_change_requests"].present? || change_request["data"]["red_line_boundary_change_requests"].present?) && change_request["data"]["document_change_requests"].present?
       "3."
-    elsif change_request["data"]["description_change_requests"].present? || change_request["data"]["document_change_requests"].present?
+    elsif change_request["data"]["description_change_requests"].present? || change_request["data"]["document_change_requests"].present? || change_request["data"]["red_line_boundary_change_requests"].present?
       "2."
     else
       "1."

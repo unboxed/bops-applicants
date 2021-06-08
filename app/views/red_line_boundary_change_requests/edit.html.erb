@@ -24,7 +24,6 @@
       <%= render "location_map", locals: { div_id: "current_map", geojson: @planning_application["boundary_geojson"] } %>
       <div style="margin-top: 30px;">
         <p class="govuk-body"><strong>Proposed red line boundary</strong><br>
-          <%=  %>
         </p>
       </div>
       <%= render "location_map", locals: { div_id: "proposed_map", geojson: @change_request["new_geojson"] } %>
