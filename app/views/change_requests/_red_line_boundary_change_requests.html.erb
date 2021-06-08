@@ -1,6 +1,6 @@
 <li>
   <h2 class="moj-task-list__section">
-    <span class="moj-task-list__section-number">1. </span>Confirm changes to your application description
+    <span class="moj-task-list__section-number"><%= requests_order(@change_requests).last %></span>Confirm changes to your application's red line boundary
   </h2>
   <ul class="moj-task-list__items" id="validation-section">
     <% @change_requests["data"]["red_line_boundary_change_requests"].each do |change_request| %>
