@@ -43,11 +43,7 @@ module ChangeRequestsHelper
     end
   end
 
-  def counter_red_line_requests_order(change_request)
-    requests_order(change_request).last
-  end
-
   def requests_order(change_request)
-    (1..change_request["data"].keys.count).map { |el| el.to_s + "." }
+    change_request["data"].values.map(&:present?).count(true).to_s.concat(".")
   end
 end
