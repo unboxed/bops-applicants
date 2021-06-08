@@ -47,7 +47,7 @@ module ChangeRequestsHelper
     requests_order(change_request).last
   end
 
-  def requests_order(change_request)
-    (1..@change_requests["data"].keys.count).map{|el| el.to_s + "."}
+  def requests_order(_change_request)
+    (1..change_request["data"].keys.count).map { |el| el.to_s + "." }
   end
 end
