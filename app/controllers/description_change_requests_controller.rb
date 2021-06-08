@@ -61,7 +61,7 @@ private
       body: {
         "data": {
           "approved": false,
-          "rejection_reason": rejection_reason.to_s,
+          "rejection_reason": rejection_reason,
         },
       },
     )

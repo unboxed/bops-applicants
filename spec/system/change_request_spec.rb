@@ -18,7 +18,7 @@ RSpec.describe "Change requests", type: :system do
   end
 
   it "forbids the user from accessing change requests for a different application" do
-    stub_request(:get, "https://default.lvh.me:3000/api/v1/planning_applications/28/change_requests?change_access_id=345443543")
+    stub_request(:get, "https://default.local.abscond.org/api/v1/planning_applications/28/change_requests?change_access_id=345443543")
     .to_return(status: 401)
     stub_successful_get_planning_application
 

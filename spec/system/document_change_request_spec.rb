@@ -27,7 +27,7 @@ RSpec.describe "Document change requests", type: :system do
     visit "/document_change_requests/8/edit?change_access_id=345443543&planning_application_id=28"
 
     attach_file("Upload a replacement file", "spec/fixtures/images/proposed-floorplan.png")
-    change_request_patch_request = stub_request(:patch, "https://default.lvh.me:3000/api/v1/planning_applications/28/document_change_requests/8?change_access_id=345443543")
+    change_request_patch_request = stub_request(:patch, "https://default.local.abscond.org/api/v1/planning_applications/28/document_change_requests/8?change_access_id=345443543")
     .to_return(status: 200, body: "", headers: {})
 
     click_button "Submit"

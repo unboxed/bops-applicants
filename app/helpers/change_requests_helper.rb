@@ -22,7 +22,7 @@ module ChangeRequestsHelper
   end
 
   def flattened_change_requests(change_requests)
-    change_requests["data"]["description_change_requests"] + change_requests["data"]["document_change_requests"]
+    change_requests["data"]["description_change_requests"] + change_requests["data"]["document_change_requests"] + change_requests["data"]["red_line_boundary_change_requests"]
   end
 
   def counter_change_requests_order(change_request)
@@ -41,5 +41,13 @@ module ChangeRequestsHelper
     else
       "1."
     end
+  end
+
+  def counter_red_line_requests_order(change_request)
+    requests_order(change_request).last
+  end
+
+  def requests_order(change_request)
+    (1..change_request["data"].keys.count).map { |el| el.to_s + "." }
   end
 end

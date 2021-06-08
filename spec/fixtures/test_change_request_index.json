@@ -48,6 +48,16 @@
         "type": "description_change_request"
       }
     ],
+    "red_line_boundary_change_requests": [
+      {
+        "id": 10,
+        "state": "open",
+        "response_due": "2021-05-14",
+        "new_geojson": "",
+        "reason": null,
+        "approved": null,
+        "type": "red_line_boundary_change_request"
+      }],
     "document_change_requests": [
       {
         "id": 8,
