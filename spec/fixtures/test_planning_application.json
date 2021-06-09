@@ -5,8 +5,6 @@
   "agent_email": "agent@example.com",
   "applicant_first_name": "Albert",
   "applicant_last_name": "Manteras",
-  "applicant_email": "applicant@example.com",
-  "applicant_phone": "23432325435",
   "application_type": "lawfulness_certificate",
   "awaiting_determination_at": null,
   "awaiting_correction_at": null,
