@@ -1,0 +1,32 @@
+<div class="govuk-grid-row govuk-!-margin-top-7 govuk-!-padding-bottom-8">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-width-container">
+      <h2 class="govuk-heading-l">Respond to other validation change request </h2>
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+      <p class="govuk-body">
+        <strong>Officer's reason for invalidating application</strong><br>
+      </p>
+      <p class="govuk-body">
+        <%= @change_request["summary"] %>
+      </p>
+      <p class="govuk-body">
+        <strong>How you can make your application valid</strong><br>
+      </p>
+      <p class="govuk-body">
+        <%= @change_request["suggestion"] %>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+      <p class="govuk-body">
+        <strong>My response to this request</strong><br>
+      </p>
+      <p class="govuk-body">
+        <%= @change_request["response"] %>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+    </div>
+  </div>
+</div>
+
+<div class="govuk-!-padding-bottom-8">
+  <%= link_to 'Back', change_requests_path(@change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-!-margin-right-1" %>
+</div>
