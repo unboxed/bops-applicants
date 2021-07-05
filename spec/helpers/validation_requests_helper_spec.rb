@@ -76,15 +76,15 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
     it "finds the latest date if it is in other_change_validation_requests" do
       expect(latest_request_due({
         "data" => {
-          "description_change_requests" => [
+          "description_change_validation_requests" => [
             { "response_due" => "2021-06-10" },
             { "response_due" => "2021-06-04" },
           ],
-          "document_change_requests" => [
+          "replacement_document_validation_requests" => [
             { "response_due" => "2021-06-11" },
             { "response_due" => "2021-06-03" },
           ],
-          "red_line_boundary_change_requests" => [
+          "red_line_boundary_change_validation_requests" => [
             { "response_due" => "2021-04-12" },
             { "response_due" => "2021-06-02" },
           ],

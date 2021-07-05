@@ -1,9 +1,9 @@
 <li>
   <h2 class="moj-task-list__section">
-    <span class="moj-task-list__section-number"><%= counter_other_validation_requests(@change_requests)  %></span>Respond to other request
+    <span class="moj-task-list__section-number"><%= count_total_requests(@validation_requests, "other_change_validation_requests")   %></span>Respond to other request
   </h2>
   <ul class="moj-task-list__items" id="validation-section">
-    <% @change_requests["data"]["other_change_validation_requests"].each do |change_request| %>
+    <% @validation_requests["data"]["other_change_validation_requests"].each do |change_request| %>
       <li class="moj-task-list__item">
         <% if change_request["state"] == "open" %>
           <%= link_to "Other request", edit_other_change_validation_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>

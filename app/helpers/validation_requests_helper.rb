@@ -13,41 +13,33 @@ module ValidationRequestsHelper
     planning_application["created_at"].to_date.strftime("%e %B %Y")
   end
 
-  def date_due(change_request)
-    change_request["response_due"].to_date.strftime("%e %B %Y")
+  def date_due(validation_request)
+    validation_request["response_due"].to_date.strftime("%e %B %Y")
   end
 
-  def latest_request_due(change_requests)
-    flattened_change_requests(change_requests).max_by { |x| x["response_due"] }
+  def latest_request_due(validation_requests)
+    flattened_validation_requests(validation_requests).max_by { |x| x["response_due"] }
   end
 
-  def flattened_change_requests(change_requests)
-    change_requests["data"]["description_change_validation_requests"] + change_requests["data"]["replacement_document_validation_requests"] + change_requests["data"]["red_line_boundary_change_validation_requests"]
+  def flattened_validation_requests(validation_requests)
+    validation_requests["data"]["description_change_validation_requests"] + validation_requests["data"]["replacement_document_validation_requests"] + validation_requests["data"]["other_change_validation_requests"] + validation_requests["data"]["red_line_boundary_change_validation_requests"]
   end
 
-  def counter_change_requests_order(change_request)
-    if change_request["data"]["description_change_validation_requests"].blank?
+  def counter_change_requests_order(validation_request)
+    if validation_request["data"]["description_change_validation_requests"].blank?
       "1."
     else
       "2."
     end
   end
 
-  def counter_document_requests_order(change_request)
-    if change_request["data"]["description_change_validation_requests"].present? && change_request["data"]["replacement_document_validation_requests"].present?
-      "3."
-    elsif change_request["data"]["description_change_validation_requests"].present? || change_request["data"]["replacement_document_validation_requests"].present?
-      "2."
-    else
-      "1."
-    end
+  def ordered_validation_requests
+    %w[description_change_validation_requests replacement_document_validation_requests additional_document_validation_requests red_line_boundary_change_validation_requests other_change_validation_requests]
   end
 
-  def counter_other_validation_requests(change_requests)
-    change_requests["data"].reject { |_k, v| v.empty? }.count
-  end
-
-  def requests_order(change_request)
-    change_request["data"].values.map(&:present?).count(true).to_s.concat(".")
+  def count_total_requests(validation_requests, name)
+    non_empty = validation_requests["data"].reject { |_k, v| v.empty? }
+    ind = non_empty.keys.sort_by { |e| ordered_validation_requests.index(e) }.find_index(name)
+    ind + 1
   end
 end
