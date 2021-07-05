@@ -1,25 +1,25 @@
  <div class="govuk-grid-row govuk-!-margin-top-7">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-width-container">
-        <h2 class="govuk-heading-l">Respond to other request </h2>
+        <h2 class="govuk-heading-l">Confirm changes to your application description </h2>
           <p class="govuk-body">
-            The following request has been made.
+            The following changes have been made to your application's description.
           </p>
           <p class="govuk-heading-s">What you need to do:</p>
           <ul class="govuk-list govuk-list--bullet">
-            <li>Make changes to your application as set out by your case officer and reply in the box below stating what changes have been made</li>
-            <li>If you disagree with the suggested changes, reply stating why you disagree</li>
+            <li>Select if you agree or disagree with the changes made by your case officer</li>
+            <li>If you disagree, write in the box provided your reason for disagreeing with the changes and provided your suggested wording for the new description</li>
             <li>Click submit to complete this action </li>
           </ul>
           <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
           <div style="margin-top: 50px;">
-            <p class="govuk-body"><strong>Officer's reason for invalidating application</strong><br>
-              <%= @validation_request["summary"] %>
+            <p class="govuk-body"><strong>Previous description</strong><br>
+              <%= @planning_application["description"] %>
             </p>
           </div>
           <div style="margin-top: 30px;">
-            <p class="govuk-body"><strong>How you can make your application valid</strong><br>
-              <%= @validation_request["suggestion"] %>
+            <p class="govuk-body"><strong>New description</strong><br>
+              <%= @validation_request["proposed_description"] %>
             </p>
           </div>
           <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
