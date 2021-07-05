@@ -137,6 +137,28 @@
         "document_request_reason": "I do not see a vomitorium in this.",
         "type": "document_create_request"
       }
+    ],
+    "other_change_validation_requests": [
+      {
+        "id": 4,
+        "state": "closed",
+        "response_due": "2021-06-17",
+        "days_until_response_due": 15,
+        "summary": "The wrong fee has been paid",
+        "suggestion": "You need to pay an extra £100",
+        "response": "I disagree with the extra fee",
+        "type": "other_change_request"
+      },
+      {
+        "id": 19,
+        "state": "open",
+        "response_due": "2021-06-16",
+        "days_until_response_due": 14,
+        "summary": "You applied for the wrong sort of certificate",
+        "suggestion": "Please confirm you want a Lawful Development certificate",
+        "response": "",
+        "type": "other_change_request"
+      }
     ]
   }
 }

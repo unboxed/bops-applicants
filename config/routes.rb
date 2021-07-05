@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :document_change_requests, only: %i[show edit update]
   resources :document_create_requests, only: %i[show edit update]
   resources :red_line_boundary_change_requests, only: %i[show edit update]
+  resources :other_change_validation_requests, only: %i[show edit update]
 end

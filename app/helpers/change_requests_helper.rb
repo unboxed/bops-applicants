@@ -22,7 +22,7 @@ module ChangeRequestsHelper
   end
 
   def flattened_change_requests(change_requests)
-    change_requests["data"]["description_change_requests"] + change_requests["data"]["document_change_requests"] + change_requests["data"]["red_line_boundary_change_requests"]
+    change_requests["data"]["description_change_requests"] + change_requests["data"]["document_change_requests"] + change_requests["data"]["red_line_boundary_change_requests"] + change_requests["data"]["other_change_validation_requests"]
   end
 
   def counter_change_requests_order(change_request)
@@ -41,6 +41,10 @@ module ChangeRequestsHelper
     else
       "1."
     end
+  end
+
+  def counter_other_validation_requests(change_requests)
+    change_requests["data"].reject { |_k, v| v.empty? }.count
   end
 
   def requests_order(change_request)
