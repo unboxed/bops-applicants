@@ -14,7 +14,7 @@
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
       <div style="margin-top: 50px;">
         <p class="govuk-body"><strong>Reason change is requested</strong><br>
-          <%= @change_request["reason"] %>
+          <%= @validation_request["reason"] %>
         </p>
       </div>
       <div style="margin-top: 50px;">
@@ -26,7 +26,7 @@
         <p class="govuk-body"><strong>Proposed red line boundary</strong><br>
         </p>
       </div>
-      <%= render "location_map", locals: { div_id: "proposed_map", geojson: @change_request["new_geojson"] } %>
+      <%= render "location_map", locals: { div_id: "proposed_map", geojson: @validation_request["new_geojson"] } %>
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
       <%= render 'form' %>
     </div>

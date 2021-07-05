@@ -1,9 +1,9 @@
 <li>
   <h2 class="moj-task-list__section">
-    <span class="moj-task-list__section-number"><%= requests_order(@change_requests) %></span>Confirm changes to your application's red line boundary
+    <span class="moj-task-list__section-number"><%= requests_order(@validation_requests) %></span>Confirm changes to your application's red line boundary
   </h2>
   <ul class="moj-task-list__items" id="validation-section">
-    <% @change_requests["data"]["red_line_boundary_change_requests"].each do |change_request| %>
+    <% @validation_requests["data"]["red_line_boundary_change_requests"].each do |change_request| %>
       <li class="moj-task-list__item">
         <% if change_request["state"] == "open" %>
           <%= link_to "Red Line Boundary", edit_red_line_boundary_change_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>

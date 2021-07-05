@@ -16,16 +16,16 @@
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
       <div class="govuk-!-margin-top-8">
         <p class="govuk-body"><strong>Name of file on submission:</strong><br>
-          <%= @change_request["old_document"]["name"] %>
+          <%= @validation_request["old_document"]["name"] %>
         </p>
       </div>
       <div class="govuk-!-margin-top-6">
         <p class="govuk-body"><strong>The reason the file needs replacing:</strong><br>
-          <%= @change_request["old_document"]["invalid_document_reason"] %>
+          <%= @validation_request["old_document"]["invalid_document_reason"] %>
         </p>
       </div>
       <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
-        <%= form_with scope: :document_change_request, url: document_change_request_path(@change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), method: :patch, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
+        <%= form_with scope: :document_change_request, url: document_change_request_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), method: :patch, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
           <% if flash["error"].present? %>
             <span id="status-error" class="govuk-error-message">
               <%= flash["error"] %>

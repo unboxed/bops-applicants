@@ -7,21 +7,21 @@
         </p>
         <div class="govuk-!-margin-top-8">
           <p class="govuk-body"><strong>Previous description</strong><br>
-            <%= @change_request["previous_description"] %>
+            <%= @validation_request["previous_description"] %>
           </p>
         </div>
         <div class="govuk-!-margin-top-6">
           <p class="govuk-body"><strong>New description</strong><br>
-            <%= @change_request["proposed_description"] %>
+            <%= @validation_request["proposed_description"] %>
           </p>
         </div>
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-      <% if @change_request["approved"] == false %>
+      <% if @validation_request["approved"] == false %>
         <strong class="govuk-tag govuk-tag--red">
           Disagreed with suggested changes
         </strong>
         <p class="govuk-body govuk-!-padding-top-6"><strong>My objection and suggested wording for description: </strong><br>
-          <%= @change_request["rejection_reason"] %>
+          <%= @validation_request["rejection_reason"] %>
         </p>
       <% else %>
         <strong class="govuk-tag govuk-tag--green">
@@ -33,5 +33,5 @@
 </div>
 
 <div class="govuk-!-padding-bottom-8">
-  <%= link_to 'Back', validation_requests_path(@change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-!-margin-right-1" %>
+  <%= link_to 'Back', validation_requests_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-!-margin-right-1" %>
 </div>

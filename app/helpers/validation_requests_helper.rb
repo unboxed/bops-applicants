@@ -22,11 +22,11 @@ module ValidationRequestsHelper
   end
 
   def flattened_change_requests(change_requests)
-    change_requests["data"]["description_change_requests"] + change_requests["data"]["document_change_requests"] + change_requests["data"]["red_line_boundary_change_requests"] + change_requests["data"]["other_change_validation_requests"]
+    change_requests["data"]["description_change_validation_requests"] + change_requests["data"]["document_change_requests"] + change_requests["data"]["red_line_boundary_change_requests"]
   end
 
   def counter_change_requests_order(change_request)
-    if change_request["data"]["description_change_requests"].blank?
+    if change_request["data"]["description_change_validation_requests"].blank?
       "1."
     else
       "2."
@@ -34,9 +34,9 @@ module ValidationRequestsHelper
   end
 
   def counter_document_requests_order(change_request)
-    if change_request["data"]["description_change_requests"].present? && change_request["data"]["document_change_requests"].present?
+    if change_request["data"]["description_change_validation_requests"].present? && change_request["data"]["document_change_requests"].present?
       "3."
-    elsif change_request["data"]["description_change_requests"].present? || change_request["data"]["document_change_requests"].present?
+    elsif change_request["data"]["description_change_validation_requests"].present? || change_request["data"]["document_change_requests"].present?
       "2."
     else
       "1."

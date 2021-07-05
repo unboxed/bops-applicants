@@ -17,18 +17,18 @@
       <div class="govuk-!-margin-top-8">
         <p class="govuk-body">
           <strong> Name of file on submission:</strong><br>
-          <%= @change_request["old_document"]["name"] %>
+          <%= @validation_request["old_document"]["name"] %>
         </p>
       </div>
       <div class="govuk-!-margin-top-6">
         <p class="govuk-body"><strong>Case officer's reason for requesting the document:</strong><br>
-          <%= @change_request["old_document"]["invalid_document_reason"] %>
+          <%= @validation_request["old_document"]["invalid_document_reason"] %>
         </p>
       </div>
       <p class="govuk-body govuk-!-padding-top-6"><strong>Document uploaded:</strong><br>
-        <%= @change_request["new_document"]["name"] %>
+        <%= @validation_request["new_document"]["name"] %>
       </p>
-      <%= image_tag(@change_request["new_document"]["url"], class: "image-border") %>
+      <%= image_tag(@validation_request["new_document"]["url"], class: "image-border") %>
       <div class="govuk-!-margin-top-8">
         <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button" %>
       </div>

@@ -4,10 +4,10 @@ require "rails_helper"
 
 RSpec.describe ValidationRequestsHelper, type: :helper do
   describe "latest_request_due" do
-    it "finds the latest data if it is in description_change_requests" do
+    it "finds the latest data if it is in description_change_validation_requests" do
       expect(latest_request_due({
         "data" => {
-          "description_change_requests" => [
+          "description_change_validation_requests" => [
             { "response_due" => "2021-06-10" },
             { "response_due" => "2021-06-12" },
           ],
@@ -30,7 +30,7 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
     it "finds the latest date if it is in document_change_requests" do
       expect(latest_request_due({
         "data" => {
-          "description_change_requests" => [
+          "description_change_validation_requests" => [
             { "response_due" => "2021-06-10" },
             { "response_due" => "2021-06-04" },
           ],
@@ -53,7 +53,7 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
     it "finds the latest date if it is in red_line_boundary_change_requests" do
       expect(latest_request_due({
         "data" => {
-          "description_change_requests" => [
+          "description_change_validation_requests" => [
             { "response_due" => "2021-06-10" },
             { "response_due" => "2021-06-04" },
           ],

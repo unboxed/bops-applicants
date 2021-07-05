@@ -1,6 +1,6 @@
 {
   "data": {
-    "description_change_requests": [
+    "description_change_validation_requests": [
       {
         "id": 18,
         "state": "open",

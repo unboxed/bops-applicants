@@ -14,14 +14,14 @@
         <p class="govuk-body"><strong>Proposed red line boundary</strong><br>
         </p>
       </div>
-      <%= render "proposal_map", locals: { div_id: "location_map", geojson: @change_request["new_geojson"] } %>
+      <%= render "proposal_map", locals: { div_id: "location_map", geojson: @validation_request["new_geojson"] } %>
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-      <% if @change_request["approved"] == false %>
+      <% if @validation_request["approved"] == false %>
         <strong class="govuk-tag govuk-tag--red">
           Disagreed with suggested boundary changes
         </strong>
         <p class="govuk-body govuk-!-padding-top-6"><strong>My reason for objecting to the boundary changes: </strong><br>
-          <%= @change_request["rejection_reason"] %>
+          <%= @validation_request["rejection_reason"] %>
         </p>
       <% else %>
         <strong class="govuk-tag govuk-tag--green">
@@ -33,5 +33,5 @@
 </div>
 
 <div class="govuk-!-padding-bottom-6">
-  <%= link_to 'Back', validation_requests_path(@change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-!-margin-right-1" %>
+  <%= link_to 'Back', validation_requests_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-!-margin-right-1" %>
 </div>

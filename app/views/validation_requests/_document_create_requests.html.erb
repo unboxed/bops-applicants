@@ -1,9 +1,9 @@
 <li>
   <h2 class="moj-task-list__section">
-    <span class="moj-task-list__section-number"><%= counter_document_requests_order(@change_requests) %> </span>Provide new or missing documents
+    <span class="moj-task-list__section-number"><%= counter_document_requests_order(@validation_requests) %> </span>Provide new or missing documents
   </h2>
   <ul class="moj-task-list__items" id="validation-section">
-    <% @change_requests["data"]["document_create_requests"].each do |change_request| %>
+    <% @validation_requests["data"]["document_create_requests"].each do |change_request| %>
       <li class="moj-task-list__item">
         <% if change_request["state"] == "open" %>
           <%= link_to "New document", edit_document_create_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>

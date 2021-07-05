@@ -12,7 +12,7 @@
     </p>
     <div class="govuk-inset-text">
       <p class="govuk-body">
-        If requested changes are not received within 15 working days, by <strong> <%= date_due(latest_request_due(@change_requests)) %></strong>
+        If requested changes are not received within 15 working days, by <strong> <%= date_due(latest_request_due(@validation_requests)) %></strong>
         your application will be returned and your payment refunded.
       </p>
     </div>
@@ -31,19 +31,19 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <ol class="moj-task-list">
-      <% if @change_requests["data"]["description_change_requests"].present? %>
-        <%= render "description_change_requests" %>
+      <% if @validation_requests["data"]["description_change_validation_requests"].present? %>
+        <%= render "description_change_validation_requests" %>
       <% end %>
 
-      <% if @change_requests["data"]["document_change_requests"].present? %>
+      <% if @validation_requests["data"]["document_change_requests"].present? %>
         <%= render "document_change_requests" %>
       <% end %>
 
-      <% if @change_requests["data"]["document_create_requests"].present? %>
+      <% if @validation_requests["data"]["document_create_requests"].present? %>
         <%= render "document_create_requests" %>
       <% end %>
 
-      <% if @change_requests["data"]["red_line_boundary_change_requests"].present? %>
+      <% if @validation_requests["data"]["red_line_boundary_change_requests"].present? %>
         <%= render "red_line_boundary_change_requests" %>
       <% end %>
 

@@ -1,4 +1,4 @@
-<%= form_with scope: :red_line_boundary_change_request, url: red_line_boundary_change_request_path(@change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), method: :patch, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
+<%= form_with scope: :red_line_boundary_change_request, url: red_line_boundary_change_request_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), method: :patch, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
   <% if flash["error"].present? %>
     <span id="status-error" class="govuk-error-message">
        <%= flash["error"] %>

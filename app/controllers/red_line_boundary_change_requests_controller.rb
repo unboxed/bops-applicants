@@ -1,7 +1,7 @@
 class RedLineBoundaryChangeRequestsController < ValidationRequestsController
-  before_action :set_change_requests, only: %i[show edit update]
+  before_action :set_validation_requests, only: %i[show edit update]
   before_action :set_planning_application, only: %i[show edit update]
-  before_action :set_change_request, only: %i[show edit update]
+  before_action :set_validation_request, only: %i[show edit update]
 
   def show; end
 
@@ -20,8 +20,8 @@ class RedLineBoundaryChangeRequestsController < ValidationRequestsController
 
 private
 
-  def set_change_request
-    @change_request = @change_requests["data"]["red_line_boundary_change_requests"].select { |obj| obj["id"] == params["id"].to_i }.first
+  def set_validation_request
+    @validation_request = @validation_requests["data"]["red_line_boundary_change_requests"].select { |obj| obj["id"] == params["id"].to_i }.first
   end
 
   def set_planning_application
