@@ -3,7 +3,7 @@
     <div class="govuk-width-container">
       <%= render "document_create_header"%>
       <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
-        <%= form_with scope: :document_create_request, url: document_create_request_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), method: :patch, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
+        <%= form_with scope: :document_create_request, url: additional_document_validation_request_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), method: :patch, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
           <% if flash["error"].present? %>
             <span id="status-error" class="govuk-error-message">
               <%= flash["error"] %>

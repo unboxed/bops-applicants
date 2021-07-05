@@ -1,4 +1,4 @@
-class DocumentCreateRequestsController < ValidationRequestsController
+class AdditionalDocumentValidationRequestsController < ValidationRequestsController
   before_action :set_validation_requests, only: %i[show edit update]
   before_action :set_planning_application, only: %i[show edit update]
   before_action :set_validation_request, only: %i[show edit update]
@@ -15,7 +15,7 @@ private
 
   def send_file(subdomain, planning_application_id, document_create_request_id, change_access_id)
     request = HTTParty.patch(
-      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/document_create_requests/#{document_create_request_id}?change_access_id=#{change_access_id}",
+      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/additional_document_validation_requests/#{document_create_request_id}?change_access_id=#{change_access_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
       body: {
         "new_file": params[:document_create_request][:file],
@@ -38,6 +38,6 @@ private
   end
 
   def set_validation_request
-    @validation_request = @validation_requests["data"]["document_create_requests"].select { |obj| obj["id"] == params["id"].to_i }.first
+    @validation_request = @validation_requests["data"]["additional_document_validation_requests"].select { |obj| obj["id"] == params["id"].to_i }.first
   end
 end
