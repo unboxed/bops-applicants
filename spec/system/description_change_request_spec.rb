@@ -48,7 +48,7 @@ RSpec.describe "Description change requests", type: :system do
     expect(change_request_patch_request).to have_been_requested
     stub_successful_get_planning_application
 
-    stub_request(:get, "https://default.local.abscond.org/api/v1/planning_applications/28/change_requests?change_access_id=345443543")
+    stub_request(:get, "https://default.local.abscond.org/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
     .with(headers: headers)
     .to_return(status: 200, body: file_fixture("rejected_request.json").read, headers: {})
   end

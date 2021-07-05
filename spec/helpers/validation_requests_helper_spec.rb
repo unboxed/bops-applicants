@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ChangeRequestsHelper, type: :helper do
+RSpec.describe ValidationRequestsHelper, type: :helper do
   describe "latest_request_due" do
     it "finds the latest data if it is in description_change_requests" do
       expect(latest_request_due({

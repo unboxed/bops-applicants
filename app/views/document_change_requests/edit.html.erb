@@ -36,7 +36,7 @@
           </div>
           <div class="govuk-!-padding-top-4">
             <%= form.submit "Submit", class: "govuk-button", data: { module: "govuk-button" } %>
-            <%= link_to 'Back', change_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
+            <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
           </div>
         <% end %>
       </div>

@@ -1,4 +1,4 @@
-class ChangeRequestsController < ApplicationController
+class ValidationRequestsController < ApplicationController
   before_action :set_change_requests, only: :index
   before_action :set_planning_application, only: :index
 
@@ -28,7 +28,7 @@ private
 
   def change_requests(subdomain, planning_application_id, change_request_id)
     request = HTTParty.get(
-      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/change_requests?change_access_id=#{change_request_id}",
+      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/validation_requests?change_access_id=#{change_request_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
     )
     get_request_successful?(request)

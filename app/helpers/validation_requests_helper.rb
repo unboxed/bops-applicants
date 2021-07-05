@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ChangeRequestsHelper
+module ValidationRequestsHelper
   def full_address(planning_application)
     "#{planning_application['site']['address_1']}, #{planning_application['site']['town']}, #{planning_application['site']['postcode']}"
   end

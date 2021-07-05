@@ -1,4 +1,4 @@
-class DocumentCreateRequestsController < ChangeRequestsController
+class DocumentCreateRequestsController < ValidationRequestsController
   before_action :set_change_requests, only: %i[show edit update]
   before_action :set_planning_application, only: %i[show edit update]
   before_action :set_change_request, only: %i[show edit update]
@@ -27,7 +27,7 @@ private
   def update_request_successful?(request)
     if request.success?
       flash[:notice] = "Change request successfully updated."
-      redirect_to change_requests_path(
+      redirect_to validation_requests_path(
         change_access_id: params[:change_access_id],
         id: params[:id],
         planning_application_id: params[:planning_application_id],
