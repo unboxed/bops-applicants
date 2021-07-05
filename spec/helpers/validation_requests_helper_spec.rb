@@ -11,7 +11,7 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
             { "response_due" => "2021-06-10" },
             { "response_due" => "2021-06-12" },
           ],
-          "document_change_requests" => [
+          "replacement_document_validation_requests" => [
             { "response_due" => "2021-06-11" },
             { "response_due" => "2021-06-05" },
           ],
@@ -27,14 +27,14 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
       })).to eq({ "response_due" => "2021-06-12" })
     end
 
-    it "finds the latest date if it is in document_change_requests" do
+    it "finds the latest date if it is in replacement_document_validation_requests" do
       expect(latest_request_due({
         "data" => {
           "description_change_validation_requests" => [
             { "response_due" => "2021-06-10" },
             { "response_due" => "2021-06-04" },
           ],
-          "document_change_requests" => [
+          "replacement_document_validation_requests" => [
             { "response_due" => "2021-06-11" },
             { "response_due" => "2021-06-03" },
           ],
@@ -57,7 +57,7 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
             { "response_due" => "2021-06-10" },
             { "response_due" => "2021-06-04" },
           ],
-          "document_change_requests" => [
+          "replacement_document_validation_requests" => [
             { "response_due" => "2021-06-11" },
             { "response_due" => "2021-06-03" },
           ],

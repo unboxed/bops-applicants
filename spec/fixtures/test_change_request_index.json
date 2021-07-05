@@ -8,7 +8,7 @@
         "proposed_description": "This is a better description",
         "rejection_reason": null,
         "approved": null,
-        "type": "description_change_request"
+        "type": "description_validation_change_request"
       },
       {
         "id": 19,
@@ -18,7 +18,7 @@
         "previous_description": "We want a tikki bar in this!",
         "rejection_reason": null,
         "approved": true,
-        "type": "description_change_request"
+        "type": "description_validation_change_request"
       },
       {
         "id": 20,
@@ -27,7 +27,7 @@
         "proposed_description": "I don't see an invite to the housewarming party!",
         "rejection_reason": "CHIMICHANGAS",
         "approved": false,
-        "type": "description_change_request"
+        "type": "description_validation_change_request"
       },
       {
         "id": 21,
@@ -36,7 +36,7 @@
         "proposed_description": "I propose to propose new things",
         "rejection_reason": "no",
         "approved": false,
-        "type": "description_change_request"
+        "type": "description_validation_change_request"
       },
       {
         "id": 22,
@@ -45,7 +45,7 @@
         "proposed_description": "A garden full of roses",
         "rejection_reason": null,
         "approved": null,
-        "type": "description_change_request"
+        "type": "description_validation_change_request"
       }
     ],
     "red_line_boundary_change_requests": [
@@ -58,7 +58,7 @@
         "approved": null,
         "type": "red_line_boundary_change_request"
       }],
-    "document_change_requests": [
+    "replacement_document_validation_requests": [
       {
         "id": 8,
         "state": "open",
@@ -68,7 +68,7 @@
           "name": "20210512_162911.jpg",
           "invalid_document_reason": "Its a chicken coop not a floor plan."
         },
-        "type": "document_change_request"
+        "type": "replacement_document_validation_request"
       },
       {
         "id": 9,
@@ -79,7 +79,7 @@
           "name": "20210428_100223 (1).jpg",
           "invalid_document_reason": "Its Melissa in a museum!"
         },
-        "type": "document_change_request"
+        "type": "replacement_document_validation_request"
       },
       {
         "id": 12,
@@ -111,7 +111,7 @@
           },
           "url": "http://southwark.lvh.me:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--772d855213ddd9220ca829cec75caaafe68a3fc8/max-baskakov-catunsplash.jpg"
         },
-        "type": "document_change_request"
+        "type": "replacement_document_validation_request"
       }
     ],
     "document_create_requests": [
