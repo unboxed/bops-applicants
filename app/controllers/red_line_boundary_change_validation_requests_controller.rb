@@ -1,4 +1,4 @@
-class RedLineBoundaryChangeRequestsController < ValidationRequestsController
+class RedLineBoundaryChangeValidationRequestsController < ValidationRequestsController
   before_action :set_validation_requests, only: %i[show edit update]
   before_action :set_planning_application, only: %i[show edit update]
   before_action :set_validation_request, only: %i[show edit update]
@@ -21,7 +21,7 @@ class RedLineBoundaryChangeRequestsController < ValidationRequestsController
 private
 
   def set_validation_request
-    @validation_request = @validation_requests["data"]["red_line_boundary_change_requests"].select { |obj| obj["id"] == params["id"].to_i }.first
+    @validation_request = @validation_requests["data"]["red_line_boundary_change_validation_requests"].select { |obj| obj["id"] == params["id"].to_i }.first
   end
 
   def set_planning_application
@@ -30,7 +30,7 @@ private
 
   def approve_request(subdomain, planning_application_id, change_request_id, change_access_id)
     request = HTTParty.patch(
-      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/red_line_boundary_change_requests/#{change_request_id}?change_access_id=#{change_access_id}",
+      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/red_line_boundary_change_validation_requests/#{change_request_id}?change_access_id=#{change_access_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
       body: {
         "data": {
@@ -43,7 +43,7 @@ private
 
   def reject_request(subdomain, planning_application_id, change_request_id, change_access_id, rejection_reason)
     request = HTTParty.patch(
-      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/red_line_boundary_change_requests/#{change_request_id}?change_access_id=#{change_access_id}",
+      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/red_line_boundary_change_validation_requests/#{change_request_id}?change_access_id=#{change_access_id}",
       headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
       body: {
         "data": {

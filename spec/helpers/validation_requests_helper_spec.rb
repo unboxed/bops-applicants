@@ -15,7 +15,7 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
             { "response_due" => "2021-06-11" },
             { "response_due" => "2021-06-05" },
           ],
-          "red_line_boundary_change_requests" => [
+          "red_line_boundary_change_validation_requests" => [
             { "response_due" => "2021-06-04" },
             { "response_due" => "2021-06-02" },
           ],
@@ -38,7 +38,7 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
             { "response_due" => "2021-06-11" },
             { "response_due" => "2021-06-03" },
           ],
-          "red_line_boundary_change_requests" => [
+          "red_line_boundary_change_validation_requests" => [
             { "response_due" => "2021-06-04" },
             { "response_due" => "2021-06-02" },
           ],
@@ -50,7 +50,7 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
       })).to eq({ "response_due" => "2021-06-11" })
     end
 
-    it "finds the latest date if it is in red_line_boundary_change_requests" do
+    it "finds the latest date if it is in red_line_boundary_change_validation_requests" do
       expect(latest_request_due({
         "data" => {
           "description_change_validation_requests" => [
@@ -61,7 +61,7 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
             { "response_due" => "2021-06-11" },
             { "response_due" => "2021-06-03" },
           ],
-          "red_line_boundary_change_requests" => [
+          "red_line_boundary_change_validation_requests" => [
             { "response_due" => "2021-07-12" },
             { "response_due" => "2021-06-02" },
           ],

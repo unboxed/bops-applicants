@@ -48,7 +48,7 @@
         "type": "description_validation_change_request"
       }
     ],
-    "red_line_boundary_change_requests": [
+    "red_line_boundary_change_validation_requests": [
       {
         "id": 10,
         "state": "open",
@@ -56,7 +56,7 @@
         "new_geojson": "",
         "reason": null,
         "approved": null,
-        "type": "red_line_boundary_change_request"
+        "type": "red_line_boundary_change_validation_request"
       }],
     "replacement_document_validation_requests": [
       {

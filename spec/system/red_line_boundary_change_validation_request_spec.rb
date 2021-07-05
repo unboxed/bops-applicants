@@ -10,10 +10,10 @@ RSpec.describe "Description change requests", type: :system do
     stub_successful_get_change_requests
     stub_successful_get_planning_application
 
-    visit "/red_line_boundary_change_requests/10/edit?change_access_id=345443543&planning_application_id=28"
+    visit "/red_line_boundary_change_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
 
     choose "Yes, I agree with the proposed red line boundary"
-    change_request_patch_request = stub_request(:patch, "https://default.local.abscond.org/api/v1/planning_applications/28/red_line_boundary_change_requests/10?change_access_id=345443543")
+    change_request_patch_request = stub_request(:patch, "https://default.local.abscond.org/api/v1/planning_applications/28/red_line_boundary_change_validation_requests/10?change_access_id=345443543")
                                        .with(
                                          body: "data%5Bapproved%5D=true",
                                          headers: headers,
@@ -30,13 +30,13 @@ RSpec.describe "Description change requests", type: :system do
     stub_successful_get_change_requests
     stub_successful_get_planning_application
 
-    visit "/red_line_boundary_change_requests/10/edit?change_access_id=345443543&planning_application_id=28"
+    visit "/red_line_boundary_change_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
 
     expect(page).to have_content("Confirm changes to your application's red line boundary")
     choose "No, I disagree with the proposed red line boundary"
     fill_in "Please indicate why you disagree with the proposed red line boundary.", with: "I think the boundary is wrong"
 
-    change_request_patch_request = stub_request(:patch, "https://default.local.abscond.org/api/v1/planning_applications/28/red_line_boundary_change_requests/10?change_access_id=345443543")
+    change_request_patch_request = stub_request(:patch, "https://default.local.abscond.org/api/v1/planning_applications/28/red_line_boundary_change_validation_requests/10?change_access_id=345443543")
         .with(
           body: "data%5Bapproved%5D=false&data%5Brejection_reason%5D=I%20think%20the%20boundary%20is%20wrong",
           headers: headers,
@@ -56,7 +56,7 @@ RSpec.describe "Description change requests", type: :system do
     stub_successful_get_change_requests
     stub_successful_get_planning_application
 
-    visit "/red_line_boundary_change_requests/10/edit?change_access_id=345443543&planning_application_id=28"
+    visit "/red_line_boundary_change_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
 
     choose "No, I disagree with the proposed red line boundary"
 
@@ -68,7 +68,7 @@ RSpec.describe "Description change requests", type: :system do
     stub_successful_get_change_requests
     stub_successful_get_planning_application
 
-    visit "/red_line_boundary_change_requests/10?change_access_id=345443543&planning_application_id=28"
+    visit "/red_line_boundary_change_validation_requests/10?change_access_id=345443543&planning_application_id=28"
 
     expect(page).to have_content("Agreed with suggested boundary changes")
   end
@@ -78,7 +78,7 @@ RSpec.describe "Description change requests", type: :system do
     stub_successful_get_planning_application
     stub_rejected_patch_with_reason
 
-    visit "/red_line_boundary_change_requests/35?change_access_id=345443543&planning_application_id=28"
+    visit "/red_line_boundary_change_validation_requests/35?change_access_id=345443543&planning_application_id=28"
 
     expect(page).to have_content("Disagreed with suggested boundary changes")
     expect(page).to have_content("My reason for objecting to the boundary changes:")

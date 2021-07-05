@@ -43,8 +43,8 @@
         <%= render "additional_document_validation_requests" %>
       <% end %>
 
-      <% if @validation_requests["data"]["red_line_boundary_change_requests"].present? %>
-        <%= render "red_line_boundary_change_requests" %>
+      <% if @validation_requests["data"]["red_line_boundary_change_validation_requests"].present? %>
+        <%= render "red_line_boundary_change_validation_requests" %>
       <% end %>
 
       <% if @change_requests["data"]["other_change_validation_requests"].present? %>
