@@ -22,7 +22,7 @@ module ValidationRequestsHelper
   end
 
   def flattened_validation_requests(validation_requests)
-    validation_requests["data"]["description_change_validation_requests"] + validation_requests["data"]["replacement_document_validation_requests"] + validation_requests["data"]["other_change_validation_requests"] + validation_requests["data"]["red_line_boundary_change_validation_requests"]
+    validation_requests["data"]["additional_document_validation_requests"] + validation_requests["data"]["description_change_validation_requests"] + validation_requests["data"]["replacement_document_validation_requests"] + validation_requests["data"]["other_change_validation_requests"] + validation_requests["data"]["red_line_boundary_change_validation_requests"]
   end
 
   def counter_change_requests_order(validation_request)
