@@ -22,7 +22,7 @@ class PackageBuilder
     @environment = environment.to_s
     @revision    = current_revision
     @tmpdir      = Dir.mktmpdir
-    @timestamp   = Time.now.getutc
+    @timestamp   = Time.zone.now.getutc
     @release     = @timestamp.strftime("%Y%m%d%H%M%S")
     @client      = nil
     @completed   = false
@@ -54,11 +54,11 @@ class PackageBuilder
     release_obj = bucket.object(release_key)
 
     info "Uploading package #{package_name} to S3 ..."
-    start_time = Time.now
+    start_time = Time.zone.now
 
     release_obj.upload_file(package_path)
 
-    duration = Time.now - start_time
+    duration = Time.zone.now - start_time
     info "Upload completed in #{duration} seconds."
   end
 
@@ -393,7 +393,7 @@ private
   def deployment_progress(deployment)
     id         = deployment.deployment_id
     created_at = deployment.create_time
-    duration   = Time.now - created_at
+    duration   = Time.zone.now - created_at
     overview   = deployment.deployment_overview
     progress   = %w[Pending InProgress Succeeded Failed Skipped]
     progress   = progress.map { |status| "#{status}: %d" }.join(", ")

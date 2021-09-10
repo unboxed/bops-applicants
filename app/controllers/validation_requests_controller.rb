@@ -18,7 +18,7 @@ private
     if request.success?
       JSON.parse(request.body)
     else
-      render plain: "Forbidden", status: 401
+      render plain: "Forbidden", status: :unauthorized
     end
   end
 

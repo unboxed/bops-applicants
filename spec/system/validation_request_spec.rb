@@ -19,7 +19,7 @@ RSpec.describe "Change requests", type: :system do
 
   it "forbids the user from accessing change requests for a different application" do
     stub_request(:get, "https://default.local.abscond.org/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
-    .to_return(status: 401)
+    .to_return(status: :unauthorized)
     stub_successful_get_planning_application
 
     visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
