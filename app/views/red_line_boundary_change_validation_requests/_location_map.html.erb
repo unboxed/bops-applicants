@@ -1,23 +1,7 @@
-<% if locals[:geojson].present? %>
-  <div class="map">
-      <div id="<%= locals[:div_id] %>" style="width: 550px; height: 400px;"></div>
-  </div>
-
-  <script>
-    var <%= locals[:div_id] %>Map = L.map(<%= locals[:div_id] %>, {minZoom: 8, maxZoom: 22});
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 22,
-        maxNativeZoom: 19
-    }).addTo(<%= locals[:div_id] %>Map);
-
-    var boundary = L.geoJSON(<%= JSON.parse(locals[:geojson]).to_json.html_safe %>, {
-        "color": "#ff0000",
-        "weight": 2,
-        "opacity": 0.65
-    }).addTo(<%= locals[:div_id] %>Map);
-
-    <%= locals[:div_id] %>Map.fitBounds(boundary.getBounds(), {padding: [50, 50]});
-  </script>
-<% end %>
-
+  <my-map
+  style="width: 100%; height: 400px;"
+  osVectorTilesApiKey="VgqyKyGclwrFphAv4fw2MrpNI4CnzATT"
+  <% if locals[:geojson].present? %>
+    geojsonData='<%= JSON.parse(locals[:geojson]).to_json.html_safe %>'
+  <% end %>
+  ></my-map>
