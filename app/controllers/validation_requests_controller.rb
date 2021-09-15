@@ -23,7 +23,7 @@ private
   end
 
   def api_base(subdomain)
-    "#{subdomain}.#{ENV['API_HOST'] || 'local.abscond.org'}/api/v1"
+    "#{subdomain}.#{ENV['API_HOST'] || 'bops-care.link'}/api/v1"
   end
 
   def validation_requests(subdomain, planning_application_id, change_request_id)

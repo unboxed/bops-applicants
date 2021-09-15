@@ -17,7 +17,7 @@ RSpec.describe "Other change requests", type: :system do
 
     fill_in "Respond to this request", with: "Agreed"
 
-    change_request_patch_request = stub_request(:patch, "https://default.local.abscond.org/api/v1/planning_applications/28/other_change_validation_requests/19?change_access_id=345443543")
+    change_request_patch_request = stub_request(:patch, "https://default.bops-care.link/api/v1/planning_applications/28/other_change_validation_requests/19?change_access_id=345443543")
         .with(
           body: "data%5Bresponse%5D=Agreed",
           headers: headers,

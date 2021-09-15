@@ -27,7 +27,7 @@ RSpec.describe "Document create requests", type: :system do
     visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
 
     attach_file("Upload a new file", "spec/fixtures/images/proposed-floorplan.png")
-    change_request_patch_request = stub_request(:patch, "https://default.local.abscond.org/api/v1/planning_applications/28/additional_document_validation_requests/3?change_access_id=345443543")
+    change_request_patch_request = stub_request(:patch, "https://default.bops-care.link/api/v1/planning_applications/28/additional_document_validation_requests/3?change_access_id=345443543")
     .to_return(status: 200, body: "", headers: {})
 
     click_button "Submit"
