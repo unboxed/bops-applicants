@@ -1,0 +1,14 @@
+---
+services:
+  web:
+    build: .
+    stdin_open: true
+    environment:
+      PROTOCOL: "http"
+      PORT: 3001
+    ports:
+      - "3001:3001"
+    volumes:
+      - type: bind
+        source: .
+        target: /app
