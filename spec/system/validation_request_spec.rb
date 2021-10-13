@@ -44,7 +44,7 @@ RSpec.describe "Change requests", type: :system do
 
     visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
 
-    expect(page).to have_content("If requested changes are not received within 15 working days, by 17 June 2021")
+    expect(page).to have_content("If requested changes are not received within 15 working days")
   end
 
   it "displays the description of the change request on the change request page" do
