@@ -41,7 +41,7 @@ group :development, :test do
   gem "rspec-rails", "~> 5.0.0"
   gem "rubocop", require: false
   gem "rubocop-govuk", require: false
-  gem "selenium-webdriver"
+  gem "webdrivers"
 end
 
 group :development do
