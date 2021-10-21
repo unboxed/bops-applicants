@@ -1,32 +1,38 @@
 <div class="govuk-grid-row govuk-!-margin-top-7 govuk-!-padding-bottom-8">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
-      <h2 class="govuk-heading-l">Respond to other validation change request </h2>
-      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-      <p class="govuk-body">
-        <strong>Officer's reason for invalidating application</strong><br>
-      </p>
-      <p class="govuk-body">
-        <%= @validation_request["summary"] %>
-      </p>
-      <p class="govuk-body">
-        <strong>How you can make your application valid</strong><br>
-      </p>
-      <p class="govuk-body">
-        <%= @validation_request["suggestion"] %>
-      </p>
-      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-      <p class="govuk-body">
-        <strong>My response to this request</strong><br>
-      </p>
-      <p class="govuk-body">
-        <%= @validation_request["response"] %>
-      </p>
-      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+      <% if @validation_request["state"] == "cancelled" %>
+        <%= render "validation_requests/cancelled",
+          validation_request: @validation_request,
+          heading: "Cancelled other request to change your application" %>
+      <% else %>
+        <h2 class="govuk-heading-l">Respond to other validation change request </h2>
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        <p class="govuk-body">
+          <strong>Officer's reason for invalidating application</strong><br>
+        </p>
+        <p class="govuk-body">
+          <%= @validation_request["summary"] %>
+        </p>
+        <p class="govuk-body">
+          <strong>How you can make your application valid</strong><br>
+        </p>
+        <p class="govuk-body">
+          <%= @validation_request["suggestion"] %>
+        </p>
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        <p class="govuk-body">
+          <strong>My response to this request</strong><br>
+        </p>
+        <p class="govuk-body">
+          <%= @validation_request["response"] %>
+        </p>
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+      <% end %>
     </div>
   </div>
 </div>
 
 <div class="govuk-!-padding-bottom-8">
-  <%= link_to 'Back', validation_requests_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-!-margin-right-1" %>
+  <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary govuk-!-margin-right-1" %>
 </div>

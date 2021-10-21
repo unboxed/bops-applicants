@@ -25,4 +25,10 @@ module ApiSpecHelper
     .with(headers: headers)
     .to_return(status: 200, body: file_fixture("rejected_request.json").read, headers: {})
   end
+
+  def stub_cancelled_change_requests
+    stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
+    .with(headers: headers)
+    .to_return(status: 200, body: file_fixture("cancelled_validation_requests.json").read, headers: {})
+  end
 end

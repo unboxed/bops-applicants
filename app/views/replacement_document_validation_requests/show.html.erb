@@ -1,34 +1,41 @@
 <div class="govuk-grid-row govuk-!-margin-top-7">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
-      <h2 class="govuk-heading-l">
-        Provide a replacement document
-      </h2>
-      <p class="govuk-body">
-        The case officer has specified below why this document needs replacing.
-      </p>
-      <p class="govuk-heading-s">What you need to do:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Select 'choose file' and upload a replacement file from your device</li>
-        <li>Click save to add the file</li>
-        <li>Click submit to complete this action </li>
-      </ul>
-      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-      <div class="govuk-!-margin-top-8">
+      <% if @validation_request["state"] == "cancelled" %>
+        <%= render "validation_requests/cancelled",
+          validation_request: @validation_request,
+          heading: "Cancelled request to provide a replacement document" %>
+      <% else %>
+        <h2 class="govuk-heading-l">
+          Provide a replacement document
+        </h2>
         <p class="govuk-body">
-          <strong> Name of file on submission:</strong><br>
-          <%= @validation_request["old_document"]["name"] %>
+          The case officer has specified below why this document needs replacing.
         </p>
-      </div>
-      <div class="govuk-!-margin-top-6">
-        <p class="govuk-body"><strong>Case officer's reason for requesting the document:</strong><br>
-          <%= @validation_request["old_document"]["invalid_document_reason"] %>
+        <p class="govuk-heading-s">What you need to do:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Select 'choose file' and upload a replacement file from your device</li>
+          <li>Click save to add the file</li>
+          <li>Click submit to complete this action </li>
+        </ul>
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        <div class="govuk-!-margin-top-8">
+          <p class="govuk-body">
+            <strong> Name of file on submission:</strong><br>
+            <%= @validation_request["old_document"]["name"] %>
+          </p>
+        </div>
+        <div class="govuk-!-margin-top-6">
+          <p class="govuk-body"><strong>Case officer's reason for requesting the document:</strong><br>
+            <%= @validation_request["old_document"]["invalid_document_reason"] %>
+          </p>
+        </div>
+        <p class="govuk-body govuk-!-padding-top-6"><strong>Document uploaded:</strong><br>
+          <%= @validation_request["new_document"]["name"] %>
         </p>
-      </div>
-      <p class="govuk-body govuk-!-padding-top-6"><strong>Document uploaded:</strong><br>
-        <%= @validation_request["new_document"]["name"] %>
-      </p>
-      <%= image_tag(@validation_request["new_document"]["url"], class: "image-border") %>
+        <%= image_tag(@validation_request["new_document"]["url"], class: "image-border") %>
+      <% end %>
+
       <div class="govuk-!-margin-top-8">
         <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button" %>
       </div>

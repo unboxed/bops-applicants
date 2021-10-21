@@ -84,4 +84,18 @@ RSpec.describe "Description change requests", type: :system do
     expect(page).to have_content("My reason for objecting to the boundary changes:")
     expect(page).to have_content("I do not agree with this boundary")
   end
+
+  it "displays a cancellation summary for a cancelled validation request" do
+    stub_cancelled_change_requests
+    stub_successful_get_planning_application
+
+    visit "/red_line_boundary_change_validation_requests/10?change_access_id=345443543&planning_application_id=28"
+
+    expect(page).to have_content "Cancelled request to change your application's red line boundary"
+    expect(page).to have_content "This request has been cancelled. You do not have to take any further actions."
+    expect(page).to have_content "The officer gave the following reason for cancelling this request:"
+    expect(page).to have_content "My mistake"
+    expect(page).to have_content "20 October 2021"
+    expect(page).to have_link "Back", href: "/validation_requests?change_access_id=345443543&planning_application_id=28"
+  end
 end
