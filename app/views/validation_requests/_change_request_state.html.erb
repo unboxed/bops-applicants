@@ -1,0 +1,13 @@
+<% if change_request["state"] == 'open' %>
+  <strong class="govuk-tag govuk-tag--grey" style="float: right;" id="eligibility-status">
+    Not started
+  </strong>
+<% elsif change_request["state"] == 'cancelled' %>
+  <strong class="govuk-tag app-task-list__tag" style="float: right;" id="eligibility-status">
+    Cancelled
+  </strong>
+<% else %>
+  <strong class="govuk-tag app-task-list__tag" style="float: right;" id="eligibility-status">
+    Complete
+  </strong>
+<% end %>

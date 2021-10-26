@@ -1,0 +1,76 @@
+{
+  "data": {
+    "description_change_validation_requests": [
+      {
+        "id": 18,
+        "state": "cancelled",
+        "response_due": "2021-05-14",
+        "proposed_description": "This is a better description",
+        "rejection_reason": null,
+        "approved": null,
+        "cancel_reason": "My mistake",
+        "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+        "type": "description_validation_change_request"
+      }
+    ],
+    "red_line_boundary_change_validation_requests": [
+      {
+        "id": 10,
+        "state": "cancelled",
+        "response_due": "2021-05-14",
+        "new_geojson": "",
+        "reason": null,
+        "approved": null,
+        "cancel_reason": "My mistake",
+        "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+        "type": "red_line_boundary_change_validation_request"
+      }
+    ],
+    "replacement_document_validation_requests": [
+      {
+        "id": 8,
+        "state": "cancelled",
+        "response_due": "2021-06-10",
+        "days_until_response_due": 15,
+        "old_document": {
+          "name": "20210512_162911.jpg",
+          "invalid_document_reason": "Its a chicken coop not a floor plan."
+        },
+        "cancel_reason": "My mistake",
+        "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+        "type": "replacement_document_validation_request"
+      }
+    ],
+    "additional_document_validation_requests": [
+      {
+        "id": 4,
+        "state": "cancelled",
+        "response_due": "2021-06-17",
+        "days_until_response_due": 15,
+        "document_request_type": "Floor plan",
+        "document_request_reason": "No floor plan",
+        "new_document": {
+          "name": "proposed-floorplan.png",
+          "url": "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png"
+        },
+        "cancel_reason": "My mistake",
+        "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+        "type": "additional_document_validation_request"
+      }
+    ],
+    "other_change_validation_requests": [
+      {
+        "id": 4,
+        "state": "cancelled",
+        "response_due": "2021-06-17",
+        "days_until_response_due": 15,
+        "summary": "The wrong fee has been paid",
+        "suggestion": "You need to pay an extra £100",
+        "response": "I disagree with the extra fee",
+        "cancel_reason": "My mistake",
+        "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+        "type": "other_change_request"
+      }
+    ]
+  }
+}

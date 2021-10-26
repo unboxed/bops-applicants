@@ -56,4 +56,36 @@ RSpec.describe "Change requests", type: :system do
 
     expect(page).to have_content("This is a better description")
   end
+
+  it "allows the user to see cancelled change requests associated with their application" do
+    stub_cancelled_change_requests
+    stub_successful_get_planning_application
+
+    visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
+
+    within("#description-change-validation-requests") do
+      expect(page).to have_link("Description", href: "/description_change_validation_requests/18?change_access_id=345443543&planning_application_id=28")
+      expect(page).to have_content("Cancelled")
+    end
+
+    within("#other-change-validation-requests") do
+      expect(page).to have_link("Other request", href: "/other_change_validation_requests/4?change_access_id=345443543&planning_application_id=28")
+      expect(page).to have_content("Cancelled")
+    end
+
+    within("#red-line-boundary-change-validation-requests") do
+      expect(page).to have_link("Red Line Boundary", href: "/red_line_boundary_change_validation_requests/10?change_access_id=345443543&planning_application_id=28")
+      expect(page).to have_content("Cancelled")
+    end
+
+    within("#replacement-document-validation-requests") do
+      expect(page).to have_link("20210512_162911.jpg", href: "/replacement_document_validation_requests/8?change_access_id=345443543&planning_application_id=28")
+      expect(page).to have_content("Cancelled")
+    end
+
+    within("#additional-document-validation-requests") do
+      expect(page).to have_link("New document", href: "/additional_document_validation_requests/4?change_access_id=345443543&planning_application_id=28")
+      expect(page).to have_content("Cancelled")
+    end
+  end
 end

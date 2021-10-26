@@ -1,11 +1,17 @@
 <div class="govuk-grid-row govuk-!-margin-top-7">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
-      <%= render "document_create_header"%>
-      <p class="govuk-body govuk-!-padding-top-6"><strong>Document uploaded:</strong><br>
-        <%= @validation_request["new_document"]["name"] %>
-      </p>
-      <%= image_tag(@validation_request["new_document"]["url"], class: "image-border") %>
+      <% if @validation_request["state"] == "cancelled" %>
+        <%= render "validation_requests/cancelled",
+          validation_request: @validation_request,
+          heading: "Cancelled request to provide a new document" %>
+      <% else %>
+        <%= render "document_create_header"%>
+        <p class="govuk-body govuk-!-padding-top-6"><strong>Document uploaded:</strong><br>
+          <%= @validation_request["new_document"]["name"] %>
+        </p>
+        <%= image_tag(@validation_request["new_document"]["url"], class: "image-border") %>
+      <% end %>
       <div class="govuk-!-margin-top-8">
         <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button" %>
       </div>

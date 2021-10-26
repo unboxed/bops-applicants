@@ -44,4 +44,18 @@ RSpec.describe "Other change requests", type: :system do
     click_button "Submit"
     expect(page).to have_content "Please enter your response to the planning officer's question."
   end
+
+  it "displays a cancellation summary for a cancelled validation request" do
+    stub_cancelled_change_requests
+    stub_successful_get_planning_application
+
+    visit "/other_change_validation_requests/4?change_access_id=345443543&planning_application_id=28"
+
+    expect(page).to have_content "Cancelled other request to change your application"
+    expect(page).to have_content "This request has been cancelled. You do not have to take any further actions."
+    expect(page).to have_content "The officer gave the following reason for cancelling this request:"
+    expect(page).to have_content "My mistake"
+    expect(page).to have_content "20 October 2021"
+    expect(page).to have_link "Back", href: "/validation_requests?change_access_id=345443543&planning_application_id=28"
+  end
 end

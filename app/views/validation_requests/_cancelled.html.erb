@@ -1,0 +1,13 @@
+<h1 class="govuk-heading-xl"><%= heading %></h1>
+<p class="govuk-body">This request has been cancelled. You do not have to take any further actions.</p>
+<p class="govuk-body">
+  <strong>The officer gave the following reason for cancelling this request:</strong>
+</p>
+<div class="govuk-inset-text">
+  <p class="govuk-body">
+    <%= validation_request["cancel_reason"] %>
+  </p>
+  <p class="govuk-body">
+    <%= validation_request["cancelled_at"].to_time.to_formatted_s(:day_month_year) %>
+  </p>
+</div>

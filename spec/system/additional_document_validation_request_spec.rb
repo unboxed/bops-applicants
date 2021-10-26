@@ -47,4 +47,18 @@ RSpec.describe "Document create requests", type: :system do
     expect(page).to have_content "No floor plan"
     expect(page).to have_content "proposed-floorplan.png"
   end
+
+  it "displays a cancellation summary for a cancelled validation request" do
+    stub_cancelled_change_requests
+    stub_successful_get_planning_application
+
+    visit "/additional_document_validation_requests/4?change_access_id=345443543&planning_application_id=28"
+
+    expect(page).to have_content "Cancelled request to provide a new document"
+    expect(page).to have_content "This request has been cancelled. You do not have to take any further actions."
+    expect(page).to have_content "The officer gave the following reason for cancelling this request:"
+    expect(page).to have_content "My mistake"
+    expect(page).to have_content "20 October 2021"
+    expect(page).to have_link "Back", href: "/validation_requests?change_access_id=345443543&planning_application_id=28"
+  end
 end
