@@ -36,20 +36,22 @@
         <%= render "description_change_validation_requests" %>
       <% end %>
 
-      <% if @validation_requests["data"]["replacement_document_validation_requests"].present? %>
-        <%= render "replacement_document_validation_requests" %>
-      <% end %>
+      <% if @planning_application["status"] != "not_started" %>
+        <% if @validation_requests["data"]["replacement_document_validation_requests"].present? %>
+          <%= render "replacement_document_validation_requests" %>
+        <% end %>
 
-      <% if @validation_requests["data"]["additional_document_validation_requests"].present? %>
-        <%= render "additional_document_validation_requests" %>
-      <% end %>
+        <% if @validation_requests["data"]["additional_document_validation_requests"].present? %>
+          <%= render "additional_document_validation_requests" %>
+        <% end %>
 
-      <% if @validation_requests["data"]["red_line_boundary_change_validation_requests"].present? %>
-        <%= render "red_line_boundary_change_validation_requests" %>
-      <% end %>
+        <% if @validation_requests["data"]["red_line_boundary_change_validation_requests"].present? %>
+          <%= render "red_line_boundary_change_validation_requests" %>
+        <% end %>
 
-      <% if @validation_requests["data"]["other_change_validation_requests"].present? %>
-        <%= render "other_change_validation_requests" %>
+        <% if @validation_requests["data"]["other_change_validation_requests"].present? %>
+          <%= render "other_change_validation_requests" %>
+        <% end %>
       <% end %>
      </ol>
   </div>
