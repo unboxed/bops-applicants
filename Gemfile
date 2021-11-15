@@ -26,6 +26,7 @@ gem "aws-sdk-s3", require: false
 gem "bootsnap", ">= 1.4.4", require: false
 
 gem "govuk_design_system_formbuilder"
+gem "faraday"
 gem "httparty"
 
 group :test do
