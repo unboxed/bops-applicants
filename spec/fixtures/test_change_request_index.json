@@ -57,7 +57,17 @@
         "reason": null,
         "approved": null,
         "type": "red_line_boundary_change_validation_request"
-      }],
+      },
+      {
+        "id": 11,
+        "state": "closed",
+        "response_due": "2021-05-14",
+        "new_geojson": "",
+        "reason": "A reason",
+        "approved": true,
+        "type": "red_line_boundary_change_validation_request"
+      }
+    ],
     "replacement_document_validation_requests": [
       {
         "id": 8,

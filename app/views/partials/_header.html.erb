@@ -1,9 +1,7 @@
 <header class="govuk-header " role="banner" data-module="govuk-header">
   <div class="govuk-header__container govuk-width-container">
     <div class="govuk-header__content">
-      <a href="#" class="govuk-header__link govuk-header__link--service-name">
-        Back-office Planning System
-      </a>
+      <%= link_to "Back-office Planning System", validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-header__link govuk-header__link--service-name" %>
     </div>
   </div>
 </header>
