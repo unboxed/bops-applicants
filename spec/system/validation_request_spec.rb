@@ -19,12 +19,12 @@ RSpec.describe "Change requests", type: :system do
 
   it "forbids the user from accessing change requests for a different application" do
     stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
-    .to_return(status: :unauthorized)
+    .to_return(status: 401, body: "{}")
     stub_successful_get_planning_application
 
     visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
 
-    expect(page).to have_content("Forbidden")
+    expect(page).to have_content("Not Found")
   end
 
   it "displays the necessary information about the planning application associated with the change request" do

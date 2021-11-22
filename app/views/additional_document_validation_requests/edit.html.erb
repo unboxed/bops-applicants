@@ -2,19 +2,35 @@
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
       <%= render "document_create_header"%>
-      <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
-        <%= form_with scope: :document_create_request, url: additional_document_validation_request_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), method: :patch, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
-          <% if flash["error"].present? %>
-            <span id="status-error" class="govuk-error-message">
-              <%= flash["error"] %>
-            </span>
+        <%= form_with scope: :additional_document_validation_request,
+          url: additional_document_validation_request_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]),
+          method: :patch,
+          builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
+
+          <% if @additional_document_validation_request.errors.any? %>
+            <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+              <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+              </h2>
+              <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                  <% @additional_document_validation_request.errors.full_messages.each do |error| %>
+                    <li><%= error %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
           <% end %>
-          <div class="govuk-!-padding-top-6 govuk-!-padding-bottom-4">
-            <%= form.govuk_file_field :file,  label: { text: "Upload a new file", class: "govuk-label govuk-!-font-weight-bold" } %>
-          </div>
-          <div class="govuk-!-padding-top-4">
-            <%= form.submit "Submit", class: "govuk-button", data: { module: "govuk-button" } %>
-            <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
+
+          <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
+            <div class="govuk-!-padding-top-6 govuk-!-padding-bottom-4">
+              <%= form.govuk_file_field :file, label: { text: "Upload a new file", class: "govuk-label govuk-!-font-weight-bold" }, accept: acceptable_file_mime_types, required: true %>
+              <%= form.hidden_field :id %>
+            </div>
+            <div class="govuk-button-group">
+              <%= form.submit "Submit", class: "govuk-button", data: { module: "govuk-button" } %>
+              <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
+            </div>
           </div>
         <% end %>
       </div>

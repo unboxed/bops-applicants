@@ -1,33 +1,38 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  errors:
+    format: "%{message}"
+
+    messages:
+      blank: "%{attribute} can't be blank"
+      present: "%{attribute} must be blank"
+      inclusion: "%{attribute} is not included in the list"
+      invalid: "%{attribute} is invalid"
+      required: "%{attribute} must exist"
+
+  activemodel:
+    errors:
+      models:
+        bops/description_change_validation_request:
+          attributes:
+            approved:
+              blank: "Please select an option"
+            rejection_reason:
+              blank: "Please fill in the reason for disagreeing with the suggested change."
+        bops/other_change_validation_request:
+          attributes:
+            response:
+              blank: "Please enter your response to the planning officer's question."
+        bops/additional_document_validation_request:
+          attributes:
+            file:
+              blank: "Please choose a file to upload"
+        bops/replacement_document_validation_request:
+          attributes:
+            file:
+              blank: "Please choose a file to upload"
+        bops/red_line_boundary_change_validation_request:
+          attributes:
+            approved:
+              blank: "Please select an option"
+            rejection_reason:
+              blank: "Please indicate why you disagree with the proposed red line boundary."

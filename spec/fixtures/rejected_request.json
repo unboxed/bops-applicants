@@ -40,7 +40,7 @@
       },
       {
         "id": 22,
-        "state": "open",
+        "state": "closed",
         "response_due": "2021-05-25",
         "proposed_description": "A garden full of roses",
         "rejection_reason": "I wish to build a roman theatre.",

@@ -4,7 +4,8 @@ module ApiSpecHelper
       "Accept" => "*/*",
       "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
       "Authorization" => "Bearer 123",
-      "User-Agent" => "Ruby",
+      "Content-Type" => "application/json",
+      "User-Agent" => "Faraday v1.8.0",
     }
   end
 

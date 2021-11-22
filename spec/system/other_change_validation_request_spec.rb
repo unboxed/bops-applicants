@@ -19,14 +19,14 @@ RSpec.describe "Other change requests", type: :system do
 
     change_request_patch_request = stub_request(:patch, "https://default.bops-care.link/api/v1/planning_applications/28/other_change_validation_requests/19?change_access_id=345443543")
         .with(
-          body: "data%5Bresponse%5D=Agreed",
+          body: { data: { response: "Agreed" } }.to_json,
           headers: headers,
-        ).to_return(status: 200, body: "", headers: {})
+        ).to_return(status: 200, body: "{}")
 
     click_button "Submit"
 
     expect(change_request_patch_request).to have_been_requested
-    expect(page).to have_content("Validation request successfully updated.")
+    expect(page).to have_content("Your response was updated successfully")
 
     click_link("Other request", match: :first)
 
@@ -35,14 +35,16 @@ RSpec.describe "Other change requests", type: :system do
     expect(page).to have_content("I disagree with the extra fee ")
   end
 
-  it "does not allow the user to submit a blank response" do
+  it "does not allow the user to submit a blank response", js: true do
     stub_successful_get_change_requests
     stub_successful_get_planning_application
 
     visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
 
     click_button "Submit"
-    expect(page).to have_content "Please enter your response to the planning officer's question."
+    within(".govuk-error-summary") do
+      expect(page).to have_content "Please enter your response to the planning officer's question."
+    end
   end
 
   it "displays a cancellation summary for a cancelled validation request" do

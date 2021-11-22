@@ -23,3 +23,9 @@ RSpec/InstanceVariable:
 
 Naming/VariableNumber:
   Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false

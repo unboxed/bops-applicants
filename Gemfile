@@ -25,6 +25,7 @@ gem "aws-sdk-s3", require: false
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 
+gem "faraday"
 gem "govuk_design_system_formbuilder"
 gem "httparty"
 

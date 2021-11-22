@@ -1,43 +1,44 @@
 class ReplacementDocumentValidationRequestsController < ValidationRequestsController
-  before_action :set_validation_requests, only: %i[show edit update]
-  before_action :set_planning_application, only: %i[show edit update]
-  before_action :set_validation_request, only: %i[show edit update]
+  before_action :set_validation_request
 
-  def show; end
+  def show
+    respond_to do |format|
+      if validation_request_is_closed? || validation_request_is_cancelled?
+        format.html
+      else
+        format.html { render_not_found }
+      end
+    end
+  end
 
-  def edit; end
+  def edit
+    respond_to do |format|
+      if validation_request_is_open?
+        @replacement_document_validation_request = build_validation_request
+        format.html
+      else
+        format.html { render_not_found }
+      end
+    end
+  end
 
   def update
-    send_file(current_local_authority, params[:planning_application_id], params[:id], params[:change_access_id])
+    @replacement_document_validation_request = build_validation_request(replacement_document_validation_request_params)
+
+    respond_to do |format|
+      if @replacement_document_validation_request.update
+        flash[:notice] = "Your response was updated successfully"
+        format.html { validation_requests_redirect_url }
+      else
+        flash[:error] = error_message(@replacement_document_validation_request)
+        format.html { render :edit }
+      end
+    end
   end
 
 private
 
-  def send_file(subdomain, planning_application_id, document_change_request_id, change_access_id)
-    request = HTTParty.patch(
-      "#{ENV['PROTOCOL']}://#{api_base(subdomain)}/planning_applications/#{planning_application_id}/replacement_document_validation_requests/#{document_change_request_id}?change_access_id=#{change_access_id}",
-      headers: { "Authorization": "Bearer #{ENV['API_BEARER']}" },
-      body: {
-        "new_file": params[:replacement_document_validation_request][:file],
-      },
-    )
-    update_request_successful?(request)
-  end
-
-  def update_request_successful?(request)
-    if request.success?
-      flash[:notice] = "Change request successfully updated."
-      redirect_to validation_requests_path(
-        change_access_id: params[:change_access_id],
-        id: params[:id],
-        planning_application_id: params[:planning_application_id],
-      )
-    else
-      render plain: "Forbidden", status: :unauthorized
-    end
-  end
-
-  def set_validation_request
-    @validation_request = @validation_requests["data"]["replacement_document_validation_requests"].select { |obj| obj["id"] == params["id"].to_i }.first
+  def replacement_document_validation_request_params
+    params.require(:replacement_document_validation_request).permit(:file)
   end
 end
