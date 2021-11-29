@@ -6,59 +6,121 @@ RSpec.describe "Document create requests", type: :system do
   before do
     ENV["API_BEARER"] = "123"
     ENV["PROTOCOL"] = "https"
+
+    stub_successful_get_planning_application
+    stub_get_additional_document_validation_request(
+      id: 3,
+      planning_id: 28,
+      change_access_id: 345_443_543,
+      response_body:
+        {
+          "id": 3,
+          "state": "open",
+          "document_request_type": "Roman theatre plan",
+          "document_request_reason": "I do not see a vomitorium in this.",
+        },
+      status: 200,
+    )
   end
 
-  it "allows the user to view an open document create request" do
-    stub_successful_get_change_requests
-    stub_successful_get_planning_application
+  context "when state is open" do
+    it "allows the user to view an open document create request" do
+      visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
 
-    visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
+      expect(page).to have_content("Document requested:")
+      expect(page).to have_content("Roman theatre plan")
+      expect(page).to have_content("Case officer's reason for requesting the document:")
+      expect(page).to have_content("I do not see a vomitorium in this.")
+    end
 
-    expect(page).to have_content("Document requested:")
-    expect(page).to have_content("Roman theatre plan")
-    expect(page).to have_content("Case officer's reason for requesting the document:")
-    expect(page).to have_content("I do not see a vomitorium in this.")
+    it "can't view show action" do
+      visit "/additional_document_validation_requests/3?change_access_id=345443543&planning_application_id=28"
+      expect(page).to have_content("Not Found")
+    end
   end
 
-  it "allows the user to update a document create request" do
-    stub_successful_get_change_requests
-    stub_successful_get_planning_application
+  context "Adding a document" do
+    before do
+      stub_patch_additional_document_validation_request(
+        id: 3,
+        planning_id: 28,
+        change_access_id: 345_443_543,
+        status: 200,
+      )
+    end
 
-    visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
+    it "allows the user to update a document create request" do
+      visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
 
-    attach_file("Upload a new file", "spec/fixtures/images/proposed-floorplan.png")
-    change_request_patch_request = stub_request(:patch, "https://default.bops-care.link/api/v1/planning_applications/28/additional_document_validation_requests/3?change_access_id=345443543")
-    .to_return(status: 200, body: "", headers: {})
+      attach_file("Upload a new file", "spec/fixtures/images/proposed-floorplan.png")
 
-    click_button "Submit"
-    expect(change_request_patch_request).to have_been_requested
-    stub_successful_get_planning_application
+      click_button "Submit"
+    end
   end
 
-  it "displays the new document in the show page for a closed document create request" do
-    stub_successful_get_change_requests
-    stub_successful_get_planning_application
+  context "when state is closed" do
+    before do
+      stub_get_additional_document_validation_request(
+        id: 3,
+        planning_id: 28,
+        change_access_id: 345_443_543,
+        response_body:
+          {
+            "id": 3,
+            "state": "closed",
+            "document_request_type": "Floor plan",
+            "document_request_reason": "No floor plan.",
+            "new_document": {
+              "name": "proposed-floorplan.jpg",
+              "url": "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png",
+            },
+          },
+        status: 200,
+      )
+    end
 
-    visit "/additional_document_validation_requests/4?change_access_id=345443543&planning_application_id=28"
+    it "displays the new document in the show page for a closed document create request" do
+      visit "/additional_document_validation_requests/3?change_access_id=345443543&planning_application_id=28"
 
-    expect(page).to have_content "Document requested:"
-    expect(page).to have_content "Floor plan"
-    expect(page).to have_content "Case officer's reason for requesting the document:"
-    expect(page).to have_content "No floor plan"
-    expect(page).to have_content "proposed-floorplan.png"
+      expect(page).to have_content "Document requested:"
+      expect(page).to have_content "Floor plan"
+      expect(page).to have_content "Case officer's reason for requesting the document:"
+      expect(page).to have_content "No floor plan"
+      expect(page).to have_content "proposed-floorplan.jpg"
+    end
+
+    it "can't view edit action" do
+      visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
+      expect(page).to have_content("Not Found")
+    end
   end
 
-  it "displays a cancellation summary for a cancelled validation request" do
-    stub_cancelled_change_requests
-    stub_successful_get_planning_application
+  context "when state is cancelled" do
+    before do
+      stub_get_additional_document_validation_request(
+        id: 3,
+        planning_id: 28,
+        change_access_id: 345_443_543,
+        response_body:
+          {
+            "id": 3,
+            "state": "cancelled",
+            "cancel_reason": "My mistake",
+            "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+          },
+        status: 200,
+      )
+    end
 
-    visit "/additional_document_validation_requests/4?change_access_id=345443543&planning_application_id=28"
+    it "displays a cancellation summary for a cancelled validation request" do
+      visit "/additional_document_validation_requests/3?change_access_id=345443543&planning_application_id=28"
 
-    expect(page).to have_content "Cancelled request to provide a new document"
-    expect(page).to have_content "This request has been cancelled. You do not have to take any further actions."
-    expect(page).to have_content "The officer gave the following reason for cancelling this request:"
-    expect(page).to have_content "My mistake"
-    expect(page).to have_content "20 October 2021"
-    expect(page).to have_link "Back", href: "/validation_requests?change_access_id=345443543&planning_application_id=28"
+      expect(page).to have_content "Cancelled request to provide a new document"
+      expect(page).to have_content "This request has been cancelled. You do not have to take any further actions."
+      expect(page).to have_content "The officer gave the following reason for cancelling this request:"
+      expect(page).to have_content "My mistake"
+      expect(page).to have_content "20 October 2021"
+      expect(page).to have_link "Back", href: "/validation_requests?change_access_id=345443543&planning_application_id=28"
+    end
   end
 end

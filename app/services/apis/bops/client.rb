@@ -4,6 +4,15 @@ module Apis
   module Bops
     class Client
       class << self
+        # Planning application
+        def get_planning_application(planning_application_id)
+          request(
+            http_method: :get,
+            endpoint: planning_application_id.to_s,
+          )
+        end
+
+        # Validation requests
         def get_validation_requests(planning_application_id, change_access_id)
           request(
             http_method: :get,
@@ -11,10 +20,11 @@ module Apis
           )
         end
 
-        def get_planning_application(planning_application_id)
+        # Description change validation requests
+        def get_description_change_validation_request(id, planning_application_id, change_access_id)
           request(
             http_method: :get,
-            endpoint: planning_application_id.to_s,
+            endpoint: "#{planning_application_id}/description_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
           )
         end
 
@@ -43,6 +53,14 @@ module Apis
           )
         end
 
+        # Other change validation requests
+        def get_other_change_validation_request(id, planning_application_id, change_access_id)
+          request(
+            http_method: :get,
+            endpoint: "#{planning_application_id}/other_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
+          )
+        end
+
         def patch_response_other_change_request(id, planning_application_id, change_access_id, response)
           request(
             http_method: :patch,
@@ -52,6 +70,14 @@ module Apis
                 "response": response,
               },
             }.to_json,
+          )
+        end
+
+        # Red line boundary change validation requests
+        def get_red_line_boundary_change_validation_request(id, planning_application_id, change_access_id)
+          request(
+            http_method: :get,
+            endpoint: "#{planning_application_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
           )
         end
 
@@ -80,6 +106,14 @@ module Apis
           )
         end
 
+        # Additional document validation requests
+        def get_additional_document_validation_request(id, planning_application_id, change_access_id)
+          request(
+            http_method: :get,
+            endpoint: "#{planning_application_id}/additional_document_validation_requests/#{id}?change_access_id=#{change_access_id}",
+          )
+        end
+
         def patch_additional_document(id, planning_application_id, change_access_id, file)
           request(
             http_method: :patch,
@@ -88,6 +122,14 @@ module Apis
               "file": file,
             },
             upload_file: true,
+          )
+        end
+
+        # Replacement document validation requests
+        def get_replacement_document_validation_request(id, planning_application_id, change_access_id)
+          request(
+            http_method: :get,
+            endpoint: "#{planning_application_id}/replacement_document_validation_requests/#{id}?change_access_id=#{change_access_id}",
           )
         end
 

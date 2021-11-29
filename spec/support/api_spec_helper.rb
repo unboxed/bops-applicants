@@ -1,4 +1,6 @@
 module ApiSpecHelper
+  API_BASE_URL = "https://default.bops-care.link/api/v1/planning_applications".freeze
+
   def headers
     {
       "Accept" => "*/*",

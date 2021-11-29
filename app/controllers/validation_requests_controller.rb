@@ -1,7 +1,7 @@
 class ValidationRequestsController < ApplicationController
   include Api::ErrorHandler
 
-  before_action :set_planning_application, :set_validation_requests
+  before_action :set_planning_application, :set_validation_requests, only: :index
 
   def index
     respond_to do |format|
@@ -20,13 +20,13 @@ private
   end
 
   def set_validation_request
-    # FIXME: - This is a seriously inefficient way of grabbing the validation request record.
-    # when we add the show endpoints for each validation request this can be changed
-    @validation_request = @validation_requests["data"][controller_name.pluralize.to_s].find { |obj| obj["id"] == params["id"].to_i }
+    @validation_request = validation_request_model_klass.find(
+      params[:id], params[:planning_application_id], params[:change_access_id]
+    )
   end
 
   def build_validation_request(attributes = {})
-    "Bops::#{controller_name.classify}".constantize.new(attributes).tap do |attribute|
+    validation_request_model_klass.new(attributes).tap do |attribute|
       attribute.id = params[:id]
       attribute.planning_application_id = params[:planning_application_id]
       attribute.change_access_id = params[:change_access_id]
@@ -63,5 +63,9 @@ private
   def error_message(validation_request)
     errors = validation_request.errors
     errors.any? ? errors.full_messages.to_sentence : "Oops something went wrong. Please contact support."
+  end
+
+  def validation_request_model_klass
+    "Bops::#{controller_name.classify}".constantize
   end
 end
