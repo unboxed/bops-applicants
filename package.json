@@ -2,7 +2,7 @@
   "name": "bops-applicants",
   "private": true,
   "dependencies": {
-    "@opensystemslab/map": "^0.3.1",
+    "@opensystemslab/map": "^0.4.2",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
     "govuk-frontend": "^3.11.0",
