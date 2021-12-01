@@ -1,5 +1,5 @@
 class RedLineBoundaryChangeValidationRequestsController < ValidationRequestsController
-  before_action :set_validation_request
+  before_action :set_validation_request, :set_planning_application
 
   def show
     respond_to do |format|

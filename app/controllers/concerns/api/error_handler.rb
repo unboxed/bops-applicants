@@ -17,7 +17,8 @@ module Api::ErrorHandler
     def format_error(error)
       error_hash = instance_eval(error.message)
 
-      message = error_hash[:response]["message"]
+      response = error_hash[:response]
+      message = response["message"] || response
       status = error_hash[:status].to_s || API_ERROR.to_s
       http_method = error_hash[:http_method].to_s
 

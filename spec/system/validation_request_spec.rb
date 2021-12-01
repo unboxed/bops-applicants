@@ -52,6 +52,20 @@ RSpec.describe "Change requests", type: :system do
     stub_successful_get_planning_application
 
     visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
+
+    stub_get_description_change_validation_request(
+      id: 18,
+      planning_id: 28,
+      change_access_id: 345_443_543,
+      response_body:
+        {
+          "id": 18,
+          "state": "open",
+          "proposed_description": "This is a better description",
+        },
+      status: 200,
+    )
+
     click_link("Description", match: :first)
 
     expect(page).to have_content("This is a better description")
