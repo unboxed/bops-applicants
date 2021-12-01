@@ -39,6 +39,6 @@ class AdditionalDocumentValidationRequestsController < ValidationRequestsControl
 private
 
   def additional_document_validation_request_params
-    params.require(:additional_document_validation_request).permit(:file)
+    params.require(:additional_document_validation_request).permit(files: [])
   end
 end

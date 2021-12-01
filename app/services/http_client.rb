@@ -24,13 +24,18 @@ class HttpClient
     HTTParty.patch(
       "#{api_base_url}#{endpoint}",
       headers: { "Authorization": authorization_header },
-      body: {
-        "new_file": params[:file],
-      },
+      body: file_params_body(params),
     )
   end
 
 private
+
+  def file_params_body(params)
+    {}.tap do |hash|
+      hash[:new_file] = params[:file] if params[:file]
+      hash[:files] = params[:files] if params[:files]
+    end
+  end
 
   def api_base
     "#{Current.local_authority}.#{ENV['API_HOST'] || 'bops-care.link'}/api/v1"

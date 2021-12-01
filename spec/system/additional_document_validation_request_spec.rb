@@ -41,7 +41,7 @@ RSpec.describe "Document create requests", type: :system do
 
   context "Adding a document" do
     before do
-      stub_patch_additional_document_validation_request(
+      stub_patch_additional_documents_validation_request(
         id: 3,
         planning_id: 28,
         change_access_id: 345_443_543,
@@ -52,7 +52,7 @@ RSpec.describe "Document create requests", type: :system do
     it "allows the user to update a document create request" do
       visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
 
-      attach_file("Upload a new file", "spec/fixtures/images/proposed-floorplan.png")
+      attach_file("Upload new file(s)", "spec/fixtures/images/proposed-floorplan.png")
 
       click_button "Submit"
     end
@@ -70,10 +70,16 @@ RSpec.describe "Document create requests", type: :system do
             "state": "closed",
             "document_request_type": "Floor plan",
             "document_request_reason": "No floor plan.",
-            "new_document": {
-              "name": "proposed-floorplan.jpg",
-              "url": "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png",
-            },
+            "documents": [
+              {
+                "name": "proposed-floorplan.jpg",
+                "url": "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png",
+              },
+              {
+                "name": "proposed-floorplan-2.jpg",
+                "url": "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan-2.png",
+              },
+            ],
           },
         status: 200,
       )
@@ -87,6 +93,7 @@ RSpec.describe "Document create requests", type: :system do
       expect(page).to have_content "Case officer's reason for requesting the document:"
       expect(page).to have_content "No floor plan"
       expect(page).to have_content "proposed-floorplan.jpg"
+      expect(page).to have_content "proposed-floorplan-2.jpg"
     end
 
     it "can't view edit action" do

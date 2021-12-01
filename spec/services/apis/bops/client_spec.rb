@@ -96,16 +96,16 @@ RSpec.describe Apis::Bops::Client do
     end
   end
 
-  describe ".patch_additional_document" do
+  describe ".patch_additional_documents" do
     it "initializes a Request object with additional_document_validation_request_id, planning_application_id, change_access_id and file and invokes #call" do
       expect(Request).to receive(:new).with(
         :patch,
         "#{planning_application_id}/additional_document_validation_requests/5?change_access_id=#{change_access_id}",
-        { file: "file" },
+        { files: "files" },
         true,
       ).and_call_original
 
-      described_class.patch_additional_document(5, planning_application_id, change_access_id, "file")
+      described_class.patch_additional_documents(5, planning_application_id, change_access_id, "files")
     end
   end
 

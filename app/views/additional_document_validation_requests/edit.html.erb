@@ -24,7 +24,7 @@
 
           <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
             <div class="govuk-!-padding-top-6 govuk-!-padding-bottom-4">
-              <%= form.govuk_file_field :file, label: { text: "Upload a new file", class: "govuk-label govuk-!-font-weight-bold" }, accept: acceptable_file_mime_types, required: true %>
+              <%= form.govuk_file_field :files, multiple: true, label: { text: "Upload new file(s)", class: "govuk-label govuk-!-font-weight-bold" }, accept: acceptable_file_mime_types, required: true %>
               <%= form.hidden_field :id %>
             </div>
             <div class="govuk-button-group">
