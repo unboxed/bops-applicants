@@ -24,8 +24,8 @@ en:
               blank: "Please enter your response to the planning officer's question."
         bops/additional_document_validation_request:
           attributes:
-            file:
-              blank: "Please choose a file to upload"
+            files:
+              blank: "Please choose at least one file to upload"
         bops/replacement_document_validation_request:
           attributes:
             file:

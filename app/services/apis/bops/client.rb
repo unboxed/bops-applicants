@@ -114,12 +114,12 @@ module Apis
           )
         end
 
-        def patch_additional_document(id, planning_application_id, change_access_id, file)
+        def patch_additional_documents(id, planning_application_id, change_access_id, files)
           request(
             http_method: :patch,
             endpoint: "#{planning_application_id}/additional_document_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
-              "file": file,
+              "files": files,
             },
             upload_file: true,
           )

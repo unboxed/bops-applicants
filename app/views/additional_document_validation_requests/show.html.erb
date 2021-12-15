@@ -7,10 +7,20 @@
           heading: "Cancelled request to provide a new document" %>
       <% else %>
         <%= render "document_create_header"%>
-        <p class="govuk-body govuk-!-padding-top-6"><strong>Document uploaded:</strong><br>
-          <%= @validation_request["new_document"]["name"] %>
+        <p class="govuk-body govuk-!-padding-top-6">
+          <strong>Document(s) you uploaded in response:</strong>
         </p>
-        <%= image_tag(@validation_request["new_document"]["url"], class: "image-border") %>
+
+        <ul id="documents" class="govuk-list">
+          <% @validation_request["documents"].each do |document| %>
+            <li>
+              <p class="govuk-body">
+                <%= document["name"] %>
+              </p>
+              <%= image_tag(document["url"], class: "image-border") %>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
 
       <div class="govuk-!-margin-top-8">

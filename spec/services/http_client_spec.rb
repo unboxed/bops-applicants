@@ -28,12 +28,20 @@ RSpec.describe HttpClient do
   end
 
   describe ".http_party" do
-    it "makes an HTTP party connection" do
+    it "when params is for a single file it makes an HTTP party connection" do
       expect(HTTParty).to receive(:patch).with(
         "#{url}28", { body: { new_file: "file" }, headers: { Authorization: token } }
       )
 
       described_class.new.http_party("28", { "file": "file" })
+    end
+
+    it "when params is for more than one file makes an HTTP party connection" do
+      expect(HTTParty).to receive(:patch).with(
+        "#{url}28", { body: { files: "files" }, headers: { Authorization: token } }
+      )
+
+      described_class.new.http_party("28", { "files": "files" })
     end
   end
 end

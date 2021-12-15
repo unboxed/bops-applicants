@@ -16,7 +16,7 @@ RSpec.configure do |config|
       )
     end
 
-    def stub_patch_additional_document_validation_request(id:, planning_id:, change_access_id:, status:)
+    def stub_patch_additional_documents_validation_request(id:, planning_id:, change_access_id:, status:)
       stub_request(
         :patch,
         "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/additional_document_validation_requests/#{id}?change_access_id=#{change_access_id}",

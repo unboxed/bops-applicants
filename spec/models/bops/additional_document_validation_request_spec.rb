@@ -11,8 +11,8 @@ RSpec.describe Bops::AdditionalDocumentValidationRequest, type: :model do
         expect {
           additional_document_validation_request.valid?
         }.to change {
-          additional_document_validation_request.errors[:file]
-        }.to ["Please choose a file to upload"]
+          additional_document_validation_request.errors[:files]
+        }.to ["Please choose at least one file to upload"]
       end
     end
   end
