@@ -14,12 +14,12 @@
           <p class="govuk-body"><strong>Your original red line boundary</strong><br>
           </p>
         </div>
-        <%= render "location_map", locals: { geojson: @planning_application["boundary_geojson"] } %>
+        <%= render "location_map", geojson: @validation_request["original_geojson"] %>
         <div style="margin-top: 30px;">
           <p class="govuk-body"><strong>Proposed red line boundary</strong><br>
           </p>
         </div>
-        <%= render "location_map", locals: { geojson: @validation_request["new_geojson"] } %>
+        <%= render "location_map", geojson: @validation_request["new_geojson"] %>
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <% if @validation_request["approved"] == false %>
           <strong class="govuk-tag govuk-tag--red">
