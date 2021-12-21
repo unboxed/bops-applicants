@@ -14,9 +14,8 @@ RSpec.describe "Red line boundary change requests", type: :system do
         {
           "id": 10,
           "state": "open",
-          "original_geojson": "{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-0.054597,51.537331],[-0.054588,51.537287],[-0.054453,51.537313],[-0.054597,51.537331]]]}}",
-          "new_geojson": "{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-0.076715,51.501166],[-0.07695,51.500673],[-0.076,51.500763],[-0.076715,51.501166]]]}}",
-          "reason": "Not accurate",
+          "new_geojson": "",
+          "reason": nil,
           "approved": nil,
         },
       status: 200,
@@ -36,16 +35,6 @@ RSpec.describe "Red line boundary change requests", type: :system do
 
       it "allows the user to accept a change request" do
         visit "/red_line_boundary_change_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
-
-        expect(page).to have_content("Reason change is requested")
-        expect(page).to have_content("Not accurate")
-        expect(page).to have_content("Your original red line boundary")
-        expect(page).to have_content("Proposed red line boundary")
-
-        # Two maps should be displayed with the original geojson and what the proposed change was
-        map_selectors = all("my-map")
-        expect(map_selectors.first["geojsondata"]).to eq("{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-0.054597,51.537331],[-0.054588,51.537287],[-0.054453,51.537313],[-0.054597,51.537331]]]}}")
-        expect(map_selectors.last["geojsondata"]).to eq("{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-0.076715,51.501166],[-0.07695,51.500673],[-0.076,51.500763],[-0.076715,51.501166]]]}}")
 
         choose "Yes, I agree with the proposed red line boundary"
 
@@ -119,8 +108,6 @@ RSpec.describe "Red line boundary change requests", type: :system do
               "id": 10,
               "state": "closed",
               "approved": true,
-              "original_geojson": "{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-0.054597,51.537331],[-0.054588,51.537287],[-0.054453,51.537313],[-0.054597,51.537331]]]}}",
-              "new_geojson": "{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-0.076715,51.501166],[-0.07695,51.500673],[-0.076,51.500763],[-0.076715,51.501166]]]}}",
             },
           status: 200,
         )
@@ -128,14 +115,6 @@ RSpec.describe "Red line boundary change requests", type: :system do
 
       it "displays the correct label for an accepted boundary change request" do
         visit "/red_line_boundary_change_validation_requests/10?change_access_id=345443543&planning_application_id=28"
-
-        expect(page).to have_content("Your original red line boundary")
-        expect(page).to have_content("Proposed red line boundary")
-
-        # Two maps should be displayed with the original geojson and what the proposed change was
-        map_selectors = all("my-map")
-        expect(map_selectors.first["geojsondata"]).to eq("{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-0.054597,51.537331],[-0.054588,51.537287],[-0.054453,51.537313],[-0.054597,51.537331]]]}}")
-        expect(map_selectors.last["geojsondata"]).to eq("{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-0.076715,51.501166],[-0.07695,51.500673],[-0.076,51.500763],[-0.076715,51.501166]]]}}")
 
         expect(page).to have_content("Agreed with suggested boundary changes")
       end
