@@ -15,5 +15,8 @@
     "leaflet": "^1.7.1",
     "sass": "^1.32.11",
     "webpack-dev-server": "^3.11.2"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
