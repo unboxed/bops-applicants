@@ -1,6 +1,6 @@
-FROM ruby:2.7.4
+FROM ruby:2.7.5
 
-RUN gem install bundler:2.2.20
+RUN gem install bundler:2.3.5
 
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
