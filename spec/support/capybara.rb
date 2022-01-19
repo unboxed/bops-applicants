@@ -14,7 +14,7 @@ Capybara.register_driver :chrome_headless do |app|
   browser_options.args << "--window-size=1280,960"
   browser_options.args << "--disable-gpu" if Gem.win_platform?
   browser_options.args << "--host-rules=MAP * 127.0.0.1"
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options).tap { |d| d.browser.download_path = download_path }
+  Capybara::Selenium::Driver.new(app, browser: :chrome, capabilities: [browser_options]).tap { |d| d.browser.download_path = download_path }
 end
 
 RSpec.configure do |config|
