@@ -31,6 +31,11 @@ RSpec.describe "Document create requests", type: :system do
       expect(page).to have_content("Roman theatre plan")
       expect(page).to have_content("Case officer's reason for requesting the document:")
       expect(page).to have_content("I do not see a vomitorium in this.")
+
+      expect(page).to have_link(
+        "Please ensure you have read how to correctly prepare plans (Opens in a new window or tab)",
+        href: "#{ENV['PROTOCOL']}://default.#{ENV['API_HOST']}/planning_guides/index",
+      )
     end
 
     it "can't view show action" do

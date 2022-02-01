@@ -42,6 +42,11 @@ RSpec.describe "Document change requests", type: :system do
       expect(page).to have_content("20210512_162911.jpg")
       expect(page).to have_content("Its a chicken coop not a floor plan.")
       expect(page).to have_content("Upload a replacement file")
+
+      expect(page).to have_link(
+        "Please ensure you have read how to correctly prepare plans (Opens in a new window or tab)",
+        href: "#{ENV['PROTOCOL']}://default.#{ENV['API_HOST']}/planning_guides/index",
+      )
     end
 
     it "allows the user to update a document change request" do
