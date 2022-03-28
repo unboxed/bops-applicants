@@ -5,22 +5,25 @@ RUN gem install bundler:2.3.5
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
 
-# Update & install node
-RUN apt-get update
-RUN apt-get install -y nodejs
+# Update the system
+RUN apt-get update -y
 
 # Install Chromium for integration tests
 RUN apt-get install -y --no-install-recommends chromium
-
-# Install yarn
-RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install yarn
 
 # Bundle gems in a separate folder for better Docker caching
 WORKDIR /gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
+
+## Node
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+
+# Install yarn
+RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install yarn
 
 # Same with JS dependencies
 WORKDIR /js
