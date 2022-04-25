@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  Replacement document validation request #<%= @validation_request["id"] %>
+<% end %>
+
 <div class="govuk-grid-row govuk-!-margin-top-7">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
@@ -49,14 +53,15 @@
 
         <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
           <div class="govuk-!-padding-top-8 govuk-!-padding-bottom-8">
-            <%= form.govuk_file_field :file,  label: { text: "Upload a replacement file", class: "govuk-label govuk-!-font-weight-bold" }, accept: acceptable_file_mime_types, required: true %>
+            <%= form.govuk_file_field :file,  label: { text: "Upload a replacement file", class: "govuk-label govuk-!-font-weight-bold" }, accept: acceptable_file_mime_types %>
             <%= form.hidden_field :id %>
           </div>
           <div class="govuk-button-group">
             <%= form.submit "Submit", class: "govuk-button", data: { module: "govuk-button" } %>
             <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
+</div>
