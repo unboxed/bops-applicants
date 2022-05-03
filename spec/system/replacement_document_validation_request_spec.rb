@@ -61,6 +61,12 @@ RSpec.describe "Document change requests", type: :system do
       visit "/replacement_document_validation_requests/8?change_access_id=345443543&planning_application_id=28"
       expect(page).to have_content("Not Found")
     end
+
+    it "has the correct page title" do
+      visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
+
+      expect(page).to have_title("Replacement document validation request #8 - Back-Office Planning System")
+    end
   end
 
   context "when state is closed" do

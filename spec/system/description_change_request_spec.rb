@@ -40,6 +40,12 @@ RSpec.describe "Description change requests", type: :system do
 
         expect(page).to have_content("Your response was updated successfully")
       end
+
+      it "has the correct page title" do
+        visit "/description_change_validation_requests/22/edit?change_access_id=345443543&planning_application_id=28"
+
+        expect(page).to have_title("Description change validation request #22 - Back-Office Planning System")
+      end
     end
 
     context "rejecting change request" do

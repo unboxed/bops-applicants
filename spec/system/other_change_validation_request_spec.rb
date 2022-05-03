@@ -59,6 +59,12 @@ RSpec.describe "Other change requests", type: :system do
         expect(page).to have_content "Please enter your response to the planning officer's question."
       end
     end
+
+    it "has the correct page title" do
+      visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
+
+      expect(page).to have_title("Other change validation request #19 - Back-Office Planning System")
+    end
   end
 
   context "when state is closed" do
