@@ -42,6 +42,12 @@ RSpec.describe "Document create requests", type: :system do
       visit "/additional_document_validation_requests/3?change_access_id=345443543&planning_application_id=28"
       expect(page).to have_content("Not Found")
     end
+
+    it "has the correct page title" do
+      visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
+
+      expect(page).to have_title("Additional document validation request #3 - Back-Office Planning System")
+    end
   end
 
   context "Adding a document" do

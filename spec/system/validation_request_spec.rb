@@ -102,4 +102,13 @@ RSpec.describe "Change requests", type: :system do
       expect(page).to have_content("Cancelled")
     end
   end
+
+  it "has the correct page title for the index page" do
+    stub_successful_get_change_requests
+    stub_successful_get_planning_application
+
+    visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
+
+    expect(page).to have_title "Back-Office Planning System"
+  end
 end

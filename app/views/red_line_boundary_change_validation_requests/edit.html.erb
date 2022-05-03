@@ -1,7 +1,11 @@
+<% content_for :page_title do %>
+  Red line boundary change validation request #<%= @validation_request["id"] %> - Back-Office Planning System
+<% end %>
+
 <div class="govuk-grid-row govuk-!-margin-top-7">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
-      <h2 class="govuk-heading-l">Confirm changes to your application's red line boundary </h2>
+      <h1 class="govuk-heading-l">Confirm changes to your application's red line boundary</h1>
       <p class="govuk-body">
         The following changes have been made to your application's red line boundary.
       </p>
@@ -31,5 +35,4 @@
       <%= render 'form' %>
     </div>
   </div>
-</div>
 </div>
