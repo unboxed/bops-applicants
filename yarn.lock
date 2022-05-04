@@ -889,16 +889,19 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@opensystemslab/map@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@opensystemslab/map/-/map-0.4.2.tgz#a902eba10f777812ff1c6bf930c675f7019ffa96"
-  integrity sha512-cC7JGGwKdVP1zuIKuqc94iAVv6F60wNsOZiNG//VmNbZTim6VkQr8G2aOfBg6Xu8WT79zyjAMm3YElUyO8hHxw==
+"@opensystemslab/map@^0.5.4":
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@opensystemslab/map/-/map-0.5.4.tgz#6f9e19b24d4fc3e8eeedb9dd65e10c1778e3a0a6"
+  integrity sha512-kFkErsiIuXKVAdAjLs73TyNyLnX9ZLxQ8Qhr54yXvpF5yMs98tXIqQ1tCtgdQvjjXPh1KbHFLv1Vp3TuJng2pA==
   dependencies:
     "@turf/union" "^6.5.0"
+    accessible-autocomplete "^2.0.4"
+    govuk-frontend "^3.14.0"
     lit "^2.0.0-rc.2"
     ol "^6.9.0"
-    ol-mapbox-style "^6.4.1"
-    rambda "^6.9.0"
+    ol-mapbox-style "^7.1.1"
+    postcode "^5.1.0"
+    rambda "^7.0.1"
 
 "@petamoriken/float16@^3.4.7":
   version "3.5.11"
@@ -1180,6 +1183,13 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
   dependencies:
     mime-types "~2.1.24"
     negotiator "0.6.2"
+
+accessible-autocomplete@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/accessible-autocomplete/-/accessible-autocomplete-2.0.4.tgz#e295256c8d268b97c5ab456a1cb084b553ed3eb0"
+  integrity sha512-2p0txrSpvs5wXFUeQJHMheDPTZVSEmiUHWlEPb7vJnv2Dd1xPfoLnBQQMfNbTSit2pL/9sSQYESuD2Yyohd4Yw==
+  dependencies:
+    preact "^8.3.1"
 
 acorn@^6.4.1:
   version "6.4.2"
@@ -3409,6 +3419,11 @@ govuk-frontend@^3.11.0:
   resolved "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-3.11.0.tgz"
   integrity sha512-1hW/3etYBtKPM+PNdWVOijvWVI3mpYL8eb7WLTtlh/Qxf2mCp6LkCsZk9I034n4EJBYQ5jlUWsUlTOOIypftpg==
 
+govuk-frontend@^3.14.0:
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-3.14.0.tgz#d3a9c54437c08f5188f87b1f4480ba60e95c8eb6"
+  integrity sha512-y7FTuihCSA8Hty+e9h0uPhCoNanCAN+CLioNFlPmlbeHXpbi09VMyxTcH+XfnMPY4Cp++7096v0rLwwdapTXnA==
+
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2:
   version "4.2.6"
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.6.tgz"
@@ -4443,6 +4458,11 @@ mapbox-to-css-font@^2.4.0:
   resolved "https://registry.yarnpkg.com/mapbox-to-css-font/-/mapbox-to-css-font-2.4.0.tgz#a23b51664a1ee839beaefade013f2655bee9a390"
   integrity sha512-v674D0WtpxCXlA6E+sBlG1QJWdUkz/s9qAD91bJSXBGuBL5lL4tJXpoJEftecphCh2SVQCjWMS2vhylc3AIQTg==
 
+mapbox-to-css-font@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/mapbox-to-css-font/-/mapbox-to-css-font-2.4.1.tgz#41bf38faed36b7dab069828aa3654e4bd91a1eda"
+  integrity sha512-QQ/iKiM43DM9+aujTL45Iz5o7gDeSFmy4LPl3HZmNcwCE++NxGazf+yFpY+wCb+YS23sDa1ghpo3zrNFOcHlow==
+
 md5.js@^1.3.4:
   version "1.3.5"
   resolved "https://registry.npmjs.org/md5.js/-/md5.js-1.3.5.tgz"
@@ -5002,15 +5022,6 @@ obuf@^1.0.0, obuf@^1.1.2:
   resolved "https://registry.npmjs.org/obuf/-/obuf-1.1.2.tgz"
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
-ol-mapbox-style@^6.4.1:
-  version "6.4.2"
-  resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-6.4.2.tgz#08123df872d43224ef0605ed468edeb1b4517ac9"
-  integrity sha512-iQyl5zBC1UiZIB7t4/7NpQruNS2Sk30jKecZuzyTFOksqRSrjVVkPaVmnUOrMAao0bWcOCrcb2zBTb+DQVMfAw==
-  dependencies:
-    "@mapbox/mapbox-gl-style-spec" "^13.20.1"
-    mapbox-to-css-font "^2.4.0"
-    webfont-matcher "^1.1.0"
-
 ol-mapbox-style@^6.5.1:
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-6.5.3.tgz#2d31db7d9bd5fd701a8988575797bb810ea98a9e"
@@ -5018,6 +5029,15 @@ ol-mapbox-style@^6.5.1:
   dependencies:
     "@mapbox/mapbox-gl-style-spec" "^13.20.1"
     mapbox-to-css-font "^2.4.0"
+    webfont-matcher "^1.1.0"
+
+ol-mapbox-style@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-7.1.1.tgz#cf33c39badd943c25fc438c689bf678f9aa847a2"
+  integrity sha512-GLTEYiH/Ec9Zn1eS4S/zXyR2sierVrUc+OLVP8Ra0FRyqRhoYbXdko0b7OIeSHWdtJfHssWYefDOGxfTRUUZ/A==
+  dependencies:
+    "@mapbox/mapbox-gl-style-spec" "^13.20.1"
+    mapbox-to-css-font "^2.4.1"
     webfont-matcher "^1.1.0"
 
 ol@^6.9.0:
@@ -5396,6 +5416,11 @@ posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.npmjs.org/posix-character-classes/-/posix-character-classes-0.1.1.tgz"
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
+
+postcode@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/postcode/-/postcode-5.1.0.tgz#ef30a2a4028fd20255fb0aceccf4c70baab8df5b"
+  integrity sha512-rjwIdlQ8UvdOnUVZRCZQA54PmQJeoMBDQb4RsW5z3MVp/u7Gcet1vsjVy/p0+YX+R7cmgU9DEJf0zSx5mWqxAA==
 
 postcss-attribute-case-insensitive@^4.0.1:
   version "4.0.2"
@@ -6038,6 +6063,11 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.17, postcss@^7.0.2
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
+preact@^8.3.1:
+  version "8.5.3"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-8.5.3.tgz#78c2a5562fcecb1fed1d0055fa4ac1e27bde17c1"
+  integrity sha512-O3kKP+1YdgqHOFsZF2a9JVdtqD+RPzCQc3rP+Ualf7V6rmRDchZ9MJbiGTT7LuyqFKZqlHSOyO/oMFmI2lVTsw==
+
 prepend-http@^1.0.0:
   version "1.0.4"
   resolved "https://registry.npmjs.org/prepend-http/-/prepend-http-1.0.4.tgz"
@@ -6181,10 +6211,10 @@ quickselect@^2.0.0:
   resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-2.0.0.tgz#f19680a486a5eefb581303e023e98faaf25dd018"
   integrity sha512-RKJ22hX8mHe3Y6wH/N3wCM6BWtjaxIyyUIkpHOvfFnxdI4yD4tBXEBKSbriGujF6jnSVkJrffuo6vxACiSSxIw==
 
-rambda@^6.9.0:
-  version "6.9.0"
-  resolved "https://registry.yarnpkg.com/rambda/-/rambda-6.9.0.tgz#17cd0b0c427295e00e8fe12de5bd63884502a9a4"
-  integrity sha512-yosVdGg1hNGkXPzqGiOYNEpXKjEOxzUCg2rB0l+NKdyCaSf4z+i5ojbN0IqDSezMMf71YEglI+ZUTgTffn5afw==
+rambda@^7.0.1:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/rambda/-/rambda-7.0.3.tgz#35730cb9ac24943c1231f74e6fddd46ae594d3c0"
+  integrity sha512-vRkFoukpx9PTmYyOjMZ6+anbDI9BrjaAepigsSOVQcgy7dZKMHM26m1/r8BvegeBCM8qBwr1m/+rufgNKRrofw==
 
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"
