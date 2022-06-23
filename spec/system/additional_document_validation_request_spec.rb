@@ -18,6 +18,7 @@ RSpec.describe "Document create requests", type: :system do
           "state": "open",
           "document_request_type": "Roman theatre plan",
           "document_request_reason": "I do not see a vomitorium in this.",
+          "response_due": "2022-7-1",
         },
       status: 200,
     )
@@ -26,6 +27,10 @@ RSpec.describe "Document create requests", type: :system do
   context "when state is open" do
     it "allows the user to view an open document create request" do
       visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
+
+      expect(page).to have_content(
+        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded.",
+      )
 
       expect(page).to have_content("Document requested:")
       expect(page).to have_content("Roman theatre plan")

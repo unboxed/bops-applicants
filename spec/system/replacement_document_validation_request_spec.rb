@@ -20,6 +20,7 @@ RSpec.describe "Document change requests", type: :system do
             "name": "20210512_162911.jpg",
             "invalid_document_reason": "Its a chicken coop not a floor plan.",
           },
+          "response_due": "2022-7-1",
         },
       status: 200,
     )
@@ -37,6 +38,10 @@ RSpec.describe "Document change requests", type: :system do
 
     it "allows the user to view a document change request" do
       visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
+
+      expect(page).to have_content(
+        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded.",
+      )
 
       expect(page).to have_content("Name of file on submission:")
       expect(page).to have_content("20210512_162911.jpg")

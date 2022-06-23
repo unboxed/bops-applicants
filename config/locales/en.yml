@@ -5,7 +5,7 @@ en:
       click_save_to: Click save to add the file
       click_submit_to: Click submit to complete this action
       document_requested: "Document requested:"
-      if_your_response: "If your response is not received by %{date} your application will be returned to you and your payment refunded."
+      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
       select_choose_file: "Select 'choose file' and upload a file from your device"
       the_case_officer: The case officer has specified below why this document is needed.
       title: Provide a new document
@@ -16,7 +16,7 @@ en:
       if_you_disagree: If you disagree, write in the box provided your reason for disagreeing with the changes and provided your suggested wording for the new description
       if_your_response: If your response is not received by %{date} the proposed description will be automatically accepted for use with your application. This is to avoid delays in making a determination.
       new_description: New description
-      page_title: Description change validation request %{id} - Back-Office Planning System
+      page_title: "Description change validation request #%{id} - Back-Office Planning System"
       previous_description: Previous description
       select_if_you: Select if you agree or disagree with the changes made by your case officer
       the_following_changes: The following changes have been made to your application's description.
@@ -30,7 +30,7 @@ en:
       if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
       make_changes_to: Make changes to your application as set out by your case officer and reply in the box below stating what changes have been made
       officers_reason_for: Officer's reason for invalidating application
-      page_title: "Other change validation request %{id} - Back-Office Planning System"
+      page_title: "Other change validation request #%{id} - Back-Office Planning System"
       the_following_request: The following request has been made.
       title: Respond to other request
       what_you_need: "What you need to do:"
@@ -55,7 +55,7 @@ en:
       click_submit_to: Click submit to complete this action
       if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
       name_of_file: "Name of file on submission:"
-      page_title: Replacement document validation request %{id} - Back-Office Planning System
+      page_title: "Replacement document validation request #%{id} - Back-Office Planning System"
       select_choose_file: Select 'choose file' and upload a replacement file from your device
       the_case_officer: The case officer has specified below why this document needs replacing.
       the_reason_the: "The reason the file needs replacing:"

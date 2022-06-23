@@ -38,15 +38,6 @@ RSpec.describe "Change requests", type: :system do
     expect(page).to have_content("00000028")
   end
 
-  it "displays the due date of the latest change request in the index page" do
-    stub_successful_get_change_requests
-    stub_successful_get_planning_application
-
-    visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
-
-    expect(page).to have_content("If requested changes are not received within 15 working days")
-  end
-
   it "displays the description of the change request on the change request page" do
     stub_successful_get_change_requests
     stub_successful_get_planning_application
@@ -62,6 +53,7 @@ RSpec.describe "Change requests", type: :system do
           "id": 18,
           "state": "open",
           "proposed_description": "This is a better description",
+          "response_due": "2022-7-1",
         },
       status: 200,
     )
