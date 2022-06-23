@@ -10,6 +10,18 @@ en:
       the_case_officer: The case officer has specified below why this document is needed.
       title: Provide a new document
       what_you_need: "What you need to do:"
+  description_change_validation_requests:
+    edit:
+      click_submit_to: Click submit to complete this action
+      if_you_disagree: If you disagree, write in the box provided your reason for disagreeing with the changes and provided your suggested wording for the new description
+      if_your_response: If your response is not received by %{date} the proposed description will be automatically accepted for use with your application. This is to avoid delays in making a determination.
+      new_description: New description
+      page_title: Description change validation request %{id} - Back-Office Planning System
+      previous_description: Previous description
+      select_if_you: Select if you agree or disagree with the changes made by your case officer
+      the_following_changes: The following changes have been made to your application's description.
+      title: Confirm changes to your application description
+      what_you_need: "What you need to do:"
   other_change_validation_requests:
     edit:
       click_submit_to: Click submit to complete this action
