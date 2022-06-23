@@ -49,6 +49,18 @@ en:
       title: Confirm changes to your application's red line boundary
       what_you_need: "What you need to do:"
       your_original_red: Your original red line boundary
+  replacement_document_validation_requests:
+    edit:
+      click_save_to: Click save to add the file
+      click_submit_to: Click submit to complete this action
+      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
+      name_of_file: "Name of file on submission:"
+      page_title: Replacement document validation request %{id} - Back-Office Planning System
+      select_choose_file: Select 'choose file' and upload a replacement file from your device
+      the_case_officer: The case officer has specified below why this document needs replacing.
+      the_reason_the: "The reason the file needs replacing:"
+      title: Provide a replacement document
+      what_you_need: "What you need to do:"
   validation_requests:
     index:
       application_number: "Application number:"

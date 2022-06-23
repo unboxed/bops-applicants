@@ -1,33 +1,31 @@
 <% content_for :page_title do %>
-  Replacement document validation request #<%= @validation_request["id"] %> - Back-Office Planning System
+  <%= t(".page_title", id:  @validation_request["id"]) %>
 <% end %>
-
 <div class="govuk-grid-row govuk-!-margin-top-7">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
-      <h1 class="govuk-heading-l">
-        Provide a replacement document
-      </h1>
-      <p class="govuk-body">
-        The case officer has specified below why this document needs replacing.
-      </p>
-      <p class="govuk-heading-s">What you need to do:</p>
+      <h1 class="govuk-heading-l"><%= t(".title") %></h1>
+      <p class="govuk-body"><%= t(".the_case_officer") %></p>
+      <p class="govuk-heading-s"><%= t(".what_you_need") %></p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>Select 'choose file' and upload a replacement file from your device</li>
-        <li>Click save to add the file</li>
-        <li>Click submit to complete this action </li>
+        <li><%= t(".select_choose_file") %></li>
+        <li><%= t(".click_save_to") %></li>
+        <li><%= t(".click_submit_to") %></li>
       </ul>
-
+      <div class="govuk-inset-text">
+        <%= t(".if_your_response", date: date_due(@validation_request)) %>
+      </div>
       <%= render "shared/planning_guides_link" %>
-
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
       <div class="govuk-!-margin-top-8">
-        <p class="govuk-body"><strong>Name of file on submission:</strong><br>
+        <p class="govuk-body">
+          <strong><%= t(".name_of_file") %></strong><br>
           <%= @validation_request["old_document"]["name"] %>
         </p>
       </div>
       <div class="govuk-!-margin-top-6">
-        <p class="govuk-body"><strong>The reason the file needs replacing:</strong><br>
+        <p class="govuk-body"><strong>
+          <%= t(".the_reason_the") %></strong><br>
           <%= @validation_request["old_document"]["invalid_document_reason"] %>
         </p>
       </div>
