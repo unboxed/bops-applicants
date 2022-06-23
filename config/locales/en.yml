@@ -1,4 +1,15 @@
 en:
+  additional_document_validation_requests:
+    document_create_header:
+      case_officers_reason: "Case officer's reason for requesting the document:"
+      click_save_to: Click save to add the file
+      click_submit_to: Click submit to complete this action
+      document_requested: "Document requested:"
+      if_your_response: "If your response is not received by %{date} your application will be returned to you and your payment refunded."
+      select_choose_file: "Select 'choose file' and upload a file from your device"
+      the_case_officer: The case officer has specified below why this document is needed.
+      title: Provide a new document
+      what_you_need: "What you need to do:"
   red_line_boundary_change_validation_requests:
     edit:
       accessibility_text_original: An interactive map centred on your address where the original red line boundary lines are drawn to create the site outline.
