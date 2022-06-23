@@ -1,4 +1,16 @@
 en:
+  validation_requests:
+    index:
+      application_number: "Application number:"
+      at: "At:"
+      click_on_each: Click on each link to see what action is required.
+      date_received: "Date received:"
+      each_link_below: Each link below requires a separate action.
+      once_you_have: Once you have submitted an action, you can no longer make changes to it. The status for that action will change to completed.
+      the_case_officer: The case officer working on your application has requested changes to your planning application.
+      title: Your planning application
+      what_you_need: "What you need to do:"
+      you_need_to: You need to complete all actions before your case officer can proceed with your planning application.
   errors:
     format: "%{message}"
 
