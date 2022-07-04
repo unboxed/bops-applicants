@@ -16,6 +16,7 @@ RSpec.describe "Other change requests", type: :system do
           "state": "open",
           "summary": "You applied for the wrong sort of certificate",
           "suggestion": "Please confirm you want a Lawful Development certificate",
+          "response_due": "2022-7-1",
         },
       status: 200,
     )
@@ -34,6 +35,10 @@ RSpec.describe "Other change requests", type: :system do
 
     it "allows the user to provide a response" do
       visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
+
+      expect(page).to have_content(
+        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded.",
+      )
 
       expect(page).to have_content("You applied for the wrong sort of certificate")
       expect(page).to have_content("Please confirm you want a Lawful Development certificate")

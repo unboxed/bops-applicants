@@ -14,6 +14,7 @@ RSpec.describe "Description change requests", type: :system do
         {
           "id": 22,
           "state": "open",
+          "response_due": "2022-7-1",
         },
       status: 200,
     )
@@ -32,6 +33,10 @@ RSpec.describe "Description change requests", type: :system do
 
       it "allows the user to accept a change request" do
         visit "/description_change_validation_requests/22/edit?change_access_id=345443543&planning_application_id=28"
+
+        expect(page).to have_content(
+          "If your response is not received by 1 July 2022 the proposed description will be automatically accepted for use with your application.",
+        )
 
         choose "Yes, I agree with the changes made"
 

@@ -1,28 +1,30 @@
 <% content_for :page_title do %>
-  Description change validation request #<%= @validation_request["id"] %> - Back-Office Planning System
+  <%= t(".page_title", id:  @validation_request["id"]) %>
 <% end %>
-
 <div class="govuk-grid-row govuk-!-margin-top-7">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
-      <h1 class="govuk-heading-l">Confirm changes to your application description</h1>
-        <p class="govuk-body">
-          The following changes have been made to your application's description.
-        </p>
-        <p class="govuk-heading-s">What you need to do:</p>
+      <h1 class="govuk-heading-l"><%= t(".title") %></h1>
+        <p class="govuk-body"><%= t(".the_following_changes") %></p>
+        <p class="govuk-heading-s"><%= t(".what_you_need") %></p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>Select if you agree or disagree with the changes made by your case officer</li>
-          <li>If you disagree, write in the box provided your reason for disagreeing with the changes and provided your suggested wording for the new description</li>
-          <li>Click submit to complete this action </li>
+          <li><%= t(".select_if_you") %></li>
+          <li><%= t(".if_you_disagree") %></li>
+          <li><%= t(".click_submit_to") %></li>
         </ul>
+        <div class="govuk-inset-text">
+          <%= t(".if_your_response", date: date_due(@validation_request)) %>
+        </div>
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <div style="margin-top: 50px;">
-          <p class="govuk-body"><strong>Previous description</strong><br>
+          <p class="govuk-body">
+            <strong><%= t(".previous_description") %></strong><br>
             <%= @validation_request["previous_description"] %>
           </p>
         </div>
         <div style="margin-top: 30px;">
-          <p class="govuk-body"><strong>New description</strong><br>
+          <p class="govuk-body">
+            <strong><%= t(".new_description") %></strong><br>
             <%= @validation_request["proposed_description"] %>
           </p>
         </div>

@@ -17,6 +17,7 @@ RSpec.describe "Red line boundary change requests", type: :system do
           "new_geojson": "",
           "reason": nil,
           "approved": nil,
+          "response_due": "2022-7-1",
         },
       status: 200,
     )
@@ -35,6 +36,10 @@ RSpec.describe "Red line boundary change requests", type: :system do
 
       it "allows the user to accept a change request" do
         visit "/red_line_boundary_change_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
+
+        expect(page).to have_content(
+          "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded.",
+        )
 
         choose "Yes, I agree with the proposed red line boundary"
 

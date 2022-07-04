@@ -1,28 +1,25 @@
-<h1 class="govuk-heading-l">
-  Provide a new document
-</h1>
-<p class="govuk-body">
-  The case officer has specified below why this document is needed.
-</p>
+<h1 class="govuk-heading-l"><%= t(".title") %></h1>
+<p class="govuk-body"><%= t(".the_case_officer") %></p>
 <% if @validation_request["state"] == "open" %>
-  <p class="govuk-heading-s">What you need to do:</p>
+  <p class="govuk-heading-s"><%= t(".what_you_need") %></p>
   <ul class="govuk-list govuk-list--bullet">
-    <li>Select 'choose files' and upload one or more files from your device</li>
-    <li>Click save to add the file(s)</li>
-    <li>Click submit to complete this action </li>
+    <li><%= t(".select_choose_files") %></li>
+    <li><%= t(".click_save_to") %></li>
+    <li><%= t(".click_submit_to") %></li>
   </ul>
-
+  <div class="govuk-inset-text">
+    <%= t(".if_your_response", date: date_due(@validation_request)) %>
+  </div>
   <%= render "shared/planning_guides_link" %>
-
 <% end %>
 <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 <div class="govuk-!-margin-top-6">
-  <p class="govuk-body"><strong>Document requested:</strong><br>
+  <p class="govuk-body"><strong><%= t(".document_requested") %></strong><br>
     <%= @validation_request["document_request_type"] %>
   </p>
 </div>
 <div class="govuk-!-margin-top-4">
-  <p class="govuk-body"><strong>Case officer's reason for requesting the document:</strong><br>
+  <p class="govuk-body"><strong><%= t(".case_officers_reason") %></strong><br>
     <%= @validation_request["document_request_reason"] %>
   </p>
 </div>

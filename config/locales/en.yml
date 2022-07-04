@@ -1,4 +1,78 @@
 en:
+  additional_document_validation_requests:
+    document_create_header:
+      case_officers_reason: "Case officer's reason for requesting the document:"
+      click_save_to: Click save to add the file
+      click_submit_to: Click submit to complete this action
+      document_requested: "Document requested:"
+      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
+      select_choose_file: "Select 'choose file' and upload a file from your device"
+      the_case_officer: The case officer has specified below why this document is needed.
+      title: Provide a new document
+      what_you_need: "What you need to do:"
+  description_change_validation_requests:
+    edit:
+      click_submit_to: Click submit to complete this action
+      if_you_disagree: If you disagree, write in the box provided your reason for disagreeing with the changes and provided your suggested wording for the new description
+      if_your_response: If your response is not received by %{date} the proposed description will be automatically accepted for use with your application. This is to avoid delays in making a determination.
+      new_description: New description
+      page_title: "Description change validation request #%{id} - Back-Office Planning System"
+      previous_description: Previous description
+      select_if_you: Select if you agree or disagree with the changes made by your case officer
+      the_following_changes: The following changes have been made to your application's description.
+      title: Confirm changes to your application description
+      what_you_need: "What you need to do:"
+  other_change_validation_requests:
+    edit:
+      click_submit_to: Click submit to complete this action
+      how_you_can: How you can make your application valid
+      if_you_disagree: If you disagree with the suggested changes, reply stating why you disagree
+      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
+      make_changes_to: Make changes to your application as set out by your case officer and reply in the box below stating what changes have been made
+      officers_reason_for: Officer's reason for invalidating application
+      page_title: "Other change validation request #%{id} - Back-Office Planning System"
+      the_following_request: The following request has been made.
+      title: Respond to other request
+      what_you_need: "What you need to do:"
+  red_line_boundary_change_validation_requests:
+    edit:
+      accessibility_text_original: An interactive map centred on your address where the original red line boundary lines are drawn to create the site outline.
+      accessibility_text_proposed: An interactive map centred on your address where the newly proposed red line boundary lines are drawn to create the site outline.
+      click_submit_to: Click submit to complete this action
+      if_you_disagree: If you disagree, write in the box provided your reason for disagreeing.
+      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
+      page_title: "Red line boundary change validation request #%{id} - Back-Office Planning System"
+      proposed_red_line: Proposed red line boundary
+      reason_change_is: Reason change is requested
+      select_if_you: Select if you agree or disagree with the changes made by your case officer
+      the_following_changes: The following changes have been made to your application's red line boundary.
+      title: Confirm changes to your application's red line boundary
+      what_you_need: "What you need to do:"
+      your_original_red: Your original red line boundary
+  replacement_document_validation_requests:
+    edit:
+      click_save_to: Click save to add the file
+      click_submit_to: Click submit to complete this action
+      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
+      name_of_file: "Name of file on submission:"
+      page_title: "Replacement document validation request #%{id} - Back-Office Planning System"
+      select_choose_file: Select 'choose file' and upload a replacement file from your device
+      the_case_officer: The case officer has specified below why this document needs replacing.
+      the_reason_the: "The reason the file needs replacing:"
+      title: Provide a replacement document
+      what_you_need: "What you need to do:"
+  validation_requests:
+    index:
+      application_number: "Application number:"
+      at: "At:"
+      click_on_each: Click on each link to see what action is required.
+      date_received: "Date received:"
+      each_link_below: Each link below requires a separate action.
+      once_you_have: Once you have submitted an action, you can no longer make changes to it. The status for that action will change to completed.
+      the_case_officer: The case officer working on your application has requested changes to your planning application.
+      title: Your planning application
+      what_you_need: "What you need to do:"
+      you_need_to: You need to complete all actions before your case officer can proceed with your planning application.
   errors:
     format: "%{message}"
 
