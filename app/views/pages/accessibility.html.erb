@@ -1,0 +1,117 @@
+<% content_for :page_title do %>
+  <%= t(".page_title", local_authority: current_local_authority.titleize) %>
+<% end %>
+<div class="govuk-width-container">
+  <%= link_to("Back", :back, class: "govuk-back-link") %>
+  <main class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+          <%= t(".title", local_authority: current_local_authority.titleize) %>
+        </h1>
+        <p class="govuk-body">
+          <%= t(
+            ".council_is_committed",
+            local_authority: current_local_authority.titleize
+          ) %>
+        </p>
+        <p class="govuk-body"><%= t(".this_accessibility_statement") %></p>
+        <p class="govuk-body">
+          <%= t(
+            ".this_website_is",
+            local_authority: current_local_authority.titleize
+          ) %>
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><%= t(".change_colours_contrast") %></li>
+          <li><%= t(".zoom_in_up") %></li>
+          <li><%= t(".navigate_most_of") %></li>
+          <li><%= t(".navigate_most_of_2") %></li>
+          <li><%= t(".listen_to_most") %></li>
+        </ul>
+        <p class="govuk-body"><%= t(".we_have_also") %></p>
+        <p class="govuk-body">
+          <%= t(
+            ".ability_net_has",
+            link: link_to("AbilityNet", "https://mcmw.abilitynet.org.uk", class: "govuk-link")
+          ).html_safe %>
+        </p>
+        <h2 class="govuk-heading-m"><%= t(".how_accessible_this") %></h2>
+        <p class="govuk-body"><%= t(".we_know_some") %></p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><%= t(".interactive_map_content") %></li>
+          <li><%= t(".no_validation_on") %></li>
+        </ul>
+        <h2 class="govuk-heading-m"><%= t(".feedback_and_contact") %></h2>
+        <p class="govuk-body"><%= t(".if_you_need") %></p>
+        <ul class="govuk-list">
+          <li>
+            <%= t(
+              ".email",
+              email_address: contact_details[:email_address]
+            ).html_safe %>
+          </li>
+          <li>
+            <%= t(".call", phone_number: formatted_phone_number).html_safe %>
+          </li>
+        </ul>
+        <p class="govuk-body"><%= t(".we_will_consider") %></p>
+        <p class="govuk-body"><%= t(".if_you_cannot") %></p>
+        <h2 class="govuk-heading-m">
+          <%= t(".reporting_accessibility_problems") %>
+        </h2>
+        <p class="govuk-body"><%= t(".we_are_always") %></p>
+        <ul class="govuk-list">
+          <% contact_details[:postal_address].split(",").each do |line| %>
+            <li><strong><%= line %></strong></li>
+          <% end %>
+        </ul>
+        <h2 class="govuk-heading-m"><%= t(".enforcement_procedure") %></h2>
+        <p class="govuk-body">
+          <%= t(
+          ".the_equality_and",
+          link: link_to(t(".the_equality_and_link"), "https://www.equalityadvisoryservice.com", class: "govuk-link")
+          ).html_safe %>
+        </p>
+        <h2 class="govuk-heading-m"><%= t(".contacting_us_by") %></h2>
+        <p class="govuk-body"><%= t(".we_provide_a") %></p>
+        <p class="govuk-body"><%= t(".our_offices_have") %></p>
+        <h2 class="govuk-heading-m">
+          <%= t(".technical_information_about") %>
+        </h2>
+        <p class="govuk-body">
+          <%= t(
+            ".council_is_committed",
+            local_authority: current_local_authority.titleize
+          ) %>
+        </p>
+        <h2 class="govuk-heading-m"><%= t(".compliance_status") %></h2>
+        <p class="govuk-body">
+          <%= t(
+            ".this_website_is_2",
+            link: link_to(t(".this_website_is_2_link"), "https://www.w3.org/TR/WCAG21", class: "govuk-link")
+          ).html_safe %>
+        </p>
+        <h2 class="govuk-heading-m"><%= t(".content_that_is") %></h2>
+        <h3 class="govuk-heading-s"><%= t(".pdfs_and_other") %></h3>
+        <p class="govuk-body"><%= t(".we_aim_to") %></p>
+        <h3 class="govuk-heading-s"><%= t(".maps") %></h3>
+        <p class="govuk-body">
+          <%= t(
+            ".we_use_maps",
+            link: link_to(t(".we_use_maps_link"), "https://github.com/theopensystemslab/map/issues/142", class: "govuk-link")
+          ).html_safe %>
+        </p>
+        <h2 class="govuk-heading-m"><%= t(".preparation_of_this") %></h2>
+        <p class="govuk-body"><%= t(".this_statement_was") %></p>
+        <p class="govuk-body"><%= t(".we_used_this") %></p>
+        <p class="govuk-body">
+          <%= t(
+            ".you_can_read",
+            link: link_to(t(".you_can_read_link"), "https://bops.digital/Accessibility-Assessment", class: "govuk-link")
+          ).html_safe %>
+        </p>
+      </div>
+    </div>
+  </main>
+</div>
