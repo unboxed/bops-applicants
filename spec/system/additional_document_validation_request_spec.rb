@@ -3,6 +3,17 @@ require "rails_helper"
 RSpec.describe "Document create requests", type: :system do
   include ActionDispatch::TestProcess::FixtureFile
 
+  let(:response_body) do
+    {
+      id: 3,
+      state: "open",
+      document_request_type: "Roman theatre plan",
+      document_request_reason: "I do not see a vomitorium in this.",
+      response_due: "2022-7-1",
+      post_validation: false,
+    }.stringify_keys
+  end
+
   before do
     ENV["API_BEARER"] = "123"
     ENV["PROTOCOL"] = "https"
@@ -12,14 +23,7 @@ RSpec.describe "Document create requests", type: :system do
       id: 3,
       planning_id: 28,
       change_access_id: 345_443_543,
-      response_body:
-        {
-          "id": 3,
-          "state": "open",
-          "document_request_type": "Roman theatre plan",
-          "document_request_reason": "I do not see a vomitorium in this.",
-          "response_due": "2022-7-1",
-        },
+      response_body: response_body,
       status: 200,
     )
   end
@@ -41,6 +45,31 @@ RSpec.describe "Document create requests", type: :system do
         "Please ensure you have read how to correctly prepare plans (Opens in a new window or tab)",
         href: "#{ENV['PROTOCOL']}://default.#{ENV['API_HOST']}/planning_guides/index",
       )
+    end
+
+    context "when request is post validation" do
+      let(:response_body) do
+        {
+          id: 3,
+          state: "open",
+          document_request_type: "Roman theatre plan",
+          document_request_reason: "No room for the lions",
+          response_due: "2022-7-1",
+          post_validation: true,
+        }.stringify_keys
+      end
+
+      it "does not display return and refund information" do
+        visit edit_additional_document_validation_request_path(
+          3,
+          planning_application_id: 28,
+          change_access_id: "345443543",
+        )
+
+        expect(page).not_to have_content(
+          "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded.",
+        )
+      end
     end
 
     it "can't view show action" do

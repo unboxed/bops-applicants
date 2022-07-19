@@ -7,9 +7,11 @@
     <li><%= t(".click_save_to") %></li>
     <li><%= t(".click_submit_to") %></li>
   </ul>
-  <div class="govuk-inset-text">
-    <%= t(".if_your_response", date: date_due(@validation_request)) %>
-  </div>
+  <% unless @validation_request["post_validation"] %>
+    <div class="govuk-inset-text">
+      <%= t(".if_your_response", date: date_due(@validation_request)) %>
+    </div>
+  <% end %>
   <%= render "shared/planning_guides_link" %>
 <% end %>
 <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
