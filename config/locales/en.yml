@@ -86,6 +86,7 @@ en:
     footer:
       accessibility: Accessibility statement
       support_links: Support links
+      privacy_policy: Privacy Policy
   red_line_boundary_change_validation_requests:
     edit:
       accessibility_text_original: An interactive map centred on your address where the original red line boundary lines are drawn to create the site outline.
@@ -125,6 +126,13 @@ en:
       title: Your planning application
       what_you_need: "What you need to do:"
       you_need_to: You need to complete all actions before your case officer can proceed with your planning application.
+  local_authorities:
+    buckinghamshire:
+      privacy_policy: https://www.buckinghamshire.gov.uk/your-council/privacy/privacy-and-planning-policy-and-compliance
+    lambeth:
+      privacy_policy: https://beta.lambeth.gov.uk/about-council/privacy-data-protection/planning-transport-development-service-privacy-notice
+    southwark:
+      privacy_policy: https://www.southwark.gov.uk/terms-and-disclaimer/corporate-data-privacy-notice
   errors:
     format: "%{message}"
 

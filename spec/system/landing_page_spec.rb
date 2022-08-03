@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "accessibility page", type: :system do
+RSpec.describe "landing page", type: :system do
   let(:contact_details) do
     {
       default: {
@@ -23,24 +23,30 @@ RSpec.describe "accessibility page", type: :system do
       .to receive(:load_file)
       .with(Rails.root.join("config/contact_details.yml"))
       .and_return(contact_details)
-  end
 
-  it "lets the user navigate to the page" do
     visit(
       validation_requests_path(
         planning_application_id: 28,
         change_access_id: 345_443_543,
       ),
     )
+  end
 
-    within("footer") { click_link("Accessibility statement") }
+  context "within footer" do
+    it "lets the user navigate to accessibility page" do
+      within("footer") { click_link("Accessibility statement") }
 
-    expect(page).to have_content(
-      "Accessibility statement for Default Council Back-office Planning System",
-    )
+      expect(page).to have_content(
+        "Accessibility statement for Default Council Back-office Planning System",
+      )
 
-    expect(page).to have_content("Email planning@default.gov.uk")
-    expect(page).to have_content("Call 01234 123 123")
-    expect(page).to have_content("123 High Street")
+      expect(page).to have_content("Email planning@default.gov.uk")
+      expect(page).to have_content("Call 01234 123 123")
+      expect(page).to have_content("123 High Street")
+    end
+
+    it "lets the user navigate to privacy policy page" do
+      within("footer") { expect(page).to have_link("Privacy Policy") }
+    end
   end
 end
