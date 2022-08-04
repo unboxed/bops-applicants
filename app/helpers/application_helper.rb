@@ -1,12 +1,4 @@
 module ApplicationHelper
-  def feedback_email(current_local_authority)
-    I18n.t("local_authorities.#{current_local_authority}.feedback_email")
-  end
-
-  def privacy_notice(current_local_authority)
-    I18n.t("local_authorities.#{current_local_authority}.privacy_policy")
-  end
-
   def formatted_phone_number
     number_to_phone(
       contact_details[:phone_number],
