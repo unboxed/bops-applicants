@@ -32,6 +32,12 @@ RSpec.describe "landing page", type: :system do
     )
   end
 
+  context "within phase-banner" do
+    it "lets the user navigate to feedback" do
+      within(".govuk-phase-banner") { expect(page).to have_link("feedback") }
+    end
+  end
+
   context "within footer" do
     it "lets the user navigate to accessibility page" do
       within("footer") { click_link("Accessibility statement") }

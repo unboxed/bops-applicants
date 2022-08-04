@@ -1,12 +1,6 @@
 module ApplicationHelper
-  FEEDBACK_EMAILS = {
-    lambeth: "digitalplanning@lambeth.gov.uk",
-    southwark: "digital.projects@southwark.gov.uk",
-    buckinghamshire: "planning.digital@buckinghamshire.gov.uk",
-  }.freeze
-
   def feedback_email(current_local_authority)
-    FEEDBACK_EMAILS[current_local_authority.to_sym]
+    I18n.t("local_authorities.#{current_local_authority}.feedback_email")
   end
 
   def privacy_notice(current_local_authority)

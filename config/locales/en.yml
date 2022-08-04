@@ -128,10 +128,13 @@ en:
       you_need_to: You need to complete all actions before your case officer can proceed with your planning application.
   local_authorities:
     buckinghamshire:
+      feedback_email: planning.digital@buckinghamshire.gov.uk
       privacy_policy: https://www.buckinghamshire.gov.uk/your-council/privacy/privacy-and-planning-policy-and-compliance
     lambeth:
+      feedback_email: digitalplanning@lambeth.gov.uk
       privacy_policy: https://beta.lambeth.gov.uk/about-council/privacy-data-protection/planning-transport-development-service-privacy-notice
     southwark:
+      feedback_email: digital.projects@southwark.gov.uk
       privacy_policy: https://www.southwark.gov.uk/terms-and-disclaimer/corporate-data-privacy-notice
   errors:
     format: "%{message}"
