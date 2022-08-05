@@ -1,6 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Document create requests", type: :system do
+  include_context "local_authority_contact_details"
   include ActionDispatch::TestProcess::FixtureFile
 
   let(:response_body) do

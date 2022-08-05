@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "Other change requests", type: :system do
+  include_context "local_authority_contact_details"
+
   before do
     ENV["API_BEARER"] = "123"
     ENV["PROTOCOL"] = "https"

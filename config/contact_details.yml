@@ -1,12 +1,18 @@
 buckinghamshire:
   email_address: planning.digital@buckinghamshire.gov.uk
+  feedback_email: planning.digital@buckinghamshire.gov.uk
   phone_number: "03001316000"
   postal_address: Directorate for Planning, Growth and Sustainability, Planning and Environment, Buckinghamshire Council, The Gateway, Gatehouse Road, Aylesbury, HP19 8FF
+  privacy_policy: https://www.buckinghamshire.gov.uk/your-council/privacy/privacy-and-planning-policy-and-compliance
 lambeth:
   email_address: digitalplanning@lambeth.gov.uk
+  feedback_email: digitalplanning@lambeth.gov.uk
   phone_number: "02079261180"
   postal_address: Planning, London Borough of Lambeth, PO Box 734, Winchester, SO23 5DG
+  privacy_policy: https://beta.lambeth.gov.uk/about-council/privacy-data-protection/planning-transport-development-service-privacy-notice
 southwark:
   email_address: digital.projects@southwark.gov.uk
+  feedback_email: digital.projects@southwark.gov.uk
   phone_number: "02075255403"
   postal_address: Planning Department, Southwark Council, PO BOX 64529, London, SE1P 5LX
+  privacy_policy: https://www.southwark.gov.uk/terms-and-disclaimer/corporate-data-privacy-notice

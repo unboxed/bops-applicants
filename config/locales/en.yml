@@ -86,6 +86,7 @@ en:
     footer:
       accessibility: Accessibility statement
       support_links: Support links
+      privacy_policy: Privacy Policy
   red_line_boundary_change_validation_requests:
     edit:
       accessibility_text_original: An interactive map centred on your address where the original red line boundary lines are drawn to create the site outline.

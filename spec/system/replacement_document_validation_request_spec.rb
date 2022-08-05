@@ -1,6 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Document change requests", type: :system do
+  include_context "local_authority_contact_details"
   include ActionDispatch::TestProcess::FixtureFile
 
   before do
