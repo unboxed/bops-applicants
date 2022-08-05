@@ -1,17 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Description change requests", type: :system do
-  let(:contact_details) do
-    {
-      default: {
-        email_address: "planning@default.gov.uk",
-        feedback_email: "planning@default.gov.uk",
-        phone_number: "01234123123",
-        postal_address: "Planning, 123 High Street, Big City, AB3 4EF",
-        privacy_policy: "https://www.default.gov.uk/privacy-policy",
-      },
-    }.deep_stringify_keys
-  end
+  include_context "local_authority_contact_details"
 
   before do
     ENV["API_BEARER"] = "123"
@@ -30,13 +20,6 @@ RSpec.describe "Description change requests", type: :system do
         },
       status: 200,
     )
-
-    allow(YAML).to receive(:load_file).and_call_original
-
-    allow(YAML)
-      .to receive(:load_file)
-      .with(Rails.root.join("config/contact_details.yml"))
-      .and_return(contact_details)
   end
 
   context "when state is open" do
