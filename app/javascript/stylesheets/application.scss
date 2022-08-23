@@ -8,3 +8,7 @@ $govuk-assets-path: "~govuk-frontend/govuk/assets/";
   width: 276px;
   border: solid 1px #eee;
 }
+
+html * {
+  font-family: open-sans, sans-serif !important;
+}
