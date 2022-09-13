@@ -37,7 +37,7 @@ RSpec.describe "Change requests", type: :system do
 
     expect(page).to have_content("11 Mel Gardens, London, SE16 3RQ")
     expect(page).to have_content("Date received: 23 April 2021")
-    expect(page).to have_content("00000028")
+    expect(page).to have_content("Application number: 22-00100-LDCP")
   end
 
   it "displays the description of the change request on the change request page" do

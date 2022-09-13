@@ -17,6 +17,10 @@ RSpec.describe "landing page", type: :system do
     )
   end
 
+  it "renders the application reference" do
+    expect(page).to have_content("Application number: 22-00100-LDCP")
+  end
+
   context "within phase-banner" do
     it "lets the user navigate to feedback" do
       within(".govuk-phase-banner") { expect(page).to have_link("feedback") }

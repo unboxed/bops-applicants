@@ -5,10 +5,6 @@ module ValidationRequestsHelper
     "#{planning_application['site']['address_1']}, #{planning_application['site']['town']}, #{planning_application['site']['postcode']}"
   end
 
-  def reference(planning_application)
-    planning_application["id"].to_s.rjust(8, "0")
-  end
-
   def date_received(planning_application)
     planning_application["created_at"].to_date.strftime("%e %B %Y")
   end
