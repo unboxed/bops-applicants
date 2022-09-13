@@ -7,7 +7,7 @@
       <strong><%= t(".date_received") %></strong>
       <%= date_received(@planning_application) %><br>
       <strong><%= t(".application_number") %></strong>
-      <%= reference(@planning_application) %><br>
+      <%= @planning_application["reference"] %><br>
       <br>
     </p>
     <p class="govuk-body"><%= t(".the_case_officer") %></p>
