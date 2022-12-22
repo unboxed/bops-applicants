@@ -36,7 +36,7 @@
             Disagreed with suggested boundary changes
           </strong>
           <p class="govuk-body govuk-!-padding-top-6"><strong>My reason for objecting to the boundary changes: </strong><br>
-            <%= @validation_request["rejection_reason"] %>
+            <%= render(FormattedContentComponent.new(text: @validation_request["rejection_reason"])) %>
           </p>
         <% else %>
           <strong class="govuk-tag govuk-tag--green">

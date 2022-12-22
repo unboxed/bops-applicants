@@ -17,11 +17,11 @@
 <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 <div class="govuk-!-margin-top-6">
   <p class="govuk-body"><strong><%= t(".document_requested") %></strong><br>
-    <%= @validation_request["document_request_type"] %>
+    <%= render(FormattedContentComponent.new(text: @validation_request["document_request_type"])) %>
   </p>
 </div>
 <div class="govuk-!-margin-top-4">
   <p class="govuk-body"><strong><%= t(".case_officers_reason") %></strong><br>
-    <%= @validation_request["document_request_reason"] %>
+    <%= render(FormattedContentComponent.new(text: @validation_request["document_request_reason"])) %>
   </p>
 </div>

@@ -176,4 +176,31 @@ RSpec.describe "Document create requests", type: :system do
       expect(page).to have_link "Back", href: "/validation_requests?change_access_id=345443543&planning_application_id=28"
     end
   end
+
+  context "when an officer adds a link to the request type and reason" do
+    let(:response_body) do
+      {
+        id: 3,
+        state: "open",
+        document_request_type: "Link to https://www.bops.co.uk/type",
+        document_request_reason: "View reason <a href='https://www.bops.co.uk/reason'>Request reason</a>",
+        response_due: "2022-7-1",
+        post_validation: false,
+      }.stringify_keys
+    end
+
+    it "displays the link and link html as clickable" do
+      visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
+
+      expect(page).to have_link(
+        "https://www.bops.co.uk/type",
+        href: "https://www.bops.co.uk/type",
+      )
+
+      expect(page).to have_link(
+        "Request reason",
+        href: "https://www.bops.co.uk/reason",
+      )
+    end
+  end
 end

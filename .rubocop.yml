@@ -8,6 +8,10 @@ inherit_mode:
   merge:
     - Exclude
 
+Lint/MissingSuper:
+  Exclude:
+    - app/components/**/*.rb
+
 Rails:
   Exclude:
     - "lib/package_builder.rb"

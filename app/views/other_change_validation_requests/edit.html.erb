@@ -19,13 +19,13 @@
       <div style="margin-top: 50px;">
         <p class="govuk-body">
           <strong><%= t(".officers_reason_for") %></strong><br>
-          <%= @validation_request["summary"] %>
+          <%= render(FormattedContentComponent.new(text: @validation_request["summary"])) %>
         </p>
       </div>
       <div style="margin-top: 30px;">
         <p class="govuk-body">
           <strong><%= t(".how_you_can") %></strong><br>
-          <%= @validation_request["suggestion"] %>
+          <%= render(FormattedContentComponent.new(text: @validation_request["suggestion"])) %>
         </p>
       </div>
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">

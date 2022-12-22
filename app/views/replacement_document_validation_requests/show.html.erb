@@ -31,7 +31,7 @@
         </div>
         <div class="govuk-!-margin-top-6">
           <p class="govuk-body"><strong>Case officer's reason for requesting the document:</strong><br>
-            <%= @validation_request["old_document"]["invalid_document_reason"] %>
+            <%= render(FormattedContentComponent.new(text: @validation_request["old_document"]["invalid_document_reason"])) %>
           </p>
         </div>
         <p class="govuk-body govuk-!-padding-top-6"><strong>Document uploaded:</strong><br>

@@ -25,6 +25,8 @@ RSpec.configure do |config|
     Capybara.server = :puma, { Silent: true }
   end
 
+  config.include ViewComponent::TestHelpers, type: :component
+
   config.before type: :system do
     driven_by(ENV.fetch("JS_DRIVER", "chrome_headless").to_sym)
   end
