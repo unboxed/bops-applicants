@@ -16,12 +16,12 @@
         </p>
         <div class="govuk-!-margin-top-8">
           <p class="govuk-body"><strong>Previous description</strong><br>
-            <%= @validation_request["previous_description"] %>
+            <%= render(FormattedContentComponent.new(text: @validation_request["previous_description"])) %>
           </p>
         </div>
         <div class="govuk-!-margin-top-6">
           <p class="govuk-body"><strong>New description</strong><br>
-            <%= @validation_request["proposed_description"] %>
+            <%= render(FormattedContentComponent.new(text: @validation_request["proposed_description"])) %>
           </p>
         </div>
 
@@ -31,7 +31,7 @@
             Disagreed with suggested changes
           </strong>
           <p class="govuk-body govuk-!-padding-top-6"><strong>My objection and suggested wording for description: </strong><br>
-            <%= @validation_request["rejection_reason"] %>
+            <%= render(FormattedContentComponent.new(text: @validation_request["rejection_reason"])) %>
           </p>
         <% end %>
         <% if @validation_request["approved"] == true %>

@@ -130,4 +130,37 @@ RSpec.describe "Other change requests", type: :system do
       expect(page).to have_link "Back", href: "/validation_requests?change_access_id=345443543&planning_application_id=28"
     end
   end
+
+  context "when an officer adds a link in the suggestion/summary fields" do
+    before do
+      stub_get_other_change_validation_request(
+        id: 19,
+        planning_id: 28,
+        change_access_id: 345_443_543,
+        response_body:
+          {
+            "id": 19,
+            "state": "open",
+            "summary": "Details are on https://www.bops.co.uk/info",
+            "suggestion": "View to see <a href='https://www.bops.co.uk/payment'>Payment info</a>",
+            "response_due": "2022-7-1",
+          },
+        status: 200,
+      )
+    end
+
+    it "displays the link and link html as clickable" do
+      visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
+
+      expect(page).to have_link(
+        "https://www.bops.co.uk/info",
+        href: "https://www.bops.co.uk/info",
+      )
+
+      expect(page).to have_link(
+        "Payment info",
+        href: "https://www.bops.co.uk/payment",
+      )
+    end
+  end
 end

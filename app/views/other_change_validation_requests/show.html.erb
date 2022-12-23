@@ -16,7 +16,7 @@
           <strong>Officer's reason for invalidating application</strong><br>
         </p>
         <p class="govuk-body">
-          <%= @validation_request["summary"] %>
+          <%= render(FormattedContentComponent.new(text: @validation_request["summary"])) %>
         </p>
         <p class="govuk-body">
           <strong>How you can make your application valid</strong><br>
@@ -29,7 +29,7 @@
           <strong>My response to this request</strong><br>
         </p>
         <p class="govuk-body">
-          <%= @validation_request["response"] %>
+          <%= render(FormattedContentComponent.new(text: @validation_request["response"])) %>
         </p>
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
       <% end %>

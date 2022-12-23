@@ -12,8 +12,10 @@ gem "httparty"
 gem "jbuilder", "~> 2.7"
 gem "puma", ">= 5.3.1"
 gem "rails", "~> 6.1"
+gem "rails_autolink"
 gem "sass-rails", ">= 6"
 gem "turbolinks", "~> 5"
+gem "view_component"
 gem "webpacker", "~> 5.0"
 
 group :test do

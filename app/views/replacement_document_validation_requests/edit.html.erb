@@ -26,7 +26,7 @@
       <div class="govuk-!-margin-top-6">
         <p class="govuk-body"><strong>
           <%= t(".the_reason_the") %></strong><br>
-          <%= @validation_request["old_document"]["invalid_document_reason"] %>
+          <%= render(FormattedContentComponent.new(text: @validation_request["old_document"]["invalid_document_reason"])) %>
         </p>
       </div>
       <%= form_with scope: :replacement_document_validation_request,

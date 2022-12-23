@@ -146,4 +146,34 @@ RSpec.describe "Document change requests", type: :system do
       expect(page).to have_link "Back", href: "/validation_requests?change_access_id=345443543&planning_application_id=28"
     end
   end
+
+  context "when an officer adds a link to the invalid document reason" do
+    before do
+      stub_get_replacement_document_validation_request(
+        id: 8,
+        planning_id: 28,
+        change_access_id: 345_443_543,
+        response_body:
+          {
+            "id": 8,
+            "state": "open",
+            "old_document": {
+              "name": "20210512_162911.jpg",
+              "invalid_document_reason": "Invalid reason can be found on https://www.bops.co.uk/invalid_document_reason",
+            },
+            "response_due": "2022-7-1",
+          },
+        status: 200,
+      )
+    end
+
+    it "displays the link and link html as clickable" do
+      visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
+
+      expect(page).to have_link(
+        "https://www.bops.co.uk/invalid_document_reason",
+        href: "https://www.bops.co.uk/invalid_document_reason",
+      )
+    end
+  end
 end

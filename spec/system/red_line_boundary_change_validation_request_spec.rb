@@ -193,4 +193,33 @@ RSpec.describe "Red line boundary change requests", type: :system do
       expect(page).to have_link "Back", href: "/validation_requests?change_access_id=345443543&planning_application_id=28"
     end
   end
+
+  context "when an officer adds a link to the reason" do
+    before do
+      stub_get_red_line_boundary_change_validation_request(
+        id: 10,
+        planning_id: 28,
+        change_access_id: 345_443_543,
+        response_body:
+          {
+            "id": 10,
+            "state": "open",
+            "new_geojson": "",
+            "reason": "Reason on https://www.bops.co.uk/reason",
+            "approved": nil,
+            "response_due": "2022-7-1",
+          },
+        status: 200,
+      )
+    end
+
+    it "displays the link and link html as clickable" do
+      visit "/red_line_boundary_change_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
+
+      expect(page).to have_link(
+        "https://www.bops.co.uk/reason",
+        href: "https://www.bops.co.uk/reason",
+      )
+    end
+  end
 end

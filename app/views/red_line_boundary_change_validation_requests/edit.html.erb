@@ -19,7 +19,7 @@
       <div style="margin-top: 50px;">
         <p class="govuk-body">
           <strong><%= t(".reasons_change_is") %></strong><br>
-          <%= @validation_request["reason"] %>
+          <%= render(FormattedContentComponent.new(text: @validation_request["reason"])) %>
         </p>
       </div>
       <div style="margin-top: 50px;">

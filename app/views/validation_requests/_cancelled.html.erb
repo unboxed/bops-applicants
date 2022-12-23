@@ -5,7 +5,7 @@
 </p>
 <div class="govuk-inset-text">
   <p class="govuk-body">
-    <%= validation_request["cancel_reason"] %>
+    <%= render(FormattedContentComponent.new(text: validation_request["cancel_reason"])) %>
   </p>
   <p class="govuk-body">
     <%= validation_request["cancelled_at"].to_time.to_formatted_s(:day_month_year) %>
