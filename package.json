@@ -4,7 +4,7 @@
   "dependencies": {
     "@opensystemslab/map": "^0.5.5",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.2.1",
+    "@rails/webpacker": "^5.4.3",
     "govuk-frontend": "^3.11.0",
     "leaflet": "^1.7.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",
