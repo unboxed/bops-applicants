@@ -27,3 +27,7 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rake
+
+      - name: Run asset pipeline
+        run: |
+          bundle exec rake assets:precompile
