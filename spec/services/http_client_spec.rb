@@ -17,7 +17,7 @@ RSpec.describe HttpClient do
     let(:faraday_connection) { spy }
 
     it "makes a Faraday connection with the correct URL and token in headers" do
-      allow(Faraday).to receive(:new).with(url: url).and_yield(faraday_connection)
+      allow(Faraday).to receive(:new).with(url:).and_yield(faraday_connection)
 
       expect(faraday_connection).to receive(:headers).at_least(:once).and_return headers
       expect(headers).to receive(:[]=).with("Authorization", token)

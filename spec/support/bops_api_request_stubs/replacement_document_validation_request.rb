@@ -8,11 +8,11 @@ RSpec.configure do |config|
         "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/replacement_document_validation_requests/#{id}?change_access_id=#{change_access_id}",
       )
       .with(
-        headers: headers,
+        headers:,
       )
       .to_return(
         body: JSON.generate(response_body),
-        status: status,
+        status:,
       )
     end
 
@@ -23,7 +23,7 @@ RSpec.configure do |config|
       )
       .to_return(
         body: "",
-        status: status,
+        status:,
       )
     end
   end

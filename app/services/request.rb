@@ -53,7 +53,7 @@ private
   attr_reader :connection, :http_method, :params, :upload_file
 
   def errors(response, status)
-    { response: response, status: status, http_method: http_method }
+    { response:, status:, http_method: }
   end
 
   def get_response_and_status
