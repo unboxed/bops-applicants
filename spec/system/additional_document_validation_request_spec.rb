@@ -24,7 +24,7 @@ RSpec.describe "Document create requests", type: :system do
       id: 3,
       planning_id: 28,
       change_access_id: 345_443_543,
-      response_body: response_body,
+      response_body:,
       status: 200,
     )
   end

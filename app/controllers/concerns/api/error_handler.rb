@@ -28,10 +28,10 @@ module Api::ErrorHandler
             errors: [
               {
                 title: message,
-                status: status,
+                status:,
               },
             ],
-          }, status: status
+          }, status:
         end
 
         format.html do

@@ -8,11 +8,11 @@ RSpec.configure do |config|
         "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
       )
       .with(
-        headers: headers,
+        headers:,
       )
       .to_return(
         body: JSON.generate(response_body),
-        status: status,
+        status:,
       )
     end
 
@@ -22,12 +22,12 @@ RSpec.configure do |config|
         "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
       )
       .with(
-        headers: headers,
+        headers:,
         body: { data: { approved: true } }.to_json,
       )
       .to_return(
         body: "{}",
-        status: status,
+        status:,
       )
     end
 
@@ -37,12 +37,12 @@ RSpec.configure do |config|
         "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
       )
       .with(
-        headers: headers,
-        body: { data: { approved: false, rejection_reason: rejection_reason } }.to_json,
+        headers:,
+        body: { data: { approved: false, rejection_reason: } }.to_json,
       )
       .to_return(
         body: "{}",
-        status: status,
+        status:,
       )
     end
   end
