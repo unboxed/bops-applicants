@@ -1,4 +1,4 @@
-FROM ruby:2.7.7
+FROM ruby:3.2.0
 
 RUN gem install bundler:2.3.5
 
