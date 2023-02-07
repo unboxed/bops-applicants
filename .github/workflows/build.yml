@@ -1,3 +1,4 @@
+---
 name: CI
 
 on:
@@ -6,40 +7,50 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  bundle-audit:
+    uses: ./.github/workflows/linters.yml
+    with:
+      bundler-audit: true
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  brakeman:
+    uses: ./.github/workflows/linters.yml
+    with:
+      brakeman: true
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+  rubocop:
+    uses: ./.github/workflows/linters.yml
+    with:
+      rubocop: true
 
-      - name: Install Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
-      - run: yarn install
+  rome:
+    uses: ./.github/workflows/linters.yml
+    with:
+      rome: true
 
-      - name: Run linters - RuboCop
-        run: |
-          bundle exec rubocop --parallel
-
-      - name: Run linters - Rome
-        run: |
-          git ls-files -z '*.js' '*.ts' | xargs -0 node_modules/rome/bin/rome check
-          git ls-files -z '*.js' '*.ts' | xargs -0 node_modules/rome/bin/rome format
-
-      - name: Run Tests
-        env:
-          RAILS_ENV: test
-        run: |
-          bundle exec rake
-
-      - name: Run asset pipeline
-        run: |
-          bundle exec rake assets:precompile
+  specs:
+    uses: ./.github/workflows/testing.yml
+    strategy:
+      matrix:
+        specs:
+          - ["models", "[a-p]*_spec.rb"]
+          - ["models", "[q-z]*_spec.rb"]
+          - ["controllers", "*_spec.rb"]
+          - ["requests", "*_spec.rb"]
+          - ["system", "[a-f]*_spec.rb"]
+          - ["system", "[g-k]*_spec.rb"]
+          - ["system", "[l-r]*_spec.rb"]
+          - ["system", "[s-z]*_spec.rb"]
+          - [
+              "other",
+              "*_spec.rb",
+              "{components,helpers,jobs,services}",
+            ]
+      fail-fast: false
+    with:
+      name: "${{matrix.specs[0]}}: ${{matrix.specs[1]}}"
+      include: "spec/${{matrix.specs[2] || matrix.specs[0]}}/**/${{matrix.specs[1]}}"
