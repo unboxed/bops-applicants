@@ -33,4 +33,4 @@ RUN yarn install --modules-folder=/app/node_modules
 WORKDIR /app
 COPY . .
 
-CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "bin/dev"]

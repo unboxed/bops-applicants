@@ -6,6 +6,7 @@ ruby File.read(".ruby-version").strip.split("-").last
 gem "dotenv-rails", require: "dotenv/rails-now"
 
 gem "bootsnap", ">= 1.4.4", require: false
+gem "dartsass-rails"
 gem "faraday"
 gem "govuk_design_system_formbuilder"
 gem "httparty"
@@ -13,7 +14,6 @@ gem "jbuilder", "~> 2.7"
 gem "puma", ">= 5.3.1"
 gem "rails", "~> 6.1"
 gem "rails_autolink"
-gem "sass-rails", ">= 6"
 gem "turbolinks", "~> 5"
 gem "view_component"
 gem "webpacker", "~> 5.0"
@@ -35,6 +35,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "foreman"
   gem "listen", "~> 3.3"
   gem "rack-mini-profiler", "~> 2.0"
   gem "spring"
