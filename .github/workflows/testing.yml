@@ -1,0 +1,52 @@
+---
+name: Testing
+
+on:
+  workflow_call:
+    inputs:
+      exclude:
+        type: string
+        required: false
+        default: ""
+      include:
+        type: string
+        required: false
+        default: "spec/**/*_spec.rb"
+      name:
+        type: string
+        required: true
+
+jobs:
+  tests:
+    name: ${{ inputs.name }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        if: hashFiles('yarn.lock') != ''
+        with:
+          node-version: "14"
+          cache: "yarn"
+
+      - name: Install packages
+        run: |
+          yarn install --frozen-lockfile
+
+      - name: Build assets
+        run: bundle exec rake assets:precompile
+
+      - name: Run rspec specs
+        env:
+          RAILS_ENV: test
+          SPEC_OPTS: '-f doc  --exclude "${{ inputs.exclude }}" --pattern "${{ inputs.include }}"'
+        run: |
+          bundle exec rake spec
