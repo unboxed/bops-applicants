@@ -32,6 +32,29 @@ You will now be able to open the URL you've received by email (or copied from yo
 ```
 http://southwark.bops-care.link:3001/validation_requests?change_access_id=6ea6218075f460e692be1a08fbc0e9&planning_application_id=18
 ```
+# Building production docker
+
+### Create production docker
+
+```sh
+docker build -t bops-applicants -f Dockerfile.production .
+```
+
+### Run production docker
+
+```sh
+docker run --rm -it -p 3000:3000 -e RAILS_SERVE_STATIC_FILES=true -e RAILS_ENV=production -e RAILS_LOG_TO_STDOUT=true -e SECRET_KEY_BASE=secret bops-applicants:latest bundle exec rails s
+```
+
+### Run production docker bash
+
+```sh
+docker run --rm -it -e RAILS_SERVE_STATIC_FILES=true -e RAILS_ENV=production -e RAILS_LOG_TO_STDOUT=true -e SECRET_KEY_BASE=secret bops-applicants:latest /bin/bash
+```
+
+## Github Actions
+
+We use Github Actions as part of our continuous integration process to run and test the application.
 
 ### Deployments
 
