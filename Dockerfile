@@ -13,7 +13,7 @@ RUN apt-get install -y --no-install-recommends chromium
 
 # Bundle gems in a separate folder for better Docker caching
 WORKDIR /gems
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock .ruby-version ./
 RUN bundle install
 
 ## Node
