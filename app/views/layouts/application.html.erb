@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= favicon_link_tag(asset_pack_url("media/images/b-favicon.ico")) %>
+    <%= favicon_link_tag(asset_url("b-favicon.ico")) %>
     <%= favicon_link_tag(
-      asset_pack_url("media/images/b-apple-touch-icon.png"),
+      asset_url("b-apple-touch-icon.png"),
       rel: "apple-touch-icon",
       type: "image/png"
     ) %>
     <%= favicon_link_tag(
-      asset_pack_url("media/images/b-mask-icon.svg"),
+      asset_url("b-mask-icon.svg"),
       rel: "mask-icon"
     ) %>
     <link rel="stylesheet" href="https://use.typekit.net/zmv8alo.css">
     <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body class="govuk-template__body">
@@ -44,6 +44,6 @@
       </main>
     </div>
     <%= render "partials/footer" %>
-    <%= javascript_pack_tag 'govuk', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'govuk', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
