@@ -11,12 +11,12 @@ gem "faraday"
 gem "govuk_design_system_formbuilder"
 gem "httparty"
 gem "jbuilder", "~> 2.7"
+gem "jsbundling-rails"
 gem "puma", ">= 5.3.1"
 gem "rails", "~> 6.1"
 gem "rails_autolink"
 gem "turbolinks", "~> 5"
 gem "view_component"
-gem "webpacker", "~> 5.0"
 
 group :test do
   gem "webmock", "~> 3.12", ">= 3.12.2"
