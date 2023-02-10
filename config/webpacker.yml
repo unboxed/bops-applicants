@@ -35,12 +35,6 @@ default: &default
   extensions:
     - .mjs
     - .js
-    - .sass
-    - .scss
-    - .css
-    - .module.sass
-    - .module.scss
-    - .module.css
     - .png
     - .svg
     - .gif
@@ -86,7 +80,7 @@ production:
   compile: false
 
   # Extract and emit a css file
-  extract_css: true
+  extract_css: false
 
   # Cache manifest.json for performance
   cache_manifest: true

@@ -24,7 +24,7 @@ export API_HOST=bops-care.link:3000
 Install your app dependencies with yarn and finally launch BOPS-applicants on a different port to BOPS:
 
 ```
-rails s -p 3001
+bin/dev
 ```
 
 You will now be able to open the URL you've received by email (or copied from your terminal) and access a planning application's change requests on your localhost. Your URL will look similar to this example:
