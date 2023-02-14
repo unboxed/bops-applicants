@@ -114,11 +114,6 @@
   resolved "https://registry.yarnpkg.com/@petamoriken/float16/-/float16-3.5.11.tgz#69744fde033692c09dbb02191e0c391f8c857e30"
   integrity sha512-aKJaQhvWcP4XRo4eb34VygcqNsE1+Ej5687oexkK+qYWC7tejxaWRkAfE54Ze3xQGnvwXHZ5Ahx6CWq5sS4q7Q==
 
-"@rails/ujs@^7.0.0":
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-7.0.4.tgz#7fe5387d2d82b0547fdfc6667b424ec119c86b1e"
-  integrity sha512-UY9yQxBvtqXzXScslgPwZoQd16T0+z3P6BQS4lZDJFg5xVuMIgHkHQI6dhyWEt5l/qwbGaYX+YiZu6J+oxWPOw==
-
 "@rometools/cli-darwin-arm64@11.0.0":
   version "11.0.0"
   resolved "https://registry.yarnpkg.com/@rometools/cli-darwin-arm64/-/cli-darwin-arm64-11.0.0.tgz#8f916df0580fede2325434a50ed5b1f2cf972696"
@@ -1273,11 +1268,6 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
-
-turbolinks@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.npmjs.org/turbolinks/-/turbolinks-5.2.0.tgz"
-  integrity sha512-pMiez3tyBo6uRHFNNZoYMmrES/IaGgMhQQM+VFF36keryjb5ms0XkVpmKHkfW/4Vy96qiGW3K9bz0tF5sK9bBw==
 
 update-browserslist-db@^1.0.10:
   version "1.0.10"
