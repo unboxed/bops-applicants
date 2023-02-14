@@ -89,7 +89,7 @@ jobs:
         with:
           task-definition: ${{ steps.task-def-web.outputs.task-definition }}
           service: bops-applicants-web-${{ inputs.environment-name }}
-          cluster: bops-applicants-${{ inputs.environment-name }}
+          cluster: bops-${{ inputs.environment-name }}
           wait-for-service-stability: true
           codedeploy-appspec: .aws/appspec.yml
           codedeploy-application: bops-applicants-${{ inputs.environment-name }}
