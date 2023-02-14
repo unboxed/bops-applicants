@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   controller "pages" do
     get :accessibility, action: :accessibility
   end
+
+  get :healthcheck, to: proc { [200, {}, %w[OK]] }
 end
