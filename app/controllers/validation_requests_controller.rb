@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ValidationRequestsController < ApplicationController
   include Api::ErrorHandler
 
@@ -9,7 +11,7 @@ class ValidationRequestsController < ApplicationController
     end
   end
 
-private
+  private
 
   def set_validation_requests
     @validation_requests = Bops::ValidationRequest.find_all(params[:planning_application_id], params[:change_access_id])
@@ -36,7 +38,7 @@ private
   def validation_requests_redirect_url
     redirect_to validation_requests_path(
       planning_application_id: params[:planning_application_id],
-      change_access_id: params[:change_access_id],
+      change_access_id: params[:change_access_id]
     )
   end
 

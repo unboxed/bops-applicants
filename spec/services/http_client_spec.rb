@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe HttpClient do
   let(:url) { "https://local-authority.bops-care.link/api/v1/planning_applications/" }
-  let(:token) { "Bearer #{ENV['API_BEARER']}" }
+  let(:token) { "Bearer #{ENV.fetch('API_BEARER', nil)}" }
   let(:headers) { spy }
 
   before do
@@ -33,7 +33,7 @@ RSpec.describe HttpClient do
         "#{url}28", { body: { new_file: "file" }, headers: { Authorization: token } }
       )
 
-      described_class.new.http_party("28", { "file": "file" })
+      described_class.new.http_party("28", { file: "file" })
     end
 
     it "when params is for more than one file makes an HTTP party connection" do
@@ -41,7 +41,7 @@ RSpec.describe HttpClient do
         "#{url}28", { body: { files: "files" }, headers: { Authorization: token } }
       )
 
-      described_class.new.http_party("28", { "files": "files" })
+      described_class.new.http_party("28", { files: "files" })
     end
   end
 end

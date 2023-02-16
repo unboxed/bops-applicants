@@ -5,45 +5,45 @@ RSpec.configure do |config|
     def stub_get_red_line_boundary_change_validation_request(id:, planning_id:, change_access_id:, response_body:, status:)
       stub_request(
         :get,
-        "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
+        "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}"
       )
-      .with(
-        headers:,
-      )
-      .to_return(
-        body: JSON.generate(response_body),
-        status:,
-      )
+        .with(
+          headers:
+        )
+        .to_return(
+          body: JSON.generate(response_body),
+          status:
+        )
     end
 
     def stub_patch_approved_red_line_boundary_change_validation_request(id:, planning_id:, change_access_id:, status:)
       stub_request(
         :patch,
-        "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
+        "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}"
       )
-      .with(
-        headers:,
-        body: { data: { approved: true } }.to_json,
-      )
-      .to_return(
-        body: "{}",
-        status:,
-      )
+        .with(
+          headers:,
+          body: { data: { approved: true } }.to_json
+        )
+        .to_return(
+          body: "{}",
+          status:
+        )
     end
 
     def stub_patch_rejected_red_line_boundary_change_validation_request(id:, planning_id:, change_access_id:, rejection_reason:, status:)
       stub_request(
         :patch,
-        "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
+        "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}"
       )
-      .with(
-        headers:,
-        body: { data: { approved: false, rejection_reason: } }.to_json,
-      )
-      .to_return(
-        body: "{}",
-        status:,
-      )
+        .with(
+          headers:,
+          body: { data: { approved: false, rejection_reason: } }.to_json
+        )
+        .to_return(
+          body: "{}",
+          status:
+        )
     end
   end
 

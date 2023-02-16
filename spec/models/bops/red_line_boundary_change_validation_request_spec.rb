@@ -9,9 +9,9 @@ RSpec.describe Bops::RedLineBoundaryChangeValidationRequest, type: :model do
 
     describe "#approved" do
       it "validates presence" do
-        expect {
+        expect do
           red_line_boundary_change_validation_request.valid?
-        }.to change {
+        end.to change {
           red_line_boundary_change_validation_request.errors[:approved]
         }.to ["Please select an option"]
       end
@@ -19,9 +19,9 @@ RSpec.describe Bops::RedLineBoundaryChangeValidationRequest, type: :model do
 
     describe "#rejection_reason" do
       it "validates presence when not approved" do
-        expect {
+        expect do
           not_approved_request.valid?
-        }.to change {
+        end.to change {
           not_approved_request.errors[:rejection_reason]
         }.to ["Please indicate why you disagree with the proposed red line boundary."]
       end

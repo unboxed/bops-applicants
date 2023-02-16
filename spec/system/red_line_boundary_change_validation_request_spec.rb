@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe "Red line boundary change requests", type: :system do
@@ -14,14 +16,14 @@ RSpec.describe "Red line boundary change requests", type: :system do
       change_access_id: 345_443_543,
       response_body:
         {
-          "id": 10,
-          "state": "open",
-          "new_geojson": "",
-          "reason": nil,
-          "approved": nil,
-          "response_due": "2022-7-1",
+          id: 10,
+          state: "open",
+          new_geojson: "",
+          reason: nil,
+          approved: nil,
+          response_due: "2022-7-1"
         },
-      status: 200,
+      status: 200
     )
   end
 
@@ -32,7 +34,7 @@ RSpec.describe "Red line boundary change requests", type: :system do
           id: 10,
           planning_id: 28,
           change_access_id: 345_443_543,
-          status: 200,
+          status: 200
         )
       end
 
@@ -40,7 +42,7 @@ RSpec.describe "Red line boundary change requests", type: :system do
         visit "/red_line_boundary_change_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
 
         expect(page).to have_content(
-          "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded.",
+          "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
         )
 
         choose "Yes, I agree with the proposed red line boundary"
@@ -65,7 +67,7 @@ RSpec.describe "Red line boundary change requests", type: :system do
           planning_id: 28,
           change_access_id: 345_443_543,
           rejection_reason: "I think the boundary is wrong",
-          status: 200,
+          status: 200
         )
       end
 
@@ -118,11 +120,11 @@ RSpec.describe "Red line boundary change requests", type: :system do
           change_access_id: 345_443_543,
           response_body:
             {
-              "id": 10,
-              "state": "closed",
-              "approved": true,
+              id: 10,
+              state: "closed",
+              approved: true
             },
-          status: 200,
+          status: 200
         )
       end
 
@@ -146,12 +148,12 @@ RSpec.describe "Red line boundary change requests", type: :system do
           change_access_id: 345_443_543,
           response_body:
             {
-              "id": 10,
-              "state": "closed",
-              "rejection_reason": "I do not agree with this boundary",
-              "approved": false,
+              id: 10,
+              state: "closed",
+              rejection_reason: "I do not agree with this boundary",
+              approved: false
             },
-          status: 200,
+          status: 200
         )
       end
 
@@ -173,12 +175,12 @@ RSpec.describe "Red line boundary change requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 10,
-            "state": "cancelled",
-            "cancel_reason": "My mistake",
-            "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+            id: 10,
+            state: "cancelled",
+            cancel_reason: "My mistake",
+            cancelled_at: "2021-10-20T11:42:50.951+01:00"
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -202,14 +204,14 @@ RSpec.describe "Red line boundary change requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 10,
-            "state": "open",
-            "new_geojson": "",
-            "reason": "Reason on https://www.bops.co.uk/reason",
-            "approved": nil,
-            "response_due": "2022-7-1",
+            id: 10,
+            state: "open",
+            new_geojson: "",
+            reason: "Reason on https://www.bops.co.uk/reason",
+            approved: nil,
+            response_due: "2022-7-1"
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -218,7 +220,7 @@ RSpec.describe "Red line boundary change requests", type: :system do
 
       expect(page).to have_link(
         "https://www.bops.co.uk/reason",
-        href: "https://www.bops.co.uk/reason",
+        href: "https://www.bops.co.uk/reason"
       )
     end
   end

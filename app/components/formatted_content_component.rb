@@ -12,7 +12,7 @@ class FormattedContentComponent < ViewComponent::Base
     sanitize(simple_format_content, attributes: allowed_attributes)
   end
 
-private
+  private
 
   attr_reader :text, :classname
 

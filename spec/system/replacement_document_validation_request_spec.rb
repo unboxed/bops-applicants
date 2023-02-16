@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe "Document change requests", type: :system do
@@ -15,15 +17,15 @@ RSpec.describe "Document change requests", type: :system do
       change_access_id: 345_443_543,
       response_body:
         {
-          "id": 8,
-          "state": "open",
-          "old_document": {
-            "name": "20210512_162911.jpg",
-            "invalid_document_reason": "Its a chicken coop not a floor plan.",
+          id: 8,
+          state: "open",
+          old_document: {
+            name: "20210512_162911.jpg",
+            invalid_document_reason: "Its a chicken coop not a floor plan."
           },
-          "response_due": "2022-7-1",
+          response_due: "2022-7-1"
         },
-      status: 200,
+      status: 200
     )
   end
 
@@ -33,7 +35,7 @@ RSpec.describe "Document change requests", type: :system do
         id: 8,
         planning_id: 28,
         change_access_id: 345_443_543,
-        status: 200,
+        status: 200
       )
     end
 
@@ -41,7 +43,7 @@ RSpec.describe "Document change requests", type: :system do
       visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
 
       expect(page).to have_content(
-        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded.",
+        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
       )
 
       expect(page).to have_content("Name of file on submission:")
@@ -51,7 +53,7 @@ RSpec.describe "Document change requests", type: :system do
 
       expect(page).to have_link(
         "Please ensure you have read how to correctly prepare plans (Opens in a new window or tab)",
-        href: "#{ENV['PROTOCOL']}://default.#{ENV['API_HOST']}/planning_guides/index",
+        href: "#{ENV.fetch('PROTOCOL', nil)}://default.#{ENV.fetch('API_HOST', nil)}/planning_guides/index"
       )
     end
 
@@ -83,18 +85,18 @@ RSpec.describe "Document change requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 8,
-            "state": "closed",
-            "old_document": {
-              "name": "paul-volkmer.jpg",
-              "invalid_document_reason": "Its a galaxy.",
+            id: 8,
+            state: "closed",
+            old_document: {
+              name: "paul-volkmer.jpg",
+              invalid_document_reason: "Its a galaxy."
             },
-            "new_document": {
-              "name": "max-baskakov-catunsplash.jpg",
-              "url": "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--772d855213ddd9220ca829cec75caaafe68a3fc8/max-baskakov-catunsplash.jpg",
-            },
+            new_document: {
+              name: "max-baskakov-catunsplash.jpg",
+              url: "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--772d855213ddd9220ca829cec75caaafe68a3fc8/max-baskakov-catunsplash.jpg"
+            }
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -123,12 +125,12 @@ RSpec.describe "Document change requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 8,
-            "state": "cancelled",
-            "cancel_reason": "My mistake",
-            "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+            id: 8,
+            state: "cancelled",
+            cancel_reason: "My mistake",
+            cancelled_at: "2021-10-20T11:42:50.951+01:00"
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -155,15 +157,15 @@ RSpec.describe "Document change requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 8,
-            "state": "open",
-            "old_document": {
-              "name": "20210512_162911.jpg",
-              "invalid_document_reason": "Invalid reason can be found on https://www.bops.co.uk/invalid_document_reason",
+            id: 8,
+            state: "open",
+            old_document: {
+              name: "20210512_162911.jpg",
+              invalid_document_reason: "Invalid reason can be found on https://www.bops.co.uk/invalid_document_reason"
             },
-            "response_due": "2022-7-1",
+            response_due: "2022-7-1"
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -172,7 +174,7 @@ RSpec.describe "Document change requests", type: :system do
 
       expect(page).to have_link(
         "https://www.bops.co.uk/invalid_document_reason",
-        href: "https://www.bops.co.uk/invalid_document_reason",
+        href: "https://www.bops.co.uk/invalid_document_reason"
       )
     end
   end

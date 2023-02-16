@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe "Other change requests", type: :system do
@@ -14,13 +16,13 @@ RSpec.describe "Other change requests", type: :system do
       change_access_id: 345_443_543,
       response_body:
         {
-          "id": 19,
-          "state": "open",
-          "summary": "You applied for the wrong sort of certificate",
-          "suggestion": "Please confirm you want a Lawful Development certificate",
-          "response_due": "2022-7-1",
+          id: 19,
+          state: "open",
+          summary: "You applied for the wrong sort of certificate",
+          suggestion: "Please confirm you want a Lawful Development certificate",
+          response_due: "2022-7-1"
         },
-      status: 200,
+      status: 200
     )
   end
 
@@ -31,7 +33,7 @@ RSpec.describe "Other change requests", type: :system do
         planning_id: 28,
         change_access_id: 345_443_543,
         response: "Agreed",
-        status: 200,
+        status: 200
       )
     end
 
@@ -39,7 +41,7 @@ RSpec.describe "Other change requests", type: :system do
       visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
 
       expect(page).to have_content(
-        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded.",
+        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
       )
 
       expect(page).to have_content("You applied for the wrong sort of certificate")
@@ -82,11 +84,11 @@ RSpec.describe "Other change requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 19,
-            "state": "closed",
-            "response": "I accept the change",
+            id: 19,
+            state: "closed",
+            response: "I accept the change"
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -110,12 +112,12 @@ RSpec.describe "Other change requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 19,
-            "state": "cancelled",
-            "cancel_reason": "My mistake",
-            "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+            id: 19,
+            state: "cancelled",
+            cancel_reason: "My mistake",
+            cancelled_at: "2021-10-20T11:42:50.951+01:00"
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -139,13 +141,13 @@ RSpec.describe "Other change requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 19,
-            "state": "open",
-            "summary": "Details are on https://www.bops.co.uk/info",
-            "suggestion": "View to see <a href='https://www.bops.co.uk/payment'>Payment info</a>",
-            "response_due": "2022-7-1",
+            id: 19,
+            state: "open",
+            summary: "Details are on https://www.bops.co.uk/info",
+            suggestion: "View to see <a href='https://www.bops.co.uk/payment'>Payment info</a>",
+            response_due: "2022-7-1"
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -154,12 +156,12 @@ RSpec.describe "Other change requests", type: :system do
 
       expect(page).to have_link(
         "https://www.bops.co.uk/info",
-        href: "https://www.bops.co.uk/info",
+        href: "https://www.bops.co.uk/info"
       )
 
       expect(page).to have_link(
         "Payment info",
-        href: "https://www.bops.co.uk/payment",
+        href: "https://www.bops.co.uk/payment"
       )
     end
   end

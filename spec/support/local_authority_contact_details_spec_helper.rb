@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.shared_context "local_authority_contact_details" do
@@ -8,8 +10,8 @@ RSpec.shared_context "local_authority_contact_details" do
         feedback_email: "planning@default.gov.uk",
         phone_number: "01234123123",
         postal_address: "Planning, 123 High Street, Big City, AB3 4EF",
-        privacy_policy: "https://www.default.gov.uk/privacy-policy",
-      },
+        privacy_policy: "https://www.default.gov.uk/privacy-policy"
+      }
     }.deep_stringify_keys
   end
 

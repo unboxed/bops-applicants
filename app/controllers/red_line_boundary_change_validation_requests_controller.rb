@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RedLineBoundaryChangeValidationRequestsController < ValidationRequestsController
   before_action :set_validation_request, :set_planning_application
 
@@ -23,11 +25,12 @@ class RedLineBoundaryChangeValidationRequestsController < ValidationRequestsCont
   end
 
   def update
-    @red_line_boundary_change_validation_request = build_validation_request(red_line_boundary_change_validation_request_params)
+    @red_line_boundary_change_validation_request =
+      build_validation_request(red_line_boundary_change_validation_request_params)
 
     respond_to do |format|
       if @red_line_boundary_change_validation_request.update
-        flash[:notice] = "Your response was updated successfully"
+        flash[:notice] = t("shared.response_updated.success")
         format.html { validation_requests_redirect_url }
       else
         flash[:error] = error_message(@red_line_boundary_change_validation_request)
@@ -36,7 +39,7 @@ class RedLineBoundaryChangeValidationRequestsController < ValidationRequestsCont
     end
   end
 
-private
+  private
 
   def red_line_boundary_change_validation_request_params
     params.require(:red_line_boundary_change_validation_request).permit(:approved, :rejection_reason)

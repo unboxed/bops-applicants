@@ -8,9 +8,9 @@ RSpec.describe Bops::OtherChangeValidationRequest, type: :model do
 
     describe "#response" do
       it "validates presence" do
-        expect {
+        expect do
           other_change_validation_request.valid?
-        }.to change {
+        end.to change {
           other_change_validation_request.errors[:response]
         }.to ["Please enter your response to the planning officer's question."]
       end

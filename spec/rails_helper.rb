@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 ENV["RAILS_ENV"] ||= "test"
@@ -7,7 +9,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "rspec/rails"
 require "webmock/rspec"
 
-Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   config.file_fixture_path = "#{::Rails.root}/spec/fixtures"

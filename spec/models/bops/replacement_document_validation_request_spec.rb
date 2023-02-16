@@ -8,9 +8,9 @@ RSpec.describe Bops::ReplacementDocumentValidationRequest, type: :model do
 
     describe "#file" do
       it "validates presence" do
-        expect {
+        expect do
           replacement_document_validation_request.valid?
-        }.to change {
+        end.to change {
           replacement_document_validation_request.errors[:file]
         }.to ["Please choose a file to upload"]
       end

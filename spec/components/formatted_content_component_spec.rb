@@ -24,7 +24,7 @@ RSpec.describe FormattedContentComponent, type: :component do
       expect(page).to have_css "p[class='govuk-body']", text: "content including link https://www.bops.co.uk/"
 
       expect(component.auto_link_and_simple_format).to eq(
-        "<p class=\"govuk-body\">content including link <a target=\"_blank\" href=\"https://www.bops.co.uk/\">https://www.bops.co.uk/</a></p>",
+        "<p class=\"govuk-body\">content including link <a target=\"_blank\" href=\"https://www.bops.co.uk/\">https://www.bops.co.uk/</a></p>"
       )
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe FormattedContentComponent, type: :component do
       expect(page).to have_css "p[class='govuk-body']", text: "content including html Bops validation"
 
       expect(component.auto_link_and_simple_format).to eq(
-        "<p class=\"govuk-body\">content including html <a href=\"https://bops.com/validate\" target=\"_blank\">Bops validation</a></p>",
+        "<p class=\"govuk-body\">content including html <a href=\"https://bops.com/validate\" target=\"_blank\">Bops validation</a></p>"
       )
     end
   end
@@ -50,7 +50,7 @@ RSpec.describe FormattedContentComponent, type: :component do
 
     it "sanitizes it" do
       expect(component.auto_link_and_simple_format).to eq(
-        "<p class=\"govuk-body\">content including <a target=\"_blank\" href=\"http://www.bops.com\">http://www.bops.com</a> </p>",
+        "<p class=\"govuk-body\">content including <a target=\"_blank\" href=\"http://www.bops.com\">http://www.bops.com</a> </p>"
       )
     end
   end
