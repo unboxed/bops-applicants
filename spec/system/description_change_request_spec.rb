@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe "Description change requests", type: :system do
@@ -14,11 +16,11 @@ RSpec.describe "Description change requests", type: :system do
       change_access_id: 345_443_543,
       response_body:
         {
-          "id": 22,
-          "state": "open",
-          "response_due": "2022-7-1",
+          id: 22,
+          state: "open",
+          response_due: "2022-7-1"
         },
-      status: 200,
+      status: 200
     )
   end
 
@@ -29,7 +31,7 @@ RSpec.describe "Description change requests", type: :system do
           id: 22,
           planning_id: 28,
           change_access_id: 345_443_543,
-          status: 200,
+          status: 200
         )
       end
 
@@ -37,7 +39,7 @@ RSpec.describe "Description change requests", type: :system do
         visit "/description_change_validation_requests/22/edit?change_access_id=345443543&planning_application_id=28"
 
         expect(page).to have_content(
-          "If your response is not received by 1 July 2022 the proposed description will be automatically accepted for use with your application.",
+          "If your response is not received by 1 July 2022 the proposed description will be automatically accepted for use with your application."
         )
 
         choose "Yes, I agree with the changes made"
@@ -62,7 +64,7 @@ RSpec.describe "Description change requests", type: :system do
           planning_id: 28,
           change_access_id: 345_443_543,
           rejection_reason: "I wish to build a roman theatre",
-          status: 200,
+          status: 200
         )
       end
 
@@ -110,12 +112,12 @@ RSpec.describe "Description change requests", type: :system do
       change_access_id: 345_443_543,
       response_body:
         {
-          "id": 22,
-          "state": "closed",
-          "approved": true,
+          id: 22,
+          state: "closed",
+          approved: true
 
         },
-      status: 200,
+      status: 200
     )
 
     visit "/description_change_validation_requests/22?change_access_id=345443543&planning_application_id=28"
@@ -130,12 +132,12 @@ RSpec.describe "Description change requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 22,
-            "state": "closed",
-            "proposed_description": "I wish to build a roman theatre.",
-            "approved": false,
+            id: 22,
+            state: "closed",
+            proposed_description: "I wish to build a roman theatre.",
+            approved: false
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -161,12 +163,12 @@ RSpec.describe "Description change requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 22,
-            "state": "cancelled",
-            "cancel_reason": "My mistake",
-            "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+            id: 22,
+            state: "cancelled",
+            cancel_reason: "My mistake",
+            cancelled_at: "2021-10-20T11:42:50.951+01:00"
           },
-        status: 200,
+        status: 200
       )
     end
 

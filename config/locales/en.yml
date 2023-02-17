@@ -61,8 +61,7 @@ en:
       preparation_of_this: Preparation of this accessibility statement
       reporting_accessibility_problems: Reporting accessibility problems with this website
       technical_information_about: "Technical information about this website's accessibility"
-      the_equality_and: "The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018
-(the 'accessibility regulations'). If you're not happy with how we respond to your complaint, %{link}."
+      the_equality_and: "The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the 'accessibility regulations'). If you're not happy with how we respond to your complaint, %{link}."
       the_equality_and_link: contact the Equality Advisory and Support Service (EASS)
       this_accessibility_statement: This accessibility statement applies to publicly available pages of the Back-office planning system.
       this_statement_was: This statement was prepared on 1st June 2022. This website was last tested on 12th May 2022. The test was carried out by the Digital Accessibility Centre.
@@ -135,6 +134,10 @@ en:
       inclusion: "%{attribute} is not included in the list"
       invalid: "%{attribute} is invalid"
       required: "%{attribute} must exist"
+
+  shared:
+    response_updated:
+      success: "Your response was updated successfully"
 
   activemodel:
     errors:

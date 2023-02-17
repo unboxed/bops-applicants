@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdditionalDocumentValidationRequestsController < ValidationRequestsController
   before_action :set_validation_request
 
@@ -27,7 +29,7 @@ class AdditionalDocumentValidationRequestsController < ValidationRequestsControl
 
     respond_to do |format|
       if @additional_document_validation_request.update
-        flash[:notice] = "Your response was updated successfully"
+        flash[:notice] = t("shared.response_updated.success")
         format.html { validation_requests_redirect_url }
       else
         flash[:error] = error_message(@additional_document_validation_request)
@@ -36,7 +38,7 @@ class AdditionalDocumentValidationRequestsController < ValidationRequestsControl
     end
   end
 
-private
+  private
 
   def additional_document_validation_request_params
     params.require(:additional_document_validation_request).permit(files: [])

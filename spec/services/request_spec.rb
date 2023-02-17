@@ -20,7 +20,7 @@ RSpec.describe Request do
       let(:response) do
         double(
           status: 200,
-          body: "[]",
+          body: "[]"
         )
       end
 
@@ -33,15 +33,15 @@ RSpec.describe Request do
       let(:response) do
         double(
           status: 400,
-          body: "\"Bad request\"",
+          body: "\"Bad request\""
         )
       end
 
       it "returns a parsed JSON response body message" do
-        expect {
+        expect do
           request.call
-        }.to raise_error(described_class::BadRequestError)
-         .with_message("{:response=>\"Bad request\", :status=>400, :http_method=>:get}")
+        end.to raise_error(described_class::BadRequestError)
+          .with_message("{:response=>\"Bad request\", :status=>400, :http_method=>:get}")
       end
     end
 
@@ -49,15 +49,15 @@ RSpec.describe Request do
       let(:response) do
         double(
           status: 401,
-          body: "\"Unauthorized\"",
+          body: "\"Unauthorized\""
         )
       end
 
       it "returns a parsed JSON response body message" do
-        expect {
+        expect do
           request.call
-        }.to raise_error(described_class::UnauthorizedError)
-         .with_message("{:response=>\"Unauthorized\", :status=>401, :http_method=>:get}")
+        end.to raise_error(described_class::UnauthorizedError)
+          .with_message("{:response=>\"Unauthorized\", :status=>401, :http_method=>:get}")
       end
     end
 
@@ -65,15 +65,15 @@ RSpec.describe Request do
       let(:response) do
         double(
           status: 403,
-          body: "\"Forbidden\"",
+          body: "\"Forbidden\""
         )
       end
 
       it "returns a parsed JSON response body error message with status" do
-        expect {
+        expect do
           request.call
-        }.to raise_error(described_class::ForbiddenError)
-         .with_message("{:response=>\"Forbidden\", :status=>403, :http_method=>:get}")
+        end.to raise_error(described_class::ForbiddenError)
+          .with_message("{:response=>\"Forbidden\", :status=>403, :http_method=>:get}")
       end
     end
 
@@ -81,15 +81,15 @@ RSpec.describe Request do
       let(:response) do
         double(
           status: 404,
-          body: "\"Record not found\"",
+          body: "\"Record not found\""
         )
       end
 
       it "returns a parsed JSON response body error message with status" do
-        expect {
+        expect do
           request.call
-        }.to raise_error(described_class::RecordNotFoundError)
-         .with_message("{:response=>\"Record not found\", :status=>404, :http_method=>:get}")
+        end.to raise_error(described_class::RecordNotFoundError)
+          .with_message("{:response=>\"Record not found\", :status=>404, :http_method=>:get}")
       end
     end
 
@@ -97,15 +97,15 @@ RSpec.describe Request do
       let(:response) do
         double(
           status: 500,
-          body: "\"API error\"",
+          body: "\"API error\""
         )
       end
 
       it "returns a parsed JSON response body error message with status" do
-        expect {
+        expect do
           request.call
-        }.to raise_error(described_class::ApiError)
-         .with_message("{:response=>\"API error\", :status=>500, :http_method=>:get}")
+        end.to raise_error(described_class::ApiError)
+          .with_message("{:response=>\"API error\", :status=>500, :http_method=>:get}")
       end
     end
 
@@ -113,15 +113,15 @@ RSpec.describe Request do
       let(:response) do
         double(
           status: 504,
-          body: "\"Timeout Error\"",
+          body: "\"Timeout Error\""
         )
       end
 
       it "returns a parsed JSON response body error message with status" do
-        expect {
+        expect do
           request.call
-        }.to raise_error(described_class::TimeoutError)
-         .with_message("{:response=>\"Timeout Error\", :status=>504, :http_method=>:get}")
+        end.to raise_error(described_class::TimeoutError)
+          .with_message("{:response=>\"Timeout Error\", :status=>504, :http_method=>:get}")
       end
     end
   end

@@ -48,7 +48,7 @@ class Request
     end
   end
 
-private
+  private
 
   attr_reader :connection, :http_method, :params, :upload_file
 
@@ -56,7 +56,7 @@ private
     { response:, status:, http_method: }
   end
 
-  def get_response_and_status
+  def get_response_and_status # rubocop:disable Metrics/AbcSize, Naming/AccessorMethodName
     raise RecordNotFoundError, errors("Not found", NOT_FOUND) if endpoint.blank?
 
     if upload_file

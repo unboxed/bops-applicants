@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def formatted_phone_number
     number_to_phone(
       contact_details[:phone_number],
       delimiter: " ",
-      pattern: /(\d{5})(\d{3})(\d{3})$/,
+      pattern: /(\d{5})(\d{3})(\d{3})$/
     )
   end
 

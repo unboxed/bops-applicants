@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   helper_method :current_local_authority
 
@@ -9,7 +11,7 @@ class ApplicationController < ActionController::Base
     request.subdomains.first
   end
 
-private
+  private
 
   def set_current_local_authority
     Current.local_authority = current_local_authority

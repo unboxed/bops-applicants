@@ -37,7 +37,7 @@ RSpec.describe Apis::Bops::Client do
         :patch,
         "#{planning_application_id}/description_change_validation_requests/5?change_access_id=#{change_access_id}",
         { data: { approved: true } }.to_json,
-        false,
+        false
       ).and_call_original
 
       described_class.patch_approved_description_change(5, planning_application_id, change_access_id)
@@ -50,7 +50,7 @@ RSpec.describe Apis::Bops::Client do
         :patch,
         "#{planning_application_id}/description_change_validation_requests/5?change_access_id=#{change_access_id}",
         { data: { approved: false, rejection_reason: "Bad description" } }.to_json,
-        false,
+        false
       ).and_call_original
 
       described_class.patch_rejected_description_change(5, planning_application_id, change_access_id, "Bad description")
@@ -63,7 +63,7 @@ RSpec.describe Apis::Bops::Client do
         :patch,
         "#{planning_application_id}/other_change_validation_requests/5?change_access_id=#{change_access_id}",
         { data: { response: "Other change looks fine" } }.to_json,
-        false,
+        false
       ).and_call_original
 
       described_class.patch_response_other_change_request(5, planning_application_id, change_access_id, "Other change looks fine")
@@ -76,7 +76,7 @@ RSpec.describe Apis::Bops::Client do
         :patch,
         "#{planning_application_id}/red_line_boundary_change_validation_requests/5?change_access_id=#{change_access_id}",
         { data: { approved: true } }.to_json,
-        false,
+        false
       ).and_call_original
 
       described_class.patch_approved_red_line_boundary_change(5, planning_application_id, change_access_id)
@@ -89,7 +89,7 @@ RSpec.describe Apis::Bops::Client do
         :patch,
         "#{planning_application_id}/red_line_boundary_change_validation_requests/5?change_access_id=#{change_access_id}",
         { data: { approved: false, rejection_reason: "Boundary looks wrong" } }.to_json,
-        false,
+        false
       ).and_call_original
 
       described_class.patch_rejected_red_line_boundary_change(5, planning_application_id, change_access_id, "Boundary looks wrong")
@@ -102,7 +102,7 @@ RSpec.describe Apis::Bops::Client do
         :patch,
         "#{planning_application_id}/additional_document_validation_requests/5?change_access_id=#{change_access_id}",
         { files: "files" },
-        true,
+        true
       ).and_call_original
 
       described_class.patch_additional_documents(5, planning_application_id, change_access_id, "files")
@@ -115,7 +115,7 @@ RSpec.describe Apis::Bops::Client do
         :patch,
         "#{planning_application_id}/replacement_document_validation_requests/5?change_access_id=#{change_access_id}",
         { file: "file" },
-        true,
+        true
       ).and_call_original
 
       described_class.patch_replacement_document(5, planning_application_id, change_access_id, "file")

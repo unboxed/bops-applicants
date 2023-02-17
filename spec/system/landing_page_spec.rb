@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe "landing page", type: :system do
@@ -12,8 +14,8 @@ RSpec.describe "landing page", type: :system do
     visit(
       validation_requests_path(
         planning_application_id: 28,
-        change_access_id: 345_443_543,
-      ),
+        change_access_id: 345_443_543
+      )
     )
   end
 
@@ -32,7 +34,7 @@ RSpec.describe "landing page", type: :system do
       within("footer") { click_link("Accessibility statement") }
 
       expect(page).to have_content(
-        "Accessibility statement for Default Council Back-office Planning System",
+        "Accessibility statement for Default Council Back-office Planning System"
       )
 
       expect(page).to have_content("Email planning@default.gov.uk")

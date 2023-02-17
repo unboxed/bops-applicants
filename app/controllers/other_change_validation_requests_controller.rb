@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OtherChangeValidationRequestsController < ValidationRequestsController
   before_action :set_validation_request
 
@@ -27,7 +29,7 @@ class OtherChangeValidationRequestsController < ValidationRequestsController
 
     respond_to do |format|
       if @other_change_validation_request.update
-        flash[:notice] = "Your response was updated successfully"
+        flash[:notice] = t("shared.response_updated.success")
         format.html { validation_requests_redirect_url }
       else
         flash[:error] = error_message(@other_change_validation_request)
@@ -36,7 +38,7 @@ class OtherChangeValidationRequestsController < ValidationRequestsController
     end
   end
 
-private
+  private
 
   def other_change_validation_request_params
     params.require(:other_change_validation_request).permit(:response)

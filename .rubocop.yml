@@ -1,35 +1,84 @@
-inherit_gem:
-  rubocop-govuk:
-    - config/default.yml
-    - config/rails.yml
-    - config/rspec.yml
-
+---
 inherit_mode:
   merge:
     - Exclude
 
-Lint/MissingSuper:
-  Exclude:
-    - app/components/**/*.rb
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
 
-Rails:
-  Exclude:
-    - "lib/package_builder.rb"
+AllCops:
+  TargetRubyVersion: 3.2.0
+  NewCops: enable
 
-RSpec/ContextWording:
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
   Enabled: false
 
-RSpec/LetSetup:
+# be a bit kinder with our metrics
+Metrics/BlockLength:
+  Max: 100
+  Exclude:
+    - spec/**/*
+    - config/routes.rb
+
+Metrics/MethodLength:
+  Max: 20
+
+Layout/LineLength:
+  Exclude:
+    - spec/**/*
+    - app/services/apis/bops/client.rb
+
+Naming/VariableNumber:
+  Exclude:
+    - spec/**/*
+
+# we tend to use update_all in migrations
+Rails/SkipsModelValidations:
+  Exclude:
+    - db/migrate/*.rb
+
+# Rspec
+RSpec/MultipleExpectations:
   Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
 
 RSpec/InstanceVariable:
   Enabled: false
 
-Naming/VariableNumber:
+RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
 RSpec/AnyInstance:
   Enabled: false
 
+RSpec/ContextWording:
+  Enabled: false
+  Prefixes:
+    - as
+    - before
+    - when
+    - with
+    - without
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/StubbedMock:
+  Enabled: false
+
 RSpec/VerifiedDoubles:
   Enabled: false
+
+Lint/MissingSuper:
+  Exclude:
+    - app/components/**/*.rb

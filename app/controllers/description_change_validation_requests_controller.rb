@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DescriptionChangeValidationRequestsController < ValidationRequestsController
   before_action :set_validation_request
 
@@ -27,7 +29,7 @@ class DescriptionChangeValidationRequestsController < ValidationRequestsControll
 
     respond_to do |format|
       if @description_change_validation_request.update
-        flash[:notice] = "Your response was updated successfully"
+        flash[:notice] = t("shared.response_updated.success")
         format.html { validation_requests_redirect_url }
       else
         flash[:error] = error_message(@description_change_validation_request)
@@ -36,7 +38,7 @@ class DescriptionChangeValidationRequestsController < ValidationRequestsControll
     end
   end
 
-private
+  private
 
   def description_change_validation_request_params
     params.require(:description_change_validation_request).permit(:approved, :rejection_reason)

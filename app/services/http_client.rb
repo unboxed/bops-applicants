@@ -4,7 +4,7 @@ class HttpClient
   attr_reader :api_base_url
 
   def initialize
-    @api_base_url = "#{ENV['PROTOCOL']}://#{api_base}/planning_applications/"
+    @api_base_url = "#{ENV.fetch('PROTOCOL', nil)}://#{api_base}/planning_applications/"
   end
 
   def connection
@@ -23,12 +23,12 @@ class HttpClient
   def http_party(endpoint, params)
     HTTParty.patch(
       "#{api_base_url}#{endpoint}",
-      headers: { "Authorization": authorization_header },
-      body: file_params_body(params),
+      headers: { Authorization: authorization_header },
+      body: file_params_body(params)
     )
   end
 
-private
+  private
 
   def file_params_body(params)
     {}.tap do |hash|
@@ -38,10 +38,10 @@ private
   end
 
   def api_base
-    "#{Current.local_authority}.#{ENV['API_HOST'] || 'bops-care.link'}/api/v1"
+    "#{Current.local_authority}.#{ENV.fetch('API_HOST', 'bops-care.link')}/api/v1"
   end
 
   def authorization_header
-    "Bearer #{ENV['API_BEARER']}"
+    "Bearer #{ENV.fetch('API_BEARER', nil)}"
   end
 end

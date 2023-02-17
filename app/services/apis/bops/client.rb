@@ -2,13 +2,13 @@
 
 module Apis
   module Bops
-    class Client
+    class Client # rubocop:disable Metrics/ClassLength
       class << self
         # Planning application
         def get_planning_application(planning_application_id)
           request(
             http_method: :get,
-            endpoint: planning_application_id.to_s,
+            endpoint: planning_application_id.to_s
           )
         end
 
@@ -16,7 +16,7 @@ module Apis
         def get_validation_requests(planning_application_id, change_access_id)
           request(
             http_method: :get,
-            endpoint: "#{planning_application_id}/validation_requests?change_access_id=#{change_access_id}",
+            endpoint: "#{planning_application_id}/validation_requests?change_access_id=#{change_access_id}"
           )
         end
 
@@ -24,7 +24,7 @@ module Apis
         def get_description_change_validation_request(id, planning_application_id, change_access_id)
           request(
             http_method: :get,
-            endpoint: "#{planning_application_id}/description_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
+            endpoint: "#{planning_application_id}/description_change_validation_requests/#{id}?change_access_id=#{change_access_id}"
           )
         end
 
@@ -33,10 +33,10 @@ module Apis
             http_method: :patch,
             endpoint: "#{planning_application_id}/description_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
-              "data": {
-                "approved": true,
-              },
-            }.to_json,
+              data: {
+                approved: true
+              }
+            }.to_json
           )
         end
 
@@ -45,11 +45,11 @@ module Apis
             http_method: :patch,
             endpoint: "#{planning_application_id}/description_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
-              "data": {
-                "approved": false,
-                "rejection_reason": rejection_reason,
-              },
-            }.to_json,
+              data: {
+                approved: false,
+                rejection_reason:
+              }
+            }.to_json
           )
         end
 
@@ -57,7 +57,7 @@ module Apis
         def get_other_change_validation_request(id, planning_application_id, change_access_id)
           request(
             http_method: :get,
-            endpoint: "#{planning_application_id}/other_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
+            endpoint: "#{planning_application_id}/other_change_validation_requests/#{id}?change_access_id=#{change_access_id}"
           )
         end
 
@@ -66,10 +66,10 @@ module Apis
             http_method: :patch,
             endpoint: "#{planning_application_id}/other_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
-              "data": {
-                "response": response,
-              },
-            }.to_json,
+              data: {
+                response:
+              }
+            }.to_json
           )
         end
 
@@ -77,7 +77,7 @@ module Apis
         def get_red_line_boundary_change_validation_request(id, planning_application_id, change_access_id)
           request(
             http_method: :get,
-            endpoint: "#{planning_application_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
+            endpoint: "#{planning_application_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}"
           )
         end
 
@@ -87,9 +87,9 @@ module Apis
             endpoint: "#{planning_application_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
               data: {
-                "approved": true,
-              },
-            }.to_json,
+                approved: true
+              }
+            }.to_json
           )
         end
 
@@ -98,11 +98,11 @@ module Apis
             http_method: :patch,
             endpoint: "#{planning_application_id}/red_line_boundary_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
-              "data": {
-                "approved": false,
-                "rejection_reason": rejection_reason,
-              },
-            }.to_json,
+              data: {
+                approved: false,
+                rejection_reason:
+              }
+            }.to_json
           )
         end
 
@@ -110,7 +110,7 @@ module Apis
         def get_additional_document_validation_request(id, planning_application_id, change_access_id)
           request(
             http_method: :get,
-            endpoint: "#{planning_application_id}/additional_document_validation_requests/#{id}?change_access_id=#{change_access_id}",
+            endpoint: "#{planning_application_id}/additional_document_validation_requests/#{id}?change_access_id=#{change_access_id}"
           )
         end
 
@@ -119,9 +119,9 @@ module Apis
             http_method: :patch,
             endpoint: "#{planning_application_id}/additional_document_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
-              "files": files,
+              files:
             },
-            upload_file: true,
+            upload_file: true
           )
         end
 
@@ -129,7 +129,7 @@ module Apis
         def get_replacement_document_validation_request(id, planning_application_id, change_access_id)
           request(
             http_method: :get,
-            endpoint: "#{planning_application_id}/replacement_document_validation_requests/#{id}?change_access_id=#{change_access_id}",
+            endpoint: "#{planning_application_id}/replacement_document_validation_requests/#{id}?change_access_id=#{change_access_id}"
           )
         end
 
@@ -138,13 +138,13 @@ module Apis
             http_method: :patch,
             endpoint: "#{planning_application_id}/replacement_document_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
-              "file": file,
+              file:
             },
-            upload_file: true,
+            upload_file: true
           )
         end
 
-      private
+        private
 
         def request(http_method:, endpoint:, params: {}, upload_file: false)
           Request.new(http_method, endpoint, params, upload_file).call

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe "Document create requests", type: :system do
@@ -11,7 +13,7 @@ RSpec.describe "Document create requests", type: :system do
       document_request_type: "Roman theatre plan",
       document_request_reason: "I do not see a vomitorium in this.",
       response_due: "2022-7-1",
-      post_validation: false,
+      post_validation: false
     }.stringify_keys
   end
 
@@ -25,7 +27,7 @@ RSpec.describe "Document create requests", type: :system do
       planning_id: 28,
       change_access_id: 345_443_543,
       response_body:,
-      status: 200,
+      status: 200
     )
   end
 
@@ -34,7 +36,7 @@ RSpec.describe "Document create requests", type: :system do
       visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
 
       expect(page).to have_content(
-        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded.",
+        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
       )
 
       expect(page).to have_content("Document requested:")
@@ -44,7 +46,7 @@ RSpec.describe "Document create requests", type: :system do
 
       expect(page).to have_link(
         "Please ensure you have read how to correctly prepare plans (Opens in a new window or tab)",
-        href: "#{ENV['PROTOCOL']}://default.#{ENV['API_HOST']}/planning_guides/index",
+        href: "#{ENV.fetch('PROTOCOL', nil)}://default.#{ENV.fetch('API_HOST', nil)}/planning_guides/index"
       )
     end
 
@@ -56,7 +58,7 @@ RSpec.describe "Document create requests", type: :system do
           document_request_type: "Roman theatre plan",
           document_request_reason: "No room for the lions",
           response_due: "2022-7-1",
-          post_validation: true,
+          post_validation: true
         }.stringify_keys
       end
 
@@ -64,11 +66,11 @@ RSpec.describe "Document create requests", type: :system do
         visit edit_additional_document_validation_request_path(
           3,
           planning_application_id: 28,
-          change_access_id: "345443543",
+          change_access_id: "345443543"
         )
 
         expect(page).not_to have_content(
-          "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded.",
+          "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
         )
       end
     end
@@ -91,7 +93,7 @@ RSpec.describe "Document create requests", type: :system do
         id: 3,
         planning_id: 28,
         change_access_id: 345_443_543,
-        status: 200,
+        status: 200
       )
     end
 
@@ -112,22 +114,22 @@ RSpec.describe "Document create requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 3,
-            "state": "closed",
-            "document_request_type": "Floor plan",
-            "document_request_reason": "No floor plan.",
-            "documents": [
+            id: 3,
+            state: "closed",
+            document_request_type: "Floor plan",
+            document_request_reason: "No floor plan.",
+            documents: [
               {
-                "name": "proposed-floorplan.jpg",
-                "url": "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png",
+                name: "proposed-floorplan.jpg",
+                url: "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png"
               },
               {
-                "name": "proposed-floorplan-2.jpg",
-                "url": "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan-2.png",
-              },
-            ],
+                name: "proposed-floorplan-2.jpg",
+                url: "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan-2.png"
+              }
+            ]
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -156,12 +158,12 @@ RSpec.describe "Document create requests", type: :system do
         change_access_id: 345_443_543,
         response_body:
           {
-            "id": 3,
-            "state": "cancelled",
-            "cancel_reason": "My mistake",
-            "cancelled_at": "2021-10-20T11:42:50.951+01:00",
+            id: 3,
+            state: "cancelled",
+            cancel_reason: "My mistake",
+            cancelled_at: "2021-10-20T11:42:50.951+01:00"
           },
-        status: 200,
+        status: 200
       )
     end
 
@@ -185,7 +187,7 @@ RSpec.describe "Document create requests", type: :system do
         document_request_type: "Link to https://www.bops.co.uk/type",
         document_request_reason: "View reason <a href='https://www.bops.co.uk/reason'>Request reason</a>",
         response_due: "2022-7-1",
-        post_validation: false,
+        post_validation: false
       }.stringify_keys
     end
 
@@ -194,12 +196,12 @@ RSpec.describe "Document create requests", type: :system do
 
       expect(page).to have_link(
         "https://www.bops.co.uk/type",
-        href: "https://www.bops.co.uk/type",
+        href: "https://www.bops.co.uk/type"
       )
 
       expect(page).to have_link(
         "Request reason",
-        href: "https://www.bops.co.uk/reason",
+        href: "https://www.bops.co.uk/reason"
       )
     end
   end

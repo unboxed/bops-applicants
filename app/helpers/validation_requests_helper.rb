@@ -2,7 +2,11 @@
 
 module ValidationRequestsHelper
   def full_address(planning_application)
-    "#{planning_application['site']['address_1']}, #{planning_application['site']['town']}, #{planning_application['site']['postcode']}"
+    [
+      planning_application["site"]["address_1"],
+      planning_application["site"]["town"],
+      planning_application["site"]["postcode"]
+    ].join(", ")
   end
 
   def date_received(planning_application)
@@ -18,7 +22,11 @@ module ValidationRequestsHelper
   end
 
   def flattened_validation_requests(validation_requests)
-    validation_requests["data"]["additional_document_validation_requests"] + validation_requests["data"]["description_change_validation_requests"] + validation_requests["data"]["replacement_document_validation_requests"] + validation_requests["data"]["other_change_validation_requests"] + validation_requests["data"]["red_line_boundary_change_validation_requests"]
+    validation_requests["data"]["additional_document_validation_requests"] +
+      validation_requests["data"]["description_change_validation_requests"] +
+      validation_requests["data"]["replacement_document_validation_requests"] +
+      validation_requests["data"]["other_change_validation_requests"] +
+      validation_requests["data"]["red_line_boundary_change_validation_requests"]
   end
 
   def counter_change_requests_order(validation_request)
@@ -30,7 +38,11 @@ module ValidationRequestsHelper
   end
 
   def ordered_validation_requests
-    %w[description_change_validation_requests replacement_document_validation_requests additional_document_validation_requests red_line_boundary_change_validation_requests other_change_validation_requests]
+    %w[description_change_validation_requests
+       replacement_document_validation_requests
+       additional_document_validation_requests
+       red_line_boundary_change_validation_requests
+       other_change_validation_requests]
   end
 
   def count_total_requests(validation_requests, name)
