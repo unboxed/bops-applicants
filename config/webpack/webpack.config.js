@@ -10,7 +10,7 @@ module.exports = {
     govuk: "./app/javascript/govuk.js",
   },
   optimization: {
-    moduleIds: "deterministic",
+    moduleIds: "natural",
   },
   output: {
     filename: "[name].js",
