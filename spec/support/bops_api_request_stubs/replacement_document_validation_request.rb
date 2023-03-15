@@ -16,13 +16,13 @@ RSpec.configure do |config|
         )
     end
 
-    def stub_patch_replacement_document_validation_request(id:, planning_id:, change_access_id:, status:)
+    def stub_patch_replacement_document_validation_request(id:, planning_id:, change_access_id:, status:, body: "")
       stub_request(
         :patch,
         "#{ApiSpecHelper::API_BASE_URL}/#{planning_id}/replacement_document_validation_requests/#{id}?change_access_id=#{change_access_id}"
       )
         .to_return(
-          body: "",
+          body:,
           status:
         )
     end

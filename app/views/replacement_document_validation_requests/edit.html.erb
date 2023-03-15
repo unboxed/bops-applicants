@@ -9,6 +9,7 @@
       <p class="govuk-heading-s"><%= t(".what_you_need") %></p>
       <ul class="govuk-list govuk-list--bullet">
         <li><%= t(".select_choose_file") %></li>
+        <li><%= t(".file_must_be_smaller_than") %></li>
         <li><%= t(".click_save_to") %></li>
         <li><%= t(".click_submit_to") %></li>
       </ul>
@@ -23,12 +24,13 @@
           <%= @validation_request["old_document"]["name"] %>
         </p>
       </div>
-      <div class="govuk-!-margin-top-6">
+      <div class="govuk-!-margin-top-6 govuk-!-padding-bottom-4">
         <p class="govuk-body"><strong>
           <%= t(".the_reason_the") %></strong><br>
           <%= render(FormattedContentComponent.new(text: @validation_request["old_document"]["invalid_document_reason"])) %>
         </p>
       </div>
+
       <%= form_with scope: :replacement_document_validation_request,
         url: replacement_document_validation_request_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]),
         method: :patch,
@@ -49,15 +51,19 @@
           </div>
         <% end %>
 
-        <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
-          <div class="govuk-!-padding-top-8 govuk-!-padding-bottom-8">
+        <div class="govuk-form-group <%= @replacement_document_validation_request.errors.any? ? 'govuk-form-group--error' : '' %>">
+          <div>
+            <p class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error: </span><%= @replacement_document_validation_request.errors[:file].join("") %>
+            </p>
             <%= form.govuk_file_field :file,  label: { text: "Upload a replacement file", class: "govuk-label govuk-!-font-weight-bold" }, accept: acceptable_file_mime_types %>
             <%= form.hidden_field :id %>
           </div>
-          <div class="govuk-button-group">
-            <%= form.submit "Submit", class: "govuk-button", data: { module: "govuk-button" } %>
-            <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
-          </div>
+        </div>
+
+        <div class="govuk-button-group">
+          <%= form.submit "Submit", class: "govuk-button", data: { module: "govuk-button" } %>
+          <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
         </div>
       <% end %>
     </div>

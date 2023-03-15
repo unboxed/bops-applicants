@@ -15,6 +15,8 @@ class Request
 
   class ForbiddenError < BopsApiError; end
 
+  class RequestEntityTooLargeError < BopsApiError; end
+
   class ApiError < BopsApiError; end
 
   def initialize(http_method, endpoint, params, upload_file)
@@ -27,7 +29,7 @@ class Request
 
   attr_reader :endpoint
 
-  def call
+  def call # rubocop:disable Metrics/CyclomaticComplexity
     response, status = get_response_and_status
 
     case status
@@ -43,6 +45,8 @@ class Request
       raise ForbiddenError, errors(response, status)
     when TIMEOUT_ERROR
       raise TimeoutError, errors(response, status)
+    when REQUEST_ENTITY_TOO_LARGE
+      raise RequestEntityTooLargeError, errors(response, status)
     else
       raise ApiError, errors(response, status)
     end
