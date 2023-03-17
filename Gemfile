@@ -7,6 +7,7 @@ ruby File.read(".ruby-version").strip.split("-").last
 
 gem "dotenv-rails", require: "dotenv/rails-now"
 
+gem "appsignal"
 gem "bootsnap", ">= 1.4.4", require: false
 gem "dartsass-rails"
 gem "faraday"
