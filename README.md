@@ -32,7 +32,7 @@ You will now be able to open the URL you've received by email (or copied from yo
 ```
 http://southwark.bops-care.link:3001/validation_requests?change_access_id=6ea6218075f460e692be1a08fbc0e9&planning_application_id=18
 ```
-# Building production docker
+## Building production docker
 
 ### Create production docker
 
@@ -56,6 +56,6 @@ docker run --rm -it -e RAILS_SERVE_STATIC_FILES=true -e RAILS_ENV=production -e 
 
 We use Github Actions as part of our continuous integration process to run and test the application.
 
-### Deployments
+## Deployments
 
 Merging into main will automatically push to staging. To push changes from staging to production you will need to login to heroku and promote the app from staging to prod.
