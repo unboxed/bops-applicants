@@ -3,6 +3,12 @@
 class AdditionalDocumentValidationRequestsController < ValidationRequestsController
   before_action :set_validation_request
 
+  rescue_from Request::RequestEntityTooLargeError do |error|
+    @additional_document_validation_request.errors.add(:files, request_error_message(error))
+
+    render :edit
+  end
+
   def show
     respond_to do |format|
       if validation_request_is_closed? || validation_request_is_cancelled?

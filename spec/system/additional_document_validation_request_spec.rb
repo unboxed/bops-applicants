@@ -35,6 +35,11 @@ RSpec.describe "Document create requests", type: :system do
     it "allows the user to view an open document create request" do
       visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
 
+      expect(page).to have_content("Select 'choose files' and upload a file or multiple files from your device")
+      expect(page).to have_content("The file(s) must be smaller than 30MB")
+      expect(page).to have_content("Click save or open to add the file")
+      expect(page).to have_content("Click submit to complete this action")
+
       expect(page).to have_content(
         "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
       )
@@ -103,6 +108,37 @@ RSpec.describe "Document create requests", type: :system do
       attach_file("Upload new file(s)", "spec/fixtures/images/proposed-floorplan.png")
 
       click_button "Submit"
+    end
+
+    context "when a file exceeding 30mb has been submitted" do
+      before do
+        stub_patch_additional_documents_validation_request(
+          id: 3,
+          planning_id: 28,
+          change_access_id: 345_443_543,
+          status: 413,
+          body: "The file: 'proposed-floorplan.png' exceeds the limit of 30mb. Each file must be 30MB or less"
+        )
+      end
+
+      it "returns an error to the user" do
+        visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
+
+        attach_file("Upload new file(s)", "spec/fixtures/images/proposed-floorplan.png")
+
+        click_button "Submit"
+
+        within(".govuk-error-summary") do
+          expect(page).to have_content("There is a problem")
+          expect(page).to have_content("The file: 'proposed-floorplan.png' exceeds the limit of 30mb. Each file must be 30MB or less")
+        end
+
+        within(".govuk-error-message") do
+          expect(page).to have_content("The file: 'proposed-floorplan.png' exceeds the limit of 30mb. Each file must be 30MB or less")
+        end
+
+        expect(page).to have_current_path("/additional_document_validation_requests/3?change_access_id=345443543&planning_application_id=28")
+      end
     end
   end
 

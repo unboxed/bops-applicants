@@ -42,6 +42,11 @@ RSpec.describe "Document change requests", type: :system do
     it "allows the user to view a document change request" do
       visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
 
+      expect(page).to have_content("Select 'choose file' and upload a replacement file from your device")
+      expect(page).to have_content("The file must be smaller than 30MB")
+      expect(page).to have_content("Click save or open to add the file")
+      expect(page).to have_content("Click submit to complete this action")
+
       expect(page).to have_content(
         "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
       )
@@ -74,6 +79,54 @@ RSpec.describe "Document change requests", type: :system do
       visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
 
       expect(page).to have_title("Replacement document validation request #8 - Back-Office Planning System")
+    end
+
+    it "returns an error to the user when no file is submitted" do
+      visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
+
+      click_button "Submit"
+
+      within(".govuk-error-summary") do
+        expect(page).to have_content("There is a problem")
+        expect(page).to have_content("Please choose a file to upload")
+      end
+
+      within(".govuk-error-message") do
+        expect(page).to have_content("Please choose a file to upload")
+      end
+
+      expect(page).to have_current_path("/replacement_document_validation_requests/8?change_access_id=345443543&planning_application_id=28")
+    end
+
+    context "when a file exceeding 30mb has been submitted" do
+      before do
+        stub_patch_replacement_document_validation_request(
+          id: 8,
+          planning_id: 28,
+          change_access_id: 345_443_543,
+          status: 413,
+          body: "The file must be smaller than 30MB"
+        )
+      end
+
+      it "return an error to the user" do
+        visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
+
+        attach_file("Upload a replacement file", "spec/fixtures/images/proposed-floorplan.png")
+
+        click_button "Submit"
+
+        within(".govuk-error-summary") do
+          expect(page).to have_content("There is a problem")
+          expect(page).to have_content("The file must be smaller than 30MB")
+        end
+
+        within(".govuk-error-message") do
+          expect(page).to have_content("The file must be smaller than 30MB")
+        end
+
+        expect(page).to have_current_path("/replacement_document_validation_requests/8?change_access_id=345443543&planning_application_id=28")
+      end
     end
   end
 

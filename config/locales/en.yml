@@ -2,11 +2,12 @@ en:
   additional_document_validation_requests:
     document_create_header:
       case_officers_reason: "Case officer's reason for requesting the document:"
-      click_save_to: Click save to add the file
+      click_save_to: Click save or open to add the file
       click_submit_to: Click submit to complete this action
       document_requested: "Document requested:"
+      file_must_be_smaller_than: The file(s) must be smaller than 30MB
       if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
-      select_choose_file: "Select 'choose file' and upload a file from your device"
+      select_choose_files: "Select 'choose files' and upload a file or multiple files from your device"
       the_case_officer: The case officer has specified below why this document is needed.
       title: Provide a new document
       what_you_need: "What you need to do:"
@@ -103,8 +104,9 @@ en:
       your_original_red: Your original red line boundary
   replacement_document_validation_requests:
     edit:
-      click_save_to: Click save to add the file
+      click_save_to: Click save or open to add the file
       click_submit_to: Click submit to complete this action
+      file_must_be_smaller_than: The file must be smaller than 30MB
       if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
       name_of_file: "Name of file on submission:"
       page_title: "Replacement document validation request #%{id} - Back-Office Planning System"

@@ -70,4 +70,10 @@ class ValidationRequestsController < ApplicationController
   def validation_request_model_klass
     "Bops::#{controller_name.classify}".constantize
   end
+
+  def request_error_message(error)
+    error_hash = instance_eval(error.message)
+    response = error_hash[:response]
+    response["message"] || response
+  end
 end

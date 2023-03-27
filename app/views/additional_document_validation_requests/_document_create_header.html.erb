@@ -4,6 +4,7 @@
   <p class="govuk-heading-s"><%= t(".what_you_need") %></p>
   <ul class="govuk-list govuk-list--bullet">
     <li><%= t(".select_choose_files") %></li>
+    <li><%= t(".file_must_be_smaller_than") %></li>
     <li><%= t(".click_save_to") %></li>
     <li><%= t(".click_submit_to") %></li>
   </ul>
@@ -20,7 +21,7 @@
     <%= render(FormattedContentComponent.new(text: @validation_request["document_request_type"])) %>
   </p>
 </div>
-<div class="govuk-!-margin-top-4">
+<div class="govuk-!-margin-top-4 govuk-!-padding-bottom-6">
   <p class="govuk-body"><strong><%= t(".case_officers_reason") %></strong><br>
     <%= render(FormattedContentComponent.new(text: @validation_request["document_request_reason"])) %>
   </p>
