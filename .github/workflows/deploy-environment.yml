@@ -83,7 +83,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: console.json
-          container-name: bops
+          container-name: bops-applicants
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy console
