@@ -7,7 +7,7 @@
   "applicant_last_name": "Manteras",
   "application_type": "lawfulness_certificate",
   "awaiting_determination_at": null,
-  "awaiting_correction_at": null,
+  "to_be_reviewed_at": null,
   "created_at": "2021-04-23T10:15:42.444Z",
   "description": "Add a chimney stack",
   "determined_at": null,
