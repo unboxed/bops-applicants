@@ -39,5 +39,8 @@ module BopsApplicants
     config.generators.system_tests = nil
 
     config.action_controller.forgery_protection_origin_check = false
+
+    # Don't log certain requests that spam the log files
+    config.middleware.insert_before Rails::Rack::Logger, QuietLogger, paths: ["/healthcheck"]
   end
 end
