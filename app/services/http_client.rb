@@ -4,7 +4,7 @@ class HttpClient
   attr_reader :api_base_url
 
   def initialize
-    @api_base_url = "#{ENV.fetch('PROTOCOL', nil)}://#{api_base}/planning_applications/"
+    @api_base_url = "#{ENV.fetch('PROTOCOL', nil)}://#{api_base}/"
   end
 
   def connection

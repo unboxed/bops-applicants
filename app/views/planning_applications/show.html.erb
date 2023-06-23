@@ -1,0 +1,44 @@
+<h1 class="govuk-heading-l">
+  <%= @planning_application["site"]["address_1"] %>, 
+  <%= @planning_application["site"]["address_2"] %>, 
+  <%= @planning_application["site"]["postcode"] %>
+</h1>
+
+<p class="govuk-body-s govuk-!-margin-bottom-1">Planning application reference number</p>
+<p class="govuk-body"><%= @planning_application["reference"] %></p>
+
+<% if @location_plan %>
+  <a target="_blank" href="<%= @location_plan["url"] %>">
+    <img style="max-width:100%" src="<%= "#{@base_url}#{@location_plan["blob_url"]}" %>">
+  </a>
+<% end %>
+
+<div class="contact-box">
+  <p class="govuk-body govuk-!-margin-bottom-0">
+    To comment on this application, please send an email to 
+    <%= mail_to @local_authority["email_address"], subject: @planning_application["reference"] %>
+    and use the application reference number above as the email subject
+  </p>
+</div>
+
+<h2 class="govuk-heading-m govuk-!-margin-top-8">Application summary</h2>
+<p class="govuk-body">
+  <%= @planning_application["description"] %>
+</p>
+
+<h2 class="govuk-heading-m govuk-!-margin-top-8">Application documents</h2>
+<hr>
+<% @other_documents.each do |document| %>
+  <div style="display: flex;" class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
+    <div class="govuk-!-margin-right-5">
+      <a target="_blank" href="<%= document["url"] %>">
+        <img style="width:200px; height: 200px;" src="<%= "#{@base_url}#{document["blob_url"]}" %>">
+      </a>
+    </div>
+    <div>
+      <p class="govuk-body"><%= document["numbers"] %></p>
+      <p class="govuk-body"><%= document["applicant_description"] %></p>
+    </div>
+  </div>
+  <hr>
+<% end %>
