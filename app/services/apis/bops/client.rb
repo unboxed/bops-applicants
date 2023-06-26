@@ -16,7 +16,7 @@ module Apis
         def get_local_authority(local_authority_subdomain)
           request(
             http_method: :get,
-            endpoint: "local_authority/#{local_authority_subdomain}"
+            endpoint: "local_authorities/#{local_authority_subdomain}"
           )
         end
 
