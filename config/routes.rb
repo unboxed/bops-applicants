@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :additional_document_validation_requests, only: %i[show edit update]
   resources :other_change_validation_requests, only: %i[show edit update]
   resources :red_line_boundary_change_validation_requests, only: %i[show edit update]
+  resources :planning_applications, only: %i[show]
 
   controller "pages" do
     get :accessibility, action: :accessibility

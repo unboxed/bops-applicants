@@ -12,3 +12,8 @@ $govuk-images-path: "/assets/images/";
 html * {
   font-family: open-sans, sans-serif !important;
 }
+
+.contact-box {
+  background-color: govuk-colour("light-grey", $legacy: "grey-3");
+  padding: 30px;
+}

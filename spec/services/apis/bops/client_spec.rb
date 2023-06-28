@@ -14,7 +14,7 @@ RSpec.describe Apis::Bops::Client do
   describe ".get_validation_requests" do
     it "initializes a Request object with planning_application_id and change_access_id and invokes #call" do
       expect(Request).to receive(:new).with(
-        :get, "#{planning_application_id}/validation_requests?change_access_id=#{change_access_id}", {}, false
+        :get, "planning_applications/#{planning_application_id}/validation_requests?change_access_id=#{change_access_id}", {}, false
       ).and_call_original
 
       described_class.get_validation_requests(planning_application_id, change_access_id)
@@ -24,10 +24,20 @@ RSpec.describe Apis::Bops::Client do
   describe ".get_planning_application" do
     it "initializes a Request object with planning_application_id and invokes #call" do
       expect(Request).to receive(:new).with(
-        :get, planning_application_id.to_s, {}, false
+        :get, "planning_applications/#{planning_application_id}", {}, false
       ).and_call_original
 
       described_class.get_planning_application(planning_application_id)
+    end
+  end
+
+  describe ".get_local_authority" do
+    it "initializes a Request object with local authority subdomain and invokes #call" do
+      expect(Request).to receive(:new).with(
+        :get, "local_authorities/southwark", {}, false
+      ).and_call_original
+
+      described_class.get_local_authority("southwark")
     end
   end
 
@@ -35,7 +45,7 @@ RSpec.describe Apis::Bops::Client do
     it "initializes a Request object with description_change_validation_request_id, planning_application_id and change_access_id and invokes #call" do
       expect(Request).to receive(:new).with(
         :patch,
-        "#{planning_application_id}/description_change_validation_requests/5?change_access_id=#{change_access_id}",
+        "planning_applications/#{planning_application_id}/description_change_validation_requests/5?change_access_id=#{change_access_id}",
         { data: { approved: true } }.to_json,
         false
       ).and_call_original
@@ -48,7 +58,7 @@ RSpec.describe Apis::Bops::Client do
     it "initializes a Request object with description_change_validation_request_id, planning_application_id, change_access_id and rejection_reason and invokes #call" do
       expect(Request).to receive(:new).with(
         :patch,
-        "#{planning_application_id}/description_change_validation_requests/5?change_access_id=#{change_access_id}",
+        "planning_applications/#{planning_application_id}/description_change_validation_requests/5?change_access_id=#{change_access_id}",
         { data: { approved: false, rejection_reason: "Bad description" } }.to_json,
         false
       ).and_call_original
@@ -61,7 +71,7 @@ RSpec.describe Apis::Bops::Client do
     it "initializes a Request object with other_change_validation_request_id, planning_application_id, change_access_id and response and invokes #call" do
       expect(Request).to receive(:new).with(
         :patch,
-        "#{planning_application_id}/other_change_validation_requests/5?change_access_id=#{change_access_id}",
+        "planning_applications/#{planning_application_id}/other_change_validation_requests/5?change_access_id=#{change_access_id}",
         { data: { response: "Other change looks fine" } }.to_json,
         false
       ).and_call_original
@@ -74,7 +84,7 @@ RSpec.describe Apis::Bops::Client do
     it "initializes a Request object with red_line_boundary_change_validation_request_id, planning_application_id, change_access_id and invokes #call" do
       expect(Request).to receive(:new).with(
         :patch,
-        "#{planning_application_id}/red_line_boundary_change_validation_requests/5?change_access_id=#{change_access_id}",
+        "planning_applications/#{planning_application_id}/red_line_boundary_change_validation_requests/5?change_access_id=#{change_access_id}",
         { data: { approved: true } }.to_json,
         false
       ).and_call_original
@@ -87,7 +97,7 @@ RSpec.describe Apis::Bops::Client do
     it "initializes a Request object with red_line_boundary_change_validation_request_id, planning_application_id, change_access_id and rejection_reason and invokes #call" do
       expect(Request).to receive(:new).with(
         :patch,
-        "#{planning_application_id}/red_line_boundary_change_validation_requests/5?change_access_id=#{change_access_id}",
+        "planning_applications/#{planning_application_id}/red_line_boundary_change_validation_requests/5?change_access_id=#{change_access_id}",
         { data: { approved: false, rejection_reason: "Boundary looks wrong" } }.to_json,
         false
       ).and_call_original
@@ -100,7 +110,7 @@ RSpec.describe Apis::Bops::Client do
     it "initializes a Request object with additional_document_validation_request_id, planning_application_id, change_access_id and file and invokes #call" do
       expect(Request).to receive(:new).with(
         :patch,
-        "#{planning_application_id}/additional_document_validation_requests/5?change_access_id=#{change_access_id}",
+        "planning_applications/#{planning_application_id}/additional_document_validation_requests/5?change_access_id=#{change_access_id}",
         { files: "files" },
         true
       ).and_call_original
@@ -113,7 +123,7 @@ RSpec.describe Apis::Bops::Client do
     it "initializes a Request object with replacement_document_validation_request_id, planning_application_id, change_access_id and file and invokes #call" do
       expect(Request).to receive(:new).with(
         :patch,
-        "#{planning_application_id}/replacement_document_validation_requests/5?change_access_id=#{change_access_id}",
+        "planning_applications/#{planning_application_id}/replacement_document_validation_requests/5?change_access_id=#{change_access_id}",
         { file: "file" },
         true
       ).and_call_original
