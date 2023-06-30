@@ -166,6 +166,8 @@ GEM
     nokogiri (1.15.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
+    nokogiri (1.15.2-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.15.2-x86_64-darwin)
       racc (~> 1.4)
     parallel (1.22.1)
@@ -304,6 +306,7 @@ GEM
     zeitwerk (2.6.8)
 
 PLATFORMS
+  aarch64-linux
   ruby
   x86_64-darwin-20
 
@@ -336,13 +339,9 @@ DEPENDENCIES
   spring
   sprockets-rails
   turbolinks (~> 5)
-  tzinfo-data
   view_component
   webdrivers
   webmock (~> 3.12, >= 3.12.2)
-
-RUBY VERSION
-   ruby 3.2.1p31
 
 BUNDLED WITH
    2.4.6
