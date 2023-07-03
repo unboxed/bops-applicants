@@ -24,6 +24,13 @@ RSpec.describe "Planning applications", type: :system do
     expect(page).to have_content("PLAN02")
     expect(page).to have_css("img[src*='http://example.com/document_path2.pdf']")
     expect(page).to have_content("This is the proposed side elevation")
+
+    expect(page).to have_content("supportive")
+    expect(page).to have_content("16/05/20")
+    expect(page).to have_content("This is good")
+    expect(page).to have_content("objection")
+    expect(page).to have_content("17/05/20")
+    expect(page).to have_content("This is bad")
   end
 
   it "shows 404 if not found" do

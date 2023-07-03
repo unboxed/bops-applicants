@@ -61,5 +61,17 @@
       "numbers": "PLAN02",
       "applicant_description": "This is the proposed side elevation"
     }
+  ],
+  "published_comments": [
+    {
+      "comment": "This is good",
+      "received_at": "2020-05-16T06:18:17.540+01:00",
+      "summary_tag": "supportive"
+    },
+    {
+      "comment": "This is bad",
+      "received_at": "2020-05-17T06:18:17.540+01:00",
+      "summary_tag": "objection"
+    }
   ]
 }

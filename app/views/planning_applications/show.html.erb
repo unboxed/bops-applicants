@@ -42,3 +42,27 @@
   </div>
   <hr>
 <% end %>
+
+<h2 class="govuk-heading-m govuk-!-margin-top-8">Comments</h2>
+<% if @planning_application["published_comments"].present? %>
+  <hr>
+  <ul class="govuk-list">
+    <% @planning_application["published_comments"].each do |comment| %>
+      <li>
+        <span class="govuk-tag <%= "govuk-tag--#{tag_colour(comment["summary_tag"])}" %>">
+          <%= comment["summary_tag"] %>
+        </span>
+        <br>
+        <p>
+          <strong>Date received:</strong> <%= comment["received_at"].to_date.strftime("%d/%m/%y") %>
+        </p>
+        <p>
+          <%= simple_format(comment["comment"]) %>
+        </p>
+      </li>
+      <hr>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="govuk-body">No comments have been made on this application yet.</p>
+<% end %>
