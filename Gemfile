@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby File.read(".ruby-version").strip.split("-").last
-
+# Load environment variables
 gem "dotenv-rails", require: "dotenv/rails-now"
 
 gem "appsignal"
@@ -21,10 +19,6 @@ gem "rails_autolink"
 gem "sprockets-rails"
 gem "turbolinks", "~> 5"
 gem "view_component"
-
-group :test do
-  gem "webmock", "~> 3.12", ">= 3.12.2"
-end
 
 group :development, :test do
   gem "brakeman", require: false
@@ -47,5 +41,6 @@ group :development do
   gem "spring"
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+group :test do
+  gem "webmock", "~> 3.12", ">= 3.12.2"
+end

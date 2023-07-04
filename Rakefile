@@ -7,4 +7,5 @@ require_relative "config/application"
 
 Rails.application.load_tasks
 
+task(:"spec:prepare").clear.enhance(%i[dartsass:build javascript:build])
 task(:default).clear.enhance(%i[bundle_audit brakeman rubocop spec])

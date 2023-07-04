@@ -1,14 +1,29 @@
 ---
 services:
   web:
-    build: .
-    stdin_open: true
+    image: bops-applicants/ruby
+    build: docker/ruby
+    working_dir: /home/rails/bops-applicants
+    command: [ "bin/dev" ]
     environment:
       PROTOCOL: "http"
       PORT: 3001
+      PIDFILE: "/tmp/pids/server.pid"
     ports:
       - "3001:3001"
     volumes:
       - type: bind
         source: .
-        target: /app
+        target: /home/rails/bops-applicants
+      - type: volume
+        source: bundle
+        target: /home/rails/bundle
+      - type: volume
+        source: node_modules
+        target: /home/rails/bops-applicants/node_modules
+    tmpfs:
+      - /tmp/pids/
+
+volumes:
+  bundle:
+  node_modules:
