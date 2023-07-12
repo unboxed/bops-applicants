@@ -19,8 +19,13 @@ RSpec.describe "Planning applications", type: :system do
     expect(page).to have_content("11 Mel Gardens, Southwark, SE16 3RQ")
     expect(page).to have_content("Add a chimney stack")
     expect(page).to have_css("img[src*='http://example.com/document_path.pdf']")
-    expect(page).not_to have_content("This is the site plan")
+
+    map_selector = find("my-map")
+    expect(map_selector["latitude"]).to eq("123")
+    expect(map_selector["longitude"]).to eq("-123")
+
     expect(page).to have_content("To comment on this application, please send an email to planning@southwark.com and use the application reference number above as the email subject")
+    expect(page).to have_content("This is the site plan")
     expect(page).to have_content("PLAN02")
     expect(page).to have_css("img[src*='http://example.com/document_path2.pdf']")
     expect(page).to have_content("This is the proposed side elevation")

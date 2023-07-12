@@ -7,11 +7,16 @@
 <p class="govuk-body-s govuk-!-margin-bottom-1">Planning application reference number</p>
 <p class="govuk-body"><%= @planning_application["reference"] %></p>
 
-<% if @location_plan %>
-  <a target="_blank" href="<%= @location_plan["url"] %>">
-    <img style="max-width:100%" src="<%= "#{@base_url}#{@location_plan["blob_url"]}" %>">
-  </a>
-<% end %>
+<my-map
+  style="width: 100%; height: 400px; margin-bottom: 20px;"
+  osVectorTilesApiKey='<%= ENV['OS_VECTOR_TILES_API_KEY'] %>'
+  showScale
+  useScaleBarStyle
+  geojsonData='<%= @planning_application["boundary_geojson"].is_a?(Hash) ? @planning_application["boundary_geojson"].to_json : JSON.parse(@planning_application["boundary_geojson"]).to_json.html_safe %>'
+  zoom="19"
+  latitude='<%= @planning_application["site"]["latitude"] %>'
+  longitude='<%= @planning_application["site"]["longitude"] %>'
+></my-map>
 
 <div class="contact-box">
   <p class="govuk-body govuk-!-margin-bottom-0">
@@ -28,7 +33,7 @@
 
 <h2 class="govuk-heading-m govuk-!-margin-top-8">Application documents</h2>
 <hr>
-<% @other_documents.each do |document| %>
+<% @documents.each do |document| %>
   <div style="display: flex;" class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
     <div class="govuk-!-margin-right-5">
       <a target="_blank" href="<%= document["url"] %>">
