@@ -30,7 +30,9 @@
     "county": null,
     "town": "London",
     "postcode": "SE16 3RQ",
-    "uprn": "100081043511"
+    "uprn": "100081043511",
+    "latitude": "123",
+    "longitude": "-123"
   },
   "received_date": "2021-04-23T10:15:42.444Z",
   "constraints": [

@@ -5,8 +5,7 @@ class PlanningApplicationsController < ApplicationController
 
   before_action :set_planning_application
   before_action :set_local_authority
-  before_action :set_location_plan
-  before_action :set_other_documents
+  before_action :set_documents
   before_action :set_base_url
 
   def show
@@ -29,12 +28,8 @@ class PlanningApplicationsController < ApplicationController
     @local_authority = Bops::LocalAuthority.find(Current.local_authority)
   end
 
-  def set_location_plan
-    @location_plan = @planning_application["documents"].find { |doc| doc["tags"] == %w[Site Plan Existing] }
-  end
-
-  def set_other_documents
-    @other_documents = @planning_application["documents"].reject { |h| h["tags"] == %w[Site Plan Existing] }
+  def set_documents
+    @documents = @planning_application["documents"]
   end
 
   def set_base_url
