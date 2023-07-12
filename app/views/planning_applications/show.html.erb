@@ -19,10 +19,13 @@
 ></my-map>
 
 <div class="contact-box">
-  <p class="govuk-body govuk-!-margin-bottom-0">
+  <p class="govuk-body">
     To comment on this application, please send an email to 
     <%= mail_to @local_authority["email_address"], subject: @planning_application["reference"] %>
-    and use the application reference number above as the email subject
+    and use the application reference number above as the email subject. 
+  </p>
+  <p class="govuk-body govuk-!-margin-bottom-0">
+    <a href="#application-comments-instructions">Click here for guidance on making a comment</a>.
   </p>
 </div>
 
@@ -71,3 +74,30 @@
 <% else %>
   <p class="govuk-body">No comments have been made on this application yet.</p>
 <% end %>
+
+<h2 class="govuk-heading-m govuk-!-margin-top-8" id="application-comments-instructions">
+  What types of comments can we consider?
+</h2>
+<p class="govuk-body">
+  We can only consider comments that are directly related to the actual proposals. These are known as ‘material considerations’.
+  For instance, we can consider comments that concern:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>the design, size and height of new buildings or extensions</li>
+  <li>the impact of new uses of buildings or of land</li>
+  <li>loss of light and the privacy of neighbours</li>
+  <li>access for disabled people</li>
+  <li>noise from new uses</li>
+  <li>the impact of development on traffic parking and road safety.</li>
+</ul>
+<p class="govuk-body">
+  Issues that may be of concern to you, but which we cannot consider, include:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>disputes about civil matters, such as building freeholds or the 'right to light'</li>
+  <li>loss of property value</li>
+  <li>issues which are dealt with by other forms of law, such as party wall matters.</li>
+</ul>
+<p class="govuk-body">
+  We cannot refuse permission because of construction noise. However, we can restrict the hours of work to reduce disturbance to residents and other sensitive neighbours.
+</p>
