@@ -12,7 +12,7 @@ RUN bash -c "export DEBIAN_FRONTEND=noninteractive && \
     apt-get upgrade -y && apt-get clean"
 
 # Install NodeJS
-ARG NODE_VERSION=16.20.1
+ARG NODE_VERSION=18.16.1
 ARG YARN_VERSION=1.22.19
 ENV PATH=/usr/local/node/bin:$PATH
 RUN bash -c "curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \

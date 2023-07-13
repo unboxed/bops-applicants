@@ -14,9 +14,6 @@
     "leaflet": "^1.7.1",
     "rome": "^11.0.0"
   },
-  "engines": {
-    "node": "16.x"
-  },
   "scripts": {
     "build": "webpack --config config/webpack/webpack.config.js"
   }
