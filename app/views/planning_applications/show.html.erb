@@ -20,9 +20,9 @@
 
 <div class="contact-box">
   <p class="govuk-body">
-    To comment on this application, please send an email to 
-    <%= mail_to @local_authority["email_address"], subject: @planning_application["reference"] %>
-    and use the application reference number above as the email subject. 
+    To comment on this application, send an email to 
+    <%= mail_to @local_authority["email_address"], subject: @planning_application["reference"] %>. 
+    Use the application reference number above as the email subject. 
   </p>
   <p class="govuk-body govuk-!-margin-bottom-0">
     <a href="#application-comments-instructions">Click here for guidance on making a comment</a>.
