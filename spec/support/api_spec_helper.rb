@@ -19,6 +19,12 @@ module ApiSpecHelper
       .to_return(status: 200, body: file_fixture("test_planning_application.json").read, headers: {})
   end
 
+  def stub_successful_get_private_planning_application
+    stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/29")
+      .with(headers:)
+      .to_return(status: 200, body: file_fixture("test_private_planning_application.json").read, headers: {})
+  end
+
   def stub_unsuccessful_get_planning_application
     stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/100")
       .with(headers:)

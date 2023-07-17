@@ -11,7 +11,7 @@
   "created_at": "2021-04-23T10:15:42.444Z",
   "description": "Add a chimney stack",
   "determined_at": null,
-  "id": 28,
+  "id": 29,
   "invalidated_at": "2021-04-23T10:15:52.855Z",
   "in_assessment_at": null,
   "payment_reference": "PAY1",
@@ -76,5 +76,5 @@
       "summary_tag": "objection"
     }
   ],
-  "make_public": true
+  "make_public": false
 }

@@ -10,7 +10,7 @@ RSpec.describe "Planning applications", type: :system do
     ENV["PROTOCOL"] = "https"
   end
 
-  it "allows the user to see a planning application" do
+  it "allows the user to see a planning application if it's public" do
     stub_successful_get_planning_application
     stub_successful_get_local_authority
 
@@ -42,6 +42,15 @@ RSpec.describe "Planning applications", type: :system do
     stub_unsuccessful_get_planning_application
 
     visit "/planning_applications/100"
+
+    expect(page).to have_content("Not Found")
+  end
+
+  it "shows 404 if officer hasn't made planning application public" do
+    stub_successful_get_private_planning_application
+    stub_successful_get_local_authority
+
+    visit "/planning_applications/29"
 
     expect(page).to have_content("Not Found")
   end

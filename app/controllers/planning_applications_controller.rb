@@ -9,8 +9,12 @@ class PlanningApplicationsController < ApplicationController
   before_action :set_base_url
 
   def show
-    respond_to do |format|
-      format.html
+    if @planning_application["make_public"]
+      respond_to do |format|
+        format.html
+      end
+    else
+      render_not_found
     end
   end
 
