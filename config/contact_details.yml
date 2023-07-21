@@ -22,3 +22,9 @@ newcastle:
   phone_number: "01912787878"
   postal_address: Development Management, Civic Centre, Newcastle upon Tyne, NE1 8QH
   privacy_policy: https://www.newcastle.gov.uk/local-government/access-information-and-data/open-data/privacy-notice
+camden: 
+  email_address: digitalplanning@camden.gov.uk
+  feedback_email: digitalplanning@camden.gov.uk
+  phone_number: "02079744444"
+  postal_address: 5 Pancras Sq, London N1C 4AG
+  privacy_policy: https://www.camden.gov.uk/data-protection-privacy-and-cookies#yedw
