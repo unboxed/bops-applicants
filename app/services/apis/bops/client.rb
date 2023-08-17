@@ -20,6 +20,20 @@ module Apis
           )
         end
 
+        def post_neighbour_response(planning_application_id, name:, response: , address:, email:, summary_tag:)
+          request(
+            http_method: :post,
+            endpoint: "planning_applications/#{planning_application_id}/neighbour_responses",
+            params: {
+              name:,
+              response:,
+              address:,
+              email:,
+              summary_tag:
+            }.to_json
+          )
+        end
+
         # Validation requests
         def get_validation_requests(planning_application_id, change_access_id)
           request(

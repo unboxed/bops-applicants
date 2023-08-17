@@ -17,6 +17,7 @@ gem "puma", ">= 5.3.1"
 gem "rails", "~> 7.0"
 gem "rails_autolink"
 gem "sprockets-rails"
+gem "stimulus-rails"
 gem "turbolinks", "~> 5"
 gem "view_component"
 

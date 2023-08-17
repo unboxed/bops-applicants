@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :neighbour_responses, only: %i[new create]
   end
 
+  resources :os_places_api, only: %i[index]
+
   controller "pages" do
     get :accessibility, action: :accessibility
   end
