@@ -1,26 +1,32 @@
 # frozen_string_literal: true
 
 class NeighbourResponsesController < ApplicationController
+  before_action :build_response, :set_planning_application, only: [:new, :create]
   before_action :set_planning_application
+
+  def start
+  end
+
+  def thank_you
+  end
 
   def new
   end
 
   def create
-    Bops::NeighbourResponse.create(
-      @planning_application["id"], 
-      data: response_params,
-      address: params[:"input-autocomplete"]
-    )
-
-    redirect_to planning_application_path(@planning_application["id"]), notice: "Your response has been submitted"
+    if @new_response.save
+      redirect_to thank_you_planning_application_neighbour_responses_path(params[:planning_application_id])
+    else
+      respond_to do |format|
+        format.html { render :new }
+      end
+    end
   end
 
   private
 
-  def response_params
-    params.require(:neighbour_response)
-      .permit(:name, :email, :response, :summary_tag, :design, :new_use, :privacy, :disabled_access, :noise, :traffic, :other, tags: [])
+  def build_response
+    @new_response = NeighbourResponse.new(params)
   end
 
   def set_planning_application

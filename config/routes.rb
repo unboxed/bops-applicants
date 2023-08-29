@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   resources :red_line_boundary_change_validation_requests, only: %i[show edit update]
 
   resources :planning_applications, only: %i[show] do
-    resources :neighbour_responses, only: %i[new create]
+    resource :neighbour_responses do
+      get '/start', action: 'start', as: :start
+      get '/new',   action: 'new',   as: :new
+      get '/thank-you', action: 'thank_you', as: :thank_you
+    end
   end
 
   resources :os_places_api, only: %i[index]

@@ -1,0 +1,14 @@
+<div class="govuk-form-group">
+  <h1 class="govuk-heading-l">Your details</h1>
+  <%= form.govuk_text_field :name, label: { text: 'Full name' } %>
+  <%= form.govuk_text_field :email, label: { text: "Email (optional)" }, hint: { text: "We'll use this to tell you about the outcome of this application" } %>
+  <div>
+    <label for="address-autocomplete" class="govuk-label">Address (optional)</label>
+    <div class="govuk-hint" id="neighbour-response-address-hint">This helps us understand how your property might be affected by the proposal</div>
+    <div id="address-autocomplete-container"></div>
+  </div>
+</div>
+
+<%= hidden_field_tag(:os_path, os_places_api_index_url) %>
+
+<button type="submit" name="move_next" class="button forward govuk-button">Continue</button>

@@ -8,12 +8,12 @@ module Bops
     ]
 
     class << self
-      def create(planning_application_id, data:, address:)
+      def create(planning_application_id, data:)
         Apis::Bops::Client.post_neighbour_response(
           planning_application_id, 
           name: data[:name], 
           response: construct_response(data), 
-          address:,
+          address: data[:address],
           email: data[:email],
           summary_tag: data[:summary_tag]
         )
