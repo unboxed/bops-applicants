@@ -20,10 +20,17 @@ module Bops
       end
 
       def construct_response(params)
-        OBJECTIONS.map do |tag|
+        response = OBJECTIONS.map do |tag|
           next if params[:"#{tag}"].blank? 
+
           "#{tag.to_s.humanize}: #{params[:"#{tag}"]}\n"
-        end.join
+        end.join 
+        
+        if params[:other_comments].present?
+          response = response + "/n #{params[:other_comments]}"
+        end
+
+        response
       end
     end
   end

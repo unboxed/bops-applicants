@@ -1,10 +1,10 @@
 class NeighbourResponse
   include ActiveModel::Model
 
-  STAGES = %w[about_you thoughts tags]
+  STAGES = %w[about_you thoughts tags other_comments]
 
-  RESPONSE_PARAMS  = [:name, :email, :address, :response, :summary_tag, :design, :new_use, :privacy, :disabled_access, :noise, :traffic, :other]
-  PERMITTED_PARAMS = [:stage, :move_back, :move_next, :planning_application_id, neighbour_response: RESPONSE_PARAMS]
+  RESPONSE_PARAMS  = [:name, :email, :address, :response, :summary_tag, :design, :new_use, :privacy, :disabled_access, :noise, :traffic, :other, :other_comments]
+  PERMITTED_PARAMS = [:stage, :move_next, :planning_application_id, neighbour_response: RESPONSE_PARAMS]
 
   attr_reader :params, :errors
 
@@ -62,7 +62,11 @@ class NeighbourResponse
   end
 
   def tags
-    response_params[:tags]
+    response_params[:tags].to_s
+  end
+
+  def other_comments
+    response_params[:other_comments].to_s.strip
   end
 
   def stage
@@ -70,10 +74,6 @@ class NeighbourResponse
   end
 
   def save
-    # if moving_backwards?
-    #   @stage = previous_stage and return false
-    # end
-
     unless valid?
       return false
     end
@@ -89,7 +89,8 @@ class NeighbourResponse
         disabled_access:,
         noise:,
         traffic:,
-        other:
+        other:,
+        other_comments:
       )
 
       Bops::NeighbourResponse.create(
@@ -104,11 +105,11 @@ class NeighbourResponse
   end
 
   def done?
-    stage == "tags"
+    stage == "other_comments"
   end
 
   def next_stage
-    STAGES[[stage_index + 1, 2].min]
+    STAGES[[stage_index + 1, 3].min]
   end
 
   def stage_index
@@ -124,10 +125,15 @@ class NeighbourResponse
   end
 
   def validate_response
-    errors.add(:name, :blank) unless name.present?
+    errors.add(:name, :blank) unless name.present? if stage == "about_you"
+    errors.add(:summary_tag, :blank) unless summary_tag.present? if stage == "thoughts"
+
+    if stage == "tags"
+      errors.add(:tags, :blank, message: "You must fill in your reason") unless information_filled?
+    end
 
     if errors.any?
-      @stage = "about_you"
+      @stage = stage
     end
   end
 
@@ -137,5 +143,10 @@ class NeighbourResponse
 
   def response_params
     params[:neighbour_response] || {}
+  end
+
+  def information_filled?
+    design.present? || new_use.present? || privacy.present? || disabled_access.present? ||
+      noise.present? || traffic.present? || other.present?
   end
 end
