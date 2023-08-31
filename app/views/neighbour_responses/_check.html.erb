@@ -1,0 +1,29 @@
+<%= form.object.name %>
+<%= form.object.email %>
+<%= form.object.address %>
+<%= form.object.summary_tag %>
+<%= form.object.tags %>
+<%= form.object.new_use %>
+<%= form.object.traffic %>
+<%= form.object.design %>
+<%= form.object.privacy %>
+<%= form.object.other %>
+<%= form.object.disabled_access %>
+<%= form.object.noise %>
+
+<%= form.hidden_field :name %>
+<%= form.hidden_field :email %>
+<%= form.hidden_field :address %>
+<%= form.hidden_field :summary_tag %>
+<%= form.hidden_field :tags %>
+<%= form.hidden_field :design %>
+<%= form.hidden_field :privacy %>
+<%= form.hidden_field :noise %>
+<%= form.hidden_field :new_use %>
+<%= form.hidden_field :traffic %>
+<%= form.hidden_field :disabled_access %>
+<%= form.hidden_field :other %>
+
+
+<%= form.govuk_submit "Continue" %>
+<button type="submit" name="move_back" class="govuk-button govuk-button--secondary" data-disable-with="Back">Back</button>

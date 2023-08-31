@@ -10,5 +10,15 @@
 </div>
 
 <%= hidden_field_tag(:os_path, os_places_api_index_url) %>
+<%= form.hidden_field :summary_tag %>
+<%= form.hidden_field :tags %>
+<%= form.hidden_field :design %>
+<%= form.hidden_field :privacy %>
+<%= form.hidden_field :noise %>
+<%= form.hidden_field :new_use %>
+<%= form.hidden_field :traffic %>
+<%= form.hidden_field :disabled_access %>
+<%= form.hidden_field :other %>
+
 
 <button type="submit" name="move_next" class="button forward govuk-button">Continue</button>

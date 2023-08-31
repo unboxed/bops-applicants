@@ -2,11 +2,6 @@
 
 module Bops
   class NeighbourResponse
-    OBJECTIONS = %i[
-      design new_use privacy disabled_access
-      noise traffic other
-    ]
-
     class << self
       def create(planning_application_id, data:)
         Apis::Bops::Client.post_neighbour_response(
@@ -20,9 +15,7 @@ module Bops
       end
 
       def construct_response(params)
-        response = OBJECTIONS.map do |tag|
-          next if params[:"#{tag}"].blank? 
-
+        params[:tags].each do |tag|
           "#{tag.to_s.humanize}: #{params[:"#{tag}"]}\n"
         end.join 
         

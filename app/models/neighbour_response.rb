@@ -1,10 +1,10 @@
 class NeighbourResponse
   include ActiveModel::Model
 
-  STAGES = %w[about_you thoughts tags other_comments]
+  STAGES = %w[about_you thoughts response check]
 
-  RESPONSE_PARAMS  = [:name, :email, :address, :response, :summary_tag, :design, :new_use, :privacy, :disabled_access, :noise, :traffic, :other, :other_comments]
-  PERMITTED_PARAMS = [:stage, :move_next, :planning_application_id, neighbour_response: RESPONSE_PARAMS]
+  RESPONSE_PARAMS  = [:name, :email, :address, :response, :summary_tag, :design, :new_use, :privacy, :disabled_access, :noise, :traffic, :other, :tags, tags: []]
+  PERMITTED_PARAMS = [:stage, :move_next, :move_back, :planning_application_id, :tags, neighbour_response: RESPONSE_PARAMS]
 
   attr_reader :params, :errors
 
@@ -62,11 +62,11 @@ class NeighbourResponse
   end
 
   def tags
-    response_params[:tags].to_s
+    response_params[:tags].to_s.strip
   end
 
-  def other_comments
-    response_params[:other_comments].to_s.strip
+  def response_tags
+    response_params[:tags].scan(/[a-z]+[_[a-z]]*/).map(&:dasherize)
   end
 
   def stage
@@ -74,6 +74,10 @@ class NeighbourResponse
   end
 
   def save
+    if moving_backwards?
+      @stage = previous_stage and return false
+    end
+
     unless valid?
       return false
     end
@@ -90,7 +94,7 @@ class NeighbourResponse
         noise:,
         traffic:,
         other:,
-        other_comments:
+        tags:
       )
 
       Bops::NeighbourResponse.create(
@@ -105,8 +109,10 @@ class NeighbourResponse
   end
 
   def done?
-    stage == "other_comments"
+    stage == "check"
   end
+
+  private
 
   def next_stage
     STAGES[[stage_index + 1, 3].min]
@@ -116,7 +122,13 @@ class NeighbourResponse
     STAGES.index(stage)
   end
 
-  private
+  def moving_backwards?
+    params.key?(:move_back)
+  end
+
+  def previous_stage
+    STAGES[[stage_index - 1, 0].max]
+  end
 
   def valid?
     errors.clear
