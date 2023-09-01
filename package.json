@@ -12,7 +12,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "leaflet": "^1.7.1",
-    "rome": "^11.0.0"
+    "@biomejs/biome": "1.0.0"
   },
   "scripts": {
     "build": "webpack --config config/webpack/webpack.config.js"

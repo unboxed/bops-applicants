@@ -27,10 +27,10 @@ jobs:
     with:
       rubocop: true
 
-  rome:
+  biome:
     uses: ./.github/workflows/linters.yml
     with:
-      rome: true
+      biome: true
 
   language-versions:
     uses: ./.github/workflows/linters.yml
