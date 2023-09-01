@@ -3,8 +3,9 @@ class NeighbourResponse
 
   STAGES = %w[about_you thoughts response check]
 
-  RESPONSE_PARAMS  = [:name, :email, :address, :response, :summary_tag, :design, :new_use, :privacy, :disabled_access, :noise, :traffic, :other, :tags, tags: []]
-  PERMITTED_PARAMS = [:stage, :move_next, :move_back, :planning_application_id, :tags, neighbour_response: RESPONSE_PARAMS]
+  TAGS = [:design, :use, :privacy, :light, :access, :noise, :traffic, :other, ]
+  RESPONSE_PARAMS  = [:name, :email, :address, :response, :summary_tag, TAGS, :tags, tags: []]
+  PERMITTED_PARAMS = [:stage, :move_next, :move_back, :planning_application_id, neighbour_response: RESPONSE_PARAMS]
 
   attr_reader :params, :errors
 
@@ -33,40 +34,14 @@ class NeighbourResponse
     response_params[:summary_tag].to_s.strip
   end
 
-  def design
-    response_params[:design].to_s.strip
-  end
-
-  def new_use
-    response_params[:new_use].to_s.strip
-  end
-
-  def privacy
-    response_params[:privacy].to_s.strip
-  end
-
-  def disabled_access
-    response_params[:disabled_access].to_s.strip
-  end
-
-  def noise
-    response_params[:noise].to_s.strip
-  end
-
-  def traffic
-    response_params[:traffic].to_s.strip
-  end
-
-  def other
-    response_params[:other].to_s.strip
+  TAGS.each do |tag|
+    define_method(tag) do
+      response_params[:"#{tag}"].to_s.strip
+    end
   end
 
   def tags
-    response_params[:tags].to_s.strip
-  end
-
-  def response_tags
-    response_params[:tags].scan(/[a-z]+[_[a-z]]*/).map(&:dasherize)
+    response_params[:tags]
   end
 
   def stage
@@ -88,9 +63,10 @@ class NeighbourResponse
         email:,
         address:,
         summary_tag:,
-        new_use:,
+        use:,
         privacy:,
-        disabled_access:,
+        light:,
+        access:,
         noise:,
         traffic:,
         other:,
@@ -137,11 +113,11 @@ class NeighbourResponse
   end
 
   def validate_response
-    errors.add(:name, :blank) unless name.present? if stage == "about_you"
-    errors.add(:summary_tag, :blank) unless summary_tag.present? if stage == "thoughts"
+    errors.add(:name, :blank, message: "Enter your name") unless name.present? if stage == "about_you"
+    errors.add(:summary_tag, :blank, message: "Select how you feel about the application") unless summary_tag.present? if stage == "thoughts"
 
     if stage == "tags"
-      errors.add(:tags, :blank, message: "You must fill in your reason") unless information_filled?
+      errors.add(:tags, :blank, message: "Enter a comment") unless information_filled?
     end
 
     if errors.any?
@@ -158,7 +134,8 @@ class NeighbourResponse
   end
 
   def information_filled?
-    design.present? || new_use.present? || privacy.present? || disabled_access.present? ||
-      noise.present? || traffic.present? || other.present?
+    TAGS.each do |tag|
+      self.send(tag).present?
+    end
   end
 end

@@ -1,15 +1,34 @@
-<%= form.object.name %>
-<%= form.object.email %>
-<%= form.object.address %>
-<%= form.object.summary_tag %>
-<%= form.object.tags %>
-<%= form.object.new_use %>
-<%= form.object.traffic %>
-<%= form.object.design %>
-<%= form.object.privacy %>
-<%= form.object.other %>
-<%= form.object.disabled_access %>
-<%= form.object.noise %>
+<h1 class="govuk-heading-l">Check your comments before sending</h1>
+
+<p class="govuk-body">
+  You can go back and make changes before you submit your comments
+</p>
+
+<h2 class="govuk-heading-m">Personal details</h2>
+<ul class="govuk-list">
+  <li>Name: <%= form.object.name %></li>
+  <% if form.object.email.present?  %>
+    <li>Email: <%= form.object.email%></li>
+  <% end %>
+  <% if form.object.address.present?  %>
+    <li>Address: <%= form.object.address %></li>
+  <% end %>
+</ul>
+
+<h2 class="govuk-heading-m">Your comments</h2>
+<ul class="govuk-list">
+  <% form.object.tags.reject(&:blank?).each do |tag| %>
+    <li>
+      <strong><%= tag.humanize %></strong><br>
+      <%= form.object.send(:"#{tag}") %>
+    </li>
+  <% end %>
+</ul>
+
+<h2 class="govuk-heading-m">Now send your comments</h2>
+<p class="govuk-body">
+  Once you've submitted your comments, you will not be able to make changes
+</p>
 
 <%= form.hidden_field :name %>
 <%= form.hidden_field :email %>
@@ -17,13 +36,14 @@
 <%= form.hidden_field :summary_tag %>
 <%= form.hidden_field :tags %>
 <%= form.hidden_field :design %>
+<%= form.hidden_field :light %>
 <%= form.hidden_field :privacy %>
 <%= form.hidden_field :noise %>
-<%= form.hidden_field :new_use %>
+<%= form.hidden_field :use %>
 <%= form.hidden_field :traffic %>
-<%= form.hidden_field :disabled_access %>
+<%= form.hidden_field :access %>
 <%= form.hidden_field :other %>
 
 
-<%= form.govuk_submit "Continue" %>
+<%= form.govuk_submit "Send" %>
 <button type="submit" name="move_back" class="govuk-button govuk-button--secondary" data-disable-with="Back">Back</button>

@@ -15,15 +15,11 @@ module Bops
       end
 
       def construct_response(params)
-        params[:tags].each do |tag|
+        tags = params[:tags].scan(/[a-z]+[_[a-z]]*/)
+
+        tags.map do |tag|
           "#{tag.to_s.humanize}: #{params[:"#{tag}"]}\n"
         end.join 
-        
-        if params[:other_comments].present?
-          response = response + "/n #{params[:other_comments]}"
-        end
-
-        response
       end
     end
   end

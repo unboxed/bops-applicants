@@ -1,7 +1,7 @@
 <div class="govuk-form-group">
   <h1 class="govuk-heading-l">Your details</h1>
   <%= form.govuk_text_field :name, label: { text: 'Full name' } %>
-  <%= form.govuk_text_field :email, label: { text: "Email (optional)" }, hint: { text: "We'll use this to tell you about the outcome of this application" } %>
+  <%= form.govuk_text_field :email, label: { text: "Email (optional)" }, hint: { text: "We'll send you an email confirmation once you've submitted your comments" } %>
   <div>
     <label for="address-autocomplete" class="govuk-label">Address (optional)</label>
     <div class="govuk-hint" id="neighbour-response-address-hint">This helps us understand how your property might be affected by the proposal</div>
@@ -15,10 +15,12 @@
 <%= form.hidden_field :design %>
 <%= form.hidden_field :privacy %>
 <%= form.hidden_field :noise %>
-<%= form.hidden_field :new_use %>
+<%= form.hidden_field :light %>
+<%= form.hidden_field :use %>
 <%= form.hidden_field :traffic %>
-<%= form.hidden_field :disabled_access %>
+<%= form.hidden_field :access %>
 <%= form.hidden_field :other %>
 
 
 <button type="submit" name="move_next" class="button forward govuk-button">Continue</button>
+<%= link_to "Back", start_planning_application_neighbour_responses_path(@planning_application["id"]), class: "govuk-button govuk-button--secondary" %>

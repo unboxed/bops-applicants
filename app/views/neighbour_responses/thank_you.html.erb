@@ -2,15 +2,20 @@
   <h1 class="govuk-panel__title">
     We've got your comments
   </h1>
+
+  <h1 class="govuk-panel__title">
+    Application number<br>
+    <%= @planning_application["reference"] %>
+  </h1>
 </div>
 
 <h3 class="govuk-heading-s govuk-!-margin-top-6">
   What happens next
 </h3>
 <p class="govuk-body">
-  A planning officer will read and consider your comments.
+  A planning officer will review your comments as part of their assessment of this application.
 </p>
 <p class="govuk-body">
-  Your comments will be made available publicly. Your response may be edited (redacted) if it includes personal
-  information or offensive language.
+  The decision date for this application is <strong><%= @planning_application["target_date"].to_date.strftime("#{@planning_application["target_date"].to_date.day.ordinalize} %B %Y") %></strong>.
+  You can check the status of the application at any time on the council website.
 </p>

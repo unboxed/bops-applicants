@@ -1,42 +1,36 @@
-<div data-controller="select-checkboxes">
-  <%= form.govuk_check_boxes_fieldset :tags, legend: { text: "Share your comments about the proposed work", size: "l" }, hint: { text: "Select the ares you want to comment on. You can add general comments in the next step." } do %>
-    <%= form.govuk_check_box :tags, :design, label: { text: "The design, size and height of new buildings or extensions" } do %>
-      <%= form.govuk_text_area :design, label: { text: "Tell us more" } %>
-    <% end %>
-    <%= form.govuk_check_box :tags, :new_use, label: { text: "The impact of new uses of buildings or of land" } do %>
-      <%= form.govuk_text_area :new_use, label: { text: "Tell us more" } %>
-    <% end %>
-    <%= form.govuk_check_box :tags, :privacy, label: { text: "Loss of light and the privacy of neighbours" } do %>
-      <%= form.govuk_text_area :privacy, label: { text: "Tell us more" } %>
-    <% end %>
-    <%= form.govuk_check_box :tags, :disabled_access, label: { text: "Access for disabled people" } do %>
-      <%= form.govuk_text_area :disabled_access, label: { text: "Tell us more" } %>
-    <% end %>
-    <%= form.govuk_check_box :tags, :noise, label: { text: "Noise from new uses" } do %>
-      <%= form.govuk_text_area :noise, label: { text: "Tell us more" } %>
-    <% end %>
-    <%= form.govuk_check_box :tags, :traffic, label: { text: "The impact of development on traffic parking and road safety" } do %>
-      <%= form.govuk_text_area :traffic, label: { text: "Tell us more" } %>
-    <% end %>
-    <%= form.govuk_check_box_divider %><br>
-    <%= form.govuk_check_box :tags, :other, label: { text: "Other" } do %>
-      <%= form.govuk_text_area :other, label: { text: "Tell us more" } %>
-    <% end %>
+<%= form.govuk_check_boxes_fieldset :tags, multiple: true, legend: { text: "Share your comments about the proposed work", size: "l" }, hint: { text: "Select the topics you want to comment on." } do %>
+  <%= form.govuk_check_box :tags, :design, label: { text: "Design, size or height of new buildings or extensions" }, checked: response.tags.include?("design") do %>
+    <%= form.govuk_text_area :design, label: { text: "We cannot consider comments about loss of view" } %>
   <% end %>
+  <%= form.govuk_check_box :tags, :use, label: { text: "Use and function of the proposed development" }, checked: response.tags.include?("use")  do %>
+    <%= form.govuk_text_area :use, label: { text: "Tell us about the potential impact of how the site will be used" } %>
+  <% end %>
+  <%= form.govuk_check_box :tags, :light, label: { text: "Impacts on natural light" }, checked: response.tags.include?("light")  do %>
+    <%= form.govuk_text_area :light, label: { text: "Be as specific as possible. Describe the areas where you think natural light could be affected." } %>
+  <% end %>
+  <%= form.govuk_check_box :tags, :privacy, label: { text: "Privacy of neighbours" }, checked: response.tags.include?("privacy")  do %>
+    <%= form.govuk_text_area :privacy, label: { text: "You can upload maps or drawings to help us understand how privacy might be affected." } %>
+  <% end %>
+  <%= form.govuk_check_box :tags, :access, label: { text: "Access" }, checked: response.tags.include?("access")  do %>
+    <%= form.govuk_text_area :access, label: { text: "Tell us about how the proposed work could affect access to buildings, premises or other existing spaces" } %>
+  <% end %>
+  <%= form.govuk_check_box :tags, :noise, label: { text: "Noise from new uses" }, checked: response.tags.include?("noise")  do %>
+    <%= form.govuk_text_area :noise, label: { text: "We cannot refuse permission because of construction noise. We can consider the impact from new uses once the work is complete" } %>
+  <% end %>
+  <%= form.govuk_check_box :tags, :traffic, label: { text: "Traffic, parking or road safety" }, checked: response.tags.include?("traffic")  do %>
+    <%= form.govuk_text_area :traffic, label: { text: "Tell us how the development could affect road users. This could include improvements to parking or safety as well as concerns about increased traffic, for example" } %>
+  <% end %>
+  <%= form.govuk_check_box_divider %><br>
+  <%= form.govuk_check_box :tags, :other, label: { text: "Other" }, checked: response.tags.include?("other")  do %>
+    <%= form.govuk_text_area :other, label: { text: "Use this space to share any other comments about this application" } %>
+  <% end %>
+<% end %>
 
-  <%= form.hidden_field :name %>
-  <%= form.hidden_field :email %>
-  <%= form.hidden_field :address %>
-  <%= form.hidden_field :summary_tag %>
-  <%= hidden_field_tag(:response_tags, @new_response.response_tags) %>
+<%= form.hidden_field :name %>
+<%= form.hidden_field :email %>
+<%= form.hidden_field :address %>
+<%= form.hidden_field :summary_tag %>
 
-  <%= form.govuk_submit "Continue" %>
-  <button type="submit" name="move_back" class="govuk-button govuk-button--secondary" data-disable-with="Back">Back</button>
-</div>
+<%= form.govuk_submit "Continue" %>
+<button type="submit" name="move_back" class="govuk-button govuk-button--secondary" data-disable-with="Back">Back</button>
 
-<script>
-  var tags = document.getElementsByName("response_tags")[0].value.split(" ");
-  for (var i = 0; i < tags.length; i++) {
-    document.getElementById(`neighbour-response-tags-${tags[i]}-field`).click()
-  }  
-</script>

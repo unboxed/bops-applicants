@@ -6,6 +6,3 @@ import { application } from "./application"
 
 import AddressFillController from "./address_fill_controller"
 application.register("address-fill", AddressFillController)
-
-import SelectCheckboxesController from "./select_checkboxes_controller"
-application.register("select-checkboxes", SelectCheckboxesController)

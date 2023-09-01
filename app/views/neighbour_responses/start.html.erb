@@ -8,6 +8,26 @@
 
 <h2 class="govuk-heading-m">Application number: <%= @planning_application["reference"] %></h2>
 
+<p class="govuk-body">
+  Use this form to comment on this planning application
+</p>
+
+<h3 class="govuk-heading-s govuk-!-margin-top-6">
+  Writing useful comments
+</h3>
+<p class="govuk-body">
+  Your comments help planning officers to understand the potential impact of the proposed development. 
+  To make your comments more helpful:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>read the application documents and view drawings before you start</li>
+  <li>be specific and tell us which part of the application your comment refers to </li>
+</ul>
+<p class="govuk-body">
+  Your comments will be made available to the public. Your response may be edited (redacted) 
+  if it includes personal information or offensive language.
+</p>
+
 <h3 class="govuk-heading-s govuk-!-margin-top-6">
   What we will consider
 </h3>
@@ -25,6 +45,24 @@
 </ul>
 
 <h3 class="govuk-heading-s govuk-!-margin-top-6">
+  What we cannot consider
+</h3>
+<p class="govuk-body">
+  We cannot consider issues such as:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>disputes about civil matters, such as building freeholds or the ‘right to light’</li>
+  <li>loss of property value</li>
+  <li>loss of view</li>
+  <li>issues which are dealt with by other forms of law, such as party wall matters</li>
+</ul>
+<p class="govuk-body">
+  We cannot refuse permission because of construction noise. However, we can restrict the hours of 
+  work to reduce disturbance to residents and other sensitive neighbours.
+</p>
+
+
+<h3 class="govuk-heading-s govuk-!-margin-top-6">
   What happens next
 </h3>
 <p class="govuk-body">
@@ -32,11 +70,16 @@
 </p>
 <ul class="govuk-list govuk-list--bullet">
   <li>a planning officer will read and consider your comments</li>
-  <li>we will inform you of the decision about this application once it's been made</li>
+  <li>you can check the status of the application by using the application number</li>
+  <li>
+    if you are commenting on a householder application, such as an extension, dropped kerb, new garage, driveway or roof alterations, 
+    you cannot make any further comments on this application
+  </li>
 </ul>
 <p class="govuk-body">
-  Your comments will be made available publicly. Your response may be edited (redacted) if it includes personal
-  information or offensive language.
+  <strong>
+    We will make a decision about this application by <%= @planning_application["target_date"].to_date.strftime("#{@planning_application["target_date"].to_date.day.ordinalize} %B %Y") %>.
+  </strong>
 </p>
 
 <%= link_to new_planning_application_neighbour_responses_path(@planning_application["id"]), class: "govuk-button govuk-button--start" do %>
