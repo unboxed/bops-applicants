@@ -68,7 +68,7 @@ module ApiSpecHelper
             response:,
             summary_tag:
           }
-        }
+        }.to_json
       )
       .to_return(status: 200, headers: {})
   end

@@ -3,16 +3,23 @@
 require "rails_helper"
 
 RSpec.describe "Planning applications", type: :system do
+  include_context "local_authority_contact_details"
+
   before do
     ENV["API_BEARER"] = "123"
     ENV["PROTOCOL"] = "https"
+
+    ENV["OS_VECTOR_TILES_API_KEY"] = "testtest"
+    allow_any_instance_of(Faraday::Connection).to receive(:get).and_return(instance_double("response", status: 200, body: "{}")) # rubocop:disable RSpec/VerifiedDoubleReference
+
+    stub_request(:get, "https://api.os.uk/search/places/v1/find").with(query: hash_including({}))
   end
 
   it "allows the user to submit a comment" do
     stub_successful_get_planning_application
     stub_successful_get_local_authority
     stub_successful_post_neighbour_response(
-      planning_application_id: 28,
+      28,
       name: "Keira Walsh",
       email: "keira@email.com",
       address: "123 Made Up street",
@@ -25,7 +32,7 @@ RSpec.describe "Planning applications", type: :system do
     click_link "this link"
 
     expect(page).to have_content("Comment on a planning application")
-    click_button "Start now"
+    click_link "Start now"
 
     expect(page).to have_content("Your details")
 
@@ -83,7 +90,7 @@ RSpec.describe "Planning applications", type: :system do
     stub_successful_get_planning_application
     stub_successful_get_local_authority
     stub_successful_post_neighbour_response(
-      planning_application_id: 28,
+      28,
       name: "Lucy Bronze",
       email: "keira@email.com",
       address: "123 Made Up street",
