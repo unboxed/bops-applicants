@@ -24,9 +24,24 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
     - config/routes.rb
+    - app/models/neighbour_response.rb
 
 Metrics/MethodLength:
-  Max: 20
+  Max: 25
+
+Metric/AbcSize:
+  Exclude: 
+    - app/models/neighbour_response.rb
+    - app/controllers/concerns/api/error_handler.rb
+
+Metrics/ClassLength: 
+  Exclude: 
+    - app/services/apis/bops/client.rb
+
+Metrics/ParameterLists:
+  Exclude: 
+    - app/services/apis/bops/client.rb
+    - spec/support/api_spec_helper.rb
 
 Layout/LineLength:
   Exclude:

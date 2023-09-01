@@ -15,7 +15,7 @@ module Api
 
       private
 
-      def format_error(error) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+      def format_error(error)
         error_hash = instance_eval(error.message)
 
         response = error_hash[:response]

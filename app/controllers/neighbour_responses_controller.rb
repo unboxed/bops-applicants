@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
 class NeighbourResponsesController < ApplicationController
-  before_action :build_response, :set_planning_application, only: [:new, :create]
+  before_action :build_response, :set_planning_application, only: %i[new create]
   before_action :set_planning_application
 
-  def start
-  end
+  def start; end
 
-  def thank_you
-  end
+  def thank_you; end
 
-  def new
-  end
+  def new; end
 
   def create
     if @new_response.save

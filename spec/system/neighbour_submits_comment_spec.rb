@@ -12,11 +12,11 @@ RSpec.describe "Planning applications", type: :system do
     stub_successful_get_planning_application
     stub_successful_get_local_authority
     stub_successful_post_neighbour_response(
-      planning_application_id: 28, 
+      planning_application_id: 28,
       name: "Keira Walsh",
-      email: "keira@email.com", 
+      email: "keira@email.com",
       address: "123 Made Up street",
-      response: "Access: I think the access will be good/nOther: I like this neighbour", 
+      response: "Access: I think the access will be good/nOther: I like this neighbour",
       summary_tag: "supportive"
     )
 
@@ -28,9 +28,9 @@ RSpec.describe "Planning applications", type: :system do
     click_button "Start now"
 
     expect(page).to have_content("Your details")
-    
+
     click_button "Continue"
-    
+
     expect(page).to have_content("Enter your name")
 
     fill_in "Full name", with: "Keira Walsh"
@@ -58,8 +58,8 @@ RSpec.describe "Planning applications", type: :system do
     check "Access"
 
     fill_in "Tell us about how the proposed work could affect access to buildings, premises or other existing spaces",
-      with: "I think the access will be good"
-    
+            with: "I think the access will be good"
+
     check "Other"
 
     fill_in "Use this space to share any other comments about this application", with: "I like this neighbour"
@@ -83,11 +83,11 @@ RSpec.describe "Planning applications", type: :system do
     stub_successful_get_planning_application
     stub_successful_get_local_authority
     stub_successful_post_neighbour_response(
-      planning_application_id: 28, 
+      planning_application_id: 28,
       name: "Lucy Bronze",
-      email: "keira@email.com", 
+      email: "keira@email.com",
       address: "123 Made Up street",
-      response: "Noise: It will be too noisy/nOther: I like this neighbour", 
+      response: "Noise: It will be too noisy/nOther: I like this neighbour",
       summary_tag: "supportive"
     )
 
@@ -117,8 +117,8 @@ RSpec.describe "Planning applications", type: :system do
     check "Access"
 
     fill_in "Tell us about how the proposed work could affect access to buildings, premises or other existing spaces",
-      with: "I think the access will be good"
-    
+            with: "I think the access will be good"
+
     check "Other"
 
     fill_in "Use this space to share any other comments about this application", with: "I like this neighbour"
@@ -145,7 +145,7 @@ RSpec.describe "Planning applications", type: :system do
     uncheck "Access"
     check "Noise from new uses"
     fill_in "We cannot refuse permission because of construction noise. We can consider the impact from new uses once the work is complete",
-      with: "It will be too noisy"
+            with: "It will be too noisy"
 
     click_button "Continue"
 

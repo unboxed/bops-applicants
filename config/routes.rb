@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   resources :planning_applications, only: %i[show] do
     resource :neighbour_responses do
-      get '/start', action: 'start', as: :start
-      get '/new',   action: 'new',   as: :new
-      get '/thank-you', action: 'thank_you', as: :thank_you
+      get "/start", action: "start", as: :start
+      get "/new",   action: "new",   as: :new
+      get "/thank-you", action: "thank_you", as: :thank_you
     end
   end
 
