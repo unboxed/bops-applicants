@@ -137,11 +137,11 @@ RSpec.describe Apis::Bops::Client do
       expect(Request).to receive(:new).with(
         :post,
         "planning_applications/#{planning_application_id}/neighbour_responses",
-        { 
+        {
           name: "Ella Toone",
-          response: "Good", 
-          address: "123 street", 
-          email: "ella@email.com", 
+          response: "Good",
+          address: "123 street",
+          email: "ella@email.com",
           summary_tag: "supportive"
         }.to_json,
         false

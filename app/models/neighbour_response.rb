@@ -117,8 +117,8 @@ class NeighbourResponse
     params[:neighbour_response] || {}
   end
 
-  def information_filled?
+  def information_filled? # rubocop:disable Metrics/CyclomaticComplexity
     design.present? || use.present? || light.present? || privacy.present? ||
-    access.present? || noise.present? || traffic.present? || other.present?
+      access.present? || noise.present? || traffic.present? || other.present?
   end
 end

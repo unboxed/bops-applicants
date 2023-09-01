@@ -2,10 +2,10 @@
 
 require "rails_helper"
 
-RSpec.describe "Planning applications", type: :system do
+RSpec.describe "Planning applications", js: true, type: :system do
   include_context "local_authority_contact_details"
 
-  before do 
+  before do
     ENV["OS_VECTOR_TILES_API_KEY"] = "testtest"
     ENV["API_BEARER"] = "123"
     ENV["PROTOCOL"] = "https"
@@ -15,7 +15,7 @@ RSpec.describe "Planning applications", type: :system do
   it "allows the user to submit a comment" do
     stub_successful_get_planning_application
     stub_successful_get_local_authority
-   
+
     stub_successful_post_neighbour_response(
       planning_application_id: 28,
       name: "Keira Walsh",
@@ -39,8 +39,8 @@ RSpec.describe "Planning applications", type: :system do
     expect(page).to have_content("Enter your name")
 
     fill_in "Full name", with: "Keira Walsh"
-    fill_in "Email", with: "keira@email.com"
-    fill_in "Address", with: "123 Made Up street"
+    fill_in "Email (optional)", with: "keira@email.com"
+    fill_in "Address (optional)", with: "123 Made Up street"
 
     click_button "Continue"
     click_button "Continue"
@@ -107,8 +107,8 @@ RSpec.describe "Planning applications", type: :system do
     expect(page).to have_content("Your details")
 
     fill_in "Full name", with: "Keira Walsh"
-    fill_in "Email", with: "keira@email.com"
-    fill_in "Address", with: "123 Made Up street"
+    fill_in "Email (optional)", with: "keira@email.com"
+    fill_in "Address (optional)", with: "123 Made Up street"
 
     click_button "Continue"
     click_button "Continue"
