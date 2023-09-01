@@ -104,7 +104,7 @@ class NeighbourResponse
                  message: "Select how you feel about the application")
     end
 
-    errors.add(:tags, :blank, message: "Enter a comment") if stage == "tags" && !information_filled?
+    errors.add(:tags, :blank, message: "Enter a comment") if stage == "response" && !information_filled?
 
     @stage = stage if errors.any?
   end
@@ -118,8 +118,7 @@ class NeighbourResponse
   end
 
   def information_filled?
-    TAGS.each do |tag|
-      send(tag).present?
-    end
+    design.present? || use.present? || light.present? || privacy.present? ||
+    access.present? || noise.present? || traffic.present? || other.present?
   end
 end

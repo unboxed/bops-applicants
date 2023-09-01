@@ -2,11 +2,15 @@
   <h1 class="govuk-heading-l">Your details</h1>
   <%= form.govuk_text_field :name, label: { text: 'Full name' } %>
   <%= form.govuk_text_field :email, label: { text: "Email (optional)" }, hint: { text: "We'll send you an email confirmation once you've submitted your comments" } %>
-  <div>
-    <label for="address-autocomplete" class="govuk-label">Address (optional)</label>
-    <div class="govuk-hint" id="neighbour-response-address-hint">This helps us understand how your property might be affected by the proposal</div>
-    <div id="address-autocomplete-container"></div>
-  </div>
+  <% if form.object.address.present? %>
+    <%= form.govuk_text_field :address, label: { text: "Address (optional)" }, hint: { text: "This helps us understand how your property might be affected by the proposal" }  %>
+  <% else %>
+    <div>
+      <label for="address-autocomplete" class="govuk-label">Address (optional)</label>
+      <div class="govuk-hint" id="neighbour-response-address-hint">This helps us understand how your property might be affected by the proposal</div>
+      <div id="address-autocomplete-container"></div>
+    </div>
+  <% end %>
 </div>
 
 <%= hidden_field_tag(:os_path, os_places_api_index_url) %>

@@ -5,25 +5,23 @@ require "rails_helper"
 RSpec.describe "Planning applications", type: :system do
   include_context "local_authority_contact_details"
 
-  before do
+  before do 
+    ENV["OS_VECTOR_TILES_API_KEY"] = "testtest"
     ENV["API_BEARER"] = "123"
     ENV["PROTOCOL"] = "https"
-
-    ENV["OS_VECTOR_TILES_API_KEY"] = "testtest"
-    allow_any_instance_of(Faraday::Connection).to receive(:get).and_return(instance_double("response", status: 200, body: "{}")) # rubocop:disable RSpec/VerifiedDoubleReference
-
     stub_request(:get, "https://api.os.uk/search/places/v1/find").with(query: hash_including({}))
   end
 
   it "allows the user to submit a comment" do
     stub_successful_get_planning_application
     stub_successful_get_local_authority
+   
     stub_successful_post_neighbour_response(
-      28,
+      planning_application_id: 28,
       name: "Keira Walsh",
       email: "keira@email.com",
       address: "123 Made Up street",
-      response: "Access: I think the access will be good/nOther: I like this neighbour",
+      response: "Access: I think the access will be good\nOther: I like this neighbour\n",
       summary_tag: "supportive"
     )
 
@@ -44,6 +42,7 @@ RSpec.describe "Planning applications", type: :system do
     fill_in "Email", with: "keira@email.com"
     fill_in "Address", with: "123 Made Up street"
 
+    click_button "Continue"
     click_button "Continue"
 
     expect(page).to have_content("How do you feel about the proposed work?")
@@ -90,11 +89,11 @@ RSpec.describe "Planning applications", type: :system do
     stub_successful_get_planning_application
     stub_successful_get_local_authority
     stub_successful_post_neighbour_response(
-      28,
+      planning_application_id: 28,
       name: "Lucy Bronze",
-      email: "keira@email.com",
+      response: "Noise: It will be too noisy\nOther: I like this neighbour\n",
       address: "123 Made Up street",
-      response: "Noise: It will be too noisy/nOther: I like this neighbour",
+      email: "keira@email.com",
       summary_tag: "supportive"
     )
 
@@ -103,7 +102,7 @@ RSpec.describe "Planning applications", type: :system do
     click_link "this link"
 
     expect(page).to have_content("Comment on a planning application")
-    click_button "Start now"
+    click_link "Start now"
 
     expect(page).to have_content("Your details")
 
@@ -112,6 +111,7 @@ RSpec.describe "Planning applications", type: :system do
     fill_in "Address", with: "123 Made Up street"
 
     click_button "Continue"
+    click_button "Continue"
 
     expect(page).to have_content("How do you feel about the proposed work?")
 
@@ -119,12 +119,12 @@ RSpec.describe "Planning applications", type: :system do
 
     click_button "Continue"
 
-    expect(page).to have_content("Enter a comment")
+    expect(page).to have_content("Share your comments about the proposed work")
 
-    check "Access"
+    check "Design, size or height of new buildings or extensions"
 
-    fill_in "Tell us about how the proposed work could affect access to buildings, premises or other existing spaces",
-            with: "I think the access will be good"
+    fill_in "We cannot consider comments about loss of view",
+            with: "I think the design will be good"
 
     check "Other"
 
@@ -135,8 +135,8 @@ RSpec.describe "Planning applications", type: :system do
     expect(page).to have_content("Keira Walsh")
     expect(page).to have_content("keira@email.com")
     expect(page).to have_content("123 Made Up street")
-    expect(page).to have_content("Access")
-    expect(page).to have_content("I think the access will be good")
+    expect(page).to have_content("Design")
+    expect(page).to have_content("I think the design will be good")
     expect(page).to have_content("Other")
     expect(page).to have_content("I like this neighbour")
 
@@ -149,7 +149,7 @@ RSpec.describe "Planning applications", type: :system do
     click_button "Continue"
     click_button "Continue"
 
-    uncheck "Access"
+    uncheck "Design, size or height of new buildings or extensions"
     check "Noise from new uses"
     fill_in "We cannot refuse permission because of construction noise. We can consider the impact from new uses once the work is complete",
             with: "It will be too noisy"
@@ -164,8 +164,8 @@ RSpec.describe "Planning applications", type: :system do
     expect(page).to have_content("Other")
     expect(page).to have_content("I like this neighbour")
 
-    expect(page).not_to have_content("Other")
-    expect(page).not_to have_content("I like this neighbour")
+    expect(page).not_to have_content("Design")
+    expect(page).not_to have_content("I think the design will be good")
 
     click_button "Send"
 
