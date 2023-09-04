@@ -10,7 +10,8 @@ module Bops
           response: construct_response(data),
           address: data[:address],
           email: data[:email],
-          summary_tag: data[:summary_tag]
+          summary_tag: data[:summary_tag],
+          files: data[:files]
         )
       end
 
@@ -18,7 +19,7 @@ module Bops
         tags = params[:tags].scan(/[a-z]+[_[a-z]]*/)
 
         tags.map do |tag|
-          "#{tag.to_s.humanize}: #{params[:"#{tag}"]}\n"
+          "#{tag.to_s.humanize}: #{params[:"#{tag.strip}"]}\n"
         end.join
       end
     end

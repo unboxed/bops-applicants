@@ -55,17 +55,16 @@ module ApiSpecHelper
       .to_return(status: 200, body: file_fixture("cancelled_validation_requests.json").read, headers: {})
   end
 
-  def stub_successful_post_neighbour_response(planning_application_id:, name:, email:, address:, response:, summary_tag:)
+  def stub_successful_post_neighbour_response(planning_application_id:, name:, email:, address:, response:, summary_tag:, files:)
     stub_request(:post, "https://default.bops-care.link/api/v1/planning_applications/#{planning_application_id}/neighbour_responses")
       .with(
-        headers:,
-        body: {
-          name:,
-          response:,
-          address:,
-          email:,
-          summary_tag:
-        }.to_json
+        headers: {
+          "Accept" => "*/*",
+          "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+          "Authorization" => "Bearer 123",
+          "User-Agent" => "Ruby"
+        },
+        body: "name=#{ERB::Util.url_encode(name)}&response=#{ERB::Util.url_encode(response)}&address=#{ERB::Util.url_encode(address)}&email=#{ERB::Util.url_encode(email)}&summary_tag=#{ERB::Util.url_encode(summary_tag)}&files%5B%5D=#{ERB::Util.url_encode(files)}"
       )
       .to_return(status: 200, headers: {}, body: "{}")
   end

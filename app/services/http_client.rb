@@ -20,12 +20,11 @@ class HttpClient
   end
 
   # FIXME: to use Faraday for file uploads
-  def http_party(endpoint, params)
-    HTTParty.patch(
-      "#{api_base_url}#{endpoint}",
-      headers: { Authorization: authorization_header },
-      body: file_params_body(params)
-    )
+  def http_party(endpoint, method, params)
+    HTTParty.send(method,
+                  "#{api_base_url}#{endpoint}",
+                  headers: { Authorization: authorization_header },
+                  body: method == :post ? params.merge(file_params_body(params)) : file_params_body(params))
   end
 
   private

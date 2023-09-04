@@ -33,7 +33,7 @@ RSpec.describe HttpClient do
         "#{url}planning_applications/28", { body: { new_file: "file" }, headers: { Authorization: token } }
       )
 
-      described_class.new.http_party("planning_applications/28", { file: "file" })
+      described_class.new.http_party("planning_applications/28", :patch, { file: "file" })
     end
 
     it "when params is for more than one file makes an HTTP party connection" do
@@ -41,7 +41,15 @@ RSpec.describe HttpClient do
         "#{url}planning_applications/28", { body: { files: "files" }, headers: { Authorization: token } }
       )
 
-      described_class.new.http_party("planning_applications/28", { files: "files" })
+      described_class.new.http_party("planning_applications/28", :patch, { files: "files" })
+    end
+
+    it "uses the right method depending which is passed" do
+      expect(HTTParty).to receive(:post).with(
+        "#{url}planning_applications/28", { body: { files: "files" }, headers: { Authorization: token } }
+      )
+
+      described_class.new.http_party("planning_applications/28", :post, { files: "files" })
     end
   end
 end

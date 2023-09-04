@@ -19,6 +19,7 @@ class NeighbourResponse
   attribute :noise
   attribute :traffic
   attribute :other
+  attribute :files, array: true, default: []
   attribute :stage
   attribute :move_next
   attribute :move_back
@@ -54,8 +55,8 @@ class NeighbourResponse
     return false unless done? && final_check
 
     response_data = ActionController::Parameters.new(
-      name:, email:, address:, summary_tag:, use:,
-      privacy:, light:, access:, noise:, traffic:,
+      name:, email:, address:, summary_tag:, files:, use:,
+      privacy:, light:, access:, noise:, traffic:, design:,
       other:, tags:
     )
 
@@ -68,8 +69,6 @@ class NeighbourResponse
       false
     end
   end
-  # rubocop:enable Metrics/PerceivedComplexity
-  # rubocop:enable Metrics/CyclomaticComplexity
 
   def done?
     stage == "check"
