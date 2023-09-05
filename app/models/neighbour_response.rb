@@ -68,6 +68,8 @@ class NeighbourResponse
       false
     end
   end
+  # rubocop:enable Metrics/PerceivedComplexity
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def done?
     stage == "check"
