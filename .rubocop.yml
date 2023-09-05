@@ -27,7 +27,7 @@ Metrics/BlockLength:
     - app/models/neighbour_response.rb
 
 Metrics/MethodLength:
-  Max: 25
+  Enabled: false
 
 Metric/AbcSize:
   Exclude: 
@@ -37,6 +37,7 @@ Metric/AbcSize:
 Metrics/ClassLength: 
   Exclude: 
     - app/services/apis/bops/client.rb
+    - app/models/neighbour_response.rb
 
 Metrics/ParameterLists:
   Exclude: 

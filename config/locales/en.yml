@@ -144,6 +144,14 @@ en:
   activemodel:
     errors:
       models:
+        neighbour_response: 
+          attributes: 
+            name: 
+              blank: "Enter your name"
+            summary_tag: 
+              blank: "Select how you feel about the application"
+            tags:
+              blank: "Enter a comment"
         bops/description_change_validation_request:
           attributes:
             approved:
