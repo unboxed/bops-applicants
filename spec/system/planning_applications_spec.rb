@@ -24,7 +24,7 @@ RSpec.describe "Planning applications", type: :system do
     expect(map_selector["latitude"]).to eq("123")
     expect(map_selector["longitude"]).to eq("-123")
 
-    expect(page).to have_content("To comment on this application, send an email to planning@southwark.com. Use the application reference number above as the email subject")
+    expect(page).to have_content("To comment on this application use this link")
     expect(page).to have_content("This is the site plan")
     expect(page).to have_content("PLAN02")
     expect(page).to have_css("img[src*='http://example.com/document_path2.pdf']")

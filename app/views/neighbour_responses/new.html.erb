@@ -1,0 +1,8 @@
+<section aria-labelledby="page-heading">
+  <%= form_for @new_response,
+  url: planning_application_neighbour_responses_path(@planning_application["id"]),
+  builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
+    <%= hidden_field_tag :stage, @new_response.stage %>
+    <%= render @new_response.stage, form: form, response: form.object %>
+  <% end %>
+</section>

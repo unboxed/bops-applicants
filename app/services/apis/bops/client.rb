@@ -2,7 +2,7 @@
 
 module Apis
   module Bops
-    class Client # rubocop:disable Metrics/ClassLength
+    class Client
       class << self
         # Planning application
         def get_planning_application(planning_application_id)
@@ -17,6 +17,20 @@ module Apis
           request(
             http_method: :get,
             endpoint: "local_authorities/#{local_authority_subdomain}"
+          )
+        end
+
+        def post_neighbour_response(planning_application_id, name:, response:, address:, email:, summary_tag:)
+          request(
+            http_method: :post,
+            endpoint: "planning_applications/#{planning_application_id}/neighbour_responses",
+            params: {
+              name:,
+              response:,
+              address:,
+              email:,
+              summary_tag:
+            }.to_json
           )
         end
 

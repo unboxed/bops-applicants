@@ -54,4 +54,19 @@ module ApiSpecHelper
       .with(headers:)
       .to_return(status: 200, body: file_fixture("cancelled_validation_requests.json").read, headers: {})
   end
+
+  def stub_successful_post_neighbour_response(planning_application_id:, name:, email:, address:, response:, summary_tag:)
+    stub_request(:post, "https://default.bops-care.link/api/v1/planning_applications/#{planning_application_id}/neighbour_responses")
+      .with(
+        headers:,
+        body: {
+          name:,
+          response:,
+          address:,
+          email:,
+          summary_tag:
+        }.to_json
+      )
+      .to_return(status: 200, headers: {}, body: "{}")
+  end
 end

@@ -1,0 +1,30 @@
+<div class="govuk-form-group" data-controller="address-fill">
+  <h1 class="govuk-heading-l">Your details</h1>
+  <%= form.govuk_text_field :name, label: { text: 'Full name' } %>
+  <%= form.govuk_text_field :email, label: { text: "Email (optional)" }, hint: { text: "We'll send you an email confirmation once you've submitted your comments" } %>
+  <% if form.object.address.present? %>
+    <%= form.govuk_text_field :address, label: { text: "Address (optional)" }, hint: { text: "This helps us understand how your property might be affected by the proposal" }  %>
+  <% else %>
+    <div>
+      <label for="address-autocomplete" class="govuk-label">Address (optional)</label>
+      <div class="govuk-hint" id="neighbour-response-address-hint">This helps us understand how your property might be affected by the proposal</div>
+      <div id="address-autocomplete-container"></div>
+    </div>
+  <% end %>
+</div>
+
+<%= hidden_field_tag(:os_path, os_places_api_index_url) %>
+<%= form.hidden_field :summary_tag %>
+<%= form.hidden_field :tags %>
+<%= form.hidden_field :design %>
+<%= form.hidden_field :privacy %>
+<%= form.hidden_field :noise %>
+<%= form.hidden_field :light %>
+<%= form.hidden_field :use %>
+<%= form.hidden_field :traffic %>
+<%= form.hidden_field :access %>
+<%= form.hidden_field :other %>
+
+
+<button type="submit" name="move_next" class="button forward govuk-button">Continue</button>
+<%= link_to "Back", start_planning_application_neighbour_responses_path(@planning_application["id"]), class: "govuk-button govuk-button--secondary" %>

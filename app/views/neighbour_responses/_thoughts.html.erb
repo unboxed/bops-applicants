@@ -1,0 +1,22 @@
+<%= form.govuk_radio_buttons_fieldset(:summary_tag, legend: { size: "l", text: "How do you feel about the proposed work?" }) do %>
+  <%= form.govuk_radio_button :summary_tag, 'supportive', label: { text: 'I support the application' } %>
+  <%= form.govuk_radio_button :summary_tag, 'neutral', label: { text: "I want to make general comments" } %>
+  <%= form.govuk_radio_button :summary_tag, 'objection', label: { text: "I don't support the application" } %>
+<% end %>
+
+<%= form.hidden_field :name %>
+<%= form.hidden_field :email %>
+<%= form.hidden_field :address %>
+<%= form.hidden_field :tags %>
+<%= form.hidden_field :design %>
+<%= form.hidden_field :privacy %>
+<%= form.hidden_field :noise %>
+<%= form.hidden_field :use %>
+<%= form.hidden_field :light %>
+<%= form.hidden_field :traffic %>
+<%= form.hidden_field :access %>
+<%= form.hidden_field :other %>
+
+
+<button type="submit" name="move_next" class="button forward govuk-button" data-disable-with="Continue">Continue</button>
+<button type="submit" name="move_back" class="govuk-button govuk-button--secondary" data-disable-with="Back">Back</button>

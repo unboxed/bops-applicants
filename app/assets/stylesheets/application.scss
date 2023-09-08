@@ -1,5 +1,6 @@
 $govuk-images-path: "/assets/images/";
 @import "govuk-frontend/govuk/all";
+@import "accessible-autocomplete/dist/accessible-autocomplete.min";
 @import "components/buttons";
 @import "components/flashes";
 @import "task-list";

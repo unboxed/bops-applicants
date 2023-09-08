@@ -131,4 +131,23 @@ RSpec.describe Apis::Bops::Client do
       described_class.patch_replacement_document(5, planning_application_id, change_access_id, "file")
     end
   end
+
+  describe ".post_neighbour_response" do
+    it "initializes a Request object with planning_application_id, name, email, response, summary_tag and address and invokes #call" do
+      expect(Request).to receive(:new).with(
+        :post,
+        "planning_applications/#{planning_application_id}/neighbour_responses",
+        {
+          name: "Ella Toone",
+          response: "Good",
+          address: "123 street",
+          email: "ella@email.com",
+          summary_tag: "supportive"
+        }.to_json,
+        false
+      ).and_call_original
+
+      described_class.post_neighbour_response(planning_application_id, name: "Ella Toone", response: "Good", address: "123 street", email: "ella@email.com", summary_tag: "supportive")
+    end
+  end
 end
