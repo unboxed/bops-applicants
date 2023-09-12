@@ -25,6 +25,13 @@
   <% end %>
 </ul>
 
+<%= form.govuk_file_field :files, 
+  label: { text: 'Upload documents' }, 
+  hint: { text: "Add any documents that will help the planning officers understand your comments. For example, site maps, photographs or drawings." },
+  direct_upload: true,
+  multiple: true
+%>
+
 <h2 class="govuk-heading-m">Now send your comments</h2>
 <p class="govuk-body">
   Once you've submitted your comments, you will not be able to make changes
@@ -44,7 +51,6 @@
 <%= form.hidden_field :access %>
 <%= form.hidden_field :other %>
 <%= form.hidden_field :final_check, value: "true" %>
-
 
 <%= form.govuk_submit "Send" %>
 <button type="submit" name="move_back" class="govuk-button govuk-button--secondary" data-disable-with="Back">Back</button>

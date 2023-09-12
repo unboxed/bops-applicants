@@ -65,7 +65,7 @@ class Request
 
     if upload_file
       # FIXME: to use Faraday for file uploads
-      response = HttpClient.new.http_party(endpoint, params)
+      response = HttpClient.new.http_party(endpoint, http_method, params)
       [response.parsed_response, response.code]
     else
       response = connection.public_send(http_method, endpoint, params)

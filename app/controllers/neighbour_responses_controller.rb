@@ -6,7 +6,7 @@ class NeighbourResponsesController < ApplicationController
 
   RESPONSE_PARAMS  = [
     :name, :email, :address, :response, :summary_tag, :design, :final_check,
-    :use, :privacy, :light, :access, :noise, :traffic, :other, :tags,
+    :use, :privacy, :light, :access, :noise, :traffic, :other, :tags, { files: [] },
     { tags: [] }
   ].freeze
 
