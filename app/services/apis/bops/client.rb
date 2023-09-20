@@ -20,7 +20,7 @@ module Apis
           )
         end
 
-        def post_neighbour_response(planning_application_id, name:, response:, address:, email:, summary_tag:, files:)
+        def post_neighbour_response(planning_application_id, name:, response:, address:, email:, summary_tag:, files:, tags:)
           request(
             http_method: :post,
             endpoint: "planning_applications/#{planning_application_id}/neighbour_responses",
@@ -30,7 +30,8 @@ module Apis
               address:,
               email:,
               summary_tag:,
-              files:
+              files:,
+              tags:
             },
             upload_file: true
           )
