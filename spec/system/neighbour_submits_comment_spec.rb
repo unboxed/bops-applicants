@@ -22,14 +22,15 @@ RSpec.describe "Planning applications", js: true, type: :system do
       name: "Keira Walsh",
       email: "keira@email.com",
       address: "123 Made Up street",
-      response: "Access: I think the access will be good\nOther: I like this neighbour\n",
+      response: "I think the access will be good\n\nI like this neighbour\n\n",
       summary_tag: "supportive",
-      files: ""
+      files: "",
+      tags: %w[access other]
     )
 
     visit "/planning_applications/28"
 
-    click_link "this link"
+    click_link "Comment on this application"
 
     expect(page).to have_content("Comment on a planning application")
     click_link "Start now"
@@ -93,16 +94,17 @@ RSpec.describe "Planning applications", js: true, type: :system do
     stub_successful_post_neighbour_response(
       planning_application_id: 28,
       name: "Lucy Bronze",
-      response: "Noise: It will be too noisy\nOther: I like this neighbour\n",
+      response: "It will be too noisy\n\nI like this neighbour\n\n",
       address: "123 Made Up street",
       email: "keira@email.com",
       summary_tag: "supportive",
-      files: ""
+      files: "",
+      tags: %w[noise other]
     )
 
     visit "/planning_applications/28"
 
-    click_link "this link"
+    click_link "Comment on this application"
 
     expect(page).to have_content("Comment on a planning application")
     click_link "Start now"
@@ -185,9 +187,10 @@ RSpec.describe "Planning applications", js: true, type: :system do
       name: "Keira Walsh",
       email: "keira@email.com",
       address: "123 Made Up street",
-      response: "Access: I think the access will be good\nOther: I like this neighbour\n",
+      response: "I think the access will be good\n\n",
       summary_tag: "supportive",
-      files: fixture_file_upload(Rails.root.join("spec/fixtures/images/proposed-floorplan.png"), "proposed-floorplan/png")
+      files: fixture_file_upload(Rails.root.join("spec/fixtures/images/proposed-floorplan.png"), "proposed-floorplan/png"),
+      tags: ["acess"]
     )
 
     visit "/planning_applications/28"

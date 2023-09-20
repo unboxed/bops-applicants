@@ -143,12 +143,13 @@ RSpec.describe Apis::Bops::Client do
           address: "123 street",
           email: "ella@email.com",
           summary_tag: "supportive",
-          files: [""]
+          files: [""],
+          tags: ["design"]
         },
         true
       ).and_call_original
 
-      described_class.post_neighbour_response(planning_application_id, name: "Ella Toone", response: "Good", address: "123 street", email: "ella@email.com", summary_tag: "supportive", files: [""])
+      described_class.post_neighbour_response(planning_application_id, name: "Ella Toone", response: "Good", address: "123 street", email: "ella@email.com", summary_tag: "supportive", files: [""], tags: ["design"])
     end
   end
 end

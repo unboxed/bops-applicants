@@ -55,7 +55,10 @@ module ApiSpecHelper
       .to_return(status: 200, body: file_fixture("cancelled_validation_requests.json").read, headers: {})
   end
 
-  def stub_successful_post_neighbour_response(planning_application_id:, name:, email:, address:, response:, summary_tag:, files:)
+  def stub_successful_post_neighbour_response(planning_application_id:, name:, email:, address:, response:, summary_tag:, files:, tags:)
+    tag_response = tags.map do |tag|
+      "&tags%5B%5D=#{tag}"
+    end.join
     stub_request(:post, "https://default.bops-care.link/api/v1/planning_applications/#{planning_application_id}/neighbour_responses")
       .with(
         headers: {
@@ -64,7 +67,7 @@ module ApiSpecHelper
           "Authorization" => "Bearer 123",
           "User-Agent" => "Ruby"
         },
-        body: "name=#{ERB::Util.url_encode(name)}&response=#{ERB::Util.url_encode(response)}&address=#{ERB::Util.url_encode(address)}&email=#{ERB::Util.url_encode(email)}&summary_tag=#{ERB::Util.url_encode(summary_tag)}&files%5B%5D=#{ERB::Util.url_encode(files)}"
+        body: "name=#{ERB::Util.url_encode(name)}&response=#{ERB::Util.url_encode(response)}&address=#{ERB::Util.url_encode(address)}&email=#{ERB::Util.url_encode(email)}&summary_tag=#{ERB::Util.url_encode(summary_tag)}&files%5B%5D=#{ERB::Util.url_encode(files)}#{tag_response}"
       )
       .to_return(status: 200, headers: {}, body: "{}")
   end
