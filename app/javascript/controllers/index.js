@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import AddressFillController from "./address_fill_controller"
 application.register("address-fill", AddressFillController)
+
+import PdfController from "./pdf_controller"
+application.register("pdf", PdfController)

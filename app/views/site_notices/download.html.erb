@@ -1,0 +1,22 @@
+<h1 class="govuk-heading-l">
+  <%= @planning_application["site"]["address_1"] %>, 
+  <%= @planning_application["site"]["address_2"] %>, 
+  <%= @planning_application["site"]["postcode"] %>
+</h1>
+
+<p class="govuk-body-s govuk-!-margin-bottom-1">Planning application reference number</p>
+<p class="govuk-body"><%= @planning_application["reference"] %></p>
+
+<h2 class="govuk-heading-m">Download your site notice</h2>
+
+<div class="display-none">
+  <div id="site-notice-content">
+    <div style="width: 430px;">
+      <%= @planning_application["site_notice_content"].html_safe %>
+    </div>
+  </div>
+</div>
+
+<div data-controller="pdf">
+  <%= link_to "Download printable PDF", "#", "data-action": "click->pdf#handleClick" %>
+</div>

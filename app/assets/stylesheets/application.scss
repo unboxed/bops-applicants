@@ -18,3 +18,7 @@ html * {
   background-color: govuk-colour("light-grey", $legacy: "grey-3");
   padding: 30px;
 }
+
+.display-none {
+  display: none;
+}
