@@ -23,7 +23,7 @@ RSpec.configure do |config|
       )
         .with(
           headers:,
-          body: { data: { response: } }.to_json
+          body: {data: {response:}}.to_json
         )
         .to_return(
           body: "{}",

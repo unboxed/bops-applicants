@@ -12,7 +12,7 @@ module Bops
     class << self
       def find(id, planning_application_id, change_access_id)
         Apis::Bops::Client.get_red_line_boundary_change_validation_request(id, planning_application_id,
-                                                                           change_access_id)
+          change_access_id)
       end
 
       def approve(id, planning_application_id, change_access_id)
@@ -21,7 +21,7 @@ module Bops
 
       def reject(id, planning_application_id, change_access_id, rejection_reason)
         Apis::Bops::Client.patch_rejected_red_line_boundary_change(id, planning_application_id, change_access_id,
-                                                                   rejection_reason)
+          rejection_reason)
       end
     end
 

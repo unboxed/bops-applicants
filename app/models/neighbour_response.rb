@@ -45,12 +45,12 @@ class NeighbourResponse
 
   def save
     @stage = if moving_backwards?
-               previous_stage
-             elsif invalid?
-               stage
-             else
-               next_stage
-             end
+      previous_stage
+    elsif invalid?
+      stage
+    else
+      next_stage
+    end
 
     return false unless done? && final_check
 

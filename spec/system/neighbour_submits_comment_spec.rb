@@ -67,7 +67,7 @@ RSpec.describe "Planning applications", js: true, type: :system do
     check "Access"
 
     fill_in "Tell us about how the proposed work could affect access to buildings, premises or other existing spaces",
-            with: "I think the access will be good"
+      with: "I think the access will be good"
 
     check "Other"
 
@@ -129,7 +129,7 @@ RSpec.describe "Planning applications", js: true, type: :system do
     check "Design, size or height of new buildings or extensions"
 
     fill_in "We cannot consider comments about loss of view",
-            with: "I think the design will be good"
+      with: "I think the design will be good"
 
     check "Other"
 
@@ -157,7 +157,7 @@ RSpec.describe "Planning applications", js: true, type: :system do
     uncheck "Design, size or height of new buildings or extensions"
     check "Noise from new uses"
     fill_in "We cannot refuse permission because of construction noise. We can consider the impact from new uses once the work is complete",
-            with: "It will be too noisy"
+      with: "It will be too noisy"
 
     click_button "Continue"
 
@@ -219,7 +219,7 @@ RSpec.describe "Planning applications", js: true, type: :system do
     check "Access"
 
     fill_in "Tell us about how the proposed work could affect access to buildings, premises or other existing spaces",
-            with: "I think the access will be good"
+      with: "I think the access will be good"
 
     click_button "Continue"
 

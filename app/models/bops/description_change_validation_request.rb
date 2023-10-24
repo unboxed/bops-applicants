@@ -20,7 +20,7 @@ module Bops
 
       def reject(id, planning_application_id, change_access_id, rejection_reason)
         Apis::Bops::Client.patch_rejected_description_change(id, planning_application_id, change_access_id,
-                                                             rejection_reason)
+          rejection_reason)
       end
     end
 

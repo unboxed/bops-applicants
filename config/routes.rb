@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
     resource :neighbour_responses do
       get "/start", action: "start", as: :start
-      get "/new",   action: "new",   as: :new
+      get "/new", action: "new", as: :new
       get "/thank-you", action: "thank_you", as: :thank_you
     end
   end

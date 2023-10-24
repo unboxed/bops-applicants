@@ -11,7 +11,7 @@ RSpec.configure do |config|
 
       body = "{'results': [{'address': '123 place'}]}"
 
-      { status:, body: }
+      {status:, body:}
     end
   end
 

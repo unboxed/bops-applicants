@@ -39,10 +39,10 @@ module ValidationRequestsHelper
 
   def ordered_validation_requests
     %w[description_change_validation_requests
-       replacement_document_validation_requests
-       additional_document_validation_requests
-       red_line_boundary_change_validation_requests
-       other_change_validation_requests]
+      replacement_document_validation_requests
+      additional_document_validation_requests
+      red_line_boundary_change_validation_requests
+      other_change_validation_requests]
   end
 
   def count_total_requests(validation_requests, name)

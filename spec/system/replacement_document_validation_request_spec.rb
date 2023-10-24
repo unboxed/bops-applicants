@@ -58,7 +58,7 @@ RSpec.describe "Document change requests", type: :system do
 
       expect(page).to have_link(
         "Please ensure you have read how to correctly prepare plans (Opens in a new window or tab)",
-        href: "#{ENV.fetch('PROTOCOL', nil)}://default.#{ENV.fetch('API_HOST', nil)}/planning_guides/index"
+        href: "#{ENV.fetch("PROTOCOL", nil)}://default.#{ENV.fetch("API_HOST", nil)}/planning_guides/index"
       )
     end
 

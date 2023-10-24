@@ -1,100 +1,51 @@
 ---
-inherit_mode:
-  merge:
-    - Exclude
-
 require:
+  - standard
+  - standard-custom
+  - standard-performance
+  - standard-rails
   - rubocop-performance
   - rubocop-rails
-  - rubocop-rspec
+
+inherit_gem:
+  standard: config/base.yml
+  standard-custom: config/base.yml
+  standard-performance: config/base.yml
+  standard-rails: config/base.yml
 
 AllCops:
-  TargetRubyVersion: 3.2.1
+  TargetRubyVersion: 3.2.2
   NewCops: enable
-
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
-Style/Documentation:
-  Enabled: false
-
-# be a bit kinder with our metrics
-Metrics/BlockLength:
-  Max: 100
   Exclude:
-    - spec/**/*
-    - config/routes.rb
-    - app/models/neighbour_response.rb
+    - "bin/*"
+    - "db/schema.rb"
+    - "config/environments/**"
+    - "config/puma.rb"
+    - "vendor/**/*"
 
-Metrics/MethodLength:
-  Enabled: false
-
-Metric/AbcSize:
-  Exclude: 
-    - app/models/neighbour_response.rb
-    - app/controllers/concerns/api/error_handler.rb
-
-Metrics/ClassLength: 
-  Exclude: 
-    - app/services/apis/bops/client.rb
-    - app/models/neighbour_response.rb
-
-Metrics/ParameterLists:
-  Exclude: 
-    - app/services/apis/bops/client.rb
-    - spec/support/api_spec_helper.rb
-
-Layout/LineLength:
+# TODO
+Rails/EnvironmentVariableAccess:
   Exclude:
-    - spec/**/*
-    - app/services/apis/bops/client.rb
+    - app/**/*
 
-Naming/VariableNumber:
+# past migrations are ignored; we don't expect to go back and edit them ever,
+# we'll fix them in future migrations if at all.
+Rails/BulkChangeTable:
   Exclude:
-    - spec/**/*
+    - db/migrate/2020*
+    - db/migrate/2021*
+    - db/migrate/2022*
 
-# we tend to use update_all in migrations
-Rails/SkipsModelValidations:
+Rails/ReversibleMigration:
   Exclude:
-    - db/migrate/*.rb
+    - db/migrate/2020*
+    - db/migrate/2021*
+    - db/migrate/2022*
 
-# Rspec
-RSpec/MultipleExpectations:
-  Enabled: false
-
-RSpec/ExampleLength:
-  Enabled: false
-
-RSpec/NestedGroups:
-  Max: 5
-
-RSpec/InstanceVariable:
-  Enabled: false
-
-RSpec/MultipleMemoizedHelpers:
-  Enabled: false
-
-RSpec/AnyInstance:
-  Enabled: false
-
-RSpec/ContextWording:
-  Enabled: false
-  Prefixes:
-    - as
-    - before
-    - when
-    - with
-    - without
-
-RSpec/MessageSpies:
-  Enabled: false
-
-RSpec/StubbedMock:
-  Enabled: false
-
-RSpec/VerifiedDoubles:
-  Enabled: false
-
-Lint/MissingSuper:
+Rails/ThreeStateBooleanColumn:
   Exclude:
-    - app/components/**/*.rb
+    - db/migrate/2020*
+    - db/migrate/2021*
+    - db/migrate/2022*
+    - db/migrate/20230*
+    - db/migrate/202310*
