@@ -46,7 +46,7 @@ RSpec.describe Apis::Bops::Client do
       expect(Request).to receive(:new).with(
         :patch,
         "planning_applications/#{planning_application_id}/description_change_validation_requests/5?change_access_id=#{change_access_id}",
-        { data: { approved: true } }.to_json,
+        {data: {approved: true}}.to_json,
         false
       ).and_call_original
 
@@ -59,7 +59,7 @@ RSpec.describe Apis::Bops::Client do
       expect(Request).to receive(:new).with(
         :patch,
         "planning_applications/#{planning_application_id}/description_change_validation_requests/5?change_access_id=#{change_access_id}",
-        { data: { approved: false, rejection_reason: "Bad description" } }.to_json,
+        {data: {approved: false, rejection_reason: "Bad description"}}.to_json,
         false
       ).and_call_original
 
@@ -72,7 +72,7 @@ RSpec.describe Apis::Bops::Client do
       expect(Request).to receive(:new).with(
         :patch,
         "planning_applications/#{planning_application_id}/other_change_validation_requests/5?change_access_id=#{change_access_id}",
-        { data: { response: "Other change looks fine" } }.to_json,
+        {data: {response: "Other change looks fine"}}.to_json,
         false
       ).and_call_original
 
@@ -85,7 +85,7 @@ RSpec.describe Apis::Bops::Client do
       expect(Request).to receive(:new).with(
         :patch,
         "planning_applications/#{planning_application_id}/red_line_boundary_change_validation_requests/5?change_access_id=#{change_access_id}",
-        { data: { approved: true } }.to_json,
+        {data: {approved: true}}.to_json,
         false
       ).and_call_original
 
@@ -98,7 +98,7 @@ RSpec.describe Apis::Bops::Client do
       expect(Request).to receive(:new).with(
         :patch,
         "planning_applications/#{planning_application_id}/red_line_boundary_change_validation_requests/5?change_access_id=#{change_access_id}",
-        { data: { approved: false, rejection_reason: "Boundary looks wrong" } }.to_json,
+        {data: {approved: false, rejection_reason: "Boundary looks wrong"}}.to_json,
         false
       ).and_call_original
 
@@ -111,7 +111,7 @@ RSpec.describe Apis::Bops::Client do
       expect(Request).to receive(:new).with(
         :patch,
         "planning_applications/#{planning_application_id}/additional_document_validation_requests/5?change_access_id=#{change_access_id}",
-        { files: "files" },
+        {files: "files"},
         true
       ).and_call_original
 
@@ -124,7 +124,7 @@ RSpec.describe Apis::Bops::Client do
       expect(Request).to receive(:new).with(
         :patch,
         "planning_applications/#{planning_application_id}/replacement_document_validation_requests/5?change_access_id=#{change_access_id}",
-        { file: "file" },
+        {file: "file"},
         true
       ).and_call_original
 

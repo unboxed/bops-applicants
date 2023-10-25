@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe HttpClient do
   let(:url) { "https://local-authority.bops-care.link/api/v1/" }
-  let(:token) { "Bearer #{ENV.fetch('API_BEARER', nil)}" }
+  let(:token) { "Bearer #{ENV.fetch("API_BEARER", nil)}" }
   let(:headers) { spy }
 
   before do
@@ -30,26 +30,26 @@ RSpec.describe HttpClient do
   describe ".http_party" do
     it "when params is for a single file it makes an HTTP party connection" do
       expect(HTTParty).to receive(:patch).with(
-        "#{url}planning_applications/28", { body: { new_file: "file" }, headers: { Authorization: token } }
+        "#{url}planning_applications/28", {body: {new_file: "file"}, headers: {Authorization: token}}
       )
 
-      described_class.new.http_party("planning_applications/28", :patch, { file: "file" })
+      described_class.new.http_party("planning_applications/28", :patch, {file: "file"})
     end
 
     it "when params is for more than one file makes an HTTP party connection" do
       expect(HTTParty).to receive(:patch).with(
-        "#{url}planning_applications/28", { body: { files: "files" }, headers: { Authorization: token } }
+        "#{url}planning_applications/28", {body: {files: "files"}, headers: {Authorization: token}}
       )
 
-      described_class.new.http_party("planning_applications/28", :patch, { files: "files" })
+      described_class.new.http_party("planning_applications/28", :patch, {files: "files"})
     end
 
     it "uses the right method depending which is passed" do
       expect(HTTParty).to receive(:post).with(
-        "#{url}planning_applications/28", { body: { files: "files" }, headers: { Authorization: token } }
+        "#{url}planning_applications/28", {body: {files: "files"}, headers: {Authorization: token}}
       )
 
-      described_class.new.http_party("planning_applications/28", :post, { files: "files" })
+      described_class.new.http_party("planning_applications/28", :post, {files: "files"})
     end
   end
 end

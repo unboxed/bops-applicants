@@ -23,7 +23,7 @@ RSpec.configure do |config|
       )
         .with(
           headers:,
-          body: { data: { approved: true } }.to_json
+          body: {data: {approved: true}}.to_json
         )
         .to_return(
           body: "{}",
@@ -38,7 +38,7 @@ RSpec.configure do |config|
       )
         .with(
           headers:,
-          body: { data: { approved: false, rejection_reason: } }.to_json
+          body: {data: {approved: false, rejection_reason:}}.to_json
         )
         .to_return(
           body: "{}",

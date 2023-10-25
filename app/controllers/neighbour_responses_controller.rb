@@ -4,20 +4,23 @@ class NeighbourResponsesController < ApplicationController
   before_action :build_response, :set_planning_application, only: %i[new create]
   before_action :set_planning_application
 
-  RESPONSE_PARAMS  = [
+  RESPONSE_PARAMS = [
     :name, :email, :address, :response, :summary_tag, :design, :final_check,
-    :use, :privacy, :light, :access, :noise, :traffic, :other, :tags, { files: [] },
-    { tags: [] }
+    :use, :privacy, :light, :access, :noise, :traffic, :other, :tags, {files: []},
+    {tags: []}
   ].freeze
 
   PERMITTED_PARAMS = [:stage, :move_next, :move_back, :planning_application_id,
-                      { neighbour_response: RESPONSE_PARAMS }].freeze
+    {neighbour_response: RESPONSE_PARAMS}].freeze
 
-  def start; end
+  def start
+  end
 
-  def thank_you; end
+  def thank_you
+  end
 
-  def new; end
+  def new
+  end
 
   def create
     if @new_response.save
