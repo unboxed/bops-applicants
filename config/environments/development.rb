@@ -68,6 +68,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.hosts << ".bops-care.link"
-  config.hosts << "southwark.southwark.applicants"
-  config.hosts << "southwark.southwark.localhost"
+  config.hosts << "southwark.bops-applicants.localhost"
 end
