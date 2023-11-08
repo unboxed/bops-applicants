@@ -36,6 +36,8 @@ RSpec.describe "Planning applications", type: :system do
     expect(page).to have_content("objection")
     expect(page).to have_content("17/05/20")
     expect(page).to have_content("This is bad")
+    expect(page).to have_content("18/05/20")
+    expect(page).to have_content("This is illegal")
   end
 
   it "shows 404 if not found" do
