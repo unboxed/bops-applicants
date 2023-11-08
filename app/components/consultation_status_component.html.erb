@@ -1,0 +1,40 @@
+<div class="contact-box">
+  <p class="govuk-body">
+    <%= status_tag %>
+  </p>
+  <% if planning_application_closed? %>
+    <p class="govuk-body">
+      This application has been withdrawn or cancelled
+    </p>
+    <div class="govuk-inset-text">
+      <p class="govuk-body">
+        We can no longer consider comments about this application.
+      </p>
+    </div>
+  <% elsif @planning_application["decision"].present? %>
+    <p class="govuk-body">
+      <% if planning_application_granted? %>
+        The application has been granted
+      <% else %>
+        The application has been refused
+      <% end %>
+    </p>
+
+    <%= link_to "View decision notice",
+      decision_notice_link, class: "govuk-button", target: "_blank" %>
+  <% elsif @planning_application["consultation"].present? %>
+    <p class="govuk-body">
+      <strong>Comment on this application by <%= consultation_end_date %></strong>
+    </p>
+
+    <% unless consultation_in_progress? %>
+      <div class="govuk-inset-text">
+        <p class="govuk-body">
+          If we receive your comments after <%= consultation_end_date %>, we may not be able to take them into consideration if a decision has already been made.
+        </p>
+      </div>
+    <% end %>
+
+    <%= link_to "Submit a comment", start_planning_application_neighbour_responses_path(@planning_application["id"]), class: "govuk-button" %>
+  <% end %>
+</div>

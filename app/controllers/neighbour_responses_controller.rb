@@ -3,6 +3,7 @@
 class NeighbourResponsesController < ApplicationController
   before_action :build_response, :set_planning_application, only: %i[new create]
   before_action :set_planning_application
+  before_action :ensure_no_decision
 
   RESPONSE_PARAMS = [
     :name, :email, :address, :response, :summary_tag, :design, :final_check,
@@ -55,5 +56,11 @@ class NeighbourResponsesController < ApplicationController
 
   def neighbour_response_params
     params.permit(PERMITTED_PARAMS)
+  end
+
+  def ensure_no_decision
+    return unless @planning_application["decision"].presence
+
+    render plain: "Not Found", status: :not_found
   end
 end

@@ -71,4 +71,18 @@ module ApiSpecHelper
       )
       .to_return(status: 200, headers: {}, body: "{}")
   end
+
+  def stub_get_planning_application(file_fixture, additional_fields: nil)
+    response_body = file_fixture(file_fixture).read
+
+    if additional_fields
+      parsed_body = JSON.parse(response_body)
+      parsed_body.merge!(additional_fields)
+      response_body = parsed_body.to_json
+    end
+
+    stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/28")
+      .with(headers:)
+      .to_return(status: 200, body: response_body, headers: {})
+  end
 end

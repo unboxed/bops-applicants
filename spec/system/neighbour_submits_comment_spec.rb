@@ -30,7 +30,7 @@ RSpec.describe "Planning applications", js: true, type: :system do
 
     visit "/planning_applications/28"
 
-    click_link "Comment on this application"
+    click_link "Submit a comment"
 
     expect(page).to have_content("Comment on a planning application")
     click_link "Start now"
@@ -104,7 +104,7 @@ RSpec.describe "Planning applications", js: true, type: :system do
 
     visit "/planning_applications/28"
 
-    click_link "Comment on this application"
+    click_link "Submit a comment"
 
     expect(page).to have_content("Comment on a planning application")
     click_link "Start now"
