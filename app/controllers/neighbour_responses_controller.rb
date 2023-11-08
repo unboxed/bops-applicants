@@ -63,4 +63,8 @@ class NeighbourResponsesController < ApplicationController
 
     render plain: "Not Found", status: :not_found
   end
+
+  def set_header_link
+    @header_link = planning_application_path(id: params["planning_application_id"])
+  end
 end

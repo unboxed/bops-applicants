@@ -39,4 +39,8 @@ class PlanningApplicationsController < ApplicationController
   def set_base_url
     @base_url = "#{ENV.fetch("PROTOCOL", nil)}://#{Current.local_authority}.#{ENV.fetch("API_HOST", "bops-care.link")}"
   end
+
+  def set_header_link
+    @header_link = planning_application_path(id: params["id"])
+  end
 end
