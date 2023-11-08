@@ -15,8 +15,9 @@ html * {
 }
 
 .contact-box {
-  background-color: govuk-colour("light-grey", $legacy: "grey-3");
-  padding: 30px;
+  border: solid 2px $govuk-border-colour;
+  padding: 30px 30px 0 30px;
+  margin: 30px 0 30px 0;
 }
 
 .display-none {

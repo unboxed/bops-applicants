@@ -18,16 +18,14 @@
   longitude='<%= @planning_application["site"]["longitude"] %>'
 ></my-map>
 
-<div class="contact-box">
-  <p class="govuk-body govuk-!-margin-bottom-0">
-    <%= link_to "Comment on this application", start_planning_application_neighbour_responses_path(@planning_application["id"]) %>
-  </p>
-</div>
-
 <h2 class="govuk-heading-m govuk-!-margin-top-8">Application summary</h2>
 <p class="govuk-body">
   <%= @planning_application["description"] %>
 </p>
+<hr>
+
+<%= render(ConsultationStatusComponent.new(planning_application: @planning_application)) %>
+<hr>
 
 <h2 class="govuk-heading-m govuk-!-margin-top-8">Application documents</h2>
 <hr>

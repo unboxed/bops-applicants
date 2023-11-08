@@ -77,5 +77,8 @@
       "summary_tag": "objection"
     }
   ],
+  "consultation": {
+    "end_date": "2020-05-17T06:18:17.540+01:00"
+  },
   "make_public": true
 }
