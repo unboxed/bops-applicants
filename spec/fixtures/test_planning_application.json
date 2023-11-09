@@ -77,6 +77,12 @@
       "summary_tag": "objection"
     }
   ],
+  "consultee_comments": [
+    {
+      "comment": "This is illegal",
+      "received_at": "2020-05-18T06:18:17.540+01:00"
+    }
+  ],
   "consultation": {
     "end_date": "2020-05-17T06:18:17.540+01:00"
   },
