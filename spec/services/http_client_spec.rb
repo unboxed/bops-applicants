@@ -4,12 +4,12 @@ require "rails_helper"
 
 RSpec.describe HttpClient do
   let(:url) { "https://local-authority.bops-care.link/api/v1/" }
-  let(:token) { "Bearer #{ENV.fetch("API_BEARER", nil)}" }
+  let(:token) { "Bearer #{Rails.configuration.api_bearer}" }
   let(:headers) { spy }
 
   before do
-    ENV["API_BEARER"] = "123"
-    ENV["PROTOCOL"] = "https"
+    Rails.configuration.api_bearer = "123"
+    Rails.configuration.api_protocol = "https"
     allow(Current).to receive(:local_authority).and_return("local-authority")
   end
 

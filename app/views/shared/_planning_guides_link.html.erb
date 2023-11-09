@@ -1,4 +1,4 @@
 <p class="govuk-body">
   <%= link_to "Please ensure you have read how to correctly prepare plans (Opens in a new window or tab)",
-    "#{ENV['PROTOCOL']}://#{Current.local_authority}.#{ENV['API_HOST']}/planning_guides/index", class: "govuk-link", target: "_blank" %>
+    "#{Rails.configuration.api_protocol}://#{Current.local_authority}.#{Rails.configuration.api_host}/planning_guides/index", class: "govuk-link", target: "_blank" %>
 </p>

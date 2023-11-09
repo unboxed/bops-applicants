@@ -6,8 +6,8 @@ RSpec.describe "landing page", type: :system do
   include_context "local_authority_contact_details"
 
   before do
-    ENV["API_BEARER"] = "123"
-    ENV["PROTOCOL"] = "https"
+    Rails.configuration.api_bearer = "123"
+    Rails.configuration.api_protocol = "https"
     stub_successful_get_change_requests
     stub_successful_get_planning_application
 

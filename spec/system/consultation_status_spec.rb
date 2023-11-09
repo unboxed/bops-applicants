@@ -8,8 +8,8 @@ RSpec.describe "Planning applications", type: :system do
 
   before do
     ENV["OS_VECTOR_TILES_API_KEY"] = "testtest"
-    ENV["API_BEARER"] = "123"
-    ENV["PROTOCOL"] = "https"
+    Rails.configuration.api_bearer = "123"
+    Rails.configuration.api_protocol = "https"
 
     stub_successful_get_local_authority
   end
@@ -89,7 +89,7 @@ RSpec.describe "Planning applications", type: :system do
 
           expect(page).to have_link(
             "View decision notice",
-            href: "#{ENV.fetch("PROTOCOL", nil)}://default.#{ENV.fetch("API_HOST", nil)}/public/planning_applications/28/decision_notice"
+            href: "#{Rails.configuration.api_protocol}://default.#{Rails.configuration.api_host}/public/planning_applications/28/decision_notice"
           )
         end
       end
@@ -119,7 +119,7 @@ RSpec.describe "Planning applications", type: :system do
 
           expect(page).to have_link(
             "View decision notice",
-            href: "#{ENV.fetch("PROTOCOL", nil)}://default.#{ENV.fetch("API_HOST", nil)}/public/planning_applications/28/decision_notice"
+            href: "#{Rails.configuration.api_protocol}://default.#{Rails.configuration.api_host}/public/planning_applications/28/decision_notice"
           )
         end
       end

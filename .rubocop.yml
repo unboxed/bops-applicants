@@ -23,11 +23,6 @@ AllCops:
     - "config/puma.rb"
     - "vendor/**/*"
 
-# TODO
-Rails/EnvironmentVariableAccess:
-  Exclude:
-    - app/**/*
-
 # past migrations are ignored; we don't expect to go back and edit them ever,
 # we'll fix them in future migrations if at all.
 Rails/BulkChangeTable:

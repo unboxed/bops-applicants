@@ -8,8 +8,8 @@ RSpec.describe "Planning applications", js: true, type: :system do
 
   before do
     ENV["OS_VECTOR_TILES_API_KEY"] = "testtest"
-    ENV["API_BEARER"] = "123"
-    ENV["PROTOCOL"] = "https"
+    Rails.configuration.api_bearer = "123"
+    Rails.configuration.api_protocol = "https"
     stub_request(:get, "https://api.os.uk/search/places/v1/find").with(query: hash_including({}))
   end
 
