@@ -23,29 +23,6 @@ AllCops:
     - "config/puma.rb"
     - "vendor/**/*"
 
-# TODO
-Rails/EnvironmentVariableAccess:
-  Exclude:
-    - app/**/*
-
-# past migrations are ignored; we don't expect to go back and edit them ever,
-# we'll fix them in future migrations if at all.
-Rails/BulkChangeTable:
-  Exclude:
-    - db/migrate/2020*
-    - db/migrate/2021*
-    - db/migrate/2022*
-
-Rails/ReversibleMigration:
-  Exclude:
-    - db/migrate/2020*
-    - db/migrate/2021*
-    - db/migrate/2022*
-
-Rails/ThreeStateBooleanColumn:
-  Exclude:
-    - db/migrate/2020*
-    - db/migrate/2021*
-    - db/migrate/2022*
-    - db/migrate/20230*
-    - db/migrate/202310*
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always_true

@@ -6,8 +6,8 @@ RSpec.describe "Red line boundary change requests", type: :system do
   include_context "local_authority_contact_details"
 
   before do
-    ENV["API_BEARER"] = "123"
-    ENV["PROTOCOL"] = "https"
+    Rails.configuration.api_bearer = "123"
+    Rails.configuration.api_protocol = "https"
 
     stub_successful_get_planning_application
     stub_get_red_line_boundary_change_validation_request(

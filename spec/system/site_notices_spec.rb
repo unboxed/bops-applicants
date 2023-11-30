@@ -6,8 +6,8 @@ RSpec.describe "Site notices", type: :system do
   include_context "local_authority_contact_details"
 
   before do
-    ENV["API_BEARER"] = "123"
-    ENV["PROTOCOL"] = "https"
+    Rails.configuration.api_bearer = "123"
+    Rails.configuration.api_protocol = "https"
   end
 
   it "allows the user to see a planning application if it's public" do

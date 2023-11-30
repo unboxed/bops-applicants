@@ -18,8 +18,8 @@ RSpec.describe "Document create requests", type: :system do
   end
 
   before do
-    ENV["API_BEARER"] = "123"
-    ENV["PROTOCOL"] = "https"
+    Rails.configuration.api_bearer = "123"
+    Rails.configuration.api_protocol = "https"
 
     stub_successful_get_planning_application
     stub_get_additional_document_validation_request(
@@ -51,7 +51,7 @@ RSpec.describe "Document create requests", type: :system do
 
       expect(page).to have_link(
         "Please ensure you have read how to correctly prepare plans (Opens in a new window or tab)",
-        href: "#{ENV.fetch("PROTOCOL", nil)}://default.#{ENV.fetch("API_HOST", nil)}/planning_guides/index"
+        href: "#{Rails.configuration.api_protocol}://default.#{Rails.configuration.api_host}/planning_guides/index"
       )
     end
 
