@@ -2,15 +2,7 @@
 
 BOPS-applicants is a proof of concept app made to showcase the different API features of BOPS. It serves the purpose of allowing an interface for applicants to reply to change requests - requests made by planning officers to the applicant, requiring documents or requiring other changes made to a planning application that are necessary to make that application valid within the BOPS app.
 
-This app only works together with [BOPS](https://github.com/unboxed/bops) since it's making API calls to that backend. To test locally:
-
-Export a domain to set your APPLICANTS_APP_HOST or set it in your local BOPS ".env" file:
-
-```
-export APPLICANTS_APP_HOST=bops-care.link:3001
-```
-
-Open the BOPS app in a separate terminal and start your rails server there. Create a planning application and a "validation request" within the BOPS app. After clicking on "Invalidate", a validation request will be emailed and a link will be generated for you to use on the BOPS applicants app. You can copy the generated link from your terminal, or you can generate an API key in notify to send emails to yourself on localhost using notify.
+This app only works together with [BOPS](https://github.com/unboxed/bops) since it's making API calls to that backend. To test locally open the BOPS app in a separate terminal and start your rails server there. Create a planning application and a "validation request" within the BOPS app. After clicking on "Invalidate", a validation request will be emailed and a link will be generated for you to use on the BOPS applicants app. You can copy the generated link from your terminal, or you can generate an API key in notify to send emails to yourself on localhost using notify.
 
 Back on the BOPS-applicants app, you will need to export or set the following ".env" variables:
 
