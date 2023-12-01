@@ -11,12 +11,12 @@ module Api
       private
 
       def format_error(error)
-        error_hash = instance_eval(error.message)
+        error_hash = JSON.parse(error.message)
 
-        response = error_hash[:response]
+        response = error_hash["response"]
         message = response["message"] || response
-        status = error_hash[:status].to_s || API_ERROR.to_s
-        http_method = error_hash[:http_method].to_s
+        status = error_hash["status"].to_s || API_ERROR.to_s
+        http_method = error_hash["http_method"].to_s
 
         respond_to do |format|
           format.json do

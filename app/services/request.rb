@@ -57,7 +57,7 @@ class Request
   attr_reader :connection, :http_method, :params, :upload_file
 
   def errors(response, status)
-    {response:, status:, http_method:}
+    {response:, status:, http_method:}.to_json
   end
 
   def get_response_and_status # rubocop:disable Metrics/AbcSize, Naming/AccessorMethodName
