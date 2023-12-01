@@ -18,11 +18,11 @@ class PlanningApplicationsController < ApplicationController
     end
   end
 
+  private
+
   def render_not_found
     render plain: "Not Found", status: :not_found
   end
-
-  private
 
   def set_planning_application
     @planning_application = Bops::PlanningApplication.find(params[:id])
