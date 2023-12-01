@@ -1,8 +1,8 @@
 <h1 class="govuk-heading-l">Comment on a planning application</h1>
 
 <h2 class="govuk-heading-m">
-  <%= @planning_application["site"]["address_1"] %>, 
-  <%= @planning_application["site"]["address_2"] %>, 
+  <%= @planning_application["site"]["address_1"] %>,
+  <%= @planning_application["site"]["address_2"] %>,
   <%= @planning_application["site"]["postcode"] %>
 </h2>
 
@@ -16,7 +16,7 @@
   Writing useful comments
 </h3>
 <p class="govuk-body">
-  Your comments help planning officers to understand the potential impact of the proposed development. 
+  Your comments help planning officers to understand the potential impact of the proposed development.
   To make your comments more helpful:
 </p>
 <ul class="govuk-list govuk-list--bullet">
@@ -24,7 +24,7 @@
   <li>be specific and tell us which part of the application your comment refers to </li>
 </ul>
 <p class="govuk-body">
-  Your comments will be made available to the public. Your response may be edited (redacted) 
+  Your comments will be made available to the public. Your response may be edited (redacted)
   if it includes personal information or offensive language.
 </p>
 
@@ -57,7 +57,7 @@
   <li>issues which are dealt with by other forms of law, such as party wall matters</li>
 </ul>
 <p class="govuk-body">
-  We cannot refuse permission because of construction noise. However, we can restrict the hours of 
+  We cannot refuse permission because of construction noise. However, we can restrict the hours of
   work to reduce disturbance to residents and other sensitive neighbours.
 </p>
 
@@ -71,7 +71,7 @@
   <li>a planning officer will read and consider your comments</li>
   <li>you can check the status of the application by using the application number</li>
   <li>
-    if you are commenting on a householder application, such as an extension, dropped kerb, new garage, driveway or roof alterations, 
+    if you are commenting on a householder application, such as an extension, dropped kerb, new garage, driveway or roof alterations,
     you cannot make any further comments on this application
   </li>
 </ul>
@@ -81,7 +81,7 @@
   </strong>
 </p>
 
-<%= link_to new_planning_application_neighbour_responses_path(@planning_application["id"]), class: "govuk-button govuk-button--start" do %>
+<%= link_to new_planning_application_neighbour_response_path(@planning_application["id"]), class: "govuk-button govuk-button--start" do %>
   Start now
   <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
     <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />

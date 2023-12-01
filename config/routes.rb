@@ -1,31 +1,30 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
   resources :validation_requests, only: %i[index]
-  resources :description_change_validation_requests, only: %i[show edit update]
-  resources :replacement_document_validation_requests, only: %i[show edit update]
-  resources :additional_document_validation_requests, only: %i[show edit update]
-  resources :other_change_validation_requests, only: %i[show edit update]
-  resources :red_line_boundary_change_validation_requests, only: %i[show edit update]
+
+  with_options only: %i[show edit update] do
+    resources :description_change_validation_requests
+    resources :replacement_document_validation_requests
+    resources :additional_document_validation_requests
+    resources :other_change_validation_requests
+    resources :red_line_boundary_change_validation_requests
+  end
 
   resources :planning_applications, only: %i[show] do
-    resource :site_notices do
-      get "/download", action: "download"
+    resource :site_notices, only: %i[] do
+      get :download
     end
 
-    resource :neighbour_responses do
-      get "/start", action: "start", as: :start
-      get "/new", action: "new", as: :new
-      get "/thank-you", action: "thank_you", as: :thank_you
+    resources :neighbour_responses, only: %i[new create] do
+      get :start, :thank_you, on: :collection
     end
   end
 
   resources :os_places_api, only: %i[index]
 
   controller "pages" do
-    get :accessibility, action: :accessibility
+    get :accessibility
   end
 
   get :healthcheck, to: proc { [200, {}, %w[OK]] }
