@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ApiSpecHelper
-  API_BASE_URL = "https://default.bops-care.link/api/v1/planning_applications"
+  API_BASE_URL = "https://default.bops.localhost/api/v1/planning_applications"
 
   def headers
     {
@@ -14,43 +14,43 @@ module ApiSpecHelper
   end
 
   def stub_successful_get_planning_application
-    stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/28")
+    stub_request(:get, "https://default.bops.localhost/api/v1/planning_applications/28")
       .with(headers:)
       .to_return(status: 200, body: file_fixture("test_planning_application.json").read, headers: {})
   end
 
   def stub_successful_get_private_planning_application
-    stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/29")
+    stub_request(:get, "https://default.bops.localhost/api/v1/planning_applications/29")
       .with(headers:)
       .to_return(status: 200, body: file_fixture("test_private_planning_application.json").read, headers: {})
   end
 
   def stub_unsuccessful_get_planning_application
-    stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/100")
+    stub_request(:get, "https://default.bops.localhost/api/v1/planning_applications/100")
       .with(headers:)
       .to_return(status: 404, body: '{"message": "Not found"}', headers: {})
   end
 
   def stub_successful_get_local_authority
-    stub_request(:get, "https://default.bops-care.link/api/v1/local_authorities/default")
+    stub_request(:get, "https://default.bops.localhost/api/v1/local_authorities/default")
       .with(headers:)
       .to_return(status: 200, body: '{"email_address": "planning@southwark.com"}', headers: {})
   end
 
   def stub_successful_get_change_requests
-    stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
+    stub_request(:get, "https://default.bops.localhost/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
       .with(headers:)
       .to_return(status: 200, body: file_fixture("test_change_request_index.json").read, headers: {})
   end
 
   def stub_rejected_patch_with_reason
-    stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
+    stub_request(:get, "https://default.bops.localhost/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
       .with(headers:)
       .to_return(status: 200, body: file_fixture("rejected_request.json").read, headers: {})
   end
 
   def stub_cancelled_change_requests
-    stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
+    stub_request(:get, "https://default.bops.localhost/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
       .with(headers:)
       .to_return(status: 200, body: file_fixture("cancelled_validation_requests.json").read, headers: {})
   end
@@ -59,7 +59,7 @@ module ApiSpecHelper
     tag_response = tags.map do |tag|
       "&tags%5B%5D=#{tag}"
     end.join
-    stub_request(:post, "https://default.bops-care.link/api/v1/planning_applications/#{planning_application_id}/neighbour_responses")
+    stub_request(:post, "https://default.bops.localhost/api/v1/planning_applications/#{planning_application_id}/neighbour_responses")
       .with(
         headers: {
           "Accept" => "*/*",
@@ -81,7 +81,7 @@ module ApiSpecHelper
       response_body = parsed_body.to_json
     end
 
-    stub_request(:get, "https://default.bops-care.link/api/v1/planning_applications/28")
+    stub_request(:get, "https://default.bops.localhost/api/v1/planning_applications/28")
       .with(headers:)
       .to_return(status: 200, body: response_body, headers: {})
   end

@@ -51,7 +51,7 @@
         "document_request_reason": "No floor plan",
         "new_document": {
           "name": "proposed-floorplan.png",
-          "url": "http://southwark.bops-care.link:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png"
+          "url": "http://southwark.bops.localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png"
         },
         "cancel_reason": "My mistake",
         "cancelled_at": "2021-10-20T11:42:50.951+01:00",

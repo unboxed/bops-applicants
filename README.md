@@ -10,7 +10,7 @@ Back on the BOPS-applicants app, you will need to export or set the following ".
 export API_USER=api_user
 export API_BEARER=123
 export PROTOCOL=http
-export API_HOST=bops-care.link:3000
+export API_HOST=bops.localhost:3000
 ```
 
 Install your app dependencies with yarn and finally launch BOPS-applicants on a different port to BOPS:
@@ -22,7 +22,7 @@ bin/dev
 You will now be able to open the URL you've received by email (or copied from your terminal) and access a planning application's change requests on your localhost. Your URL will look similar to this example:
 
 ```
-http://southwark.bops-care.link:3001/validation_requests?change_access_id=6ea6218075f460e692be1a08fbc0e9&planning_application_id=18
+http://southwark.bops-applicants.localhost:3001/validation_requests?change_access_id=6ea6218075f460e692be1a08fbc0e9&planning_application_id=18
 ```
 ## Building production docker
 
