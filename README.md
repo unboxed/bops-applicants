@@ -58,4 +58,4 @@ We use Github Actions as part of our continuous integration process to run and t
 
 ## Deployments
 
-Merging into main will automatically push to staging. To push changes from staging to production you will need to login to heroku and promote the app from staging to prod.
+Merging into main will automatically deploy to the staging ECS environment. To deploy to the production ECS environment requires a manual review of the 'Deploy' GitHub Action by one of the required reviewers.
