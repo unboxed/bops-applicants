@@ -6,12 +6,7 @@ module Api
     include HttpStatusCodes
 
     included do
-      rescue_from Request::RecordNotFoundError, with: :format_error
-      rescue_from Request::BadRequestError, with: :format_error
-      rescue_from Request::UnauthorizedError, with: :format_error
-      rescue_from Request::ForbiddenError, with: :format_error
-      rescue_from Request::TimeoutError, with: :format_error
-      rescue_from Request::ApiError, with: :format_error
+      rescue_from Request::BopsApiError, with: :format_error
 
       private
 
