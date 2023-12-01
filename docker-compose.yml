@@ -4,7 +4,10 @@ services:
     image: bops-applicants/ruby
     build: docker/ruby
     working_dir: /home/rails/bops-applicants
-    command: [ "bin/dev" ]
+    init: true
+    command: ["foreman", "start", "-f", "Procfile.dev"]
+    stdin_open: true
+    tty: true
     environment:
       PROTOCOL: "http"
       PORT: 3001

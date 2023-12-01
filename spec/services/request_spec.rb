@@ -41,7 +41,7 @@ RSpec.describe Request do
         expect do
           request.call
         end.to raise_error(described_class::BadRequestError)
-          .with_message("{:response=>\"Bad request\", :status=>400, :http_method=>:get}")
+          .with_message(%({"response":"Bad request","status":400,"http_method":"get"}))
       end
     end
 
@@ -57,7 +57,7 @@ RSpec.describe Request do
         expect do
           request.call
         end.to raise_error(described_class::UnauthorizedError)
-          .with_message("{:response=>\"Unauthorized\", :status=>401, :http_method=>:get}")
+          .with_message(%({"response":"Unauthorized","status":401,"http_method":"get"}))
       end
     end
 
@@ -73,7 +73,7 @@ RSpec.describe Request do
         expect do
           request.call
         end.to raise_error(described_class::ForbiddenError)
-          .with_message("{:response=>\"Forbidden\", :status=>403, :http_method=>:get}")
+          .with_message(%({"response":"Forbidden","status":403,"http_method":"get"}))
       end
     end
 
@@ -89,7 +89,7 @@ RSpec.describe Request do
         expect do
           request.call
         end.to raise_error(described_class::RecordNotFoundError)
-          .with_message("{:response=>\"Record not found\", :status=>404, :http_method=>:get}")
+          .with_message(%({"response":"Record not found","status":404,"http_method":"get"}))
       end
     end
 
@@ -105,7 +105,7 @@ RSpec.describe Request do
         expect do
           request.call
         end.to raise_error(described_class::ApiError)
-          .with_message("{:response=>\"API error\", :status=>500, :http_method=>:get}")
+          .with_message(%({"response":"API error","status":500,"http_method":"get"}))
       end
     end
 
@@ -121,7 +121,7 @@ RSpec.describe Request do
         expect do
           request.call
         end.to raise_error(described_class::TimeoutError)
-          .with_message("{:response=>\"Timeout Error\", :status=>504, :http_method=>:get}")
+          .with_message(%({"response":"Timeout Error","status":504,"http_method":"get"}))
       end
     end
   end

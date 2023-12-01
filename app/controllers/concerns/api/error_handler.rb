@@ -6,22 +6,17 @@ module Api
     include HttpStatusCodes
 
     included do
-      rescue_from Request::RecordNotFoundError, with: :format_error
-      rescue_from Request::BadRequestError, with: :format_error
-      rescue_from Request::UnauthorizedError, with: :format_error
-      rescue_from Request::ForbiddenError, with: :format_error
-      rescue_from Request::TimeoutError, with: :format_error
-      rescue_from Request::ApiError, with: :format_error
+      rescue_from Request::BopsApiError, with: :format_error
 
       private
 
       def format_error(error)
-        error_hash = instance_eval(error.message)
+        error_hash = JSON.parse(error.message)
 
-        response = error_hash[:response]
+        response = error_hash["response"]
         message = response["message"] || response
-        status = error_hash[:status].to_s || API_ERROR.to_s
-        http_method = error_hash[:http_method].to_s
+        status = error_hash["status"].to_s || API_ERROR.to_s
+        http_method = error_hash["http_method"].to_s
 
         respond_to do |format|
           format.json do

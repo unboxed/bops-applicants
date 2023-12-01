@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe HttpClient do
-  let(:url) { "https://local-authority.bops-care.link/api/v1/" }
+  let(:url) { "https://local-authority.bops.test/api/v1/" }
   let(:token) { "Bearer #{Rails.configuration.api_bearer}" }
   let(:headers) { spy }
 
