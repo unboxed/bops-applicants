@@ -119,7 +119,7 @@
               "invalidated_document_reason": null
             }
           },
-          "url": "http://southwark.bops.localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--772d855213ddd9220ca829cec75caaafe68a3fc8/max-baskakov-catunsplash.jpg"
+          "url": "http://southwark.bops.test/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--772d855213ddd9220ca829cec75caaafe68a3fc8/max-baskakov-catunsplash.jpg"
         },
         "type": "replacement_document_validation_request"
       }
@@ -134,7 +134,7 @@
         "document_request_reason": "No floor plan",
         "new_document": {
           "name": "proposed-floorplan.png",
-          "url": "http://southwark.bops.localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png"
+          "url": "http://southwark.bops.test/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBkdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c9f482b79792231cade4fd9fe59c1b622dab5713/proposed-floorplan.png"
         },
         "type": "additional_document_validation_request"
       },
