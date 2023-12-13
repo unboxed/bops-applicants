@@ -10,7 +10,7 @@ RSpec.describe "Other change requests", type: :system do
     Rails.configuration.api_protocol = "https"
 
     stub_successful_get_planning_application
-    stub_get_other_change_validation_request(
+    stub_get_fee_change_validation_request(
       id: 19,
       planning_id: 28,
       change_access_id: 345_443_543,
@@ -18,8 +18,8 @@ RSpec.describe "Other change requests", type: :system do
         {
           id: 19,
           state: "open",
-          reason: "You applied for the wrong sort of certificate",
-          suggestion: "Please confirm you want a Lawful Development certificate",
+          reason: "You paid the wrong amount",
+          suggestion: "Please pay more money",
           response_due: "2022-7-1"
         },
       status: 200
@@ -28,7 +28,7 @@ RSpec.describe "Other change requests", type: :system do
 
   context "when state is open" do
     before do
-      stub_patch_other_change_validation_request(
+      stub_patch_fee_change_validation_request(
         id: 19,
         planning_id: 28,
         change_access_id: 345_443_543,
@@ -38,14 +38,14 @@ RSpec.describe "Other change requests", type: :system do
     end
 
     it "allows the user to provide a response" do
-      visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
+      visit "/fee_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
 
       expect(page).to have_content(
         "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
       )
 
-      expect(page).to have_content("You applied for the wrong sort of certificate")
-      expect(page).to have_content("Please confirm you want a Lawful Development certificate")
+      expect(page).to have_content("You paid the wrong amount")
+      expect(page).to have_content("Please pay more money")
 
       fill_in "Respond to this request", with: "Agreed"
 
@@ -56,12 +56,12 @@ RSpec.describe "Other change requests", type: :system do
     end
 
     it "can't view show action" do
-      visit "/other_change_validation_requests/19?change_access_id=345443543&planning_application_id=28"
+      visit "/fee_change_validation_requests/19?change_access_id=345443543&planning_application_id=28"
       expect(page).to have_content("Not Found")
     end
 
     it "does not allow the user to submit a blank response" do
-      visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
+      visit "/fee_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
 
       click_button "Submit"
       within(".govuk-error-summary") do
@@ -70,15 +70,15 @@ RSpec.describe "Other change requests", type: :system do
     end
 
     it "has the correct page title" do
-      visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
+      visit "/fee_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
 
-      expect(page).to have_title("Other change validation request #19 - Back-Office Planning System")
+      expect(page).to have_title("Fee change validation request #19 - Back-Office Planning System")
     end
   end
 
   context "when state is closed" do
     before do
-      stub_get_other_change_validation_request(
+      stub_get_fee_change_validation_request(
         id: 19,
         planning_id: 28,
         change_access_id: 345_443_543,
@@ -93,12 +93,12 @@ RSpec.describe "Other change requests", type: :system do
     end
 
     it "can't view edit action" do
-      visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
+      visit "/fee_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
       expect(page).to have_content("Not Found")
     end
 
-    it "view the page for a closed other validation request" do
-      visit "/other_change_validation_requests/19?change_access_id=345443543&planning_application_id=28"
+    it "view the page for a closed fee change validation request" do
+      visit "/fee_change_validation_requests/19?change_access_id=345443543&planning_application_id=28"
       expect(page).to have_content("My response to this request")
       expect(page).to have_content("I accept the change")
     end
@@ -106,7 +106,7 @@ RSpec.describe "Other change requests", type: :system do
 
   context "when state is cancelled" do
     before do
-      stub_get_other_change_validation_request(
+      stub_get_fee_change_validation_request(
         id: 19,
         planning_id: 28,
         change_access_id: 345_443_543,
@@ -122,9 +122,9 @@ RSpec.describe "Other change requests", type: :system do
     end
 
     it "displays a cancellation summary for a cancelled validation request" do
-      visit "/other_change_validation_requests/19?change_access_id=345443543&planning_application_id=28"
+      visit "/fee_change_validation_requests/19?change_access_id=345443543&planning_application_id=28"
 
-      expect(page).to have_content "Cancelled other request to change your application"
+      expect(page).to have_content "Cancelled fee change request on your application"
       expect(page).to have_content "This request has been cancelled. You do not have to take any further actions."
       expect(page).to have_content "The officer gave the following reason for cancelling this request:"
       expect(page).to have_content "My mistake"
@@ -133,9 +133,9 @@ RSpec.describe "Other change requests", type: :system do
     end
   end
 
-  context "when an officer adds a link in the suggestion/reason fields" do
+  context "when an officer adds a link in the suggestion/summary fields" do
     before do
-      stub_get_other_change_validation_request(
+      stub_get_fee_change_validation_request(
         id: 19,
         planning_id: 28,
         change_access_id: 345_443_543,
@@ -152,7 +152,7 @@ RSpec.describe "Other change requests", type: :system do
     end
 
     it "displays the link and link html as clickable" do
-      visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
+      visit "/fee_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
 
       expect(page).to have_link(
         "https://www.bops.co.uk/info",

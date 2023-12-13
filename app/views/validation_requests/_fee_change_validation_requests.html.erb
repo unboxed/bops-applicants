@@ -1,0 +1,19 @@
+<li>
+  <h2 class="moj-task-list__section">
+    <span class="moj-task-list__section-number"><%= count_total_requests(@validation_requests, "fee_change_validation_requests") %></span>
+    Respond to fee change request
+  </h2>
+  <ul class="moj-task-list__items" id="other-change-validation-requests">
+    <% @validation_requests["data"]["fee_change_validation_requests"].each do |change_request| %>
+      <li class="moj-task-list__item">
+        <% if change_request["state"] == "open" %>
+          <%= link_to "Fee change", edit_fee_change_validation_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+        <% else %>
+          <%= link_to "Fee change", fee_change_validation_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+        <% end %>
+
+        <%= render "validation_requests/change_request_state", change_request: change_request %>
+      </li>
+    <% end %>
+  </ul>
+</li>

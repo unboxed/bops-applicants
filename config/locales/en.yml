@@ -23,6 +23,18 @@ en:
       the_following_changes: The following changes have been made to your application's description.
       title: Confirm changes to your application description
       what_you_need: "What you need to do:"
+  fee_change_validation_requests:
+    edit:
+      click_submit_to: Click submit to complete this action
+      how_you_can: How you can make your application valid
+      if_you_disagree: If you disagree with the suggested changes, reply stating why you disagree
+      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
+      make_changes_to: Make changes to your application as set out by your case officer and reply in the box below stating what changes have been made
+      officers_reason_for: Officer's reason for invalidating application
+      page_title: "Fee change validation request #%{id} - Back-Office Planning System"
+      the_following_request: The following request has been made.
+      title: Respond to fee change request
+      what_you_need: "What you need to do:"
   other_change_validation_requests:
     edit:
       click_submit_to: Click submit to complete this action
@@ -166,6 +178,10 @@ en:
           attributes:
             files:
               blank: "Please choose at least one file to upload"
+        bops/fee_change_validation_request: 
+          attributes:
+            response:
+              blank: "Please enter your response to the planning officer's question."
         bops/replacement_document_validation_request:
           attributes:
             file:

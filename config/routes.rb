@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :replacement_document_validation_requests
     resources :additional_document_validation_requests
     resources :other_change_validation_requests
+    resources :fee_change_validation_requests
     resources :red_line_boundary_change_validation_requests
   end
 

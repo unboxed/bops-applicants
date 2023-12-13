@@ -2,15 +2,15 @@
   Other change validation request #<%= @validation_request["id"] %> - Back-Office Planning System
 <% end %>
 
-<div class="govuk-grid-row govuk-!-margin-top-7 govuk-!-padding-bottom-8">
+<div class="govuk-grid-row govuk-!-padding-bottom-8">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
       <% if @validation_request["state"] == "cancelled" %>
         <%= render "validation_requests/cancelled",
           validation_request: @validation_request,
-          heading: "Cancelled other request to change your application" %>
+          heading: "Cancelled fee change request on your application" %>
       <% else %>
-        <h1 class="govuk-heading-l">Response to other validation change request</h1>
+        <h1 class="govuk-heading-l">Response to fee change request</h1>
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <p class="govuk-body">
           <strong>Officer's reason for invalidating application</strong><br>
