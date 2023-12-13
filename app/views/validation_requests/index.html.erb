@@ -40,6 +40,10 @@
           <%= render "red_line_boundary_change_validation_requests" %>
         <% end %>
 
+        <% if @validation_requests["data"]["fee_change_validation_requests"].present? %>
+          <%= render "fee_change_validation_requests" %>
+        <% end %>
+
         <% if @validation_requests["data"]["other_change_validation_requests"].present? %>
           <%= render "other_change_validation_requests" %>
         <% end %>

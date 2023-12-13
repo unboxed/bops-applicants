@@ -78,6 +78,26 @@ module Apis
           )
         end
 
+        # Fee change validation requests
+        def get_fee_change_validation_request(id, planning_application_id, change_access_id)
+          request(
+            http_method: :get,
+            endpoint: "planning_applications/#{planning_application_id}/fee_change_validation_requests/#{id}?change_access_id=#{change_access_id}"
+          )
+        end
+
+        def patch_response_fee_change_request(id, planning_application_id, change_access_id, response)
+          request(
+            http_method: :patch,
+            endpoint: "planning_applications/#{planning_application_id}/fee_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
+            params: {
+              data: {
+                response:
+              }
+            }.to_json
+          )
+        end
+
         # Other change validation requests
         def get_other_change_validation_request(id, planning_application_id, change_access_id)
           request(
