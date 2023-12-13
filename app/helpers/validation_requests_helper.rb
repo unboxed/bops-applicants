@@ -26,6 +26,7 @@ module ValidationRequestsHelper
       validation_requests["data"]["description_change_validation_requests"] +
       validation_requests["data"]["replacement_document_validation_requests"] +
       validation_requests["data"]["other_change_validation_requests"] +
+      validation_requests["data"]["fee_change_validation_requests"] +
       validation_requests["data"]["red_line_boundary_change_validation_requests"]
   end
 
@@ -42,6 +43,7 @@ module ValidationRequestsHelper
       replacement_document_validation_requests
       additional_document_validation_requests
       red_line_boundary_change_validation_requests
+      fee_change_validation_requests
       other_change_validation_requests]
   end
 

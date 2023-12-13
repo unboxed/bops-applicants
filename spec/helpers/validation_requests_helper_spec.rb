@@ -26,6 +26,10 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
           "other_change_validation_requests" => [
             {"response_due" => "2021-06-01"},
             {"response_due" => "2021-06-02"}
+          ],
+          "fee_change_validation_requests" => [
+            {"response_due" => "2021-06-01"},
+            {"response_due" => "2021-06-02"}
           ]
         }
       })).to eq({"response_due" => "2021-06-12"})
@@ -53,6 +57,10 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
           "other_change_validation_requests" => [
             {"response_due" => "2021-05-29"},
             {"response_due" => "2021-05-30"}
+          ],
+          "fee_change_validation_requests" => [
+            {"response_due" => "2021-06-01"},
+            {"response_due" => "2021-06-02"}
           ]
         }
       })).to eq({"response_due" => "2021-06-11"})
@@ -80,6 +88,10 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
           "other_change_validation_requests" => [
             {"response_due" => "2021-06-29"},
             {"response_due" => "2021-06-30"}
+          ],
+          "fee_change_validation_requests" => [
+            {"response_due" => "2021-06-01"},
+            {"response_due" => "2021-06-02"}
           ]
         }
       })).to eq({"response_due" => "2021-07-12"})
@@ -107,6 +119,10 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
           "other_change_validation_requests" => [
             {"response_due" => "2021-06-29"},
             {"response_due" => "2021-06-30"}
+          ],
+          "fee_change_validation_requests" => [
+            {"response_due" => "2021-06-01"},
+            {"response_due" => "2021-06-02"}
           ]
         }
       })).to eq({"response_due" => "2021-06-30"})
@@ -134,6 +150,10 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
           "other_change_validation_requests" => [
             {"response_due" => "2021-06-29"},
             {"response_due" => "2021-06-30"}
+          ],
+          "fee_change_validation_requests" => [
+            {"response_due" => "2021-06-01"},
+            {"response_due" => "2021-06-02"}
           ]
         }
       })).to eq({"response_due" => "2021-07-02"})
