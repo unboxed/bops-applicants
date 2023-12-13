@@ -1,10 +1,24 @@
-# BOPS-applicants ![CI](https://github.com/unboxed/bops-applicants/workflows/CI/badge.svg)
+# BOPS Applicants ![CI](https://github.com/unboxed/bops-applicants/workflows/CI/badge.svg)
 
-BOPS-applicants is a proof of concept app made to showcase the different API features of BOPS. It serves the purpose of allowing an interface for applicants to reply to change requests - requests made by planning officers to the applicant, requiring documents or requiring other changes made to a planning application that are necessary to make that application valid within the BOPS app.
+[BOPS](https://github.com/unboxed/bops)
 
-This app only works together with [BOPS](https://github.com/unboxed/bops) since it's making API calls to that backend. To test locally open the BOPS app in a separate terminal and start your rails server there. Create a planning application and a "validation request" within the BOPS app. After clicking on "Invalidate", a validation request will be emailed and a link will be generated for you to use on the BOPS applicants app. You can copy the generated link from your terminal, or you can generate an API key in notify to send emails to yourself on localhost using notify.
+### What is BOPS Applicants?
 
-Back on the BOPS-applicants app, you will need to export or set the following ".env" variables:
+BOPS Applicants is a proof-of-concept application made to showcase the different API features of [BOPS](https://github.com/unboxed/bops), the Back-office Planning System. 
+
+It allows an interface for applicants to reply to change requests made by planning officers within BOPS. These requests may require additional documents be added, or edits made, to a planning application in order to make it valid.
+
+### Running BOPS Applicants
+
+Note that this application only works if the main BOPS application is already running, as it depends on BOPS for its API calls. 
+
+The easiest way to get started is to follow the instructions in [BOPS](https://github.com/unboxed/bops), as both applications are included in `docker-compose`.
+
+Once BOPS and BOPS Applicants ar running on separate ports, create a planning application and a validation request within the BOPS app. 
+
+After clicking on "Invalidate", a validation request will be emailed and a link will be generated that can be used in the BOPS Applicants app. (Either copy the generated link from the terminal, or generate an API key in Notify to send emails on localhost.)
+
+It is necessary to export or set the following environment variables:
 
 ```
 export API_USER=api_user
@@ -13,13 +27,13 @@ export PROTOCOL=http
 export API_HOST=bops.localhost:3000
 ```
 
-Install your app dependencies with yarn and finally launch BOPS-applicants on a different port to BOPS:
+If BOPS Applicants is not running as part of the BOPS `docker-compose` group, install the application dependencies with Yarn and launch BOPS Applicants on a different port from the main BOPS application:
 
 ```
 bin/dev
 ```
 
-You will now be able to open the URL you've received by email (or copied from your terminal) and access a planning application's change requests on your localhost. Your URL will look similar to this example:
+It will now be possible to open the URL in the email (or copied from the terminal) and access a planning application's change requests on localhost. The URL will look similar to this example:
 
 ```
 http://southwark.bops-applicants.localhost:3001/validation_requests?change_access_id=6ea6218075f460e692be1a08fbc0e9&planning_application_id=18
@@ -50,4 +64,6 @@ We use Github Actions as part of our continuous integration process to run and t
 
 ## Deployments
 
-Merging into main will automatically deploy to the staging ECS environment. To deploy to the production ECS environment requires a manual review of the 'Deploy' GitHub Action by one of the required reviewers.
+Merging into `main` will automatically deploy to the staging ECS environment. To deploy to the production ECS environment requires a manual review of the 'Deploy' GitHub Action by one of the required reviewers.
+
+More information about the infrastructure can be found in this private repo: [BOPS infrastructure repo](https://github.com/unboxed/bops-terraform/).
