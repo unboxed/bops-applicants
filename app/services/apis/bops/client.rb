@@ -118,6 +118,39 @@ module Apis
           )
         end
 
+        # Ownership certificate validation requests
+        def get_ownership_certificate_validation_request(id, planning_application_id, change_access_id)
+          request(
+            http_method: :get,
+            endpoint: "planning_applications/#{planning_application_id}/ownership_certificate_validation_requests/#{id}?change_access_id=#{change_access_id}"
+          )
+        end
+
+        def patch_approved_ownership_certificate(id, planning_application_id, change_access_id)
+          request(
+            http_method: :patch,
+            endpoint: "planning_applications/#{planning_application_id}/ownership_certificate_validation_requests/#{id}?change_access_id=#{change_access_id}",
+            params: {
+              data: {
+                approved: true
+              }
+            }.to_json
+          )
+        end
+
+        def patch_rejected_ownership_certificate(id, planning_application_id, change_access_id, rejection_reason)
+          request(
+            http_method: :patch,
+            endpoint: "planning_applications/#{planning_application_id}/ownership_certificate_validation_requests/#{id}?change_access_id=#{change_access_id}",
+            params: {
+              data: {
+                approved: false,
+                rejection_reason:
+              }
+            }.to_json
+          )
+        end
+
         # Red line boundary change validation requests
         def get_red_line_boundary_change_validation_request(id, planning_application_id, change_access_id)
           request(

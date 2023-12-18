@@ -1,0 +1,40 @@
+<% content_for :page_title do %>
+  <%= t(".page_title", id:  @validation_request["id"]) %>
+<% end %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l"><%= t(".title") %></h1>
+
+    <%= @planning_application["site"]["address_1"] %>,
+    <%= @planning_application["site"]["address_2"] %>,
+    <%= @planning_application["site"]["postcode"] %>
+
+    <p class="govuk-body-s govuk-!-margin-bottom-1">Planning application reference number</p>
+    <p class="govuk-body"><%= @planning_application["reference"] %></p>
+  </div>
+  <div class="govuk-grid-column-full">
+    <my-map
+      style="width: 100%; height: 400px; margin-bottom: 20px;"
+      osVectorTilesApiKey='<%= ENV['OS_VECTOR_TILES_API_KEY'] %>'
+      showScale
+      useScaleBarStyle
+      geojsonData='<%= @planning_application["boundary_geojson"].is_a?(Hash) ? @planning_application["boundary_geojson"].to_json : JSON.parse(@planning_application["boundary_geojson"]).to_json.html_safe %>'
+      zoom="19"
+      latitude='<%= @planning_application["site"]["latitude"] %>'
+      longitude='<%= @planning_application["site"]["longitude"] %>'
+    ></my-map>
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <p class="govuk-body">
+      We need to confirm who owns the land for this application
+    </p>
+    <p class="govuk-body">
+      This is because <%= @validation_request["reason"] %>
+    </p>
+    <p class="govuk-body">
+      If you are not the sole owner of the land, you must tell the other owners about this application. 
+      ‘Sole owner’ means that you are the only person who owns this land.
+    </p>
+    <%= render 'form' %>
+  </div>
+</div>

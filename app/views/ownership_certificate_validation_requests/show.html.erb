@@ -1,0 +1,51 @@
+<% content_for :page_title do %>
+  Other change validation request #<%= @validation_request["id"] %> - Back-Office Planning System
+<% end %>
+
+<div class="govuk-grid-row govuk-!-padding-bottom-8">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-width-container">
+      <% if @validation_request["state"] == "cancelled" %>
+        <%= render "validation_requests/cancelled",
+          validation_request: @validation_request,
+          heading: "Cancelled other request to change your application" %>
+      <% else %>
+        <h1 class="govuk-heading-l">Response to ownership certificate change request</h1>
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        <p class="govuk-body">
+          <strong>Officer's reason for invalidating application</strong><br>
+        </p>
+        <p class="govuk-body">
+          <%= render(FormattedContentComponent.new(text: @validation_request["reason"])) %>
+        </p>
+        <p class="govuk-body">
+          <strong>How you can make your application valid</strong><br>
+        </p>
+        <p class="govuk-body">
+          <%= @validation_request["suggestion"] %>
+        </p>
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        <% if @validation_request["approved"] == false %>
+          <strong class="govuk-tag govuk-tag--red">
+            Disagreed with suggested ownership certificate change
+          </strong>
+          <p class="govuk-body govuk-!-padding-top-6"><strong>My reason for objecting to the ownership certificate: </strong><br>
+            <%= render(FormattedContentComponent.new(text: @validation_request["rejection_reason"])) %>
+          </p>
+        <% else %>
+          <strong class="govuk-tag govuk-tag--green">
+            Agreed with suggested ownership certificate change
+          </strong>
+        <% end %>
+        <p class="govuk-body">
+          <%= render(FormattedContentComponent.new(text: @validation_request["response"])) %>
+        </p>
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+      <% end %>
+
+      <div class="govuk-!-padding-bottom-8">
+        <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -48,6 +48,10 @@ en:
       the_following_request: The following request has been made.
       title: Respond to other request
       what_you_need: "What you need to do:"
+  ownership_certificate_validation_requests:
+    edit:
+      page_title: "Confirm ownership #%{id} - Back-Office Planning System"
+      title: Confirm ownership
   pages:
     accessibility:
       ability_net_has: "%{link} has advice on making your device easier to use if you have a disability."
