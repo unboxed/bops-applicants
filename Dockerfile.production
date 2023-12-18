@@ -44,6 +44,16 @@ RUN bash -c "export DEBIAN_FRONTEND=noninteractive && \
 # Build image for ruby dependencies
 FROM build_image AS gems
 
+# Required system packages
+
+# Run security updates, install libpq-dev
+RUN bash -c "export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update -qq && \
+    apt-get upgrade -y && \
+    apt-get install -y libpq-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*"
+
 # Create a directory for our application
 # and set it as the working directory
 WORKDIR /app
@@ -71,6 +81,14 @@ RUN bash -c "bundle exec yarn install"
 
 # Build image for application
 FROM packages AS application
+
+# Run security updates, install libpq5
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update -qq && \
+    apt-get upgrade -y && \
+    apt-get install -y libpq5 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create a directory for our application
 # and set it as the working directory
