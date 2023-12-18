@@ -7,6 +7,12 @@ on:
       environment-name:
         type: string
         required: true
+      db_subnets:
+        type: string
+        required: true
+      db_sg:
+        type: string
+        required: true
 
 concurrency:
   group: ${{ inputs.environment-name }}
@@ -16,107 +22,218 @@ permissions:
   contents: read # This is required for actions/checkout
 
 jobs:
-  deploy:
-    name: Deploy to ${{ inputs.environment-name }}
+  build-image:
+    name: Create and push docker image to ECR for ${{ inputs.environment-name }}
     runs-on: ubuntu-20.04
     environment: ${{ inputs.environment-name }}
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Create an image tag based on the commit sha
-        id: image_tag
+      - name: Get github commit sha
+        id: github
         run: |
-          echo "sha=$(echo ${GITHUB_SHA} | cut -c1-7)" >>$GITHUB_OUTPUT
+          echo "sha=$(echo ${GITHUB_SHA::7})" >>$GITHUB_OUTPUT
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1-node16
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/bops-applicants_github_deploy_${{ inputs.environment-name }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/bops_github_deploy_${{ inputs.environment-name }}
           aws-region: eu-west-2
 
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Setup docker cache
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: docker-cache
-          key: ${{ runner.os }}-docker-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-docker-
+      - name: Expose GitHub Runtime for Docker build
+        uses: crazy-max/ghaction-github-runtime@v2
 
-      - name: Load docker cache
-        run: |
-          if [ -d "docker-cache" ]; then
-            cat docker-cache/x* > bops-applicants.tar
-            docker load < bops-applicants.tar
-            rm -rf docker-cache
-          fi
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-      - name: Build, tag, and push ${{ inputs.environment-name }} image to Amazon ECR
+      - name: Build, tag, and push ${{ inputs.environment-name }} image to Amazon ECR based github sha
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: bops-applicants/${{ inputs.environment-name }}
-          IMAGE_TAG: ${{ steps.image_tag.outputs.sha }}
+          IMAGE_TAG: ${{ steps.github.outputs.sha }}
+          REVISION: ${{ steps.github.outputs.sha }}
         run: |
           # Build a docker container and
           # push it to ECR so that it can
           # be deployed to ECS.
-          docker build -t bops-applicants:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile.production .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker save bops-applicants:$IMAGE_TAG $(docker history -q bops-applicants:$IMAGE_TAG | awk '!/<missing>/{print}') >bops-applicants.tar
-          mkdir docker-cache
-          split -b 5G bops-applicants.tar docker-cache/x
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >>$GITHUB_OUTPUT
+          DOCKER_BUILDKIT=1 docker buildx build \
+            --cache-to type=gha,mode=max \
+            --cache-from type=gha \
+            --push \
+            --build-arg REVISION=$REVISION \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+            -f Dockerfile.production .
 
-      - name: Download task definition for console and strip unused properties
-        env:
-          IMAGE_ARN: ${{ steps.build-image.outputs.image }}
+  deploy-db-migrate-service:
+    name: Perform database migrations on ${{ inputs.environment-name }}
+    runs-on: ubuntu-20.04
+    needs: [build-image]
+
+    steps:
+      - name: Get github commit sha
+        id: github
         run: |
-          aws ecs describe-task-definition --task-definition bops-applicants-console-${{ inputs.environment-name }} --query taskDefinition | \
-          jq -r 'del(.compatibilities, .taskDefinitionArn, .requiresAttributes, .revision, .status, .registeredAt, .registeredBy)' > console.json
+          echo "sha=$(echo ${GITHUB_SHA::7})" >>$GITHUB_OUTPUT
 
-      - name: Generate task definition for console
-        id: task-def-console
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/bops_github_deploy_${{ inputs.environment-name }}
+          aws-region: eu-west-2
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Get image URI
+        id: ecr-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: bops-applicants/${{ inputs.environment-name }}
+          IMAGE_TAG: ${{ steps.github.outputs.sha }}
+        run: |
+          echo "uri=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >>$GITHUB_OUTPUT
+
+      - name: Download task definition for db_migrate, strip unused properties and update image to latest image_arn
+        env:
+          IMAGE_ARN: ${{ steps.ecr-image.outputs.uri }}
+        run: |
+          aws ecs describe-task-definition --task-definition bops-applicants-db-migrate-${{ inputs.environment-name }} --query taskDefinition | \
+          jq -r 'del(.compatibilities, .taskDefinitionArn, .requiresAttributes, .revision, .status, .registeredAt, .registeredBy)' | \
+          jq -r '.containerDefinitions[].image = "'$IMAGE_ARN'"' > db_migrate.json
+
+      - name: Register db_migrate on a new revision
+        run: |
+          aws ecs register-task-definition \
+            --cli-input-json file://db_migrate.json
+
+      - name: Run db_migrate
+        env:
+          CLUSTER: bops-${{ inputs.environment-name }}
+          TASK_DEFINITION: bops-applicants-db-migrate-${{ inputs.environment-name }}
+          LOG_GROUP: bops-applicants-db-migrate-${{ inputs.environment-name }}
+          BOPS_SUBNETS: subnet-${{ secrets[format('{0}', inputs.db_subnets)] }}
+          BOPS_SG: sg-${{ secrets[format('{0}', inputs.db_sg)] }}
+        run: |
+          start_time=$(date -Iseconds)
+          task_arn=$(aws ecs run-task --cluster $CLUSTER \
+            --task-definition $TASK_DEFINITION --launch-type FARGATE \
+            --network-configuration '{"awsvpcConfiguration": {"subnets": ["'$BOPS_SUBNETS'"],"securityGroups": ["'$BOPS_SG'"],"assignPublicIp": "ENABLED"}}' | \
+             jq -r '.tasks[].taskArn')
+          aws ecs wait tasks-stopped --cluster $CLUSTER --tasks "$task_arn"
+          aws logs tail $LOG_GROUP --format short --since $start_time
+          result_json=$(aws ecs describe-tasks --cluster $CLUSTER --task $task_arn)
+          exit_code=$(echo "$result_json" | jq -r '.tasks[].containers[0].exitCode // 1')
+          if [ $exit_code -gt 0 ]; then echo "$result_json" | jq -r; fi
+          exit $exit_code
+
+  deploy-services:
+    name: Deploy services to ${{ inputs.environment-name }}
+    runs-on: ubuntu-20.04
+    needs: [build-image, deploy-db-migrate-service]
+    strategy:
+      matrix:
+        service_type: ['console', 'web']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        if: matrix.service_type == 'web'
+
+      - name: Get github commit sha
+        id: github
+        run: |
+          echo "sha=$(echo ${GITHUB_SHA::7})" >>$GITHUB_OUTPUT
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/bops_github_deploy_${{ inputs.environment-name }}
+          aws-region: eu-west-2
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Get image URI
+        id: ecr-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: bops-applicants/${{ inputs.environment-name }}
+          IMAGE_TAG: ${{ steps.github.outputs.sha }}
+        run: |
+          echo "uri=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >>$GITHUB_OUTPUT
+
+      - name: Download task definition for ${{ matrix.service_type }} and strip unused properties
+        run: |
+          aws ecs describe-task-definition --task-definition bops-${{ matrix.service_type }}-${{ inputs.environment-name }} --query taskDefinition | \
+          jq -r 'del(.compatibilities, .taskDefinitionArn, .requiresAttributes, .revision, .status, .registeredAt, .registeredBy)' > ${{ matrix.service_type }}.json
+
+      - name: Generate task definition for ${{ inputs.environment-name }}
+        id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: console.json
-          container-name: bops-applicants
-          image: ${{ steps.build-image.outputs.image }}
+          task-definition: ${{ matrix.service_type }}.json
+          container-name: bops
+          image: ${{ steps.ecr-image.outputs.uri }}
 
-      - name: Deploy console
+      - name: Deploy ${{ matrix.service_type }}
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        if: matrix.service_type != 'web'
         with:
-          task-definition: ${{ steps.task-def-console.outputs.task-definition }}
-          service: bops-applicants-console-${{ inputs.environment-name }}
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: bops-${{ matrix.service_type }}-${{ inputs.environment-name }}
           cluster: bops-${{ inputs.environment-name }}
           wait-for-service-stability: true
-
-      - name: Download task definition for web and strip unused properties
-        run: |
-          aws ecs describe-task-definition --task-definition bops-applicants-web-${{ inputs.environment-name }} --query taskDefinition | \
-          jq -r 'del(.compatibilities, .taskDefinitionArn, .requiresAttributes, .revision, .status, .registeredAt, .registeredBy)' > web.json
-
-      - name: Generate task definition for web
-        id: task-def-web
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: web.json
-          container-name: bops-applicants
-          image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy web
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        if: matrix.service_type == 'web'
         with:
-          task-definition: ${{ steps.task-def-web.outputs.task-definition }}
-          service: bops-applicants-web-${{ inputs.environment-name }}
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: bops-${{ matrix.service_type }}-${{ inputs.environment-name }}
           cluster: bops-${{ inputs.environment-name }}
           wait-for-service-stability: true
           codedeploy-appspec: .aws/appspec.yml
-          codedeploy-application: bops-applicants-${{ inputs.environment-name }}
+          codedeploy-application: bops-${{ inputs.environment-name }}
           codedeploy-deployment-group: default
+
+  tag-release:
+    name: Tag release
+    runs-on: ubuntu-20.04
+    needs: [build-image, deploy-db-migrate-service]
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get current date
+        id: date
+        run: |
+          echo "date=$(date +%Y-%m-%dT%H.%M)" >>$GITHUB_OUTPUT
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ inputs.environment-name }}-${{ steps.date.outputs.date }}
+          tag_prefix: ""
+
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+
+        if: inputs.environment-name == 'production'
