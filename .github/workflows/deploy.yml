@@ -11,11 +11,15 @@ jobs:
     uses: ./.github/workflows/deploy-environment.yml
     with:
       environment-name: "staging"
+      db_subnets: "STAGING_BOPS_SUBNETS"
+      db_sg: "STAGING_BOPS_SG"
     secrets: inherit
 
-  deploy-prod:
+  deploy-production:
     uses: ./.github/workflows/deploy-environment.yml
     needs: deploy-staging
     with:
       environment-name: "production"
+      db_subnets: "PRODUCTION_BOPS_SUBNETS"
+      db_sg: "PRODUCTION_BOPS_SG"
     secrets: inherit
