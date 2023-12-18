@@ -11,6 +11,13 @@ RUN bash -c "export DEBIAN_FRONTEND=noninteractive && \
     apt-get install -y apt-utils curl locales && \
     apt-get upgrade -y && apt-get clean"
 
+# Install PostgreSQL client
+RUN bash -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' \
+    > /etc/apt/sources.list.d/pgdg.list && \
+    wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+    | apt-key add - && apt-get update && \
+    apt-get install -y --no-install-recommends postgresql-client-14"
+
 # Install NodeJS
 ARG NODE_VERSION=18.16.1
 ARG YARN_VERSION=1.22.19

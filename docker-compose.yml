@@ -1,5 +1,17 @@
 ---
 services:
+  db:
+    image: postgres:14-bullseye
+    volumes:
+      - type: volume
+        source: db
+        target: /var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "127.0.0.1:5432:5432"
+
   web:
     image: bops-applicants/ruby
     build: docker/ruby
@@ -8,12 +20,15 @@ services:
     command: ["foreman", "start", "-f", "Procfile.dev"]
     stdin_open: true
     tty: true
+    depends_on:
+      - db
     environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432
       PROTOCOL: "http"
       PORT: 3001
       PIDFILE: "/tmp/pids/server.pid"
     ports:
-      - "3001:3001"
+      - "127.0.0.1:3001:3001"
     volumes:
       - type: bind
         source: .
@@ -30,5 +45,6 @@ services:
           mode: 0777
 
 volumes:
+  db:
   bundle:
   node_modules:
