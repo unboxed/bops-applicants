@@ -1,0 +1,30 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Confirm ownership</h1>
+
+    <p class="govuk-body">
+      <%= @planning_application["site"]["address_1"] %>,
+      <%= @planning_application["site"]["address_2"] %>,
+      <%= @planning_application["site"]["postcode"] %>
+    </p>
+
+    <p class="govuk-body-s govuk-!-margin-bottom-1">Planning application reference number</p>
+    <p class="govuk-body"><%= @planning_application["reference"] %></p>
+    
+    <h3 class="govuk-heading-s">Details of owner</h3>
+    <%= form_for @land_owner,
+      url: planning_application_ownership_certificate_land_owners_path(@planning_application["id"], @ownership_certificate),
+      builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
+      <%= form.govuk_text_field :name, label: { text: "Owner name" } %>
+      <%= form.govuk_text_field :address_1, label: { text: "Address line 1" } %>
+      <%= form.govuk_text_field :address_1, label: { text:  "Address line 2 (optional)" } %>
+      <%= form.govuk_text_field :town, label: { text:  "Town or city" } %>
+      <%= form.govuk_text_field :country, label: { text:  "Country (optional)" } %>
+      <%= form.govuk_text_field :postcode, label: { text: "Postcode" } %>
+      <%= form.govuk_date_field :notice_given_at, legend: { text:  "What date was notice given to this owner?", size: "s" } %>
+
+      <%= form.govuk_submit "Add owner" %>
+      <%= link_to "Back", planning_application_ownership_certificate_path(@planning_application["id"], @ownership_certificate), class: "govuk-button govuk-button--secondary" %>
+    <% end %>
+  </div>
+</div>

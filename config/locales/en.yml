@@ -161,6 +161,10 @@ en:
   activemodel:
     errors:
       models:
+        ownership_certificate_form:
+          attributes:
+            certificate_type:
+              blank: "Select an option"
         neighbour_response: 
           attributes: 
             name: 

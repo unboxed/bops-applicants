@@ -1,0 +1,40 @@
+<section aria-labelledby="page-heading">
+  <% content_for :page_title do %>
+    Confirm ownership
+  <% end %>
+</section>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Confirm ownership</h1>
+
+    <p class="govuk-body">
+      <%= @planning_application["site"]["address_1"] %>,
+      <%= @planning_application["site"]["address_2"] %>,
+      <%= @planning_application["site"]["postcode"] %>
+    </p>
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Confirmation submitted
+      </h1>
+
+      <p class="govuk-panel__title">
+        Your application number<br>
+        <%= @planning_application["reference"] %>
+      </p>
+    </div>
+
+    <p class="govuk-body">
+      Thank you for confirming ownership
+    </p>
+
+    <h3 class="govuk-header-s">What happens next</h3>
+    <p class="govuk-body">
+      The planning officer will contact you if we need any further information to process your application
+    </p>
+
+    <p class="govuk-body">
+        The decision date for this application is <strong><%= @planning_application["target_date"].to_date.strftime("#{@planning_application["target_date"].to_date.day.ordinalize} %B %Y") %></strong>.
+    </p>
+  </div>
+</div>

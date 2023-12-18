@@ -222,6 +222,17 @@ module Apis
           )
         end
 
+        def post_ownership_certificate(planning_application_id, certificate_type:, land_owners_attributes:)
+          request(
+            http_method: :post,
+            endpoint: "planning_applications/#{planning_application_id}/ownership_certificates",
+            params: {
+              certificate_type:,
+              land_owners_attributes:
+            }.to_json
+          )
+        end
+
         private
 
         def request(http_method:, endpoint:, params: {}, upload_file: false)

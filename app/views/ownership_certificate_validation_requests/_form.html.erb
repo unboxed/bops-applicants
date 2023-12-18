@@ -19,11 +19,11 @@
   <% end %>
 
   <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
-    <%= form.govuk_radio_buttons_fieldset(:approved, legend: { size: 's', text: 'Are you the sole owner of the land?' }) do %>
-      <%= form.govuk_radio_button :approved, 'yes', label: { text: 'Yes, I think I got it wrong'} %>
-      <%= form.govuk_radio_button :approved, 'no', label: { text: 'No, I think I got it right' } do  %>
+    <%= form.govuk_radio_buttons_fieldset(:approved, legend: { size: 's', text: "Do you agree with this statement from the case officer?" }) do %>
+      <%= form.govuk_radio_button :approved, 'yes', label: { text: "Yes, I agree" } %>
+      <%= form.govuk_radio_button :approved, 'no', label: { text: "No, I don't agree" } do  %>
         <div class="govuk-!-padding-top-4 govuk-!-padding-bottom-2">
-          <%= form.govuk_text_area :rejection_reason, label: { text: 'Please indicate why you disagree with the the planning officer\'s suggestion.' }, rows: 6 %>
+          <%= form.govuk_text_area :rejection_reason, label: { text: "Tell us why you don't agree. Include any information that will help the case officer understand your reasons." }, rows: 6 %>
         </div>
       <% end %>
     <% end %>
