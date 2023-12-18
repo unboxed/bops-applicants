@@ -59,3 +59,20 @@ jobs:
     with:
       name: "${{matrix.specs[0]}}: ${{matrix.specs[1]}}"
       include: "spec/${{matrix.specs[2] || matrix.specs[0]}}/**/${{matrix.specs[1]}}"
+
+  docker-ruby:
+    uses: ./.github/workflows/testing.yml
+    with:
+      name: "all"
+      test-runner: "docker"
+      dockerfile: docker/ruby/Dockerfile
+      context: docker/ruby
+    secrets: inherit
+
+  docker-prod:
+    uses: ./.github/workflows/testing.yml
+    with:
+      name: "all"
+      test-runner: "docker"
+      dockerfile: Dockerfile.production
+    secrets: inherit

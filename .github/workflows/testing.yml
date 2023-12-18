@@ -15,6 +15,17 @@ on:
       name:
         type: string
         required: true
+      test-runner:
+        type: string
+        default: rspec
+      dockerfile:
+        type: string
+        required: false
+        default: Dockerfile
+      context:
+        type: string
+        required: false
+        default: "."
 
 jobs:
   tests:
@@ -69,9 +80,25 @@ jobs:
         run: bundle exec rake assets:precompile
 
       - name: Run rspec specs
+        if: ${{ inputs.test-runner == 'rspec' }}
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
           RAILS_ENV: test
           SPEC_OPTS: '-f doc  --exclude "${{ inputs.exclude }}" --pattern "${{ inputs.include }}"'
         run: |
           bundle exec rake spec
+
+      - name: Expose GitHub Runtime for Docker build
+        uses: crazy-max/ghaction-github-runtime@v2
+        if: ${{ inputs.test-runner == 'docker' }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        if: ${{ inputs.test-runner == 'docker' }}
+
+      - name: Ensure ${{ inputs.dockerfile }} builds
+        if: ${{ inputs.test-runner == 'docker' }}
+        run: |
+          DOCKER_BUILDKIT=1 docker buildx build \
+            --cache-to type=gha,mode=max \
+            --build-arg RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }} -f ${{ inputs.dockerfile }} ${{ inputs.context }}
