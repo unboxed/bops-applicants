@@ -10,8 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_18_131345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "land_owners", force: :cascade do |t|
+    t.bigint "ownership_certificate_id", null: false
+    t.string "name"
+    t.string "address_1"
+    t.string "address_2"
+    t.string "town"
+    t.string "county"
+    t.string "country"
+    t.string "postcode"
+    t.boolean "notice_given", default: true, null: false
+    t.datetime "notice_given_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ownership_certificate_id"], name: "index_land_owners_on_ownership_certificate_id"
+  end
+
+  create_table "ownership_certificates", force: :cascade do |t|
+    t.string "certificate_type", null: false
+    t.boolean "know_owners", default: true, null: false
+    t.integer "number_of_owners"
+    t.string "notification_of_owners"
+    t.bigint "planning_application_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
