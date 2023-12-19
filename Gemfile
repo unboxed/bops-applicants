@@ -45,4 +45,5 @@ end
 
 group :test do
   gem "webmock", "~> 3.12", ">= 3.12.2"
+  gem "factory_bot_rails"
 end
