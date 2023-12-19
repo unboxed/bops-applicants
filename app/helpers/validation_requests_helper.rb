@@ -27,7 +27,7 @@ module ValidationRequestsHelper
       validation_requests["data"]["replacement_document_validation_requests"] +
       validation_requests["data"]["other_change_validation_requests"] +
       validation_requests["data"]["fee_change_validation_requests"] +
-      validation_requests["data"]["red_line_boundary_change_validation_requests"]
+      validation_requests["data"]["red_line_boundary_change_validation_requests"] +
       validation_requests["data"]["ownership_certificate_validation_requests"]
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOwnershipCertificate < ActiveRecord::Migration[7.0]
   def change
     create_table :ownership_certificates do |t|

@@ -13,16 +13,16 @@
     <p class="govuk-body"><%= @planning_application["reference"] %></p>
   </div>
   <div class="govuk-grid-column-full">
-    <%# <my-map %>
-      <%# style="width: 100%; height: 400px; margin-bottom: 20px;" %>
-      <%# osVectorTilesApiKey='<%= ENV['OS_VECTOR_TILES_API_KEY'] %>' %>
-      <%# showScale %>
-      <%# useScaleBarStyle %>
-      <%# geojsonData='<%= @planning_application["boundary_geojson"].is_a?(Hash) ? @planning_application["boundary_geojson"].to_json : JSON.parse(@planning_application["boundary_geojson"]).to_json.html_safe %>' %>
-      <%# zoom="19" %>
-      <%# latitude='<%= @planning_application["site"]["latitude"] %>' %>
-      <%# longitude='<%= @planning_application["site"]["longitude"] %>' %>
-    <%# ></my-map> %>
+    <my-map
+      style="width: 100%; height: 400px; margin-bottom: 20px;"
+      osVectorTilesApiKey='<%= ENV['OS_VECTOR_TILES_API_KEY'] %>'
+      showScale
+      useScaleBarStyle
+      geojsonData='<%= @planning_application["boundary_geojson"].is_a?(Hash) ? @planning_application["boundary_geojson"].to_json : JSON.parse(@planning_application["boundary_geojson"]).to_json.html_safe %>'
+      zoom="19"
+      latitude='<%= @planning_application["site"]["latitude"] %>'
+      longitude='<%= @planning_application["site"]["longitude"] %>'
+    ></my-map>
   </div>
   <div class="govuk-grid-column-two-thirds govuk-!-margin-top-5">
     <p class="govuk-body">

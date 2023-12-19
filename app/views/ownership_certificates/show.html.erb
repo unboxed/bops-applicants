@@ -77,6 +77,6 @@
     </p>
     <%= hidden_field :change_access_id, value: params[:change_access_id] %>
     <%= link_to "Accept and send", planning_application_ownership_certificate_submit_path(@planning_application["id"], @ownership_certificate, change_access_id: params[:change_access_id]), method: :post, class: "govuk-button" %>
-    <%= link_to "Back", new_planning_application_ownership_certificate_path(@planning_application["id"]), class: "govuk-button govuk-button--secondary" %>
+    <%= link_to "Back", edit_planning_application_ownership_certificate_path(@planning_application["id"], change_access_id: params[:change_access_id]), class: "govuk-button govuk-button--secondary" %>
   </div>
 </div>

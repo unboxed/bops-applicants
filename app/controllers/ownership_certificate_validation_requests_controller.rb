@@ -30,12 +30,13 @@ class OwnershipCertificateValidationRequestsController < ValidationRequestsContr
 
     if ownership_certificate_validation_request_params[:approved] == "yes"
       redirect_to new_planning_application_ownership_certificate_path(params[:planning_application_id], change_access_id: params[:change_access_id])
+    elsif @ownership_certificate_validation_request.update
+      flash[:notice] = t("shared.response_updated.success")
+      validation_requests_redirect_url
     else
-      if @ownership_certificate_validation_request.update
-        respond_to do |format|
-          flash[:error] = error_message(@ownership_certificate_validation_request)
-          format.html { render :edit }
-        end
+      respond_to do |format|
+        flash[:error] = error_message(@ownership_certificate_validation_request)
+        format.html { render :edit }
       end
     end
   end

@@ -17,15 +17,15 @@
       builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
       <%= form.govuk_text_field :name, label: { text: "Owner name" } %>
       <%= form.govuk_text_field :address_1, label: { text: "Address line 1" } %>
-      <%= form.govuk_text_field :address_1, label: { text:  "Address line 2 (optional)" } %>
+      <%= form.govuk_text_field :address_2, label: { text:  "Address line 2 (optional)" } %>
       <%= form.govuk_text_field :town, label: { text:  "Town or city" } %>
       <%= form.govuk_text_field :country, label: { text:  "Country (optional)" } %>
       <%= form.govuk_text_field :postcode, label: { text: "Postcode" } %>
       <%= form.govuk_date_field :notice_given_at, legend: { text:  "What date was notice given to this owner?", size: "s" } %>
 
-      <%= form.hidden_field :change_access_id, value: params[:change_access_id] %>
-      <%= form.govuk_submit "Add owner" %>
-      <%= link_to "Back", planning_application_ownership_certificate_path(@planning_application["id"], @ownership_certificate), class: "govuk-button govuk-button--secondary" %>
+      <%= form.hidden_field :change_access_id, value: @change_access_id %>
+      <%= form.govuk_submit "Add owner", change_access_id: @change_access_id %>
+      <%= link_to "Back", planning_application_ownership_certificate_path(@planning_application["id"], @ownership_certificate, change_access_id: @change_access_id), class: "govuk-button govuk-button--secondary" %>
     <% end %>
   </div>
 </div>

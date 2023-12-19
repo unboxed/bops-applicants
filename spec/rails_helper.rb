@@ -19,6 +19,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.include ApiSpecHelper
+  config.include SystemSpecHelpers
 
   config.before do |example|
     @default_local_authority = "default"

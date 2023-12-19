@@ -169,6 +169,17 @@
         "response": "",
         "type": "other_change_request"
       }
+    ],
+    "ownership_certificate_validation_requests": [
+      {
+        "id": 19,
+        "state": "open",
+        "response_due": "2021-06-16",
+        "days_until_response_due": 14,
+        "summary": "You applied for the wrong sort of certificate",
+        "response": "",
+        "type": "ownership_certificate_validation_request"
+      }
     ]
   }
 }

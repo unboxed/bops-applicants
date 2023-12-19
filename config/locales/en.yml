@@ -183,6 +183,12 @@ en:
           attributes:
             response:
               blank: "Please enter your response to the planning officer's question."
+        bops/ownership_certificate_validation_request:
+          attributes:
+            approved:
+              blank: "Select an option"
+            rejection_reason:
+              blank: "Fill in the reason for disagreeing with the suggested change."
         bops/additional_document_validation_request:
           attributes:
             files:
