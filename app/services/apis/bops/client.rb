@@ -126,12 +126,13 @@ module Apis
           )
         end
 
-        def patch_approved_ownership_certificate(id, planning_application_id, change_access_id)
+        def patch_approved_ownership_certificate(id, planning_application_id, change_access_id, params)
           request(
             http_method: :patch,
             endpoint: "planning_applications/#{planning_application_id}/ownership_certificate_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
               data: {
+                params: params[:params],
                 approved: true
               }
             }.to_json
@@ -219,17 +220,6 @@ module Apis
               file:
             },
             upload_file: true
-          )
-        end
-
-        def post_ownership_certificate(planning_application_id, certificate_type:, land_owners_attributes:)
-          request(
-            http_method: :post,
-            endpoint: "planning_applications/#{planning_application_id}/ownership_certificates",
-            params: {
-              certificate_type:,
-              land_owners_attributes:
-            }.to_json
           )
         end
 

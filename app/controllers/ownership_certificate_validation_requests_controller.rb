@@ -29,7 +29,7 @@ class OwnershipCertificateValidationRequestsController < ValidationRequestsContr
     @ownership_certificate_validation_request = build_validation_request(ownership_certificate_validation_request_params)
 
     if ownership_certificate_validation_request_params[:approved] == "yes"
-      redirect_to new_planning_application_ownership_certificate_path(params[:planning_application_id])
+      redirect_to new_planning_application_ownership_certificate_path(params[:planning_application_id], change_access_id: params[:change_access_id])
     else
       if @ownership_certificate_validation_request.update
         respond_to do |format|

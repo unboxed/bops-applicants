@@ -14,8 +14,8 @@ module Bops
         Apis::Bops::Client.get_ownership_certificate_validation_request(id, planning_application_id, change_access_id)
       end
 
-      def approve(id, planning_application_id, change_access_id)
-        Apis::Bops::Client.patch_approved_ownership_certificate(id, planning_application_id, change_access_id)
+      def approve(id, planning_application_id, change_access_id, params)
+        Apis::Bops::Client.patch_approved_ownership_certificate(id, planning_application_id, change_access_id, params)
       end
 
       def reject(id, planning_application_id, change_access_id, rejection_reason)

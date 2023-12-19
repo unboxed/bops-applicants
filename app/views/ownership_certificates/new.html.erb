@@ -40,7 +40,7 @@
           </p>
         <% end %>
       <% end %>
-
+      <%= form.hidden_field :change_access_id, value: params[:change_access_id] %>
       <%= form.govuk_submit "Continue" %>
       <%# <%= link_to "Back", edit_ownership_certificate_validation_request_path(), class: "govuk-button govuk-button--secondary" %> %>
       <button type="submit" name="move_back" class="govuk-button govuk-button--secondary" data-disable-with="Back">Back</button>

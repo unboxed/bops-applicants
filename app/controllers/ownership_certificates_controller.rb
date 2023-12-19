@@ -12,10 +12,14 @@ class OwnershipCertificatesController < ApplicationController
   end
 
   def create
-    @ownership_certificate = OwnershipCertificate.new(ownership_certificate_params)
+    @ownership_certificate = OwnershipCertificate.new(ownership_certificate_params.except(:change_access_id))
 
     if @ownership_certificate.save
-      redirect_to planning_application_ownership_certificate_path(@planning_application["id"], @ownership_certificate)
+      redirect_to planning_application_ownership_certificate_path(
+        @planning_application["id"], 
+        @ownership_certificate, 
+        change_access_id: ownership_certificate_params[:change_access_id]
+      )
     else
       respond_to do |format|
         format.html { render :new }
@@ -27,12 +31,20 @@ class OwnershipCertificatesController < ApplicationController
   end
 
   def submit
-    if Bops::OwnershipCertificate.create(
-      params[:planning_application_id],
-      data: @ownership_certificate,
-      land_owners_attributes: @ownership_certificate.land_owners
+    validation_requests = Apis::Bops::Client.get_validation_requests(@planning_application["id"], params[:change_access_id])
+    ownership_certificate_validation_request_id = validation_requests["data"]["ownership_certificate_validation_requests"].first["id"]
+
+    if Bops::OwnershipCertificateValidationRequest.approve(
+      ownership_certificate_validation_request_id, 
+      @planning_application["id"], 
+      params[:change_access_id],
+      params: {
+        certificate_type: @ownership_certificate.certificate_type, 
+        land_owners_attributes: @ownership_certificate.land_owners
+      }
     )
-      redirect_to thank_you_planning_application_ownership_certificates_path(@planning_application["id"], @ownership_certificate)
+
+      redirect_to planning_application_ownership_certificate_thank_you_path(@planning_application["id"], @ownership_certificate)
     else
       render :show
     end
@@ -54,7 +66,7 @@ class OwnershipCertificatesController < ApplicationController
 
   def ownership_certificate_params
     params.require(:ownership_certificate)
-      .permit(:know_owners, :number_of_owners, :certificate_type, :notification_of_owners)
+      .permit(:know_owners, :number_of_owners, :certificate_type, :notification_of_owners, :change_access_id)
       .to_h.merge(planning_application_id: @planning_application["id"])
   end
 end

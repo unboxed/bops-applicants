@@ -65,7 +65,7 @@
           <% end %>
         </tbody>
       </table>
-      <%= link_to "Add another owner", new_planning_application_ownership_certificate_land_owner_path(@planning_application["id"], @ownership_certificate), class: "govuk-button govuk-button--secondary" %>
+      <%= link_to "Add another owner", new_planning_application_ownership_certificate_land_owner_path(@planning_application["id"], @ownership_certificate, change_access_id: params[:change_access_id]), class: "govuk-button govuk-button--secondary" %>
     <% end %>
 
     <h3 class="govuk-heading-s">
@@ -75,7 +75,8 @@
       By submitting this information you are confirming that, to the best of your knowledge,
       the details you are providing are correct.
     </p>
-    <%= link_to "Accept and send", planning_application_ownership_certificate_submit_path(@planning_application["id"], @ownership_certificate), method: :post, class: "govuk-button" %>
+    <%= hidden_field :change_access_id, value: params[:change_access_id] %>
+    <%= link_to "Accept and send", planning_application_ownership_certificate_submit_path(@planning_application["id"], @ownership_certificate, change_access_id: params[:change_access_id]), method: :post, class: "govuk-button" %>
     <%= link_to "Back", new_planning_application_ownership_certificate_path(@planning_application["id"]), class: "govuk-button govuk-button--secondary" %>
   </div>
 </div>

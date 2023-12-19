@@ -8,10 +8,14 @@ class LandOwnersController < ApplicationController
   end
 
   def create
-    @land_owner = LandOwner.new(land_owner_params)
+    @land_owner = LandOwner.new(land_owner_params.except(:change_access_id))
 
     if @land_owner.save
-      redirect_to planning_application_ownership_certificate_path(@planning_application["id"], @ownership_certificate)
+      redirect_to planning_application_ownership_certificate_path(
+        @planning_application["id"], 
+        @ownership_certificate, 
+        change_access_id: land_owner_params[:change_access_id]
+      )
     else
       respond_to do |format|
         format.html { render :new }
@@ -31,7 +35,7 @@ class LandOwnersController < ApplicationController
 
   def land_owner_params
     params.require(:land_owner)
-      .permit(:name, :address_1, :address_2, :town, :country, :postcode, :notice_given_at)
+      .permit(:name, :address_1, :address_2, :town, :country, :postcode, :notice_given_at, :change_access_id)
       .to_h.merge(ownership_certificate_id: @ownership_certificate.id)
   end
 end
