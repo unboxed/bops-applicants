@@ -4,7 +4,7 @@ module Bops
   class FeeChangeValidationRequest
     include ActiveModel::Model
 
-    attr_accessor :response, :planning_application_id, :change_access_id, :id
+    attr_accessor :response, :planning_application_id, :change_access_id, :id, :files
 
     validates :response, presence: true
 
@@ -13,15 +13,15 @@ module Bops
         Apis::Bops::Client.get_fee_change_validation_request(id, planning_application_id, change_access_id)
       end
 
-      def respond(id, planning_application_id, change_access_id, response)
-        Apis::Bops::Client.patch_response_fee_change_request(id, planning_application_id, change_access_id, response)
+      def respond(id, planning_application_id, change_access_id, response, files)
+        Apis::Bops::Client.patch_response_fee_change_request(id, planning_application_id, change_access_id, response, files)
       end
     end
 
     def update
       return false unless valid?
 
-      self.class.respond(id, planning_application_id, change_access_id, response)
+      self.class.respond(id, planning_application_id, change_access_id, response, files)
     end
   end
 end

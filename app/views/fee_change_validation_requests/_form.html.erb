@@ -18,13 +18,26 @@
     </div>
   <% end %>
 
-  <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
-    <div class="govuk-!-padding-top-4 govuk-!-padding-bottom-2">
-      <%= form.govuk_text_area :response, label: { text: "Respond to this request" }, rows: 6 %>
-    </div>
+  <div>
+    <p class="govuk-body-l">
+      <strong>Respond to this request</strong><br>
+    </p>
   </div>
+
+  <div class="govuk-form-group <%= @fee_change_validation_request.errors.any? ? 'govuk-form-group--error' : '' %>">
+    <div>
+      <p class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error: </span><%= @fee_change_validation_request.errors[:files].join("") %>
+      </p>
+      <%= form.govuk_file_field :files, multiple: true, hint: { text: "Upload as many files as you need to from your device. You can upload up to 30MB." }, label: { text: "Upload documents", size: "s" }, accept: acceptable_file_mime_types %>
+      <%= form.hidden_field :id %>
+    </div>
+
+    <%= form.govuk_text_area :response, label: nil, hint: { text: "Enter any comments you want to share with the case officer, including any reasons why you don't agree with what they've said." }, rows: 6 %>
+  </div>
+
   <div class="govuk-button-group">
     <%= form.submit "Submit", class: "govuk-button", data: { module: "govuk-button" } %>
-    <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
+    <%= link_to "Back", validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
   </div>
 <% end %>

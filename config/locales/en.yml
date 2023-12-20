@@ -26,14 +26,15 @@ en:
   fee_change_validation_requests:
     edit:
       click_submit_to: Click submit to complete this action
-      how_you_can: How you can make your application valid
-      if_you_disagree: If you disagree with the suggested changes, reply stating why you disagree
-      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
-      make_changes_to: Make changes to your application as set out by your case officer and reply in the box below stating what changes have been made
-      officers_reason_for: Officer's reason for invalidating application
+      comment_from_case_officer: Comment from case officer
+      how_to_make: How to make your application valid
+      if_you_disagree: if you don't agree with what the case officer has said, add a comment to explain why you don't agree
       page_title: "Fee change validation request #%{id} - Back-Office Planning System"
-      the_following_request: The following request has been made.
-      title: Respond to fee change request
+      read_the_comment: read the comment from the case officer
+      send_your_response: Send your response by %{date}. If we don't receive your response by this date, we will return your application to you and refund your payment.
+      your_case_officer: Your case officer needs some more information about the fee for this application.
+      title: Provide evidence for fee concession or exemption
+      upload_supporting: upload supporting documents if requested
       what_you_need: "What you need to do:"
   other_change_validation_requests:
     edit:

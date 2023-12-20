@@ -24,7 +24,7 @@ class HttpClient
     HTTParty.send(method,
       "#{api_base_url}#{endpoint}",
       headers: {Authorization: authorization_header},
-      body: (method == :post) ? params.merge(file_params_body(params)) : file_params_body(params))
+      body: params.merge(file_params_body(params)))
   end
 
   private
