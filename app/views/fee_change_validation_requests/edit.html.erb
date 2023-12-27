@@ -1,35 +1,40 @@
 <% content_for :page_title do %>
   <%= t(".page_title", id:  @validation_request["id"]) %>
 <% end %>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
       <h1 class="govuk-heading-l"><%= t(".title") %></h1>
-      <p class="govuk-body"> <%= t(".the_following_request") %> </p>
-      <p class="govuk-heading-s"><%= t(".what_you_need") %></p>
+      <p class="govuk-body"><%= t(".your_case_officer") %></p>
+      <p class="govuk-heading-m"><%= t(".what_you_need") %></p>
       <ul class="govuk-list govuk-list--bullet">
-        <li><%= t(".make_changes_to") %></li>
+        <li><%= t(".read_the_comment") %></li>
+        <li><%= t(".upload_supporting") %></li>
         <li><%= t(".if_you_disagree") %></li>
-        <li><%= t(".click_submit_to") %></li>
       </ul>
-      <div class="govuk-inset-text">
-        <%= t(".if_your_response", date: date_due(@validation_request)) %>
-      </div>
+      <p class="govuk-body"><%= t(".send_your_response", date: date_due(@validation_request)) %></p>
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-      <div style="margin-top: 50px;">
-        <p class="govuk-body">
-          <strong><%= t(".officers_reason_for") %></strong><br>
-          <%= render(FormattedContentComponent.new(text: @validation_request["reason"])) %>
+      <div>
+        <p class="govuk-body-l">
+          <strong><%= t(".comment_from_case_officer") %></strong><br>
+          <p class="govuk-body-s">The case officer gave this reason why the fee is currently invalid:</p>
+          <div class="govuk-inset-text">
+            <%= render(FormattedContentComponent.new(text: @validation_request["reason"])) %>
+          </div>
         </p>
       </div>
-      <div style="margin-top: 30px;">
-        <p class="govuk-body">
-          <strong><%= t(".how_you_can") %></strong><br>
-          <%= render(FormattedContentComponent.new(text: @validation_request["suggestion"])) %>
+      <div>
+        <p class="govuk-body-l">
+          <strong><%= t(".how_to_make") %></strong><br>
+          <p class="govuk-body-s">The case officer has asked you to:</p>
+          <div class="govuk-inset-text">
+            <%= render(FormattedContentComponent.new(text: @validation_request["suggestion"])) %>
+          </div>
         </p>
       </div>
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-      <%= render 'form' %>
+      <%= render "form" %>
     </div>
   </div>
 </div>

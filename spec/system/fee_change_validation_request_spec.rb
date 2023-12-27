@@ -18,8 +18,8 @@ RSpec.describe "Other change requests", type: :system do
         {
           id: 19,
           state: "open",
-          reason: "You paid the wrong amount",
-          suggestion: "Please pay more money",
+          reason: "I need evidence for the fee exemption",
+          suggestion: "Please upload evidence",
           response_due: "2022-7-1"
         },
       status: 200
@@ -32,7 +32,7 @@ RSpec.describe "Other change requests", type: :system do
         id: 19,
         planning_id: 28,
         change_access_id: 345_443_543,
-        response: "Agreed",
+        response: "I have evidence",
         status: 200
       )
     end
@@ -40,19 +40,26 @@ RSpec.describe "Other change requests", type: :system do
     it "allows the user to provide a response" do
       visit "/fee_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
 
+      within(".govuk-list") do
+        expect(page).to have_content("read the comment from the case officer")
+        expect(page).to have_content("upload supporting documents if requested")
+        expect(page).to have_content("if you don't agree with what the case officer has said, add a comment to explain why you don't agree")
+      end
+
       expect(page).to have_content(
-        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
+        "Send your response by 1 July 2022. If we don't receive your response by this date, we will return your application to you and refund your payment."
       )
 
-      expect(page).to have_content("You paid the wrong amount")
-      expect(page).to have_content("Please pay more money")
+      expect(page).to have_content("Comment from case officer")
+      expect(page).to have_content("The case officer gave this reason why the fee is currently invalid:")
+      expect(page).to have_content("I need evidence for the fee exemption")
 
-      fill_in "Respond to this request", with: "Agreed"
+      expect(page).to have_content("How to make your application valid")
+      expect(page).to have_content("The case officer has asked you to:")
+      expect(page).to have_content("Please upload evidence")
 
-      stub_successful_get_change_requests
-      click_button "Submit"
-
-      expect(page).to have_content("Your response was updated successfully")
+      fill_in "fee-change-validation-request-response-field", with: "I have evidence"
+      attach_file("Upload documents", "spec/fixtures/images/proposed-floorplan.png")
     end
 
     it "can't view show action" do

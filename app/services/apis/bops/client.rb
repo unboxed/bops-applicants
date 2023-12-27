@@ -86,15 +86,15 @@ module Apis
           )
         end
 
-        def patch_response_fee_change_request(id, planning_application_id, change_access_id, response)
+        def patch_response_fee_change_request(id, planning_application_id, change_access_id, response, files)
           request(
             http_method: :patch,
             endpoint: "planning_applications/#{planning_application_id}/fee_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
-              data: {
-                response:
-              }
-            }.to_json
+              response:,
+              supporting_documents: files
+            },
+            upload_file: true
           )
         end
 
