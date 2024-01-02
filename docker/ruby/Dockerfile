@@ -54,7 +54,8 @@ RUN bash -c "mkdir -p /home/rails/.webdrivers && \
    /usr/bin/chromedriver --version | cut -d ' ' -f 2 | cat > /home/rails/.webdrivers/chromedriver.version"
 
 # Create the crash reports directory - without it Chromium complains on startup
-RUN mkdir -p "/home/rails/.config/chromium/Crash Reports/pending/"
+RUN bash -c "mkdir -p /home/rails/.config/chromium/Crash Reports/pending/ && \
+    chown -R rails:rails /home/rails/.config"
 
 # Switch to non-root user
 USER rails:rails
