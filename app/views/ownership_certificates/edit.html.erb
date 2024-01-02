@@ -41,10 +41,9 @@
           </p>
         <% end %>
       <% end %>
-      <%= form.hidden_field :change_access_id, value: params[:change_access_id] %>
       <%= form.govuk_submit "Continue" %>
       <%= link_to "Back",
-        edit_ownership_certificate_validation_request_path(@ownership_certificate_validation_request["id"], change_access_id: params[:change_access_id], planning_application_id: @planning_application["id"]),
+        edit_ownership_certificate_validation_request_path(@ownership_certificate_validation_request["id"], change_access_id: @ownership_certificate.change_access_id, planning_application_id: @planning_application["id"]),
         class: "govuk-button govuk-button--secondary"
       %>
     <% end %>

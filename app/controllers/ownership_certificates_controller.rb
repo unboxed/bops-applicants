@@ -3,7 +3,7 @@
 class OwnershipCertificatesController < ApplicationController
   before_action :set_planning_application
   before_action :set_certificate, except: %i[new create]
-  before_action :set_validation_request, only: %i[new submit edit]
+  before_action :set_validation_request, only: %i[new create submit]
 
   def new
     @ownership_certificate = OwnershipCertificate.new(planning_application_id: @planning_application["id"])
@@ -16,11 +16,11 @@ class OwnershipCertificatesController < ApplicationController
   end
 
   def update
-    if @ownership_certificate.update(ownership_certificate_params.except(:change_access_id))
+    if @ownership_certificate.update(ownership_certificate_params)
       redirect_to planning_application_ownership_certificate_path(
         @planning_application["id"],
         @ownership_certificate,
-        change_access_id: ownership_certificate_params[:change_access_id]
+        change_access_id: @ownership_certificate.change_access_id
       )
     else
       respond_to do |format|
@@ -33,13 +33,12 @@ class OwnershipCertificatesController < ApplicationController
   end
 
   def create
-    @ownership_certificate = OwnershipCertificate.new(ownership_certificate_params.except(:change_access_id))
+    @ownership_certificate = OwnershipCertificate.new(ownership_certificate_params)
 
     if @ownership_certificate.save
       redirect_to planning_application_ownership_certificate_path(
         @planning_application["id"],
-        @ownership_certificate,
-        change_access_id: ownership_certificate_params[:change_access_id]
+        @ownership_certificate
       )
     else
       respond_to do |format|
@@ -55,19 +54,13 @@ class OwnershipCertificatesController < ApplicationController
   end
 
   def submit
-    change_access_id = if params.has_key?(:change_access_id)
-      params[:change_access_id]
-    else
-      ownership_certificate_params[:change_access_id]
-    end
-
     if Bops::OwnershipCertificateValidationRequest.approve(
       @ownership_certificate_validation_request["id"],
       @planning_application["id"],
-      change_access_id,
+      @ownership_certificate.change_access_id,
       params: {
         certificate_type: @ownership_certificate.certificate_type,
-        land_owners_attributes: @ownership_certificate.land_owners
+        land_owners_attributes: @ownership_certificate.relevant_land_owners_attributes
       }
     )
 
@@ -94,13 +87,13 @@ class OwnershipCertificatesController < ApplicationController
   end
 
   def set_validation_request
-    change_access_id = if params.has_key?(:change_access_id)
+    @change_access_id = if params.has_key?(:change_access_id)
       params[:change_access_id]
     else
       ownership_certificate_params[:change_access_id]
     end
 
-    validation_requests = Apis::Bops::Client.get_validation_requests(@planning_application["id"], change_access_id)
+    validation_requests = Apis::Bops::Client.get_validation_requests(@planning_application["id"], @change_access_id)
     @ownership_certificate_validation_request ||= validation_requests["data"]["ownership_certificate_validation_requests"].first
   end
 end

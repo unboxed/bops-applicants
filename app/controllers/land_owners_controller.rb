@@ -1,25 +1,23 @@
 # frozen_string_literal: true
 
 class LandOwnersController < ApplicationController
-  before_action :set_planning_application, :set_certificate, :set_change_access_id
+  before_action :set_planning_application, :set_certificate
 
   def new
     @land_owner = LandOwner.new
   end
 
   def create
-    @land_owner = LandOwner.new(land_owner_params.except(:change_access_id))
+    @land_owner = LandOwner.new(land_owner_params)
 
     if @land_owner.save
       redirect_to planning_application_ownership_certificate_path(
         @planning_application["id"],
-        @ownership_certificate,
-        change_access_id: land_owner_params[:change_access_id]
+        @ownership_certificate
       )
     else
       respond_to do |format|
         format.html do
-          set_change_access_id
           render :new
         end
       end
@@ -38,15 +36,7 @@ class LandOwnersController < ApplicationController
 
   def land_owner_params
     params.require(:land_owner)
-      .permit(:name, :address_1, :address_2, :town, :country, :postcode, :notice_given_at, :change_access_id)
+      .permit(:name, :address_1, :address_2, :town, :country, :postcode, :notice_given_at)
       .to_h.merge(ownership_certificate_id: @ownership_certificate.id)
-  end
-
-  def set_change_access_id
-    @change_access_id = if params.has_key?(:change_access_id)
-      params[:change_access_id]
-    else
-      land_owner_params[:change_access_id]
-    end
   end
 end

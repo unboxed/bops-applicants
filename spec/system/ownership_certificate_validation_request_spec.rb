@@ -171,23 +171,24 @@ RSpec.describe "Ownership certificate requests", type: :system do
               address_1: "Flat 1",
               address_2: "23 Street",
               town: "London",
+              country: "",
               postcode: "E16LT",
-              notice_given_at: "1/2/2023"
+              notice_given_at: "2023-02-01T00:00:00.000Z"
             },
             {
               name: "Bob",
               address_1: "Flat 2",
               address_2: "24 Street",
               town: "London",
-              postcode: "E16LT"
+              country: "",
+              postcode: "E16LT",
+              notice_given_at: nil
             }
           ]
         }
       )
 
       click_link "Accept and send"
-
-      stub_successful_get_change_requests
 
       expect(page).to have_content "Thank you for confirming ownership"
     end
