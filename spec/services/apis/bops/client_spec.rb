@@ -152,4 +152,32 @@ RSpec.describe Apis::Bops::Client do
       described_class.post_neighbour_response(planning_application_id, name: "Ella Toone", response: "Good", address: "123 street", email: "ella@email.com", summary_tag: "supportive", files: [""], tags: ["design"])
     end
   end
+
+  describe ".patch_approved_ownership_certificate" do
+    it "initializes a Request object with ownership_certificate_validation_request_id, planning_application_id, change_access_id and invokes #call" do
+      expect(Request).to receive(:new).with(
+        :patch,
+        "planning_applications/#{planning_application_id}/ownership_certificate_validation_requests/5?change_access_id=#{change_access_id}",
+        {data: {params: {certificate_type: "b"}, approved: true}}.to_json,
+        false
+      ).and_call_original
+
+      params = {params: {certificate_type: "b"}}
+
+      described_class.patch_approved_ownership_certificate(5, planning_application_id, change_access_id, params)
+    end
+  end
+
+  describe ".patch_rejected_ownership_certificate" do
+    it "initializes a Request object with ownership_certificate_validation_request_id, planning_application_id, change_access_id and rejection_reason and invokes #call" do
+      expect(Request).to receive(:new).with(
+        :patch,
+        "planning_applications/#{planning_application_id}/ownership_certificate_validation_requests/5?change_access_id=#{change_access_id}",
+        {data: {approved: false, rejection_reason: "I disagree"}}.to_json,
+        false
+      ).and_call_original
+
+      described_class.patch_rejected_ownership_certificate(5, planning_application_id, change_access_id, "I disagree")
+    end
+  end
 end

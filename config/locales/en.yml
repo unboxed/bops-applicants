@@ -48,6 +48,10 @@ en:
       the_following_request: The following request has been made.
       title: Respond to other request
       what_you_need: "What you need to do:"
+  ownership_certificate_validation_requests:
+    edit:
+      page_title: "Confirm ownership #%{id} - Back-Office Planning System"
+      title: Confirm ownership
   pages:
     accessibility:
       ability_net_has: "%{link} has advice on making your device easier to use if you have a disability."
@@ -157,6 +161,10 @@ en:
   activemodel:
     errors:
       models:
+        ownership_certificate_form:
+          attributes:
+            certificate_type:
+              blank: "Select an option"
         neighbour_response: 
           attributes: 
             name: 
@@ -175,6 +183,12 @@ en:
           attributes:
             response:
               blank: "Please enter your response to the planning officer's question."
+        bops/ownership_certificate_validation_request:
+          attributes:
+            approved:
+              blank: "Select an option"
+            rejection_reason:
+              blank: "Fill in the reason for disagreeing with the suggested change."
         bops/additional_document_validation_request:
           attributes:
             files:

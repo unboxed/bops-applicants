@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :other_change_validation_requests
     resources :fee_change_validation_requests
     resources :red_line_boundary_change_validation_requests
+    resources :ownership_certificate_validation_requests
   end
 
   resources :planning_applications, only: %i[show] do
@@ -19,6 +20,12 @@ Rails.application.routes.draw do
 
     resources :neighbour_responses, only: %i[new create] do
       get :start, :thank_you, on: :collection
+    end
+
+    resources :ownership_certificates, except: %i[destroy] do
+      resources :land_owners, only: %i[new create]
+      post :submit
+      get :thank_you
     end
   end
 

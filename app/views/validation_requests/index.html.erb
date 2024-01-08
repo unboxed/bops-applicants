@@ -44,6 +44,10 @@
           <%= render "fee_change_validation_requests" %>
         <% end %>
 
+        <% if @validation_requests["data"]["ownership_certificate_validation_requests"].present? %>
+          <%= render "ownership_certificate_validation_requests" %>
+        <% end %>
+
         <% if @validation_requests["data"]["other_change_validation_requests"].present? %>
           <%= render "other_change_validation_requests" %>
         <% end %>
