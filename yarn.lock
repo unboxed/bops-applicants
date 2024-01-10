@@ -796,15 +796,15 @@ glob-to-regexp@^0.4.1:
   resolved "https://registry.yarnpkg.com/glob-to-regexp/-/glob-to-regexp-0.4.1.tgz#c75297087c851b9a578bd217dd59a92f59fe546e"
   integrity sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==
 
-govuk-frontend@^3.11.0:
-  version "3.11.0"
-  resolved "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-3.11.0.tgz"
-  integrity sha512-1hW/3etYBtKPM+PNdWVOijvWVI3mpYL8eb7WLTtlh/Qxf2mCp6LkCsZk9I034n4EJBYQ5jlUWsUlTOOIypftpg==
-
 govuk-frontend@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-4.0.1.tgz#bceff58ecb399272cba32bd2b357fe16198e3249"
   integrity sha512-X+B88mqYHoxAz0ID87Uxo3oHqdKBRnNHd3Cz8+u8nvQUAsrEzROFLK+t7sAu7e+fKqCCrJyIgx6Cmr6dIGnohQ==
+
+govuk-frontend@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.0.0.tgz#c08a4d1115fb31eb39b6d19979c627f816185dd7"
+  integrity sha512-3WSfvQ+3kw/q/m8jrq/t8XnMUA8D2r0uhGyZaDbIh1gWTJBQzJBHbHiKYI9nc9ixIXdCFsc9RozkgEm57a795g==
 
 graceful-fs@^4.1.2, graceful-fs@^4.2.4, graceful-fs@^4.2.9:
   version "4.2.10"
