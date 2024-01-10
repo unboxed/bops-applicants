@@ -1,4 +1,4 @@
-require("govuk-frontend/govuk/all").initAll()
+require("govuk-frontend").initAll()
 
 document.body.className = document.body.className
   ? `${document.body.className} js-enabled`
