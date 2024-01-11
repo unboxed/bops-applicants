@@ -1,5 +1,5 @@
-$govuk-images-path: "/assets/images/";
-@import "govuk-frontend/govuk/all";
+$govuk-assets-path: "govuk-frontend/dist/govuk/assets/";
+@import "govuk-frontend/dist/govuk/all";
 @import "accessible-autocomplete/dist/accessible-autocomplete.min";
 @import "components/buttons";
 @import "components/flashes";
@@ -28,4 +28,8 @@ html * {
 
 .display-none {
   display: none;
+}
+
+.govuk-tag {
+  max-width: none;
 }
