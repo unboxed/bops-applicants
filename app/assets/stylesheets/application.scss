@@ -1,4 +1,5 @@
 $govuk-assets-path: "govuk-frontend/dist/govuk/assets/";
+$govuk-font-family: open-sans, sans-serif;
 @import "govuk-frontend/dist/govuk/all";
 @import "accessible-autocomplete/dist/accessible-autocomplete.min";
 @import "components/buttons";
@@ -8,10 +9,6 @@ $govuk-assets-path: "govuk-frontend/dist/govuk/assets/";
 .image-border {
   width: 276px;
   border: solid 1px #eee;
-}
-
-html * {
-  font-family: open-sans, sans-serif !important;
 }
 
 .contact-box {
