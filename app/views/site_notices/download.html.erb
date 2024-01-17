@@ -11,12 +11,12 @@
 
 <div class="display-none">
   <div id="site-notice-content">
-    <div style="width: 430px;">
+    <div style="width: 430px; font-family: Arial;">
       <%= @planning_application["site_notice_content"].html_safe %>
     </div>
   </div>
 </div>
 
 <div data-controller="pdf">
-  <%= link_to "Download printable PDF", "#", "data-action": "click->pdf#handleClick" %>
+  <%= link_to "Download printable PDF", "#", "data-action": "click->pdf#handleClick", class: "govuk-link govuk-body" %>
 </div>
