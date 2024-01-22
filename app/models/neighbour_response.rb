@@ -10,7 +10,7 @@ class NeighbourResponse
   attribute :address
   attribute :response
   attribute :summary_tag
-  attribute :tags, array: true, default: []
+  attribute :tags, array: true, default: -> { [] }
   attribute :design
   attribute :use
   attribute :privacy
@@ -19,7 +19,7 @@ class NeighbourResponse
   attribute :noise
   attribute :traffic
   attribute :other
-  attribute :files, array: true, default: []
+  attribute :files, array: true, default: -> { [] }
   attribute :stage
   attribute :move_next
   attribute :move_back

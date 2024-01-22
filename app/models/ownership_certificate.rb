@@ -5,7 +5,7 @@ class OwnershipCertificate < ApplicationRecord
 
   accepts_nested_attributes_for :land_owners
 
-  validates_presence_of :certificate_type
+  validates :certificate_type, presence: true
 
   def relevant_land_owners_attributes
     if land_owners.any?
