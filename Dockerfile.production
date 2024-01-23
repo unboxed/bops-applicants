@@ -105,6 +105,7 @@ RUN mkdir /app/log && \
 # Copy neccessary files to app directory
 COPY --chown=app:app ./app/ /app/app/
 COPY --chown=app:app ./bin/ /app/bin/
+COPY --chown=app:app ./db/ /app/db/
 COPY --chown=app:app ./config/ /app/config/
 COPY --chown=app:app ./config.ru /app/config.ru
 COPY --chown=app:app ./lib/ /app/lib/
