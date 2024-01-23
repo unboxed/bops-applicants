@@ -12,7 +12,7 @@ require "webmock/rspec"
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
-  config.file_fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.file_fixture_path = Rails.root.join("spec/fixtures")
 
   config.infer_spec_type_from_file_location!
 
