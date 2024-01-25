@@ -91,8 +91,10 @@ module Apis
             http_method: :patch,
             endpoint: "planning_applications/#{planning_application_id}/fee_change_validation_requests/#{id}?change_access_id=#{change_access_id}",
             params: {
-              response:,
-              supporting_documents: files
+              data: {
+                response:,
+                supporting_documents: files
+              }
             },
             upload_file: true
           )
