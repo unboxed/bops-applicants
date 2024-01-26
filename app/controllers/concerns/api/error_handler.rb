@@ -47,6 +47,13 @@ module Api
 
         http_method == "get" && (status == UNAUTHORIZED.to_s || status == FORBIDDEN.to_s)
       end
+
+      def validation_requests_redirect_url
+        redirect_to validation_requests_path(
+          planning_application_id: params[:planning_application_id],
+          change_access_id: params[:change_access_id]
+        )
+      end
     end
   end
 end

@@ -94,6 +94,6 @@ class OwnershipCertificatesController < ApplicationController
     end
 
     validation_requests = Apis::Bops::Client.get_validation_requests(@planning_application["id"], @change_access_id)
-    @ownership_certificate_validation_request ||= validation_requests["data"]["ownership_certificate_validation_requests"].first
+    @ownership_certificate_validation_request ||= validation_requests["data"]["ownership_certificate_validation_requests"].last
   end
 end
