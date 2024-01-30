@@ -28,7 +28,7 @@ group :development, :test do
   gem "capybara"
   gem "factory_bot_rails"
   gem "pry-byebug"
-  gem "rspec-rails", "~> 5.0.0"
+  gem "rspec-rails", "~> 6.0"
   gem "standard", "~> 1.31", require: false
   gem "standard-custom", require: false
   gem "standard-performance", require: false
