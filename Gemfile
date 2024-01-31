@@ -15,7 +15,7 @@ gem "jbuilder", "~> 2.7"
 gem "jsbundling-rails"
 gem "pg"
 gem "puma", ">= 5.3.1"
-gem "rails", "~> 7.0"
+gem "rails", "~> 7.1"
 gem "rails_autolink"
 gem "sprockets-rails"
 gem "stimulus-rails"
@@ -28,7 +28,7 @@ group :development, :test do
   gem "capybara"
   gem "factory_bot_rails"
   gem "pry-byebug"
-  gem "rspec-rails", "~> 5.0.0"
+  gem "rspec-rails", "~> 6.0"
   gem "standard", "~> 1.31", require: false
   gem "standard-custom", require: false
   gem "standard-performance", require: false
