@@ -36,7 +36,7 @@
         <%= form.govuk_radio_button :notification_of_owners, 'some', label: { text: 'Yes, some of them' } %>
         <%= form.govuk_radio_button :notification_of_owners, 'no', label: { text: 'No' } do %>
           <p class="govuk-body">
-            You must notify owners about this application. Use a notification form to send them details of the proposed work
+            You must notify owners about this application. Use a <%= link_to "notification form", "https://ecab.planningportal.co.uk/uploads/1app/notices/notice1.pdf", class: "govuk-link", target: "_blank" %> to send them details of the proposed work
           </p>
         <% end %>
       <% end %>
