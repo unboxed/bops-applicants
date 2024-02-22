@@ -51,6 +51,10 @@
         <% if @validation_requests["data"]["other_change_validation_requests"].present? %>
           <%= render "other_change_validation_requests" %>
         <% end %>
+
+        <% if @validation_requests["data"]["pre_commencement_condition_validation_requests"].present? %>
+          <%= render "pre_commencement_condition_validation_requests" %>
+        <% end %>
       <% end %>
      </ol>
   </div>

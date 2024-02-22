@@ -1,0 +1,45 @@
+<% content_for :page_title do %>
+  Pre-commencement conditions request - Back-Office Planning System
+<% end %>
+
+<div class="govuk-grid-row govuk-!-padding-bottom-8">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-width-container">
+      <% if @validation_request["state"] == "cancelled" %>
+        <%= render "validation_requests/cancelled",
+          validation_request: @validation_request,
+          heading: "Cancelled other request to change your application" %>
+      <% else %>
+        <h1 class="govuk-heading-l">Response to other validation change request</h1>
+        <h2 class="govuk-heading-m">Condition <%= "#{@validation_request["condition"]["title"]}" %></h2>
+        <p class="govuk-body">
+          <%= @validation_request["condition"]["text"] %>
+        </p>
+
+        <h3 class="govuk-heading-s">Reason</h3>
+        <p class="govuk-body">
+          <%= @validation_request["condition"]["reason"] %>
+        </p>
+
+        <% if @validation_request["approved"] == false %>
+          <strong class="govuk-tag govuk-tag--red">
+            Disagreed with the condition
+          </strong>
+          <p class="govuk-body govuk-!-padding-top-6"><strong>My reason for disagreeing:</strong><br>
+            <%= render(FormattedContentComponent.new(text: @validation_request["rejection_reason"])) %>
+          </p>
+        <% else %>
+          <p>
+            <strong class="govuk-tag govuk-tag--green">
+              Agreed to the condition
+            </strong>
+          </p>
+        <% end %>
+      <% end %>
+
+      <div class="govuk-!-padding-bottom-8">
+        <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

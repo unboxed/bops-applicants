@@ -1,0 +1,18 @@
+<li>
+  <h2 class="moj-task-list__section">
+    <span class="moj-task-list__section-number"><%= count_total_requests(@validation_requests, "pre_commencement_condition_validation_requests") %></span>Respond to pre-commencement condition agreement
+  </h2>
+  <ul class="moj-task-list__items" id="pre-commencement-condition-validation-requests">
+    <% @validation_requests["data"]["pre_commencement_condition_validation_requests"].each do |change_request| %>
+      <li class="moj-task-list__item">
+        <% if change_request["state"] == "open" %>
+          <%= link_to "Pre-commencement condition request", edit_pre_commencement_condition_validation_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+        <% else %>
+          <%= link_to "Pre-commencement condition request", pre_commencement_condition_validation_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+        <% end %>
+
+        <%= render "validation_requests/change_request_state", change_request: change_request %>
+      </li>
+    <% end %>
+  </ul>
+</li>
