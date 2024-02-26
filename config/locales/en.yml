@@ -48,6 +48,16 @@ en:
       the_following_request: The following request has been made.
       title: Respond to other request
       what_you_need: "What you need to do:"
+  pre_commencement_condition_validation_requests:
+    edit:
+      click_submit_to: submit your response
+      if_you_disagree: if you disagree, add a reason why
+      if_your_response: If you do not submit a response by %{date}, the pre-commencement conditions will be automatically accepted for use within your application. This is to avoid delays in making a determination.
+      make_changes_to: review each condition and select if you agree or disagree
+      page_title: "Pre-commencement condition request #%{id} - Back-Office Planning System"
+      the_following_request: Pre-commencement conditions have been added to your application
+      title: Review pre-commencement condition
+      what_you_need: "What you need to do:"
   ownership_certificate_validation_requests:
     edit:
       page_title: "Confirm ownership #%{id} - Back-Office Planning System"
@@ -207,3 +217,9 @@ en:
               blank: "Please select an option"
             rejection_reason:
               blank: "Please indicate why you disagree with the proposed red line boundary."
+        bops/pre_commencement_condition_validation_request:
+          attributes:
+            approved:
+              blank: "Please select an option"
+            rejection_reason:
+              blank: "Fill in why you disagree with the proposed pre-commencement condition."

@@ -1,0 +1,43 @@
+<% content_for :page_title do %>
+  <%= t(".page_title") %>
+<% end %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-width-container">
+      <h1 class="govuk-heading-l"><%= t(".title") %></h1>
+      <p class="govuk-body"> <%= t(".the_following_request") %> </p>
+      <p class="govuk-heading-s"><%= t(".what_you_need") %></p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li><%= t(".make_changes_to") %></li>
+        <li><%= t(".if_you_disagree") %></li>
+        <li><%= t(".click_submit_to") %></li>
+      </ul>
+
+      <div class="govuk-inset-text">
+        <%= t(".if_your_response", date: date_due(@validation_request)) %>
+      </div>
+
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">Pre-commencement conditions</h2>
+      <p class="govuk-body">
+        These conditions must be met before the commencement of works relating to this application.
+        If you do not accept, the case officer may contact you to review the conditions.
+      </p>
+
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+      <h3 class="govuk-heading-s">Condition: <%= "#{@validation_request["condition"]["title"]}" %></h3>
+      <p class="govuk-body">
+        <%= @validation_request["condition"]["text"] %>
+      </p>
+
+      <h3 class="govuk-heading-s">Reason</h3>
+      <p class="govuk-body">
+        <%= @validation_request["condition"]["reason"] %>
+      </p>
+
+      <%= render 'form', request: @validation_request %>
+    </div>
+  </div>
+</div>

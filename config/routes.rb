@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :fee_change_validation_requests
     resources :red_line_boundary_change_validation_requests
     resources :ownership_certificate_validation_requests
+    resources :pre_commencement_condition_validation_requests
   end
 
   resources :planning_applications, only: %i[show] do
