@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
 class PreCommencementConditionValidationRequestsController < ValidationRequestsController
-  before_action :set_validation_request
+  before_action :set_validation_request, :set_planning_application
 
   def edit
+    respond_to do |format|
+      if validation_request_is_open?
+        @pre_commencement_condition_validation_request = build_validation_request
+        format.html
+      else
+        format.html { render_not_found }
+      end
+    end
   end
 
   def show
@@ -25,7 +33,7 @@ class PreCommencementConditionValidationRequestsController < ValidationRequestsC
         format.html { validation_requests_redirect_url }
       else
         flash[:error] = error_message(@pre_commencement_condition_validation_request)
-        format.html { render :index }
+        format.html { render :edit }
       end
     end
   end

@@ -21,13 +21,13 @@
 
       <h2 class="govuk-heading-m">Pre-commencement conditions</h2>
       <p class="govuk-body">
-        These conditions must be met before the commencement of works relating to this applciation.
+        These conditions must be met before the commencement of works relating to this application.
         If you do not accept, the case officer may contact you to review the conditions.
       </p>
 
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
-      <h3 class="govuk-heading-s">Condition <%= "#{@validation_request["condition"]["title"]}" %></h3>
+      <h3 class="govuk-heading-s">Condition: <%= "#{@validation_request["condition"]["title"]}" %></h3>
       <p class="govuk-body">
         <%= @validation_request["condition"]["text"] %>
       </p>

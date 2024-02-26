@@ -7,9 +7,9 @@
       <% request = group.sort_by{ |request| request["created_at"] }.last %>
       <li class="moj-task-list__item">
         <% if request["state"] == "open" %>
-          <%= link_to "Pre-commencement condition request", edit_pre_commencement_condition_validation_request_path(request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+          <%= link_to request["condition"]["title"], edit_pre_commencement_condition_validation_request_path(request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
         <% else %>
-          <%= link_to "Pre-commencement condition request", pre_commencement_condition_validation_request_path(request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+          <%= link_to request["condition"]["title"], pre_commencement_condition_validation_request_path(request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
         <% end %>
 
         <%= render "validation_requests/change_request_state", change_request: request %>

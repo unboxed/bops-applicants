@@ -8,7 +8,7 @@
       <% if @validation_request["state"] == "cancelled" %>
         <%= render "validation_requests/cancelled",
           validation_request: @validation_request,
-          heading: "Cancelled other request to change your application" %>
+          heading: "Cancelled pre-commencement condition request for your application" %>
       <% else %>
         <h1 class="govuk-heading-l">Response to other validation change request</h1>
         <h2 class="govuk-heading-m">Condition <%= "#{@validation_request["condition"]["title"]}" %></h2>

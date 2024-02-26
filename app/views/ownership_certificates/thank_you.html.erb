@@ -28,13 +28,13 @@
       Thank you for confirming ownership
     </p>
 
-    <h3 class="govuk-header-s">What happens next</h3>
+    <h3 class="govuk-heading-s">What happens next</h3>
     <p class="govuk-body">
       The planning officer will contact you if we need any further information to process your application
     </p>
 
     <p class="govuk-body">
-        The decision date for this application is <strong><%= @planning_application["target_date"].to_date.strftime("#{@planning_application["target_date"].to_date.day.ordinalize} %B %Y") %></strong>.
+      The decision date for this application is <strong><%= @planning_application["target_date"].to_date.strftime("#{@planning_application["target_date"].to_date.day.ordinalize} %B %Y") %></strong>.
     </p>
   </div>
 </div>
