@@ -55,6 +55,10 @@
         <% if @validation_requests["data"]["pre_commencement_condition_validation_requests"].present? %>
           <%= render "pre_commencement_condition_validation_requests" %>
         <% end %>
+
+        <% if @validation_requests["data"]["heads_of_terms_validation_requests"].present? %>
+          <%= render "heads_of_terms_validation_requests" %>
+        <% end %>
       <% end %>
      </ol>
   </div>

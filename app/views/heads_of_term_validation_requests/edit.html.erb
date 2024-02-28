@@ -1,0 +1,26 @@
+<% content_for :page_title do %>
+  <%= t(".page_title") %>
+<% end %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-width-container">
+      <h1 class="govuk-heading-l"><%= t(".title") %></h1>
+      <p class="govuk-body"> <%= t(".the_following_request") %> </p>
+      <p class="govuk-heading-s"><%= t(".what_you_need") %></p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li><%= t(".make_changes_to") %></li>
+        <li><%= t(".if_you_disagree") %></li>
+        <li><%= t(".click_submit_to") %></li>
+      </ul>
+
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+      <h3 class="govuk-heading-s">Heads of term: <%= @validation_request["term"]["title"] %></h3>
+      <p class="govuk-body">
+        <%= @validation_request["term"]["text"] %>
+      </p>
+
+      <%= render 'form', request: @validation_request %>
+    </div>
+  </div>
+</div>

@@ -58,6 +58,15 @@ en:
       the_following_request: Pre-commencement conditions have been added to your application
       title: Review pre-commencement condition
       what_you_need: "What you need to do:"
+  heads_of_term_validation_requests:
+    edit:
+      click_submit_to: submit your response
+      if_you_disagree: if you disagree, add a reason why
+      make_changes_to: review each condition and select if you agree or disagree
+      page_title: "Pre-commencement condition request #%{id} - Back-Office Planning System"
+      the_following_request: Pre-commencement conditions have been added to your application
+      title: Respond to heads of terms request
+      what_you_need: "What you need to do:"
   ownership_certificate_validation_requests:
     edit:
       page_title: "Confirm ownership #%{id} - Back-Office Planning System"
