@@ -46,7 +46,8 @@ module ValidationRequestsHelper
       red_line_boundary_change_validation_requests
       fee_change_validation_requests
       other_change_validation_requests
-      ownership_certificate_validation_requests]
+      ownership_certificate_validation_requests
+      pre_commencement_condition_validation_requests]
   end
 
   def count_total_requests(validation_requests, name)

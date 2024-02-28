@@ -31,7 +31,8 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
             {"response_due" => "2021-06-01"},
             {"response_due" => "2021-06-02"}
           ],
-          "ownership_certificate_validation_requests" => []
+          "ownership_certificate_validation_requests" => [],
+          "pre_commencement_condition_validation_requests" => []
         }
       })).to eq({"response_due" => "2021-06-12"})
     end
@@ -63,7 +64,8 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
             {"response_due" => "2021-06-01"},
             {"response_due" => "2021-06-02"}
           ],
-          "ownership_certificate_validation_requests" => []
+          "ownership_certificate_validation_requests" => [],
+          "pre_commencement_condition_validation_requests" => []
         }
       })).to eq({"response_due" => "2021-06-11"})
     end
@@ -95,7 +97,8 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
             {"response_due" => "2021-06-01"},
             {"response_due" => "2021-06-02"}
           ],
-          "ownership_certificate_validation_requests" => []
+          "ownership_certificate_validation_requests" => [],
+          "pre_commencement_condition_validation_requests" => []
         }
       })).to eq({"response_due" => "2021-07-12"})
     end
@@ -127,7 +130,8 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
             {"response_due" => "2021-06-01"},
             {"response_due" => "2021-06-02"}
           ],
-          "ownership_certificate_validation_requests" => []
+          "ownership_certificate_validation_requests" => [],
+          "pre_commencement_condition_validation_requests" => []
         }
       })).to eq({"response_due" => "2021-06-30"})
     end
@@ -159,7 +163,8 @@ RSpec.describe ValidationRequestsHelper, type: :helper do
             {"response_due" => "2021-06-01"},
             {"response_due" => "2021-06-02"}
           ],
-          "ownership_certificate_validation_requests" => []
+          "ownership_certificate_validation_requests" => [],
+          "pre_commencement_condition_validation_requests" => []
         }
       })).to eq({"response_due" => "2021-07-02"})
     end
