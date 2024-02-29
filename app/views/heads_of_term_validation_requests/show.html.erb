@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  Pre-commencement conditions request - Back-Office Planning System
+  Heads of terms request - Back-Office Planning System
 <% end %>
 
 <div class="govuk-grid-row govuk-!-padding-bottom-8">
@@ -8,9 +8,9 @@
       <% if @validation_request["state"] == "cancelled" %>
         <%= render "validation_requests/cancelled",
           validation_request: @validation_request,
-          heading: "Cancelled pre-commencement condition request for your application" %>
+          heading: "Cancelled heads of terms request for your application" %>
       <% else %>
-        <h1 class="govuk-heading-l">Response to other validation change request</h1>
+        <h1 class="govuk-heading-l">Response to heads of terms validation change request</h1>
         <h2 class="govuk-heading-m">Heads of term: <%= "#{@validation_request["term"]["title"]}" %></h2>
         <p class="govuk-body">
           <%= @validation_request["term"]["text"] %>
@@ -18,7 +18,7 @@
 
         <% if @validation_request["approved"] == false %>
           <strong class="govuk-tag govuk-tag--red">
-            Disagreed with the condition
+            Disagreed with the term
           </strong>
           <p class="govuk-body govuk-!-padding-top-6"><strong>My reason for disagreeing:</strong><br>
             <%= render(FormattedContentComponent.new(text: @validation_request["rejection_reason"])) %>
@@ -26,7 +26,7 @@
         <% else %>
           <p>
             <strong class="govuk-tag govuk-tag--green">
-              Agreed to the condition
+              Agreed to the term
             </strong>
           </p>
         <% end %>

@@ -21,10 +21,10 @@
   <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
     <div class="govuk-!-padding-top-4 govuk-!-padding-bottom-2">
       <%= form.hidden_field :id, value: request["id"] %>
-      <%= form.govuk_radio_buttons_fieldset(:approved, legend: { size: 'm', text: 'Do you accept or not accept this condition?' }) do %>
+      <%= form.govuk_radio_buttons_fieldset(:approved, legend: { size: 'm', text: 'Do you accept or not accept this term?' }) do %>
         <%= form.govuk_radio_button :approved, 'yes', label: { text: 'Accept' }, link_errors: true %>
         <%= form.govuk_radio_button :approved, 'no', label: { text: 'Not accept' } do %>
-          <%= form.govuk_text_field :rejection_reason, label: { text: 'Tell the case officer why you do not accept this condition' } %>
+          <%= form.govuk_text_field :rejection_reason, label: { text: 'Tell the case officer why you do not accept this term' } %>
         <% end %>
       <% end %>
     </div>
