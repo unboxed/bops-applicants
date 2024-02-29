@@ -13,7 +13,7 @@ RSpec.describe Bops::RedLineBoundaryChangeValidationRequest, type: :model do
           red_line_boundary_change_validation_request.valid?
         end.to change {
           red_line_boundary_change_validation_request.errors[:approved]
-        }.to ["Please select an option"]
+        }.to ["Select an option"]
       end
     end
 

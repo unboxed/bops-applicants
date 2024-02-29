@@ -10,7 +10,7 @@
           validation_request: @validation_request,
           heading: "Cancelled pre-commencement condition request for your application" %>
       <% else %>
-        <h1 class="govuk-heading-l">Response to other validation change request</h1>
+        <h1 class="govuk-heading-l">Response to pre-commencement condition validation change request</h1>
         <h2 class="govuk-heading-m">Condition <%= "#{@validation_request["condition"]["title"]}" %></h2>
         <p class="govuk-body">
           <%= @validation_request["condition"]["text"] %>

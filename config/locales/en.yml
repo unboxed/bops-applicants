@@ -63,7 +63,7 @@ en:
       click_submit_to: submit your response
       if_you_disagree: if you disagree, add a reason why
       make_changes_to: review each condition and select if you agree or disagree
-      page_title: "Pre-commencement condition request #%{id} - Back-Office Planning System"
+      page_title: "Heads of terms request #%{id} - Back-Office Planning System"
       the_following_request: Pre-commencement conditions have been added to your application
       title: Respond to heads of terms request
       what_you_need: "What you need to do:"
@@ -195,7 +195,7 @@ en:
         bops/description_change_validation_request:
           attributes:
             approved:
-              blank: "Please select an option"
+              blank: "Select an option"
             rejection_reason:
               blank: "Please fill in the reason for disagreeing with the suggested change."
         bops/other_change_validation_request:
@@ -216,6 +216,12 @@ en:
           attributes:
             response:
               blank: "Please enter your response to the planning officer's question."
+        bops/heads_of_term_validation_request:
+          attributes:
+            approved:
+              blank: "Select an option"
+            rejection_reason:
+              blank: "Fill in why you disagree with the proposed term."
         bops/replacement_document_validation_request:
           attributes:
             file:
@@ -223,12 +229,12 @@ en:
         bops/red_line_boundary_change_validation_request:
           attributes:
             approved:
-              blank: "Please select an option"
+              blank: "Select an option"
             rejection_reason:
               blank: "Please indicate why you disagree with the proposed red line boundary."
         bops/pre_commencement_condition_validation_request:
           attributes:
             approved:
-              blank: "Please select an option"
+              blank: "Select an option"
             rejection_reason:
               blank: "Fill in why you disagree with the proposed pre-commencement condition."

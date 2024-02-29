@@ -88,7 +88,7 @@ RSpec.describe "Description change requests", type: :system do
 
         click_button "Submit"
         within(".govuk-error-summary") do
-          expect(page).to have_content "Please select an option"
+          expect(page).to have_content "Select an option"
         end
       end
 

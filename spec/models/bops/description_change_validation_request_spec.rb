@@ -13,7 +13,7 @@ RSpec.describe Bops::DescriptionChangeValidationRequest, type: :model do
           description_change_validation_request.valid?
         end.to change {
           description_change_validation_request.errors[:approved]
-        }.to ["Please select an option"]
+        }.to ["Select an option"]
       end
     end
 

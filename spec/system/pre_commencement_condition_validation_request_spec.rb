@@ -98,7 +98,7 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
       click_button "Submit"
 
       within(".govuk-error-summary") do
-        expect(page).to have_content "Please select an option"
+        expect(page).to have_content "Select an option"
       end
     end
 
