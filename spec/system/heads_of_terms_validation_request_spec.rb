@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Pre-commencement condition validation requests", type: :system do
+RSpec.describe "Heads of terms validation requests", type: :system do
   include_context "local_authority_contact_details"
 
   before do
@@ -10,7 +10,7 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
     Rails.configuration.api_protocol = "https"
 
     stub_successful_get_planning_application
-    stub_get_pre_commencement_condition_validation_request(
+    stub_get_heads_of_terms_validation_request(
       id: 10,
       planning_id: 28,
       change_access_id: 345_443_543,
@@ -20,9 +20,8 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
           state: "open",
           reason: nil,
           approved: nil,
-          response_due: "2022-7-1",
-          condition: {
-            title: "First condition"
+          term: {
+            title: "First term"
           }
         },
       status: 200
@@ -32,7 +31,7 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
   context "when state is open" do
     context "accepting change request" do
       before do
-        stub_patch_approved_pre_commencement_condition_validation_request(
+        stub_patch_approved_heads_of_terms_validation_request(
           id: 10,
           planning_id: 28,
           change_access_id: 345_443_543,
@@ -41,10 +40,10 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
       end
 
       it "allows the user to accept a change request" do
-        visit "/pre_commencement_condition_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
+        visit "/heads_of_term_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
 
         expect(page).to have_content(
-          "If you do not submit a response by 1 July 2022, the pre-commencement conditions will be automatically accepted for use within your application."
+          "First term"
         )
 
         choose "Accept"
@@ -58,7 +57,7 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
 
     context "rejecting change request" do
       before do
-        stub_patch_rejected_pre_commencement_condition_validation_request(
+        stub_patch_rejected_heads_of_terms_validation_request(
           id: 10,
           planning_id: 28,
           change_access_id: 345_443_543,
@@ -68,11 +67,11 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
       end
 
       it "allows the user to reject a change request" do
-        visit "/pre_commencement_condition_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
+        visit "/heads_of_term_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
 
-        expect(page).to have_content("Review pre-commencement condition")
+        expect(page).to have_content("Respond to heads of terms")
         choose "Not accept"
-        fill_in "Tell the case officer why you do not accept this condition", with: "I think this is wrong"
+        fill_in "Tell the case officer why you do not accept this term", with: "I think this is wrong"
 
         stub_successful_get_change_requests
         click_button "Submit"
@@ -81,19 +80,19 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
       end
 
       it "does not allow the user to reject a change request without filling in a rejection reason" do
-        visit "/pre_commencement_condition_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
+        visit "/heads_of_term_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
 
         choose "Not accept"
 
         click_button "Submit"
         within(".govuk-error-summary") do
-          expect(page).to have_content "Fill in why you disagree with the proposed pre-commencement condition."
+          expect(page).to have_content "Fill in why you disagree with the proposed term."
         end
       end
     end
 
     it "display an error if an option has not been selected" do
-      visit "/pre_commencement_condition_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
+      visit "/heads_of_term_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
 
       click_button "Submit"
 
@@ -103,7 +102,7 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
     end
 
     it "can't view show action" do
-      visit "/pre_commencement_condition_validation_requests/10?change_access_id=345443543&planning_application_id=28"
+      visit "/heads_of_term_validation_requests/10?change_access_id=345443543&planning_application_id=28"
       expect(page).to have_content("Not Found")
     end
   end
@@ -112,7 +111,7 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
     context "when approved" do
       before do
         stub_successful_get_planning_application
-        stub_get_pre_commencement_condition_validation_request(
+        stub_get_heads_of_terms_validation_request(
           id: 10,
           planning_id: 28,
           change_access_id: 345_443_543,
@@ -121,9 +120,8 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
               id: 10,
               state: "closed",
               approved: true,
-              response_due: "2022-7-1",
-              condition: {
-                title: "My condition"
+              term: {
+                title: "Term 1"
               }
             },
           status: 200
@@ -131,13 +129,13 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
       end
 
       it "displays the correct label for an accepted boundary change request" do
-        visit "/pre_commencement_condition_validation_requests/10?change_access_id=345443543&planning_application_id=28"
+        visit "/heads_of_term_validation_requests/10?change_access_id=345443543&planning_application_id=28"
 
-        expect(page).to have_content("Agreed to the condition")
+        expect(page).to have_content("Agreed to the term")
       end
 
       it "can't view edit action" do
-        visit "/pre_commencement_condition_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
+        visit "/heads_of_term_validation_requests/10/edit?change_access_id=345443543&planning_application_id=28"
         expect(page).to have_content("Not Found")
       end
     end
@@ -145,7 +143,7 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
     context "when not approved" do
       before do
         stub_successful_get_planning_application
-        stub_get_pre_commencement_condition_validation_request(
+        stub_get_heads_of_terms_validation_request(
           id: 10,
           planning_id: 28,
           change_access_id: 345_443_543,
@@ -155,9 +153,8 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
               state: "closed",
               rejection_reason: "I do not agree with this",
               approved: false,
-              response_due: "2022-7-1",
-              condition: {
-                title: "Bad condition"
+              term: {
+                title: "Bad term"
               }
             },
           status: 200
@@ -165,9 +162,9 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
       end
 
       it "displays the correct label for a rejected boundary change request" do
-        visit "/pre_commencement_condition_validation_requests/10?change_access_id=345443543&planning_application_id=28"
+        visit "/heads_of_term_validation_requests/10?change_access_id=345443543&planning_application_id=28"
 
-        expect(page).to have_content("Disagreed with the condition")
+        expect(page).to have_content("Disagreed with the term")
         expect(page).to have_content("My reason for disagreeing:")
         expect(page).to have_content("I do not agree")
       end
@@ -177,7 +174,7 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
   context "when state is cancelled" do
     before do
       stub_successful_get_planning_application
-      stub_get_pre_commencement_condition_validation_request(
+      stub_get_heads_of_terms_validation_request(
         id: 10,
         planning_id: 28,
         change_access_id: 345_443_543,
@@ -193,9 +190,9 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
     end
 
     it "displays a cancellation summary for a cancelled validation request" do
-      visit "/pre_commencement_condition_validation_requests/10?change_access_id=345443543&planning_application_id=28"
+      visit "/heads_of_term_validation_requests/10?change_access_id=345443543&planning_application_id=28"
 
-      expect(page).to have_content "Cancelled pre-commencement condition request for your application"
+      expect(page).to have_content "Cancelled heads of terms request for your application"
       expect(page).to have_content "This request has been cancelled. You do not have to take any further actions."
       expect(page).to have_content "The officer gave the following reason for cancelling this request:"
       expect(page).to have_content "My mistake"

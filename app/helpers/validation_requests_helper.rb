@@ -28,7 +28,9 @@ module ValidationRequestsHelper
       validation_requests["data"]["other_change_validation_requests"] +
       validation_requests["data"]["fee_change_validation_requests"] +
       validation_requests["data"]["red_line_boundary_change_validation_requests"] +
-      validation_requests["data"]["ownership_certificate_validation_requests"]
+      validation_requests["data"]["ownership_certificate_validation_requests"] +
+      validation_requests["data"]["pre_commencement_condition_validation_requests"] +
+      validation_requests["data"]["heads_of_terms_validation_requests"]
   end
 
   def counter_change_requests_order(validation_request)
@@ -47,7 +49,8 @@ module ValidationRequestsHelper
       fee_change_validation_requests
       other_change_validation_requests
       ownership_certificate_validation_requests
-      pre_commencement_condition_validation_requests]
+      pre_commencement_condition_validation_requests
+      heads_of_terms_validation_requests]
   end
 
   def count_total_requests(validation_requests, name)

@@ -13,7 +13,7 @@ RSpec.describe Bops::PreCommencementConditionValidationRequest, type: :model do
           pre_commencement_condition_validation_request.valid?
         end.to change {
           pre_commencement_condition_validation_request.errors[:approved]
-        }.to ["Please select an option"]
+        }.to ["Select an option"]
       end
     end
 

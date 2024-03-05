@@ -1,0 +1,19 @@
+<li>
+  <h2 class="moj-task-list__section">
+    <span class="moj-task-list__section-number"><%= count_total_requests(@validation_requests, "heads_of_terms_validation_requests") %></span>Respond to heads of terms
+  </h2>
+  <ul class="moj-task-list__items" id="heads_of_terms_validation_requests">
+    <% @validation_requests["data"]["heads_of_terms_validation_requests"].group_by{ |request| request["owner_id"] }.each do |id, group| %>
+      <% request = group.sort_by{ |request| request["created_at"] }.last %>
+      <li class="moj-task-list__item">
+        <% if request["state"] == "open" %>
+          <%= link_to request["term"]["title"], edit_heads_of_term_validation_request_path(request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+        <% else %>
+          <%= link_to request["term"]["title"], heads_of_term_validation_request_path(request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+        <% end %>
+
+        <%= render "validation_requests/change_request_state", change_request: request %>
+      </li>
+    <% end %>
+  </ul>
+</li>

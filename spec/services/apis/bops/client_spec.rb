@@ -124,11 +124,37 @@ RSpec.describe Apis::Bops::Client do
       expect(Request).to receive(:new).with(
         :patch,
         "planning_applications/#{planning_application_id}/pre_commencement_condition_validation_requests/5?change_access_id=#{change_access_id}",
-        {data: {approved: false, rejection_reason: "Boundary looks wrong"}}.to_json,
+        {data: {approved: false, rejection_reason: "I don't agree"}}.to_json,
         false
       ).and_call_original
 
-      described_class.patch_rejected_pre_commencement_condition_validation_request(5, planning_application_id, change_access_id, "Boundary looks wrong")
+      described_class.patch_rejected_pre_commencement_condition_validation_request(5, planning_application_id, change_access_id, "I don't agree")
+    end
+  end
+
+  describe ".patch_approved_heads_of_terms_validation_request" do
+    it "initializes a Request object with heads_of_terms_validation_request_id, planning_application_id, change_access_id and invokes #call" do
+      expect(Request).to receive(:new).with(
+        :patch,
+        "planning_applications/#{planning_application_id}/heads_of_terms_validation_requests/5?change_access_id=#{change_access_id}",
+        {data: {approved: true}}.to_json,
+        false
+      ).and_call_original
+
+      described_class.patch_approved_heads_of_terms_validation_request(5, planning_application_id, change_access_id)
+    end
+  end
+
+  describe ".patch_rejected_heads_of_terms_validation_request" do
+    it "initializes a Request object with heads_of_terms_validation_request_id, planning_application_id, change_access_id and rejection_reason and invokes #call" do
+      expect(Request).to receive(:new).with(
+        :patch,
+        "planning_applications/#{planning_application_id}/heads_of_terms_validation_requests/5?change_access_id=#{change_access_id}",
+        {data: {approved: false, rejection_reason: "I don't agree"}}.to_json,
+        false
+      ).and_call_original
+
+      described_class.patch_rejected_heads_of_terms_validation_request(5, planning_application_id, change_access_id, "I don't agree")
     end
   end
 
