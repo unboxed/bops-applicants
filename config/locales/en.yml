@@ -1,5 +1,9 @@
 en:
   additional_document_validation_requests:
+    edit:
+      page_title: "Additional document validation request #%{id} - Back-Office Planning System"
+    show:
+      page_title: "Additional document validation request #%{id} - Back-Office Planning System"
     document_create_header:
       case_officers_reason: "Case officer's reason for requesting the document:"
       click_save_to: Click save or open to add the file
@@ -12,6 +16,8 @@ en:
       title: Provide a new document
       what_you_need: "What you need to do:"
   description_change_validation_requests:
+    show: 
+      page_title: "Description change validation request #%{id} - Back-Office Planning System"
     edit:
       click_submit_to: Click submit to complete this action
       if_you_disagree: If you disagree, write in the box provided your reason for disagreeing with the changes and provided your suggested wording for the new description
@@ -24,6 +30,8 @@ en:
       title: Confirm changes to your application description
       what_you_need: "What you need to do:"
   fee_change_validation_requests:
+    show: 
+      page_title: "Fee change validation request #%{id} - Back-Office Planning System"
     edit:
       click_submit_to: Click submit to complete this action
       comment_from_case_officer: Comment from case officer
@@ -37,6 +45,8 @@ en:
       upload_supporting: upload supporting documents if requested
       what_you_need: "What you need to do:"
   other_change_validation_requests:
+    show:
+      page_title: "Other change validation request #%{id} - Back-Office Planning System"
     edit:
       click_submit_to: Click submit to complete this action
       how_you_can: How you can make your application valid
@@ -49,6 +59,8 @@ en:
       title: Respond to other request
       what_you_need: "What you need to do:"
   pre_commencement_condition_validation_requests:
+    show:
+      page_title: "Pre-commencement condition request #%{id} - Back-Office Planning System"
     edit:
       click_submit_to: submit your response
       if_you_disagree: if you disagree, add a reason why
@@ -68,6 +80,8 @@ en:
       title: Respond to heads of terms request
       what_you_need: "What you need to do:"
   ownership_certificate_validation_requests:
+    show:
+      page_title: "Confirm ownership #%{id} - Back-Office Planning System"
     edit:
       page_title: "Confirm ownership #%{id} - Back-Office Planning System"
       title: Confirm ownership

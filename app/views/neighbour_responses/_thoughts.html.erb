@@ -1,3 +1,7 @@
+<% content_for :page_title do %>
+  How do you feel about the proposed work?
+<% end %>
+
 <%= form.govuk_radio_buttons_fieldset(:summary_tag, legend: { size: "l", text: "How do you feel about the proposed work?" }) do %>
   <%= form.govuk_radio_button :summary_tag, 'supportive', label: { text: 'I support the application' } %>
   <%= form.govuk_radio_button :summary_tag, 'neutral', label: { text: "I want to make general comments" } %>

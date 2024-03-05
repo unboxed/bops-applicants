@@ -4,7 +4,6 @@ $govuk-font-family: open-sans, sans-serif;
 @import "accessible-autocomplete/dist/accessible-autocomplete.min";
 @import "components/buttons";
 @import "components/flashes";
-@import "task-list";
 
 .image-border {
   width: 276px;
@@ -29,4 +28,14 @@ $govuk-font-family: open-sans, sans-serif;
 
 .govuk-tag {
   max-width: none;
+}
+
+.govuk-list--number ::marker {
+  font-weight: bold;
+}
+
+.skip-to-content-link {
+  left: 50%;
+  position: absolute;
+  transform: translateY(-100%);
 }

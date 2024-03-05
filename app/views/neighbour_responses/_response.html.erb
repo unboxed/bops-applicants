@@ -1,3 +1,7 @@
+<% content_for :page_title do %>
+  Share your comments about the work
+<% end %>
+
 <%= form.govuk_check_boxes_fieldset :tags, multiple: true, legend: { text: "Share your comments about the proposed work", size: "l" }, hint: { text: "Select the topics you want to comment on. You can attach documents to help the planning officer understand your comments on the next page." } do %>
   <%= form.govuk_check_box :tags, :design, label: { text: "Design, size or height of new buildings or extensions" }, checked: response.tags&.include?("design") do %>
     <%= form.govuk_text_area :design, label: { text: "We cannot consider comments about loss of view" } %>

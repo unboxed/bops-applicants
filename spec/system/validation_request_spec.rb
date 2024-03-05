@@ -105,6 +105,6 @@ RSpec.describe "Change requests", type: :system do
 
     visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
 
-    expect(page).to have_title "Back-Office Planning System"
+    expect(page).to have_title "Your planning application"
   end
 end
