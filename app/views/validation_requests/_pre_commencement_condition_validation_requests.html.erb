@@ -1,16 +1,18 @@
-<li>
-  <h2 class="moj-task-list__section">
-    <span class="moj-task-list__section-number"><%= count_total_requests(@validation_requests, "pre_commencement_condition_validation_requests") %></span>Respond to pre-commencement conditions
-  </h2>
-  <ul class="moj-task-list__items" id="pre-commencement-condition-validation-requests">
+<li class="govuk-!-margin-top-8">
+  <h3 class="app-task-list__section">
+    Respond to pre-commencement conditions
+  </h3>
+  <ul class="app-task-list__items" id="pre-commencement-condition-validation-requests">
     <% @validation_requests["data"]["pre_commencement_condition_validation_requests"].group_by{ |request| request["condition_id"] }.each do |id, group| %>
       <% request = group.sort_by{ |request| request["created_at"] }.last %>
-      <li class="moj-task-list__item">
-        <% if request["state"] == "open" %>
-          <%= link_to request["condition"]["title"], edit_pre_commencement_condition_validation_request_path(request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
-        <% else %>
-          <%= link_to request["condition"]["title"], pre_commencement_condition_validation_request_path(request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
-        <% end %>
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
+          <% if request["state"] == "open" %>
+            <%= link_to request["condition"]["title"], edit_pre_commencement_condition_validation_request_path(request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+          <% else %>
+            <%= link_to request["condition"]["title"], pre_commencement_condition_validation_request_path(request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
+          <% end %>
+        </div>
 
         <%= render "validation_requests/change_request_state", change_request: request %>
       </li>

@@ -11,7 +11,7 @@
       <br>
     </p>
     <p class="govuk-body"><%= t(".the_case_officer") %></p>
-    <p class="govuk-heading-s"><%= t(".what_you_need") %></p>
+    <h2 class="govuk-heading-m"><%= t(".what_you_need") %></h2>
     <ul class="govuk-list govuk-list--bullet">
       <li><%= t(".each_link_below") %></li>
       <li><%= t(".click_on_each") %></li>
@@ -22,7 +22,7 @@
 </div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <ol class="moj-task-list">
+    <ol class="govuk-list govuk-list--number">
       <% if @validation_requests["data"]["description_change_validation_requests"].present? %>
         <%= render "description_change_validation_requests" %>
       <% end %>
