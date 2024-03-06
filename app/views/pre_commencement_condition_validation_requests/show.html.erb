@@ -12,14 +12,10 @@
       <% else %>
         <h1 class="govuk-heading-l">Response to pre-commencement condition validation change request</h1>
         <h2 class="govuk-heading-m">Condition <%= "#{@validation_request["condition"]["title"]}" %></h2>
-        <p class="govuk-body">
-          <%= @validation_request["condition"]["text"] %>
-        </p>
+        <%= render(FormattedContentComponent.new(text: @validation_request["condition"]["text"])) %>
 
         <h3 class="govuk-heading-s">Reason</h3>
-        <p class="govuk-body">
-          <%= @validation_request["condition"]["reason"] %>
-        </p>
+        <%= render(FormattedContentComponent.new(text: @validation_request["condition"]["reason"])) %>
 
         <% if @validation_request["approved"] == false %>
           <strong class="govuk-tag govuk-tag--red">
