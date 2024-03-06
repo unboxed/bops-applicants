@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :ownership_certificate_validation_requests
     resources :pre_commencement_condition_validation_requests
     resources :heads_of_term_validation_requests
+    resources :time_extension_validation_requests
   end
 
   resources :planning_applications, only: %i[show] do

@@ -1,0 +1,58 @@
+<% content_for :page_title do %>
+  Time extension validation request #<%= @validation_request["id"] %> - Back-Office Planning System
+<% end %>
+
+<div class="govuk-grid-row govuk-!-margin-top-7 govuk-!-padding-bottom-8">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-width-container">
+      <% if @validation_request["state"] == "cancelled" %>
+        <%= render "validation_requests/cancelled",
+                   validation_request: @validation_request,
+                   heading: "Cancelled request for changes to your planning application expiry date" %>
+      <% else %>
+        <h1 class="govuk-heading-l">Confirm changes to your application expiry date</h1>
+        <p class="govuk-body">
+          The following changes have been made to your application's expiry date.
+        </p>
+        <div class="govuk-!-margin-top-8">
+          <p class="govuk-body"><strong><%= t(".previous_expiry_date") %></strong><br>
+            <%= render(FormattedContentComponent.new(text: format_datetime(@validation_request["proposed_expiry_date"]))) %>
+          </p>
+        </div>
+        <div class="govuk-!-margin-top-6">
+          <p class="govuk-body"><strong><%= t(".proposed_expiry_date") %></strong><br>
+            <%= render(FormattedContentComponent.new(text: format_datetime(@planning_application["expiry_date"]))) %>
+          </p>
+        </div>
+        <div class="govuk-!-margin-top-8">
+          <p class="govuk-body">
+            The reason the case officer gave for needing to extend the expiry date:.
+          </p>
+          <p class="govuk-body"><strong>Previous description</strong><br>
+            <%= render(FormattedContentComponent.new(text: @validation_request["reason"])) %>
+          </p>
+        </div>
+
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        <% if @validation_request["approved"] == false %>
+          <strong class="govuk-tag govuk-tag--red">
+            Disagreed with suggested date
+          </strong>
+          <p class="govuk-body govuk-!-padding-top-6">
+            <strong>My objection and suggested wording for description: </strong><br>
+            <%= render(FormattedContentComponent.new(text: @validation_request["rejection_reason"])) %>
+          </p>
+        <% end %>
+        <% if @validation_request["approved"] == true %>
+          <strong class="govuk-tag govuk-tag--green">
+            Agreed with suggested date
+          </strong>
+        <% end %>
+      <% end %>
+
+      <div class="govuk-!-margin-top-8">
+        <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
