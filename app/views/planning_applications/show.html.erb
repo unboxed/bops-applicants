@@ -29,6 +29,8 @@
 <p class="govuk-body">
   <%= @planning_application["description"] %>
 </p>
+
+<%= render "shared/alternative_map" %>
 <hr>
 
 <%= render(ConsultationStatusComponent.new(planning_application: @planning_application)) %>

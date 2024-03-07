@@ -18,12 +18,6 @@
         <p class="govuk-body">
           <%= render(FormattedContentComponent.new(text: @validation_request["reason"])) %>
         </p>
-        <p class="govuk-body">
-          <strong>How you can make your application valid</strong><br>
-        </p>
-        <p class="govuk-body">
-          <%= @validation_request["suggestion"] %>
-        </p>
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <% if @validation_request["approved"] == false %>
           <strong class="govuk-tag govuk-tag--red">

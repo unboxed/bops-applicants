@@ -5,9 +5,11 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l"><%= t(".title") %></h1>
 
-    <%= @planning_application["site"]["address_1"] %>,
-    <%= @planning_application["site"]["address_2"] %>,
-    <%= @planning_application["site"]["postcode"] %>
+    <p class="govuk-body">
+      <%= @planning_application["site"]["address_1"] %>,
+      <%= @planning_application["site"]["address_2"] %>,
+      <%= @planning_application["site"]["postcode"] %>
+    </p>
 
     <p class="govuk-body-s govuk-!-margin-bottom-1">Planning application reference number</p>
     <p class="govuk-body"><%= @planning_application["reference"] %></p>
@@ -25,6 +27,7 @@
     ></my-map>
   </div>
   <div class="govuk-grid-column-two-thirds govuk-!-margin-top-5">
+    <%= render "shared/alternative_map" %>
     <p class="govuk-body">
       We need to confirm who owns the land for this application
     </p>

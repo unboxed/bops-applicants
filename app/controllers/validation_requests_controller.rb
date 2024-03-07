@@ -21,6 +21,10 @@ class ValidationRequestsController < ApplicationController
     @planning_application = Bops::PlanningApplication.find(params[:planning_application_id])
   end
 
+  def set_local_authority
+    @local_authority = Bops::LocalAuthority.find(Current.local_authority)
+  end
+
   def set_validation_request
     @validation_request = validation_request_model_klass.find(
       params[:id], params[:planning_application_id], params[:change_access_id]

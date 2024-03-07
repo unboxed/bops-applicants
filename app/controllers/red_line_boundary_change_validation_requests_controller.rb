@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RedLineBoundaryChangeValidationRequestsController < ValidationRequestsController
-  before_action :set_validation_request, :set_planning_application
+  before_action :set_validation_request, :set_planning_application, :set_local_authority
 
   def show
     respond_to do |format|

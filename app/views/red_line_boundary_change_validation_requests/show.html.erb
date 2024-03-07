@@ -30,6 +30,9 @@
             accessibility_text: "An interactive map centred on your address where the newly proposed red line boundary lines are drawn to create the site outline."
           } %>
         </div>
+        <div class="govuk-!-margin-top-4 govuk-!-margin-bottom-0">
+          <%= render "shared/alternative_map" %>
+        </div>
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <% if @validation_request["approved"] == false %>
           <strong class="govuk-tag govuk-tag--red">

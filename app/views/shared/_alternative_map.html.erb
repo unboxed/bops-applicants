@@ -1,0 +1,11 @@
+<% if @local_authority["feedback_email"].present? || @local_authority["telephone_number"].present? %>
+  <p class="govuk-body">
+    <% if @local_authority["feedback_email"].present? && @local_authority["phone_number"].present? %>
+      If you need this information in an alternative format, contact your case officer on <%= @local_authority["feedback_email"] %> or by telephone at <%= @local_authority["telephone_number"] %>.
+    <% elsif @local_authority["feedback_email"].present? %>
+      If you need this information in an alternative format, contact your case officer on <%= @local_authority["feedback_email"] %>.
+    <% else %>
+      If you need this information in an alternative format, contact your case officer by telephone at <%= @local_authority["telephone_number"] %>.
+    <% end %>
+  </p>
+<% end %>
