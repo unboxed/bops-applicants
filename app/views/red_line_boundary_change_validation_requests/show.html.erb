@@ -30,6 +30,9 @@
             accessibility_text: "An interactive map centred on your address where the newly proposed red line boundary lines are drawn to create the site outline."
           } %>
         </div>
+        <p class="govuk-body govuk-!-margin-top-4 govuk-!-margin-bottom-0">
+          If you need this information in an alternative format, contact your case officer on <%= @local_authority["feedback_email"] %> or by telephone at <%= @local_authority["telephone_number"] %>.
+        </p>
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <% if @validation_request["approved"] == false %>
           <strong class="govuk-tag govuk-tag--red">

@@ -3,6 +3,7 @@
 class OwnershipCertificateValidationRequestsController < ValidationRequestsController
   before_action :set_validation_request
   before_action :set_planning_application
+  before_action :set_local_authority
 
   def show
     respond_to do |format|

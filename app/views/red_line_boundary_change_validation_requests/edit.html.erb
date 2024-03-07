@@ -6,7 +6,7 @@
     <div class="govuk-width-container">
       <h1 class="govuk-heading-l"><%= t(".title") %></h1>
       <p class="govuk-body"><%= t(".the_following_changes") %></p>
-      <p class="govuk-heading-s"><%= t(".what_you_need") %></p>
+      <h2 class="govuk-heading-m"><%= t(".what_you_need") %></h2>
       <ul class="govuk-list govuk-list--bullet">
         <li><%= t(".select_if_you") %></li>
         <li><%= t(".if_you_disagree") %></li>
@@ -46,6 +46,9 @@
           }
         ) %>
       </div>
+      <p class="govuk-body govuk-!-margin-top-4 govuk-!-margin-bottom-0">
+        If you need this information in an alternative format, contact your case officer on <%= @local_authority["feedback_email"] %> or by telephone at [telephone].
+      </p>
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
       <%= render "form" %>
     </div>

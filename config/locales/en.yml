@@ -141,17 +141,19 @@ en:
     edit:
       accessibility_text_original: An interactive map centred on your address where the original red line boundary lines are drawn to create the site outline.
       accessibility_text_proposed: An interactive map centred on your address where the newly proposed red line boundary lines are drawn to create the site outline.
-      click_submit_to: Click submit to complete this action
-      if_you_disagree: If you disagree, write in the box provided your reason for disagreeing.
+      click_submit_to: submit your response
+      if_you_disagree: if you disagree, enter a reason to explain why you disagree
       if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
       page_title: "Red line boundary change validation request #%{id} - Back-Office Planning System"
       proposed_red_line: Proposed red line boundary
       reason_change_is: Reason change is requested
-      select_if_you: Select if you agree or disagree with the changes made by your case officer
+      select_if_you: agree or disagree with the proposed changes
       the_following_changes: The following changes have been made to your application's red line boundary.
       title: Confirm changes to your application's red line boundary
       what_you_need: "What you need to do:"
       your_original_red: Your original red line boundary
+    show: 
+      page_title: Confirm changes to your red line boundary
   replacement_document_validation_requests:
     edit:
       click_save_to: Click save or open to add the file
