@@ -10,6 +10,7 @@ RSpec.describe "Red line boundary change requests", type: :system do
     Rails.configuration.api_protocol = "https"
 
     stub_successful_get_planning_application
+    stub_successful_get_local_authority
     stub_get_red_line_boundary_change_validation_request(
       id: 10,
       planning_id: 28,

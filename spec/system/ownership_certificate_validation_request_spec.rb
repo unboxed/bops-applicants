@@ -10,6 +10,7 @@ RSpec.describe "Ownership certificate requests", type: :system do
     Rails.configuration.api_protocol = "https"
 
     stub_successful_get_planning_application
+    stub_successful_get_local_authority
     stub_get_ownership_certificate_validation_request(
       id: 19,
       planning_id: 28,

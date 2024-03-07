@@ -30,9 +30,7 @@
   <%= @planning_application["description"] %>
 </p>
 
-<p class="govuk-body">
-  If you need this information in an alternative format, contact your case officer on <%= @local_authority["feedback_email"] %> or by telephone at <%= @local_authority["telephone_number"] %>.
-</p>
+<%= render "shared/alternative_map" %>
 <hr>
 
 <%= render(ConsultationStatusComponent.new(planning_application: @planning_application)) %>

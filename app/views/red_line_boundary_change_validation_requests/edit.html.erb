@@ -46,9 +46,9 @@
           }
         ) %>
       </div>
-      <p class="govuk-body govuk-!-margin-top-4 govuk-!-margin-bottom-0">
-        If you need this information in an alternative format, contact your case officer on <%= @local_authority["feedback_email"] %> or by telephone at [telephone].
-      </p>
+      <div class="govuk-!-margin-top-4 govuk-!-margin-bottom-0">
+        <%= render "shared/alternative_map" %>
+      </div>
       <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
       <%= render "form" %>
     </div>
