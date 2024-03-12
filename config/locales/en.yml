@@ -266,3 +266,9 @@ en:
               blank: "Select an option"
             rejection_reason:
               blank: "Fill in why you disagree with the proposed pre-commencement condition."
+        bops/time_extension_validation_request:
+          attributes:
+            approved:
+              blank: "Select an option"
+            rejection_reason:
+              blank: "Fill in the reason for disagreeing with the suggested change."
