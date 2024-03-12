@@ -19,8 +19,7 @@ module Bops
       end
 
       def reject(id, planning_application_id, change_access_id, rejection_reason)
-        Apis::Bops::Client.patch_rejected_time_extension(id, planning_application_id, change_access_id,
-                                                         rejection_reason)
+        Apis::Bops::Client.patch_rejected_time_extension(id, planning_application_id, change_access_id, rejection_reason)
       end
     end
 
