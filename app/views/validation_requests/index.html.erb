@@ -29,6 +29,10 @@
         <%= render "description_change_validation_requests" %>
       <% end %>
 
+      <% if @validation_requests["data"]["time_extension_validation_requests"].present? %>
+        <%= render "time_extension_validation_requests" %>
+      <% end %>
+
       <% if @planning_application["status"] != "not_started" %>
         <% if @validation_requests["data"]["replacement_document_validation_requests"].present? %>
           <%= render "replacement_document_validation_requests" %>
@@ -62,6 +66,6 @@
           <%= render "heads_of_terms_validation_requests" %>
         <% end %>
       <% end %>
-     </ol>
+    </ol>
   </div>
 </div>

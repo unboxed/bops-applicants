@@ -16,7 +16,7 @@ en:
       title: Provide a new document
       what_you_need: "What you need to do:"
   description_change_validation_requests:
-    show: 
+    show:
       page_title: "Description change validation request #%{id} - Back-Office Planning System"
     edit:
       click_submit_to: Click submit to complete this action
@@ -30,7 +30,7 @@ en:
       title: Confirm changes to your application description
       what_you_need: "What you need to do:"
   fee_change_validation_requests:
-    show: 
+    show:
       page_title: "Fee change validation request #%{id} - Back-Office Planning System"
     edit:
       click_submit_to: Click submit to complete this action
@@ -152,7 +152,7 @@ en:
       title: Confirm changes to your application's red line boundary
       what_you_need: "What you need to do:"
       your_original_red: Your original red line boundary
-    show: 
+    show:
       page_title: Confirm changes to your red line boundary
   replacement_document_validation_requests:
     edit:
@@ -166,6 +166,18 @@ en:
       the_case_officer: The case officer has specified below why this document needs replacing.
       the_reason_the: "The reason the file needs replacing:"
       title: Provide a replacement document
+      what_you_need: "What you need to do:"
+  time_extension_validation_requests:
+    edit:
+      click_submit_to: Click submit to complete this action
+      if_you_disagree: If you disagree, write in the box provided your reason for disagreeing with the changes
+      if_your_response: If your response is not received by %{date} there is a chance your planning application may be closed.
+      new_expiry_date: New expiry date
+      page_title: "Time extension validation request #%{id} - Back-Office Planning System"
+      previous_expiry_date: Previous expiry date
+      select_if_you: Select if you agree or disagree with the proposed expiry date
+      the_following_changes: Your case officer has proposed a new expiry date for your planning application.
+      title: Confirm the new expiry date for your application
       what_you_need: "What you need to do:"
   validation_requests:
     index:
@@ -200,11 +212,11 @@ en:
           attributes:
             certificate_type:
               blank: "Select an option"
-        neighbour_response: 
-          attributes: 
-            name: 
+        neighbour_response:
+          attributes:
+            name:
               blank: "Enter your name"
-            summary_tag: 
+            summary_tag:
               blank: "Select how you feel about the application"
             tags:
               blank: "Enter a comment"
@@ -228,7 +240,7 @@ en:
           attributes:
             files:
               blank: "Please choose at least one file to upload"
-        bops/fee_change_validation_request: 
+        bops/fee_change_validation_request:
           attributes:
             response:
               blank: "Please enter your response to the planning officer's question."
@@ -254,3 +266,9 @@ en:
               blank: "Select an option"
             rejection_reason:
               blank: "Fill in why you disagree with the proposed pre-commencement condition."
+        bops/time_extension_validation_request:
+          attributes:
+            approved:
+              blank: "Select an option"
+            rejection_reason:
+              blank: "Fill in the reason for disagreeing with the suggested change."

@@ -30,7 +30,8 @@ module ValidationRequestsHelper
       validation_requests["data"]["red_line_boundary_change_validation_requests"] +
       validation_requests["data"]["ownership_certificate_validation_requests"] +
       validation_requests["data"]["pre_commencement_condition_validation_requests"] +
-      validation_requests["data"]["heads_of_terms_validation_requests"]
+      validation_requests["data"]["heads_of_terms_validation_requests"] +
+      validation_requests["data"]["time_extension_validation_requests"]
   end
 
   def counter_change_requests_order(validation_request)
@@ -49,13 +50,22 @@ module ValidationRequestsHelper
       fee_change_validation_requests
       other_change_validation_requests
       ownership_certificate_validation_requests
+      fee_change_validation_requests
+      other_change_validation_requests
+      ownership_certificate_validation_requests
       pre_commencement_condition_validation_requests
-      heads_of_terms_validation_requests]
+      heads_of_terms_validation_requests
+      time_extension_validation_requests]
   end
 
   def count_total_requests(validation_requests, name)
     non_empty = validation_requests["data"].reject { |_k, v| v.empty? }
     ind = non_empty.keys.sort_by { |e| ordered_validation_requests.index(e) }.find_index(name)
     ind + 1
+  end
+
+  def format_datetime(datetime_str)
+    datetime = DateTime.parse(datetime_str)
+    datetime.strftime("%-d %B %Y")
   end
 end

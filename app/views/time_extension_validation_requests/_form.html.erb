@@ -1,0 +1,35 @@
+<%= form_with scope: :time_extension_validation_request,
+              url: time_extension_validation_request_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]),
+              method: :patch,
+              builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
+
+  <% if @time_extension_validation_request.errors.any? %>
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">
+        There is a problem
+      </h2>
+      <div class="govuk-error-summary__body">
+        <ul class="govuk-list govuk-error-summary__list">
+          <% @time_extension_validation_request.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="govuk-form-group <%= flash["error"].present? ? 'govuk-form-group govuk-form-group--error' : '' %>">
+    <%= form.govuk_radio_buttons_fieldset(:approved, legend: { size: 's', text: 'Do you agree with the proposed new expiry date for your planning application?' }) do %>
+      <%= form.govuk_radio_button :approved, 'yes', label: { text: 'Yes, I agree with the changes made'} %>
+      <%= form.govuk_radio_button :approved, 'no', label: { text: 'No, I disagree with the changes made' } do  %>
+        <div class="govuk-!-padding-top-4 govuk-!-padding-bottom-2">
+          <%= form.govuk_text_area :rejection_reason, label: { text: 'Please indicate why you disagree with the changes' }, rows: 6 %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="govuk-button-group">
+    <%= form.submit "Submit", class: "govuk-button", data: { module: "govuk-button" } %>
+    <%= link_to 'Back', validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "govuk-button govuk-button--secondary" %>
+  </div>
+<% end %>
