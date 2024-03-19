@@ -1,15 +1,14 @@
 <li>
-  <h2 class="moj-task-list__section">
-    <span class="moj-task-list__section-number"><%= count_total_requests(@validation_requests, "time_extension_validation_requests") %></span>Confirm changes to your application expiry date
-  </h2>
-  <ul class="moj-task-list__items" id="time-extension-validation-requests">
+  <ul class="app-task-list__items" id="time-extension-validation-requests">
     <% @validation_requests["data"]["time_extension_validation_requests"].each do |change_request| %>
-      <li class="moj-task-list__item">
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
         <% if change_request["state"] == "open" %>
           <%= link_to "Expiry date", edit_time_extension_validation_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
         <% else %>
           <%= link_to "Expiry date", time_extension_validation_request_path(change_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]), class: "moj-task-list__task-name" %>
         <% end %>
+        </div>
 
         <%= render "validation_requests/change_request_state", change_request: change_request %>
       </li>
