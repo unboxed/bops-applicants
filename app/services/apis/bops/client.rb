@@ -154,6 +154,39 @@ module Apis
           )
         end
 
+        # Time extension validation requests
+        def get_time_extension_validation_request(id, planning_application_id, change_access_id)
+          request(
+            http_method: :get,
+            endpoint: "planning_applications/#{planning_application_id}/time_extension_validation_requests/#{id}?change_access_id=#{change_access_id}"
+          )
+        end
+
+        def patch_approved_time_extension(id, planning_application_id, change_access_id)
+          request(
+            http_method: :patch,
+            endpoint: "planning_applications/#{planning_application_id}/time_extension_validation_requests/#{id}?change_access_id=#{change_access_id}",
+            params: {
+              data: {
+                approved: true
+              }
+            }.to_json
+          )
+        end
+
+        def patch_rejected_time_extension(id, planning_application_id, change_access_id, rejection_reason)
+          request(
+            http_method: :patch,
+            endpoint: "planning_applications/#{planning_application_id}/time_extension_validation_requests/#{id}?change_access_id=#{change_access_id}",
+            params: {
+              data: {
+                approved: false,
+                rejection_reason:
+              }
+            }.to_json
+          )
+        end
+
         # Pre commencement condition validation requests
         def get_pre_commencement_condition_validation_request(id, planning_application_id, change_access_id)
           request(
