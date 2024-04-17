@@ -5,28 +5,28 @@ en:
     show:
       page_title: "Additional document validation request #%{id} - Back-Office Planning System"
     document_create_header:
-      case_officers_reason: "Case officer's reason for requesting the document:"
-      click_save_to: Click save or open to add the file
-      click_submit_to: Click submit to complete this action
+      case_officers_reason: "Comment from case officer:"
+      click_save_to: select ‘Choose file’ to upload a document from your device - the file must be smaller than 30Mb
+      click_submit_to: submit your response
       document_requested: "Document requested:"
-      file_must_be_smaller_than: The file(s) must be smaller than 30MB
-      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
-      select_choose_files: "Select 'choose files' and upload a file or multiple files from your device"
-      the_case_officer: The case officer has specified below why this document is needed.
+      file_must_be_smaller_than: read the request from the case officer
+      if_your_response: You must submit your response by ${date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
+      select_choose_files: read the information about how to prepare plans
+      the_case_officer: The case officer working on your application has requested a new document.
       title: Provide a new document
       what_you_need: "What you need to do:"
   description_change_validation_requests:
     show:
       page_title: "Description change validation request #%{id} - Back-Office Planning System"
     edit:
-      click_submit_to: Click submit to complete this action
-      if_you_disagree: If you disagree, write in the box provided your reason for disagreeing with the changes and provided your suggested wording for the new description
-      if_your_response: If your response is not received by %{date} the proposed description will be automatically accepted for use with your application. This is to avoid delays in making a determination.
+      click_submit_to: submit your response
+      if_you_disagree: select ‘Yes’ or ‘No’ to tell us if you agree or disagree with the changes
+      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date the new description will be automatically accepted for use with your application. 
       new_description: New description
       page_title: "Description change validation request #%{id} - Back-Office Planning System"
       previous_description: Previous description
-      select_if_you: Select if you agree or disagree with the changes made by your case officer
-      the_following_changes: The following changes have been made to your application's description.
+      select_if_you: read the new description suggested by the case officer
+      the_following_changes: The case officer working on your application has suggested a change to your application’s description.
       title: Confirm changes to your application description
       what_you_need: "What you need to do:"
   fee_change_validation_requests:
@@ -48,14 +48,14 @@ en:
     show:
       page_title: "Other change validation request #%{id} - Back-Office Planning System"
     edit:
-      click_submit_to: Click submit to complete this action
-      how_you_can: How you can make your application valid
-      if_you_disagree: If you disagree with the suggested changes, reply stating why you disagree
-      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
-      make_changes_to: Make changes to your application as set out by your case officer and reply in the box below stating what changes have been made
-      officers_reason_for: Officer's reason for invalidating application
+      click_submit_to: submit your response
+      how_to_make: How you can make your application valid
+      if_you_disagree: enter your response
+      if_your_response: You must submit your response by ${date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
+      make_changes_to: read the request from the case officer
+      officers_reason_for: Reason why case officer needs more information
       page_title: "Other change validation request #%{id} - Back-Office Planning System"
-      the_following_request: The following request has been made.
+      the_following_request: The case officer working on your application has requested more information.
       title: Respond to other request
       what_you_need: "What you need to do:"
   pre_commencement_condition_validation_requests:
@@ -156,15 +156,15 @@ en:
       page_title: Confirm changes to your red line boundary
   replacement_document_validation_requests:
     edit:
-      click_save_to: Click save or open to add the file
-      click_submit_to: Click submit to complete this action
-      file_must_be_smaller_than: The file must be smaller than 30MB
-      if_your_response: If your response is not received by %{date} your application will be returned to you and your payment refunded.
-      name_of_file: "Name of file on submission:"
+      click_save_to: select ‘Choose file’ to upload a document from your device - the file must be smaller than 30Mb
+      click_submit_to: submit your response
+      file_must_be_smaller_than: read the reason why the document needs to be replaced
+      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
+      name_of_file: "Name of document previous submitted:"
       page_title: "Replacement document validation request #%{id} - Back-Office Planning System"
-      select_choose_file: Select 'choose file' and upload a replacement file from your device
-      the_case_officer: The case officer has specified below why this document needs replacing.
-      the_reason_the: "The reason the file needs replacing:"
+      select_choose_file: read the information about how to prepare plans
+      the_case_officer: The case officer working on your application has requested replacement documents.
+      the_reason_the: "Reason why you need to replace this document:"
       title: Provide a replacement document
       what_you_need: "What you need to do:"
   time_extension_validation_requests:

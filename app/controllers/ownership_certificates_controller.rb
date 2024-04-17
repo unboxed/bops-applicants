@@ -64,7 +64,7 @@ class OwnershipCertificatesController < ApplicationController
       }
     )
 
-      redirect_to planning_application_ownership_certificate_thank_you_path(@planning_application["id"], @ownership_certificate)
+      redirect_to validation_requests_redirect_url
     else
       render :show
     end

@@ -6,14 +6,6 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Confirm ownership</h1>
 
-    <p class="govuk-body">
-      <%= @planning_application["site"]["address_1"] %>,
-      <%= @planning_application["site"]["address_2"] %>,
-      <%= @planning_application["site"]["postcode"] %>
-    </p>
-
-    <p class="govuk-body-s govuk-!-margin-bottom-1">Planning application reference number</p>
-    <p class="govuk-body"><%= @planning_application["reference"] %></p>
     <%= form_for @ownership_certificate,
       url: planning_application_ownership_certificate_path(@planning_application["id"], @ownership_certificate),
       builder: GOVUKDesignSystemFormBuilder::FormBuilder,

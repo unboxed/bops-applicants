@@ -2,7 +2,7 @@
   <%= t(".page_title", id:  @validation_request["id"]) %>
 <% end %>
 
-<div class="govuk-grid-row govuk-!-margin-top-7">
+<div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
       <%= render "document_create_header"%>
@@ -32,7 +32,7 @@
             <p class="govuk-error-message">
               <span class="govuk-visually-hidden">Error: </span><%= @additional_document_validation_request.errors[:files].join("") %>
             </p>
-            <%= form.govuk_file_field :files, multiple: true, label: { text: "Upload new file(s)", class: "govuk-label govuk-!-font-weight-bold" }, accept: acceptable_file_mime_types, required: true %>
+            <%= form.govuk_file_field :files, multiple: true, label: { text: "Upload a replacement document", class: "govuk-label govuk-!-font-weight-bold" }, accept: acceptable_file_mime_types, required: true %>
             <%= form.hidden_field :id %>
           </div>
         </div>
