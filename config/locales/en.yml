@@ -10,7 +10,7 @@ en:
       click_submit_to: submit your response
       document_requested: "Document requested:"
       file_must_be_smaller_than: read the request from the case officer
-      if_your_response: You must submit your response by ${date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
+      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
       select_choose_files: read the information about how to prepare plans
       the_case_officer: The case officer working on your application has requested a new document.
       title: Provide a new document
@@ -51,7 +51,7 @@ en:
       click_submit_to: submit your response
       how_to_make: How you can make your application valid
       if_you_disagree: enter your response
-      if_your_response: You must submit your response by ${date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
+      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
       make_changes_to: read the request from the case officer
       officers_reason_for: Reason why case officer needs more information
       page_title: "Other change validation request #%{id} - Back-Office Planning System"
@@ -160,7 +160,7 @@ en:
       click_submit_to: submit your response
       file_must_be_smaller_than: read the reason why the document needs to be replaced
       if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
-      name_of_file: "Name of document previous submitted:"
+      name_of_file: "Name of document previously submitted:"
       page_title: "Replacement document validation request #%{id} - Back-Office Planning System"
       select_choose_file: read the information about how to prepare plans
       the_case_officer: The case officer working on your application has requested replacement documents.
@@ -226,11 +226,11 @@ en:
             approved:
               blank: "Select an option"
             rejection_reason:
-              blank: "Please fill in the reason for disagreeing with the suggested change."
+              blank: "Fill in the reason for disagreeing with the suggested change."
         bops/other_change_validation_request:
           attributes:
             response:
-              blank: "Please enter your response to the planning officer's question."
+              blank: "Enter your response to the planning officer's question."
         bops/ownership_certificate_validation_request:
           attributes:
             approved:
@@ -240,11 +240,11 @@ en:
         bops/additional_document_validation_request:
           attributes:
             files:
-              blank: "Please choose at least one file to upload"
+              blank: "Choose at least one file to upload"
         bops/fee_change_validation_request:
           attributes:
             response:
-              blank: "Please enter your response to the planning officer's question."
+              blank: "Enter your response to the planning officer's question."
         bops/heads_of_term_validation_request:
           attributes:
             approved:
@@ -254,13 +254,13 @@ en:
         bops/replacement_document_validation_request:
           attributes:
             file:
-              blank: "Please choose a file to upload"
+              blank: "Choose a file to upload"
         bops/red_line_boundary_change_validation_request:
           attributes:
             approved:
               blank: "Select an option"
             rejection_reason:
-              blank: "Please indicate why you disagree with the proposed red line boundary."
+              blank: "Indicate why you disagree with the proposed red line boundary."
         bops/pre_commencement_condition_validation_request:
           attributes:
             approved:

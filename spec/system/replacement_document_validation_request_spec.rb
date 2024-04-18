@@ -42,22 +42,19 @@ RSpec.describe "Document change requests", type: :system do
     it "allows the user to view a document change request" do
       visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
 
-      expect(page).to have_content("Select 'choose file' and upload a replacement file from your device")
-      expect(page).to have_content("The file must be smaller than 30MB")
-      expect(page).to have_content("Click save or open to add the file")
-      expect(page).to have_content("Click submit to complete this action")
+      expect(page).to have_content("read the information about how to prepare plans")
 
       expect(page).to have_content(
-        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
+        "You must submit your response by 1 July 2022. If we don’t receive a response by this date we will return your application to you and refund any payment. "
       )
 
-      expect(page).to have_content("Name of file on submission:")
+      expect(page).to have_content("Name of document previously submitted:")
       expect(page).to have_content("20210512_162911.jpg")
       expect(page).to have_content("Its a chicken coop not a floor plan.")
-      expect(page).to have_content("Upload a replacement file")
+      expect(page).to have_content("Upload a replacement document")
 
       expect(page).to have_link(
-        "Please ensure you have read how to correctly prepare plans (Opens in a new window or tab)",
+        "Read guidance on how to prepare plans correctly (opens in new window or tab)",
         href: "#{Rails.configuration.api_protocol}://default.#{Rails.configuration.api_host}/planning_guides/index"
       )
     end
@@ -65,7 +62,7 @@ RSpec.describe "Document change requests", type: :system do
     it "allows the user to update a document change request" do
       visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
 
-      attach_file("Upload a replacement file", "spec/fixtures/images/proposed-floorplan.png")
+      attach_file("Upload a replacement document", "spec/fixtures/images/proposed-floorplan.png")
 
       click_button "Submit"
     end
@@ -88,11 +85,11 @@ RSpec.describe "Document change requests", type: :system do
 
       within(".govuk-error-summary") do
         expect(page).to have_content("There is a problem")
-        expect(page).to have_content("Please choose a file to upload")
+        expect(page).to have_content("Choose a file to upload")
       end
 
       within(".govuk-error-message") do
-        expect(page).to have_content("Please choose a file to upload")
+        expect(page).to have_content("Choose a file to upload")
       end
 
       expect(page).to have_current_path("/replacement_document_validation_requests/8?change_access_id=345443543&planning_application_id=28")
@@ -112,7 +109,7 @@ RSpec.describe "Document change requests", type: :system do
       it "return an error to the user" do
         visit "/replacement_document_validation_requests/8/edit?change_access_id=345443543&planning_application_id=28"
 
-        attach_file("Upload a replacement file", "spec/fixtures/images/proposed-floorplan.png")
+        attach_file("Upload a replacement document", "spec/fixtures/images/proposed-floorplan.png")
 
         click_button "Submit"
 

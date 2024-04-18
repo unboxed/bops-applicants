@@ -11,7 +11,7 @@ RSpec.describe "Document create requests", type: :system do
       id: 3,
       state: "open",
       document_request_type: "Roman theatre plan",
-      document_request_reason: "I do not see a vomitorium in this.",
+      reason: "I do not see a vomitorium in this.",
       response_due: "2022-7-1",
       post_validation: false
     }.stringify_keys
@@ -35,22 +35,19 @@ RSpec.describe "Document create requests", type: :system do
     it "allows the user to view an open document create request" do
       visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
 
-      expect(page).to have_content("Select 'choose files' and upload a file or multiple files from your device")
-      expect(page).to have_content("The file(s) must be smaller than 30MB")
-      expect(page).to have_content("Click save or open to add the file")
-      expect(page).to have_content("Click submit to complete this action")
+      expect(page).to have_content("read the information about how to prepare plans")
 
       expect(page).to have_content(
-        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
+        "You must submit your response by 1 July 2022. If we don’t receive a response by this date we will return your application to you and refund any payment."
       )
 
       expect(page).to have_content("Document requested:")
       expect(page).to have_content("Roman theatre plan")
-      expect(page).to have_content("Case officer's reason for requesting the document:")
+      expect(page).to have_content("Comment from case officer:")
       expect(page).to have_content("I do not see a vomitorium in this.")
 
       expect(page).to have_link(
-        "Please ensure you have read how to correctly prepare plans (Opens in a new window or tab)",
+        "Read guidance on how to prepare plans correctly (opens in new window or tab)",
         href: "#{Rails.configuration.api_protocol}://default.#{Rails.configuration.api_host}/planning_guides/index"
       )
     end
@@ -61,7 +58,7 @@ RSpec.describe "Document create requests", type: :system do
           id: 3,
           state: "open",
           document_request_type: "Roman theatre plan",
-          document_request_reason: "No room for the lions",
+          reason: "No room for the lions",
           response_due: "2022-7-1",
           post_validation: true
         }.stringify_keys
@@ -105,7 +102,7 @@ RSpec.describe "Document create requests", type: :system do
     it "allows the user to update a document create request" do
       visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
 
-      attach_file("Upload new file(s)", "spec/fixtures/images/proposed-floorplan.png")
+      attach_file("Upload a replacement document", "spec/fixtures/images/proposed-floorplan.png")
 
       click_button "Submit"
     end
@@ -124,7 +121,7 @@ RSpec.describe "Document create requests", type: :system do
       it "returns an error to the user" do
         visit "/additional_document_validation_requests/3/edit?change_access_id=345443543&planning_application_id=28"
 
-        attach_file("Upload new file(s)", "spec/fixtures/images/proposed-floorplan.png")
+        attach_file("Upload a replacement document", "spec/fixtures/images/proposed-floorplan.png")
 
         click_button "Submit"
 
@@ -153,7 +150,7 @@ RSpec.describe "Document create requests", type: :system do
             id: 3,
             state: "closed",
             document_request_type: "Floor plan",
-            document_request_reason: "No floor plan.",
+            reason: "No floor plan.",
             documents: [
               {
                 name: "proposed-floorplan.jpg",
@@ -174,7 +171,7 @@ RSpec.describe "Document create requests", type: :system do
 
       expect(page).to have_content "Document requested:"
       expect(page).to have_content "Floor plan"
-      expect(page).to have_content "Case officer's reason for requesting the document:"
+      expect(page).to have_content "Comment from case officer:"
       expect(page).to have_content "No floor plan"
       expect(page).to have_content "proposed-floorplan.jpg"
       expect(page).to have_content "proposed-floorplan-2.jpg"
@@ -221,7 +218,7 @@ RSpec.describe "Document create requests", type: :system do
         id: 3,
         state: "open",
         document_request_type: "Link to https://www.bops.co.uk/type",
-        document_request_reason: "View reason <a href='https://www.bops.co.uk/reason'>Request reason</a>",
+        reason: "View reason <a href='https://www.bops.co.uk/reason'>Request reason</a>",
         response_due: "2022-7-1",
         post_validation: false
       }.stringify_keys

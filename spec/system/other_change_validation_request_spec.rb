@@ -41,7 +41,7 @@ RSpec.describe "Other change requests", type: :system do
       visit "/other_change_validation_requests/19/edit?change_access_id=345443543&planning_application_id=28"
 
       expect(page).to have_content(
-        "If your response is not received by 1 July 2022 your application will be returned to you and your payment refunded."
+        "You must submit your response by 1 July 2022. If we don’t receive a response by this date we will return your application to you and refund any payment."
       )
 
       expect(page).to have_content("You applied for the wrong sort of certificate")
@@ -52,7 +52,7 @@ RSpec.describe "Other change requests", type: :system do
       stub_successful_get_change_requests
       click_button "Submit"
 
-      expect(page).to have_content("Your response was updated successfully")
+      expect(page).to have_content("Your response has been sent to the case officer.")
     end
 
     it "can't view show action" do

@@ -52,7 +52,7 @@ RSpec.describe "Ownership certificate requests", type: :system do
 
       click_button "Submit"
 
-      expect(page).to have_content("Your response was updated successfully")
+      expect(page).to have_content("Your response has been sent to the case officer.")
     end
 
     it "can't view show action" do
@@ -101,7 +101,7 @@ RSpec.describe "Ownership certificate requests", type: :system do
       within_fieldset("Do you know how many owners there are?") do
         choose "Yes"
       end
-      fill_in "How many owners are there", with: "2"
+      fill_in "Enter number of owners", with: "2"
       within_fieldset("Do you know who the owners of the property are") do
         choose "Yes"
       end
@@ -191,7 +191,7 @@ RSpec.describe "Ownership certificate requests", type: :system do
 
       click_link "Accept and send"
 
-      expect(page).to have_content "Thank you for confirming ownership"
+      expect(page).to have_content "Your response has been sent to the case officer."
     end
 
     it "allows user to provide a response when they don't know the owners" do
@@ -234,7 +234,7 @@ RSpec.describe "Ownership certificate requests", type: :system do
 
       click_link "Accept and send"
 
-      expect(page).to have_content "Thank you for confirming ownership"
+      expect(page).to have_content "Your response has been sent to the case officer."
     end
   end
 
