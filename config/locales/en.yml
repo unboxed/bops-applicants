@@ -170,12 +170,12 @@ en:
   time_extension_validation_requests:
     edit:
       click_submit_to: Click submit to complete this action
-      if_you_disagree: If you disagree, write in the box provided your reason for disagreeing with the changes
+      if_you_disagree: submit your response
       if_your_response: If your response is not received by %{date} there is a chance your planning application may be closed.
       new_expiry_date: New expiry date
       page_title: "Time extension validation request #%{id} - Back-Office Planning System"
       previous_expiry_date: Previous expiry date
-      select_if_you: Select if you agree or disagree with the proposed expiry date
+      select_if_you: select whether you accept or do not accept the new expiry date
       the_following_changes: Your case officer has proposed a new expiry date for your planning application.
       title: Confirm the new expiry date for your application
       what_you_need: "What you need to do:"
