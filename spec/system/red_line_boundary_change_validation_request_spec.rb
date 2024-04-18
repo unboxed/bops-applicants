@@ -77,7 +77,7 @@ RSpec.describe "Red line boundary change requests", type: :system do
 
         expect(page).to have_content("Confirm changes to your application's red line boundary")
         choose "No, I disagree with the proposed red line boundary"
-        fill_in "Please indicate why you disagree with the proposed red line boundary.", with: "I think the boundary is wrong"
+        fill_in "Indicate why you disagree with the proposed red line boundary.", with: "I think the boundary is wrong"
 
         stub_successful_get_change_requests
         click_button "Submit"

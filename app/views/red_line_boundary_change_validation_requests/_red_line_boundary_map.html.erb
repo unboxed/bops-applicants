@@ -10,7 +10,7 @@
       <%= form.govuk_radio_button :approved, 'yes', label: { text: 'Yes, I agree with the proposed red line boundary'} %>
       <%= form.govuk_radio_button :approved, 'no', label: { text: 'No, I disagree with the proposed red line boundary' } do  %>
         <div class="govuk-!-padding-top-4 govuk-!-padding-bottom-2">
-          <%= form.govuk_text_area :rejection_reason, label: { text: 'Please indicate why you disagree with the proposed red line boundary.' }, rows: 6 %>
+          <%= form.govuk_text_area :rejection_reason, label: { text: 'Indicate why you disagree with the proposed red line boundary.' }, rows: 6 %>
         </div>
       <% end %>
     <% end %>

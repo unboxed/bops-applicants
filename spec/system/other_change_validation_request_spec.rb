@@ -65,7 +65,7 @@ RSpec.describe "Other change requests", type: :system do
 
       click_button "Submit"
       within(".govuk-error-summary") do
-        expect(page).to have_content "Please enter your response to the planning officer's question."
+        expect(page).to have_content "Enter your response to the planning officer's question."
       end
     end
 
