@@ -30,7 +30,6 @@
   <body class="govuk-template__body govuk-frontend-supported">
 
     <%= render "partials/header" %>
-    <%= render "flashes" %>
 
     <div class="govuk-width-container app-width-container--wide">
       <div class="govuk-phase-banner">
@@ -56,6 +55,7 @@
       </div>
 
       <main class="govuk-main-wrapper govuk-main-wrapper--auto-spacing" id="main-content" role="main">
+        <%= render "application/flash_content" %>
         <%= yield %>
       </main>
     </div>

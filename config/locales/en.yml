@@ -204,7 +204,7 @@ en:
 
   shared:
     response_updated:
-      success: "Your response was updated successfully"
+      success: "Your response has been sent to the case officer."
 
   activemodel:
     errors:

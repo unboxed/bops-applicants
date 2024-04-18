@@ -17,15 +17,15 @@ class NeighbourResponsesController < ApplicationController
   def start
   end
 
-  def thank_you
-  end
-
   def new
   end
 
   def create
     if @new_response.save
-      redirect_to thank_you_planning_application_neighbour_responses_path(params[:planning_application_id])
+      redirect_to validation_requests_path(
+        planning_application_id: params[:planning_application_id],
+        change_access_id: params[:change_access_id]
+      ), notice: t("shared.response_updated.success")
     else
       respond_to do |format|
         format.html { render :new }

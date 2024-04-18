@@ -29,10 +29,13 @@ class OtherChangeValidationRequestsController < ValidationRequestsController
 
     respond_to do |format|
       if @other_change_validation_request.update
-        flash[:notice] = t("shared.response_updated.success")
-        format.html { validation_requests_redirect_url }
+        format.html do
+          redirect_to validation_requests_path(
+            planning_application_id: params[:planning_application_id],
+            change_access_id: params[:change_access_id]
+          ), notice: t("shared.response_updated.success")
+        end
       else
-        flash[:error] = error_message(@other_change_validation_request)
         format.html { render :edit }
       end
     end

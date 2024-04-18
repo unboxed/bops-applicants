@@ -50,9 +50,6 @@ class OwnershipCertificatesController < ApplicationController
     end
   end
 
-  def thank_you
-  end
-
   def submit
     if Bops::OwnershipCertificateValidationRequest.approve(
       @ownership_certificate_validation_request["id"],
@@ -64,7 +61,10 @@ class OwnershipCertificatesController < ApplicationController
       }
     )
 
-      redirect_to validation_requests_redirect_url
+      redirect_to validation_requests_path(
+        planning_application_id: params[:planning_application_id],
+        change_access_id: params[:change_access_id]
+      ), notice: t("shared.response_updated.success")
     else
       render :show
     end
