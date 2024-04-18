@@ -36,7 +36,6 @@ class HeadsOfTermValidationRequestsController < ValidationRequestsController
           ), notice: t("shared.response_updated.success")
         end
       else
-        flash[:error] = error_message(@heads_of_term_validation_request)
         format.html { render :edit }
       end
     end
