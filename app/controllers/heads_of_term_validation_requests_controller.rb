@@ -28,12 +28,15 @@ class HeadsOfTermValidationRequestsController < ValidationRequestsController
     @heads_of_term_validation_request = Bops::HeadsOfTermValidationRequest.new(heads_of_term_validation_request_params)
 
     respond_to do |format|
-      if @heads_of_term_validation_request.update
-        flash[:notice] = t("shared.response_updated.success")
-        format.html { validation_requests_redirect_url }
-      else
-        flash[:error] = error_message(@heads_of_term_validation_request)
-        format.html { render :edit }
+      format.html do
+        if @heads_of_term_validation_request.update
+          redirect_to validation_requests_path(
+            planning_application_id: params[:planning_application_id],
+            change_access_id: params[:change_access_id]
+          ), notice: t("shared.response_updated.success")
+        else
+          render :edit
+        end
       end
     end
   end

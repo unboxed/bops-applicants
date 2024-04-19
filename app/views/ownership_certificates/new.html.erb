@@ -7,20 +7,12 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Confirm ownership</h1>
 
-    <p class="govuk-body">
-      <%= @planning_application["site"]["address_1"] %>,
-      <%= @planning_application["site"]["address_2"] %>,
-      <%= @planning_application["site"]["postcode"] %>
-    </p>
-
-    <p class="govuk-body-s govuk-!-margin-bottom-1">Planning application reference number</p>
-    <p class="govuk-body"><%= @planning_application["reference"] %></p>
     <%= form_for @ownership_certificate,
     url: planning_application_ownership_certificates_path(@planning_application["id"]),
     builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
       <%= form.govuk_radio_buttons_fieldset(:know_owners, legend: { size: 'm', text: 'Do you know how many owners there are?' }) do %>
         <%= form.govuk_radio_button :know_owners, 'Yes', label: { text: 'Yes' } do %>
-          <%= form.govuk_text_field :number_of_owners, label: { text: 'How many owners are there' } %>
+          <%= form.govuk_text_field :number_of_owners, label: { text: 'Enter number of owners' } %>
         <% end %>
         <%= form.govuk_radio_button :know_owners, 'No', label: { text: 'No or not sure' }, link_errors: true %>
       <% end %>
@@ -36,7 +28,7 @@
         <%= form.govuk_radio_button :notification_of_owners, 'some', label: { text: 'Yes, some of them' } %>
         <%= form.govuk_radio_button :notification_of_owners, 'no', label: { text: 'No' } do %>
           <p class="govuk-body">
-            You must notify owners about this application. Use a <%= link_to "notification form", "https://ecab.planningportal.co.uk/uploads/1app/notices/notice1.pdf", class: "govuk-link", target: "_blank" %> to send them details of the proposed work
+            You must notify owners about this application. Use a <%= link_to "notification form", "https://ecab.planningportal.co.uk/uploads/1app/notices/notice1.pdf", class: "govuk-link", target: "_blank" %> to send them details of the proposed work.
           </p>
         <% end %>
       <% end %>

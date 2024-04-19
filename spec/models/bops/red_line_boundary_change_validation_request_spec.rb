@@ -23,7 +23,7 @@ RSpec.describe Bops::RedLineBoundaryChangeValidationRequest, type: :model do
           not_approved_request.valid?
         end.to change {
           not_approved_request.errors[:rejection_reason]
-        }.to ["Please indicate why you disagree with the proposed red line boundary."]
+        }.to ["Indicate why you disagree with the proposed red line boundary."]
       end
     end
   end

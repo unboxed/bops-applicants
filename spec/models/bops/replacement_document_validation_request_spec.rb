@@ -12,7 +12,7 @@ RSpec.describe Bops::ReplacementDocumentValidationRequest, type: :model do
           replacement_document_validation_request.valid?
         end.to change {
           replacement_document_validation_request.errors[:file]
-        }.to ["Please choose a file to upload"]
+        }.to ["Choose a file to upload"]
       end
     end
   end

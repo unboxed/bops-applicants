@@ -66,11 +66,6 @@ class ValidationRequestsController < ApplicationController
     @state ||= @validation_request["state"]
   end
 
-  def error_message(validation_request)
-    errors = validation_request.errors
-    errors.any? ? errors.full_messages.to_sentence : "Oops something went wrong. Please contact support."
-  end
-
   def validation_request_model_klass
     "Bops::#{controller_name.classify}".constantize
   end

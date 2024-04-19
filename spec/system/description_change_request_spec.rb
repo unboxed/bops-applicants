@@ -39,7 +39,7 @@ RSpec.describe "Description change requests", type: :system do
         visit "/description_change_validation_requests/22/edit?change_access_id=345443543&planning_application_id=28"
 
         expect(page).to have_content(
-          "If your response is not received by 1 July 2022 the proposed description will be automatically accepted for use with your application."
+          "You must submit your response by 1 July 2022. If we don’t receive a response by this date the new description will be automatically accepted for use with your application."
         )
 
         choose "Yes, I agree with the changes made"
@@ -47,7 +47,7 @@ RSpec.describe "Description change requests", type: :system do
         stub_successful_get_change_requests
         click_button "Submit"
 
-        expect(page).to have_content("Your response was updated successfully")
+        expect(page).to have_content("Your response has been sent to the case officer.")
       end
 
       it "has the correct page title" do
@@ -73,12 +73,12 @@ RSpec.describe "Description change requests", type: :system do
 
         expect(page).to have_content("Do you agree with the changes made to your application description?")
         choose "No, I disagree with the changes made"
-        fill_in "Please indicate why you disagree with the changes and provide your suggested wording for the description.", with: "I wish to build a roman theatre"
+        fill_in "Tell us why you disagree. Enter your suggested wording for the description.", with: "I wish to build a roman theatre"
 
         stub_successful_get_change_requests
         click_button "Submit"
 
-        expect(page).to have_content("Your response was updated successfully")
+        expect(page).to have_content("Your response has been sent to the case officer.")
       end
     end
 
@@ -99,7 +99,7 @@ RSpec.describe "Description change requests", type: :system do
 
         click_button "Submit"
         within(".govuk-error-summary") do
-          expect(page).to have_content "Please fill in the reason for disagreeing with the suggested change."
+          expect(page).to have_content "Fill in the reason for disagreeing with the suggested change."
         end
       end
     end

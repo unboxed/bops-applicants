@@ -10,9 +10,9 @@
       <%= @planning_application["site"]["address_2"] %>,
       <%= @planning_application["site"]["postcode"] %>
     </p>
-
-    <p class="govuk-body-s govuk-!-margin-bottom-1">Planning application reference number</p>
-    <p class="govuk-body"><%= @planning_application["reference"] %></p>
+    <p class="govuk-body">
+      We need to confirm who owns the land for this application
+    </p>
   </div>
   <div class="govuk-grid-column-full">
     <my-map
@@ -28,9 +28,6 @@
   </div>
   <div class="govuk-grid-column-two-thirds govuk-!-margin-top-5">
     <%= render "shared/alternative_map" %>
-    <p class="govuk-body">
-      We need to confirm who owns the land for this application
-    </p>
     <p class="govuk-body">
       After reviewing the plans for this application, we think that you may not be the sole owner of this land.
     </p>

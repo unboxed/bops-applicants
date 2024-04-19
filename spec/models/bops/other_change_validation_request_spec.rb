@@ -12,7 +12,7 @@ RSpec.describe Bops::OtherChangeValidationRequest, type: :model do
           other_change_validation_request.valid?
         end.to change {
           other_change_validation_request.errors[:response]
-        }.to ["Please enter your response to the planning officer's question."]
+        }.to ["Enter your response to the planning officer's question."]
       end
     end
   end

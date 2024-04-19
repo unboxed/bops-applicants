@@ -52,7 +52,7 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
         stub_successful_get_change_requests
         click_button "Submit"
 
-        expect(page).to have_content("Your response was updated successfully")
+        expect(page).to have_content("Your response has been sent to the case officer.")
       end
     end
 
@@ -77,7 +77,7 @@ RSpec.describe "Pre-commencement condition validation requests", type: :system d
         stub_successful_get_change_requests
         click_button "Submit"
 
-        expect(page).to have_content("Your response was updated successfully")
+        expect(page).to have_content("Your response has been sent to the case officer.")
       end
 
       it "does not allow the user to reject a change request without filling in a rejection reason" do

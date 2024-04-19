@@ -23,7 +23,7 @@
       <%= form.govuk_radio_button :approved, 'yes', label: { text: 'Yes, I agree with the changes made'} %>
       <%= form.govuk_radio_button :approved, 'no', label: { text: 'No, I disagree with the changes made' } do  %>
         <div class="govuk-!-padding-top-4 govuk-!-padding-bottom-2">
-          <%= form.govuk_text_area :rejection_reason, label: { text: 'Please indicate why you disagree with the changes and provide your suggested wording for the description.' }, rows: 6 %>
+          <%= form.govuk_text_area :rejection_reason, label: { text: 'Tell us why you disagree. Enter your suggested wording for the description.' }, rows: 6 %>
         </div>
       <% end %>
     <% end %>

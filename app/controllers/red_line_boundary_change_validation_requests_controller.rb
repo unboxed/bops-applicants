@@ -29,12 +29,15 @@ class RedLineBoundaryChangeValidationRequestsController < ValidationRequestsCont
       build_validation_request(red_line_boundary_change_validation_request_params)
 
     respond_to do |format|
-      if @red_line_boundary_change_validation_request.update
-        flash[:notice] = t("shared.response_updated.success")
-        format.html { validation_requests_redirect_url }
-      else
-        flash[:error] = error_message(@red_line_boundary_change_validation_request)
-        format.html { render :edit }
+      format.html do
+        if @red_line_boundary_change_validation_request.update
+          redirect_to validation_requests_path(
+            planning_application_id: params[:planning_application_id],
+            change_access_id: params[:change_access_id]
+          ), notice: t("shared.response_updated.success")
+        else
+          render :edit
+        end
       end
     end
   end

@@ -29,15 +29,18 @@ class OwnershipCertificateValidationRequestsController < ValidationRequestsContr
   def update
     @ownership_certificate_validation_request = build_validation_request(ownership_certificate_validation_request_params)
 
-    if ownership_certificate_validation_request_params[:approved] == "yes"
-      redirect_to new_planning_application_ownership_certificate_path(params[:planning_application_id], change_access_id: params[:change_access_id])
-    elsif @ownership_certificate_validation_request.update
-      flash[:notice] = t("shared.response_updated.success")
-      validation_requests_redirect_url
-    else
-      respond_to do |format|
-        flash[:error] = error_message(@ownership_certificate_validation_request)
-        format.html { render :edit }
+    respond_to do |format|
+      format.html do
+        if ownership_certificate_validation_request_params[:approved] == "yes"
+          redirect_to new_planning_application_ownership_certificate_path(params[:planning_application_id], change_access_id: params[:change_access_id])
+        elsif @ownership_certificate_validation_request.update
+          redirect_to validation_requests_path(
+            planning_application_id: params[:planning_application_id],
+            change_access_id: params[:change_access_id]
+          ), notice: t("shared.response_updated.success")
+        else
+          render :edit
+        end
       end
     end
   end

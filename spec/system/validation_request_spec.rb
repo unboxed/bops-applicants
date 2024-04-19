@@ -16,8 +16,8 @@ RSpec.describe "Change requests", type: :system do
 
     visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
 
-    expect(page).to have_content("Confirm changes to your application description")
-    expect(page).to have_content("Description")
+    expect(page).to have_content("Confirm change to your application description")
+    expect(page).to have_content("Check description")
     expect(page).to have_content("Not started")
   end
 
@@ -62,7 +62,7 @@ RSpec.describe "Change requests", type: :system do
       status: 200
     )
 
-    click_link("Description", match: :first)
+    click_link("Check description", match: :first)
 
     expect(page).to have_content("This is a better description")
   end
@@ -74,27 +74,27 @@ RSpec.describe "Change requests", type: :system do
     visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
 
     within("#description-change-validation-requests") do
-      expect(page).to have_link("Description", href: "/description_change_validation_requests/18?change_access_id=345443543&planning_application_id=28")
+      expect(page).to have_link("Check description", href: "/description_change_validation_requests/18?change_access_id=345443543&planning_application_id=28")
       expect(page).to have_content("Cancelled")
     end
 
     within("#other-change-validation-requests") do
-      expect(page).to have_link("Other request", href: "/other_change_validation_requests/4?change_access_id=345443543&planning_application_id=28")
+      expect(page).to have_link("View other request", href: "/other_change_validation_requests/4?change_access_id=345443543&planning_application_id=28")
       expect(page).to have_content("Cancelled")
     end
 
     within("#red-line-boundary-change-validation-requests") do
-      expect(page).to have_link("Red Line Boundary", href: "/red_line_boundary_change_validation_requests/10?change_access_id=345443543&planning_application_id=28")
+      expect(page).to have_link("Check red line boundary", href: "/red_line_boundary_change_validation_requests/10?change_access_id=345443543&planning_application_id=28")
       expect(page).to have_content("Cancelled")
     end
 
     within("#replacement-document-validation-requests") do
-      expect(page).to have_link("20210512_162911.jpg", href: "/replacement_document_validation_requests/8?change_access_id=345443543&planning_application_id=28")
+      expect(page).to have_link("Upload 20210512_162911.jpg", href: "/replacement_document_validation_requests/8?change_access_id=345443543&planning_application_id=28")
       expect(page).to have_content("Cancelled")
     end
 
     within("#additional-document-validation-requests") do
-      expect(page).to have_link("New document", href: "/additional_document_validation_requests/4?change_access_id=345443543&planning_application_id=28")
+      expect(page).to have_link("Upload new document", href: "/additional_document_validation_requests/4?change_access_id=345443543&planning_application_id=28")
       expect(page).to have_content("Cancelled")
     end
   end

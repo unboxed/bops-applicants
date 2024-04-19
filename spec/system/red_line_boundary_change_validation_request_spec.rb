@@ -51,7 +51,7 @@ RSpec.describe "Red line boundary change requests", type: :system do
         stub_successful_get_change_requests
         click_button "Submit"
 
-        expect(page).to have_content("Your response was updated successfully")
+        expect(page).to have_content("Your response has been sent to the case officer.")
       end
 
       it "has the correct page title" do
@@ -77,12 +77,12 @@ RSpec.describe "Red line boundary change requests", type: :system do
 
         expect(page).to have_content("Confirm changes to your application's red line boundary")
         choose "No, I disagree with the proposed red line boundary"
-        fill_in "Please indicate why you disagree with the proposed red line boundary.", with: "I think the boundary is wrong"
+        fill_in "Indicate why you disagree with the proposed red line boundary.", with: "I think the boundary is wrong"
 
         stub_successful_get_change_requests
         click_button "Submit"
 
-        expect(page).to have_content("Your response was updated successfully")
+        expect(page).to have_content("Your response has been sent to the case officer.")
       end
 
       it "does not allow the user to reject a change request without filling in a rejection reason" do
@@ -92,7 +92,7 @@ RSpec.describe "Red line boundary change requests", type: :system do
 
         click_button "Submit"
         within(".govuk-error-summary") do
-          expect(page).to have_content "Please indicate why you disagree with the proposed red line boundary."
+          expect(page).to have_content "Indicate why you disagree with the proposed red line boundary."
         end
       end
     end

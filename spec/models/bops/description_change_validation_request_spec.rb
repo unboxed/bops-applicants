@@ -23,7 +23,7 @@ RSpec.describe Bops::DescriptionChangeValidationRequest, type: :model do
           not_approved_request.valid?
         end.to change {
           not_approved_request.errors[:rejection_reason]
-        }.to ["Please fill in the reason for disagreeing with the suggested change."]
+        }.to ["Fill in the reason for disagreeing with the suggested change."]
       end
     end
   end

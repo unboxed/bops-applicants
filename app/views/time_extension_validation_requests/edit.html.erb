@@ -1,7 +1,7 @@
 <% content_for :page_title do %>
   <%= t(".page_title", id: @validation_request["id"]) %>
 <% end %>
-<div class="govuk-grid-row govuk-!-margin-top-7">
+<div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <div class="govuk-width-container">
       <h1 class="govuk-heading-l"><%= t(".title") %></h1>
@@ -10,7 +10,6 @@
       <ul class="govuk-list govuk-list--bullet">
         <li><%= t(".select_if_you") %></li>
         <li><%= t(".if_you_disagree") %></li>
-        <li><%= t(".click_submit_to") %></li>
       </ul>
       <div class="govuk-inset-text">
         <%= t(".if_your_response", date: date_due(@validation_request)) %>
@@ -29,7 +28,7 @@
         </p>
         <div class="govuk-!-margin-top-6">
           <p class="govuk-body">
-            <strong>The reason the case officer gave for needing to extend the expiry date:</strong>
+            <strong>Reason given by case officer:</strong>
             <%= render(FormattedContentComponent.new(text: @validation_request["reason"])) %>
           </p>
         </div>

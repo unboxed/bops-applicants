@@ -28,7 +28,6 @@ Rails.application.routes.draw do
     resources :ownership_certificates, except: %i[destroy] do
       resources :land_owners, only: %i[new create]
       post :submit
-      get :thank_you
     end
   end
 

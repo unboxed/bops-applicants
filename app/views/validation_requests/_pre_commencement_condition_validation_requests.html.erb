@@ -2,7 +2,7 @@
   <h3 class="app-task-list__section">
     Respond to pre-commencement conditions
   </h3>
-  <ul class="app-task-list__items" id="pre-commencement-condition-validation-requests">
+  <ul class="govuk-task-list" id="pre-commencement-condition-validation-requests">
     <% @validation_requests["data"]["pre_commencement_condition_validation_requests"].group_by{ |request| request["owner_id"] }.each do |id, group| %>
       <% request = group.sort_by{ |request| request["created_at"] }.last %>
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
