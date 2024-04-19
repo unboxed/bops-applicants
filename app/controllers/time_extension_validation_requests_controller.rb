@@ -29,15 +29,15 @@ class TimeExtensionValidationRequestsController < ValidationRequestsController
     @time_extension_validation_request = build_validation_request(time_extension_validation_request_params)
 
     respond_to do |format|
-      if @time_extension_validation_request.update
-        format.html do
+      format.html do
+        if @time_extension_validation_request.update
           redirect_to validation_requests_path(
             planning_application_id: params[:planning_application_id],
             change_access_id: params[:change_access_id]
           ), notice: t("shared.response_updated.success")
+        else
+          render :edit
         end
-      else
-        format.html { render :edit }
       end
     end
   end

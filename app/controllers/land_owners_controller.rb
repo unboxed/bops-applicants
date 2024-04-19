@@ -10,14 +10,14 @@ class LandOwnersController < ApplicationController
   def create
     @land_owner = LandOwner.new(land_owner_params)
 
-    if @land_owner.save
-      redirect_to planning_application_ownership_certificate_path(
-        @planning_application["id"],
-        @ownership_certificate
-      )
-    else
-      respond_to do |format|
-        format.html do
+    respond_to do |format|
+      format.html do
+        if @land_owner.save
+          redirect_to planning_application_ownership_certificate_path(
+            @planning_application["id"],
+            @ownership_certificate
+          )
+        else
           render :new
         end
       end

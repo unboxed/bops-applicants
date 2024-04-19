@@ -24,11 +24,13 @@ class NeighbourResponsesController < ApplicationController
   end
 
   def create
-    if @new_response.save
-      redirect_to thank_you_planning_application_neighbour_responses_path(params[:planning_application_id])
-    else
-      respond_to do |format|
-        format.html { render :new }
+    respond_to do |format|
+      format.html do
+        if @new_response.save
+          redirect_to thank_you_planning_application_neighbour_responses_path(params[:planning_application_id])
+        else
+          render :new
+        end
       end
     end
   end

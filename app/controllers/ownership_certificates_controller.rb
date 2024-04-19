@@ -35,14 +35,14 @@ class OwnershipCertificatesController < ApplicationController
   def create
     @ownership_certificate = OwnershipCertificate.new(ownership_certificate_params)
 
-    if @ownership_certificate.save
-      redirect_to planning_application_ownership_certificate_path(
-        @planning_application["id"],
-        @ownership_certificate
-      )
-    else
-      respond_to do |format|
-        format.html do
+    respond_to do |format|
+      format.html do
+        if @ownership_certificate.save
+          redirect_to planning_application_ownership_certificate_path(
+            @planning_application["id"],
+            @ownership_certificate
+          )
+        else
           set_validation_request
           render :new
         end
