@@ -1,3 +1,9 @@
+barnet:
+  email_address: digitalplanning@barnet.gov.uk
+  feedback_email: digitalplanning@barnet.gov.uk
+  phone_number: "02083593000"
+  postal_address: The Planning Reception, 2nd Floor Barnet House, Whetstone, N20
+  privacy_policy: https://www.barnet.gov.uk/your-council/policies-plans-and-performance/privacy-notices
 buckinghamshire:
   email_address: planning.digital@buckinghamshire.gov.uk
   feedback_email: planning.digital@buckinghamshire.gov.uk
