@@ -9,7 +9,6 @@ class PlanningApplicationsController < ApplicationController
   before_action :set_base_url
 
   def show
-    logger.info("\n\n\n***** I've reached the actual show method *****\n\n\n")
     if @planning_application["make_public"]
       respond_to do |format|
         format.html
@@ -27,11 +26,9 @@ class PlanningApplicationsController < ApplicationController
 
   def set_planning_application
     @planning_application = Bops::PlanningApplication.find(params[:id])
-    logger.info("\n\n\n***** Current planning application id: #{@planning_application} *****\n\n\n")
   end
 
   def set_local_authority
-    logger.info("\n\n\n***** Current local authority: #{Current.local_authority} *****\n\n\n")
     @local_authority = Bops::LocalAuthority.find(Current.local_authority)
   end
 
