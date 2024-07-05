@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include Api::ErrorHandler
 
   def current_local_authority
+    logger.info("\n\n\n***** Current local authority request subdomains first: #{request.subdomains.first} *****\n\n\n")
     request.subdomains.first
   end
 
