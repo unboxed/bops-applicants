@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 require "capybara/rspec"
+require "rackup"
 
 download_path = Rails.root.join("tmp/downloads").to_s
+
+module Rack
+  Handler = ::Rackup::Handler
+end
 
 Capybara.register_driver :chrome_headless do |app|
   Capybara::Selenium::Driver.load_selenium
