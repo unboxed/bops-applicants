@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "capybara/rspec"
+require "rack"
 
 download_path = Rails.root.join("tmp/downloads").to_s
 

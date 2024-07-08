@@ -35,7 +35,7 @@ class NeighbourResponse
   attr_reader :params
 
   def initialize(params)
-    super(params)
+    super
     @params = params
   end
 
