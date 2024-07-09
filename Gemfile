@@ -11,7 +11,6 @@ gem "dartsass-rails"
 gem "faraday"
 gem "govuk_design_system_formbuilder"
 gem "httparty"
-gem "jbuilder", "~> 2.7"
 gem "jsbundling-rails"
 gem "lograge", "~> 0.14.0"
 gem "pg"
@@ -41,7 +40,6 @@ group :development do
   gem "foreman"
   gem "listen", "~> 3.3"
   gem "rack-mini-profiler", "~> 2.0"
-  gem "spring"
 end
 
 group :test do
