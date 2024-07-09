@@ -145,9 +145,6 @@ GEM
     irb (1.11.2)
       rdoc
       reline (>= 0.4.2)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
     json (2.7.2)
@@ -384,7 +381,6 @@ DEPENDENCIES
   foreman
   govuk_design_system_formbuilder
   httparty
-  jbuilder (~> 2.7)
   jsbundling-rails
   listen (~> 3.3)
   lograge (~> 0.14.0)
