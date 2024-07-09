@@ -310,7 +310,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    spring (4.0.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -392,7 +391,6 @@ DEPENDENCIES
   rails_autolink
   rspec-rails (~> 6.0)
   selenium-webdriver
-  spring
   sprockets-rails
   standard (~> 1.31)
   standard-custom
