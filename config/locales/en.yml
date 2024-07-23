@@ -132,6 +132,9 @@ en:
       you_can_read: You can read the full accessibility test report %{link}.
       you_can_read_link: here
       zoom_in_up: zoom in up to 300% without the text spilling off the screen
+    root:
+      title: "%{local_authority} Council Back Office Planning System: Applicant Portal"
+      text_html: 'This is the applicant portal for the %{local_authority} Back Office Planning System. If you have an application in progress and need to submit details, you should have received a link in your email. If you have not received a link and believe you should have, <a href="mailto:%{support_email}" class="govuk-link">contact support</a>.'
   partials:
     footer:
       accessibility: Accessibility statement

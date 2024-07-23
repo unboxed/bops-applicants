@@ -1,0 +1,18 @@
+<% content_for :page_title do %>
+  <%= t(".title", local_authority: current_local_authority.titleize) %>
+<% end %>
+<div class="govuk-width-container">
+  <%= link_to("Back", :back, class: "govuk-back-link") %>
+  <main class="govuk-main-wrapper">
+    <h1 class="govuk-heading-xl">
+      <%= t(".title", local_authority: current_local_authority.titleize) %>
+    </h1>
+    <p class="govuk-body">
+      <%= t(
+        ".text_html",
+        local_authority: current_local_authority.titleize,
+        support_email: contact_details[:email_address]
+      ) %>
+    </p>
+  </main>
+</div>
