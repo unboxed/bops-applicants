@@ -68,7 +68,7 @@ RSpec.describe "landing page", type: :system do
       within("footer") { click_link("Accessibility statement") }
 
       expect(page).to have_content(
-        "Accessibility statement for Default Council Back-office Planning System"
+        "Accessibility statement for Default Council Back Office Planning System"
       )
 
       expect(page).to have_content("Email planning@default.gov.uk")
