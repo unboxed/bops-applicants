@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root to: "pages#root"
+
   resources :validation_requests, only: %i[index]
 
   with_options only: %i[show edit update] do

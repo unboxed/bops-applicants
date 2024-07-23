@@ -4,7 +4,7 @@
 
 ### What is BOPS Applicants?
 
-BOPS Applicants is a proof-of-concept application made to showcase the different API features of [BOPS](https://github.com/unboxed/bops), the Back-office Planning System. 
+BOPS Applicants is a proof-of-concept application made to showcase the different API features of [BOPS](https://github.com/unboxed/bops), the Back Office Planning System.
 
 It allows an interface for applicants to reply to change requests made by planning officers within BOPS. These requests may require additional documents be added, or edits made, to a planning application in order to make it valid.
 

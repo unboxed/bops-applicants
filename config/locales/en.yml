@@ -10,7 +10,7 @@ en:
       click_submit_to: submit your response
       document_requested: "Document requested:"
       file_must_be_smaller_than: read the request from the case officer
-      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
+      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date we will return your application to you and refund any payment.
       select_choose_files: read the information about how to prepare plans
       the_case_officer: The case officer working on your application has requested a new document.
       title: Provide a new document
@@ -21,7 +21,7 @@ en:
     edit:
       click_submit_to: submit your response
       if_you_disagree: select ‘Yes’ or ‘No’ to tell us if you agree or disagree with the changes
-      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date the new description will be automatically accepted for use with your application. 
+      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date the new description will be automatically accepted for use with your application.
       new_description: New description
       page_title: "Description change validation request #%{id} - Back-Office Planning System"
       previous_description: Previous description
@@ -51,7 +51,7 @@ en:
       click_submit_to: submit your response
       how_to_make: How you can make your application valid
       if_you_disagree: enter your response
-      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
+      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date we will return your application to you and refund any payment.
       make_changes_to: read the request from the case officer
       officers_reason_for: Reason why case officer needs more information
       page_title: "Other change validation request #%{id} - Back-Office Planning System"
@@ -108,18 +108,18 @@ en:
       no_validation_on: No validation on submission, impacting those with motor impairments
       our_offices_have: Our offices have audio induction loops, or if you contact us before your visit we can arrange a British Sign Language (BSL) interpreter.
       pdfs_and_other: PDFs and other documents
-      page_title: "Accessibility statement for %{local_authority} Council Back-office Planning System"
+      page_title: "Accessibility statement for %{local_authority} Council Back Office Planning System"
       preparation_of_this: Preparation of this accessibility statement
       reporting_accessibility_problems: Reporting accessibility problems with this website
       technical_information_about: "Technical information about this website's accessibility"
       the_equality_and: "The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the 'accessibility regulations'). If you're not happy with how we respond to your complaint, %{link}."
       the_equality_and_link: contact the Equality Advisory and Support Service (EASS)
-      this_accessibility_statement: This accessibility statement applies to publicly available pages of the Back-office planning system.
+      this_accessibility_statement: This accessibility statement applies to publicly available pages of the Back Office planning system.
       this_statement_was: This statement was prepared on 1st June 2022. This website was last tested on 12th May 2022. The test was carried out by the Digital Accessibility Centre.
       this_website_is: "This website is run by %{local_authority} Council. We want as many people as possible to be able to use this website. For example, that means you should be able to:"
       this_website_is_2: This website is fully compliant with the %{link} AA standard.
       this_website_is_2_link: Web Content Accessibility Guidelines version 2.1
-      title: Accessibility statement for %{local_authority} Council Back-office Planning System
+      title: Accessibility statement for %{local_authority} Council Back Office Planning System
       we_aim_to: We aim to not use PDFs and use HTML or other accessible formats wherever possible.
       we_are_always: "We're always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we're not meeting accessibility requirements, contact:"
       we_have_also: "We've also made the website text as simple as possible to understand."
@@ -132,6 +132,9 @@ en:
       you_can_read: You can read the full accessibility test report %{link}.
       you_can_read_link: here
       zoom_in_up: zoom in up to 300% without the text spilling off the screen
+    root:
+      title: "%{local_authority} Council Back Office Planning System: Applicant Portal"
+      text_html: 'This is the applicant portal for the %{local_authority} Back Office Planning System. If you have an application in progress and need to submit details, you should have received a link in your email. If you have not received a link and believe you should have, <a href="mailto:%{support_email}" class="govuk-link">contact support</a>.'
   partials:
     footer:
       accessibility: Accessibility statement
@@ -159,7 +162,7 @@ en:
       click_save_to: select ‘Choose file’ to upload a document from your device - the file must be smaller than 30Mb
       click_submit_to: submit your response
       file_must_be_smaller_than: read the reason why the document needs to be replaced
-      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date we will return your application to you and refund any payment. 
+      if_your_response: You must submit your response by %{date}. If we don’t receive a response by this date we will return your application to you and refund any payment.
       name_of_file: "Name of document previously submitted:"
       page_title: "Replacement document validation request #%{id} - Back-Office Planning System"
       select_choose_file: read the information about how to prepare plans
