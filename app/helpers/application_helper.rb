@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def contact_details
-    @contact_details ||= all_contact_details[current_local_authority].with_indifferent_access
+    @contact_details ||= all_contact_details.fetch(current_local_authority, {}).with_indifferent_access
   end
 
   def all_contact_details
