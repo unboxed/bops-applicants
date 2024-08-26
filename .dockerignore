@@ -1,7 +1,26 @@
-node_modules
-log
-tmp
-.dockerignore
-docker-compose.yml
-Dockerfile
-.cache
+# Ignore git directory.
+/.git/
+/.gitignore
+
+# Ignore bundler config.
+/.bundle
+/app/assets/builds/*
+!/app/assets/builds/.keep
+/public/assets
+/node_modules
+/.cache
+
+# Ignore CI service files.
+/.github
+
+# Ignore development files
+/.devcontainer
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+
+# Ignore Docker-related files
+/Dockerfile*
+/.dockerignore
+/docker-compose.yml
