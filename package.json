@@ -12,7 +12,7 @@
     "leaflet": "^1.7.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "stimulus": "^3.2.2",
-    "webpack": "^5.76.0",
+    "webpack": "^5.94.0",
     "webpack-cli": "^5.0.1"
   },
   "version": "0.1.0",
