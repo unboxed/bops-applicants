@@ -29,7 +29,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "pry-byebug"
   gem "rspec-rails", "~> 6.0"
-  gem "standard", "~> 1.31", require: false
+  gem "standard", "~> 1.40", require: false
   gem "standard-custom", require: false
   gem "standard-performance", require: false
   gem "standard-rails", require: false
