@@ -5,33 +5,33 @@ default: &defaults
 
   # Your app's name
   name: "<%= ENV['APPSIGNAL_APP_NAME'] %>"
+  revision: "<%= File.read(Rails.root.join('REVISION')) rescue '' %>"
+
+  # The cut-off point in ms above which a request is considered slow, default is 200
+  # slow_request_threshold: 200
 
   # Actions that should not be monitored by AppSignal
-  # ignore_actions:
-  #   - ApplicationController#isup
+  ignore_actions: []
 
-  # Errors that should not be recorded by AppSignal
-  # For more information see our docs:
-  # https://docs.appsignal.com/ruby/configuration/ignore-errors.html
-  # ignore_errors:
-  #   - Exception
-  #   - NoMemoryError
-  #   - ScriptError
-  #   - LoadError
-  #   - NotImplementedError
-  #   - SyntaxError
-  #   - SecurityError
-  #   - SignalException
-  #   - Interrupt
-  #   - SystemExit
-  #   - SystemStackError
-
-  # See https://docs.appsignal.com/ruby/configuration/options.html for
-  # all configuration options.
+  # Exceptions that should not be recorded by AppSignal
+  ignore_errors:
+    - ActionDispatch::ParamsParser::ParseError
+    - ActionDispatch::Http::MimeNegotiation::InvalidType
+    - ActionController::BadRequest
+    - ActionController::InvalidAuthenticityToken
+    - ActionController::ParameterMissing
+    - ActionController::RoutingError
+    - ActionController::UnknownFormat
+    - ActionController::UnknownHttpMethod
+    - ActiveRecord::RecordNotFound
 
 # Configuration per environment, leave out an environment or set active
 # to false to not push metrics for that environment.
 development:
+  <<: *defaults
+  active: false
+
+test:
   <<: *defaults
   active: false
 
