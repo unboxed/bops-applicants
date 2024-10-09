@@ -112,6 +112,10 @@ COPY --chown=app:app ./lib/ /app/lib/
 COPY --chown=app:app ./public/ /app/public/
 COPY --chown=app:app ./Rakefile /app/Rakefile
 
+# Write a REVISION file for Appsignal
+ARG REVISION
+RUN echo -n "$REVISION" > REVISION
+
 USER app:app
 
 # Provide placeholder environment variables during the build phase
