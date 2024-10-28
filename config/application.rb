@@ -44,9 +44,9 @@ module BopsApplicants
 
     config.action_controller.forgery_protection_origin_check = false
 
-    config.os_vector_tiles_api_key = ENV["OS_VECTOR_TILES_API_KEY"]
-    config.api_host = ENV.fetch("API_HOST", "bops.localhost:3000")
-    config.api_protocol = ENV["PROTOCOL"]
-    config.api_bearer = ENV["API_BEARER"]
+    # Load config from application.yml
+    config_for(:application).each do |key, value|
+      config.send(:"#{key}=", value)
+    end
   end
 end
