@@ -102,6 +102,7 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
+    csv (3.2.8)
     dartsass-rails (0.5.1)
       railties (>= 6.0.0)
       sass-embedded (~> 1.63)
@@ -177,7 +178,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
-    method_source (1.0.0)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
     minitest (5.25.1)
@@ -202,6 +203,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-darwin)
       racc (~> 1.4)
+    ostruct (0.6.0)
     parallel (1.26.3)
     parser (3.3.4.2)
       ast (~> 2.4.1)
@@ -388,6 +390,7 @@ DEPENDENCIES
   brakeman
   bundler-audit
   capybara
+  csv
   dartsass-rails
   dotenv-rails
   factory_bot_rails
@@ -398,6 +401,7 @@ DEPENDENCIES
   jsbundling-rails
   listen (~> 3.3)
   lograge (~> 0.14.0)
+  ostruct
   pg
   pry-byebug
   puma (>= 5.3.1)

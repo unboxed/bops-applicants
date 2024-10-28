@@ -7,12 +7,14 @@ gem "dotenv-rails", require: "dotenv/rails-now"
 
 gem "appsignal"
 gem "bootsnap", ">= 1.4.4", require: false
+gem "csv", require: false
 gem "dartsass-rails"
 gem "faraday"
 gem "govuk_design_system_formbuilder"
 gem "httparty"
 gem "jsbundling-rails"
 gem "lograge", "~> 0.14.0"
+gem "ostruct"
 gem "pg"
 gem "puma", ">= 5.3.1"
 gem "rails", "~> 7.2"
