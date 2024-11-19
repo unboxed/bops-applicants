@@ -16,6 +16,12 @@ lambeth:
   phone_number: "02079261180"
   postal_address: Planning, London Borough of Lambeth, PO Box 734, Winchester, SO23 5DG
   privacy_policy: https://beta.lambeth.gov.uk/about-council/privacy-data-protection/planning-transport-development-service-privacy-notice
+medway:
+  email_address: planning.representations@medway.gov.uk
+  feedback_email: planning.representations@medway.gov.uk
+  phone_number: "01634331700"
+  postal_address: Gun Wharf, Dock Road, Chatham, Kent, ME4 4TR
+  privacy_policy: https://www.medway.gov.uk/info/200217/freedom_of_information/347/data_protection/1
 southwark:
   email_address: digital.projects@southwark.gov.uk
   feedback_email: digital.projects@southwark.gov.uk
