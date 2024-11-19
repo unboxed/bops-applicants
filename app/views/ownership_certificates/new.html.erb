@@ -8,8 +8,7 @@
     <h1 class="govuk-heading-l">Confirm ownership</h1>
 
     <%= form_for @ownership_certificate,
-    url: planning_application_ownership_certificates_path(@planning_application["id"]),
-    builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
+    url: planning_application_ownership_certificates_path(@planning_application["id"]) do |form| %>
       <%= form.govuk_radio_buttons_fieldset(:know_owners, legend: { size: 'm', text: 'Do you know how many owners there are?' }) do %>
         <%= form.govuk_radio_button :know_owners, 'Yes', label: { text: 'Yes' } do %>
           <%= form.govuk_text_field :number_of_owners, label: { text: 'Enter number of owners' } %>

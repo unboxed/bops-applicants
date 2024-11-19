@@ -1,7 +1,6 @@
 <%= form_with scope: :time_extension_validation_request,
               url: time_extension_validation_request_path(@validation_request["id"], planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"]),
-              method: :patch,
-              builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
+              method: :patch do |form| %>
 
   <% if @time_extension_validation_request.errors.any? %>
     <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">

@@ -174,7 +174,7 @@ RSpec.describe "Ownership certificate requests", type: :system do
               town: "London",
               country: "",
               postcode: "E16LT",
-              notice_given_at: "2023-02-01T00:00:00.000Z"
+              notice_given_at: "2023-02-01T00:00:00.000+00:00"
             },
             {
               name: "Bob",

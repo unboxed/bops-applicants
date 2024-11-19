@@ -10,11 +10,10 @@
 
     <p class="govuk-body-s govuk-!-margin-bottom-1">Planning application reference number</p>
     <p class="govuk-body"><%= @planning_application["reference"] %></p>
-    
+
     <h3 class="govuk-heading-s">Details of owner</h3>
     <%= form_for @land_owner,
-      url: planning_application_ownership_certificate_land_owners_path(@planning_application["id"], @ownership_certificate),
-      builder: GOVUKDesignSystemFormBuilder::FormBuilder do |form| %>
+      url: planning_application_ownership_certificate_land_owners_path(@planning_application["id"], @ownership_certificate) do |form| %>
       <%= form.govuk_text_field :name, label: { text: "Owner name" } %>
       <%= form.govuk_text_field :address_1, label: { text: "Address line 1" } %>
       <%= form.govuk_text_field :address_2, label: { text:  "Address line 2 (optional)" } %>
