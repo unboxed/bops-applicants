@@ -24,7 +24,7 @@ RSpec.describe "Planning applications", type: :system do
           }
       )
 
-      visit "/planning_applications/28"
+      visit "/planning_applications/22-00128-LDCP"
     end
 
     it "shows that comments will no longer be accepted" do
@@ -51,7 +51,7 @@ RSpec.describe "Planning applications", type: :system do
             }
         )
 
-        visit "/planning_applications/28"
+        visit "/planning_applications/22-00128-LDCP"
       end
 
       it "shows the granted status and provides a link to the decision notice" do
@@ -76,7 +76,7 @@ RSpec.describe "Planning applications", type: :system do
             }
         )
 
-        visit "/planning_applications/28"
+        visit "/planning_applications/22-00128-LDCP"
       end
 
       it "shows the granted (not required) status and provides a link to the decision notice" do
@@ -89,7 +89,7 @@ RSpec.describe "Planning applications", type: :system do
 
           expect(page).to have_link(
             "View decision notice",
-            href: "#{Rails.configuration.api_protocol}://default.#{Rails.configuration.api_host}/public/planning_applications/28/decision_notice"
+            href: "#{Rails.configuration.api_protocol}://default.#{Rails.configuration.api_host}/public/planning_applications/22-00128-LDCP/decision_notice"
           )
         end
       end
@@ -106,7 +106,7 @@ RSpec.describe "Planning applications", type: :system do
             }
         )
 
-        visit "/planning_applications/28"
+        visit "/planning_applications/22-00128-LDCP"
       end
 
       it "shows the refused status and provides a link to the decision notice" do
@@ -119,7 +119,7 @@ RSpec.describe "Planning applications", type: :system do
 
           expect(page).to have_link(
             "View decision notice",
-            href: "#{Rails.configuration.api_protocol}://default.#{Rails.configuration.api_host}/public/planning_applications/28/decision_notice"
+            href: "#{Rails.configuration.api_protocol}://default.#{Rails.configuration.api_host}/public/planning_applications/22-00128-LDCP/decision_notice"
           )
         end
       end
@@ -140,7 +140,7 @@ RSpec.describe "Planning applications", type: :system do
         )
 
         travel_to(DateTime.new(2023, 11, 4)) do
-          visit "/planning_applications/28"
+          visit "/planning_applications/22-00128-LDCP"
         end
       end
 
@@ -170,7 +170,7 @@ RSpec.describe "Planning applications", type: :system do
         )
 
         travel_to(DateTime.new(2023, 11, 24)) do
-          visit "/planning_applications/28"
+          visit "/planning_applications/22-00128-LDCP"
         end
       end
 

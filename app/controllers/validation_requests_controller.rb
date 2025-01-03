@@ -14,11 +14,8 @@ class ValidationRequestsController < ApplicationController
   private
 
   def set_validation_requests
-    @validation_requests = Bops::ValidationRequest.find_all(params[:planning_application_id], params[:change_access_id])
-  end
-
-  def set_planning_application
-    @planning_application = Bops::PlanningApplication.find(params[:planning_application_id])
+    planning_application_reference = params[:planning_application_reference] || params[:planning_application_id]
+    @validation_requests = Bops::ValidationRequest.find_all(planning_application_reference, params[:change_access_id])
   end
 
   def set_local_authority
@@ -26,8 +23,9 @@ class ValidationRequestsController < ApplicationController
   end
 
   def set_validation_request
+    planning_application_reference = params[:planning_application_reference] || params[:planning_application_id]
     @validation_request = validation_request_model_klass.find(
-      params[:id], params[:planning_application_id], params[:change_access_id]
+      params[:id], planning_application_reference, params[:change_access_id]
     )
   end
 

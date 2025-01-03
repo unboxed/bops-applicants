@@ -20,7 +20,7 @@ RSpec.describe "landing page", type: :system do
   end
 
   it "renders the application reference" do
-    expect(page).to have_content("Application number: 22-00100-LDCP")
+    expect(page).to have_content("Application number: 22-00128-LDCP")
   end
 
   context "within phase-banner" do

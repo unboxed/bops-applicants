@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :time_extension_validation_requests
   end
 
-  resources :planning_applications, only: %i[show] do
+  resources :planning_applications, param: :reference, only: %i[show] do
     resource :site_notices, only: %i[] do
       get :download
     end

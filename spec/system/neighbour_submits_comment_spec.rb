@@ -28,7 +28,7 @@ RSpec.describe "Planning applications", js: true, type: :system do
       tags: %w[access other]
     )
 
-    visit "/planning_applications/28"
+    visit "/planning_applications/22-00128-LDCP"
 
     click_link "Submit a comment"
 
@@ -102,7 +102,7 @@ RSpec.describe "Planning applications", js: true, type: :system do
       tags: %w[noise other]
     )
 
-    visit "/planning_applications/28"
+    visit "/planning_applications/22-00128-LDCP"
 
     click_link "Submit a comment"
 
@@ -193,7 +193,7 @@ RSpec.describe "Planning applications", js: true, type: :system do
       tags: ["acess"]
     )
 
-    visit "/planning_applications/28"
+    visit "/planning_applications/22-00128-LDCP"
 
     click_link "this link"
 

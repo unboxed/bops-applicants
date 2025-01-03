@@ -24,7 +24,7 @@ class NeighbourResponse
   attribute :move_next
   attribute :move_back
   attribute :final_check
-  attribute :planning_application_id, :integer
+  attribute :planning_application_reference, :integer
 
   STAGES = %w[about_you thoughts response check].freeze
 
@@ -61,7 +61,7 @@ class NeighbourResponse
     )
 
     if Bops::NeighbourResponse.create(
-      params[:planning_application_id],
+      params[:planning_application_reference],
       data: response_data
     )
       true

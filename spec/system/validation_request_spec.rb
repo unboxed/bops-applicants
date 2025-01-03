@@ -24,6 +24,8 @@ RSpec.describe "Change requests", type: :system do
   it "forbids the user from accessing change requests for a different application" do
     stub_request(:get, "https://default.bops.test/api/v1/planning_applications/28/validation_requests?change_access_id=345443543")
       .to_return(status: 401, body: "{}")
+    stub_request(:get, "https://default.bops.test/api/v1/planning_applications/22-00128-LDCP/validation_requests?change_access_id=345443543")
+      .to_return(status: 401, body: "{}")
     stub_successful_get_planning_application
 
     visit "/validation_requests?planning_application_id=28&change_access_id=345443543"
@@ -39,7 +41,7 @@ RSpec.describe "Change requests", type: :system do
 
     expect(page).to have_content("11 Mel Gardens, London, SE16 3RQ")
     expect(page).to have_content("Date received: 23 April 2021")
-    expect(page).to have_content("Application number: 22-00100-LDCP")
+    expect(page).to have_content("Application number: 22-00128-LDCP")
   end
 
   it "displays the description of the change request on the change request page" do
