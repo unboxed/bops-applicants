@@ -11,7 +11,7 @@ class NeighbourResponsesController < ApplicationController
     {tags: []}
   ].freeze
 
-  PERMITTED_PARAMS = [:stage, :move_next, :move_back, :planning_application_id,
+  PERMITTED_PARAMS = [:stage, :move_next, :move_back, :planning_application_reference,
     {neighbour_response: RESPONSE_PARAMS}].freeze
 
   def start
@@ -27,7 +27,7 @@ class NeighbourResponsesController < ApplicationController
     respond_to do |format|
       format.html do
         if @new_response.save
-          redirect_to thank_you_planning_application_neighbour_responses_path(params[:planning_application_id])
+          redirect_to thank_you_planning_application_neighbour_responses_path(params[:planning_application_reference])
         else
           render :new
         end
@@ -52,10 +52,6 @@ class NeighbourResponsesController < ApplicationController
     neighbour_response_params.merge!(hash)
   end
 
-  def set_planning_application
-    @planning_application = Bops::PlanningApplication.find(params[:planning_application_id])
-  end
-
   def neighbour_response_params
     params.permit(PERMITTED_PARAMS)
   end
@@ -67,6 +63,6 @@ class NeighbourResponsesController < ApplicationController
   end
 
   def set_header_link
-    @header_link = planning_application_path(id: params["planning_application_id"])
+    @header_link = planning_application_path(reference: params["planning_application_reference"])
   end
 end

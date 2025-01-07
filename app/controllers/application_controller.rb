@@ -21,4 +21,9 @@ class ApplicationController < ActionController::Base
   def set_header_link
     @header_link = validation_requests_path(planning_application_id: params["planning_application_id"], change_access_id: params["change_access_id"])
   end
+
+  def set_planning_application
+    reference = params[:planning_application_reference] || params[:reference] || params[:planning_application_id]
+    @planning_application = Bops::PlanningApplication.find(reference)
+  end
 end

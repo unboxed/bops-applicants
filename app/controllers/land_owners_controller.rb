@@ -26,10 +26,6 @@ class LandOwnersController < ApplicationController
 
   private
 
-  def set_planning_application
-    @planning_application = Bops::PlanningApplication.find(params[:planning_application_id])
-  end
-
   def set_certificate
     @ownership_certificate = OwnershipCertificate.find(params[:ownership_certificate_id])
   end

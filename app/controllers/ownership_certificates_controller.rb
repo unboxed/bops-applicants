@@ -62,7 +62,7 @@ class OwnershipCertificatesController < ApplicationController
     )
 
       redirect_to validation_requests_path(
-        planning_application_id: params[:planning_application_id],
+        planning_application_reference: params[:planning_application_reference],
         change_access_id: params[:change_access_id]
       ), notice: t("shared.response_updated.success")
     else
@@ -76,14 +76,10 @@ class OwnershipCertificatesController < ApplicationController
     @ownership_certificate = OwnershipCertificate.find(params[:ownership_certificate_id] || params[:id])
   end
 
-  def set_planning_application
-    @planning_application ||= Bops::PlanningApplication.find(params[:planning_application_id])
-  end
-
   def ownership_certificate_params
     params.require(:ownership_certificate)
       .permit(:know_owners, :number_of_owners, :certificate_type, :notification_of_owners, :change_access_id)
-      .to_h.merge(planning_application_id: @planning_application["id"])
+      .to_h.merge(planning_application_id: @planning_application["reference"])
   end
 
   def set_validation_request

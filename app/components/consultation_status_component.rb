@@ -67,6 +67,6 @@ class ConsultationStatusComponent < ViewComponent::Base
   end
 
   def decision_notice_link
-    "#{Rails.configuration.api_protocol}://#{Current.local_authority}.#{Rails.configuration.api_host}/public/planning_applications/#{planning_application["id"]}/decision_notice"
+    "#{Rails.configuration.api_protocol}://#{Current.local_authority}.#{Rails.configuration.api_host}/public/planning_applications/#{planning_application["reference"]}/decision_notice"
   end
 end

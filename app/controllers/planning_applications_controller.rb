@@ -24,10 +24,6 @@ class PlanningApplicationsController < ApplicationController
     render plain: "Not Found", status: :not_found
   end
 
-  def set_planning_application
-    @planning_application = Bops::PlanningApplication.find(params[:id])
-  end
-
   def set_local_authority
     @local_authority = Bops::LocalAuthority.find(Current.local_authority)
   end
