@@ -1,6 +1,6 @@
 ARG RUBY_VERSION=3.4.1
 
-FROM ruby:$RUBY_VERSION-slim-bookworm
+FROM ruby:$RUBY_VERSION-bookworm
 
 ENV BUNDLE_PATH=/home/rails/bundle
 
