@@ -1,6 +1,6 @@
 ARG RUBY_VERSION=3.4.1
 
-FROM ruby:$RUBY_VERSION-bullseye
+FROM ruby:$RUBY_VERSION-slim-bookworm
 
 ENV BUNDLE_PATH=/home/rails/bundle
 
@@ -8,13 +8,13 @@ ENV BUNDLE_PATH=/home/rails/bundle
 RUN bash -c "export DEBIAN_FRONTEND=noninteractive && \
     apt-get update -qq && \
     echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && \
-    apt-get install -y apt-utils curl locales && \
+    apt-get install -y apt-utils curl locales gnupg && \
     apt-get upgrade -y && apt-get clean"
 
 # Install PostgreSQL client
-RUN bash -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' \
+RUN bash -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ bookworm-pgdg main' \
     > /etc/apt/sources.list.d/pgdg.list && \
-    wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+    curl -sS https://www.postgresql.org/media/keys/ACCC4CF8.asc \
     | apt-key add - && apt-get update && \
     apt-get install -y --no-install-recommends postgresql-client-14"
 
