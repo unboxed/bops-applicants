@@ -1,7 +1,7 @@
 # Base image for all other build stages
 ARG RUBY_VERSION=3.4.1
 
-FROM ruby:$RUBY_VERSION-slim-bullseye AS base_image
+FROM ruby:$RUBY_VERSION-slim-bookworm AS base_image
 
 # Run security updates and install apt-utils curl and locales
 RUN bash -c "export DEBIAN_FRONTEND=noninteractive && \
@@ -46,11 +46,11 @@ FROM build_image AS gems
 
 # Required system packages
 
-# Run security updates, install libpq-dev
+# Run security updates, install libpq-dev and libyaml-dev
 RUN bash -c "export DEBIAN_FRONTEND=noninteractive && \
     apt-get update -qq && \
     apt-get upgrade -y && \
-    apt-get install -y libpq-dev && \
+    apt-get install -y libpq-dev libyaml-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*"
 
