@@ -24,41 +24,18 @@ RSpec.describe "landing page", type: :system do
   end
 
   context "within phase-banner" do
-    context "when FEEDBACK_FISH_ID env variable is set" do
-      before do
-        ENV["FEEDBACK_FISH_ID"] = "randomid123"
-
-        visit(
-          validation_requests_path(
-            planning_application_id: 28,
-            change_access_id: 345_443_543
-          )
+    before do
+      visit(
+        validation_requests_path(
+          planning_application_id: 28,
+          change_access_id: 345_443_543
         )
-      end
-
-      it "is displayed with a reference to the user's email" do
-        within find("a[data-feedback-fish][data-feedback-fish-userid='agent@example.com']") do
-          expect(page).to have_content "feedback"
-        end
-      end
+      )
     end
 
-    context "when FEEDBACK_FISH_ID env variable is not set" do
-      before do
-        ENV["FEEDBACK_FISH_ID"] = nil
-
-        visit(
-          validation_requests_path(
-            planning_application_id: 28,
-            change_access_id: 345_443_543
-          )
-        )
-      end
-
-      it "is not displayed" do
-        within(".govuk-phase-banner__content") do
-          expect(page).not_to have_content "feedback"
-        end
+    it "feedback link displayed with a reference to the user's email" do
+      within find("a[href^='mailto:']") do
+        expect(page).to have_content "feedback"
       end
     end
   end
