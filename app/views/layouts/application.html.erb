@@ -21,10 +21,6 @@
     <link rel="stylesheet" href="https://use.typekit.net/zmv8alo.css">
     <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-
-    <% if ENV["FEEDBACK_FISH_ID"].present? %>
-      <script defer src="https://feedback.fish/ff.js?pid=<%= ENV['FEEDBACK_FISH_ID'] %>"></script>
-    <% end %>
   </head>
 
   <body class="govuk-template__body govuk-frontend-supported">
@@ -38,15 +34,10 @@
             Beta
           </strong>
 
-          <% if ENV["FEEDBACK_FISH_ID"].present? %>
+          <% if contact_details[:email_address].present? %>
             <span class="govuk-phase-banner__text">
               This is a new service – your
-              <a class="govuk-link" href="#"
-                data-feedback-fish
-                data-feedback-fish-userid="<%= @planning_application["agent_email"] if @planning_application %>"
-              >
-                feedback
-              </a>
+              <%= link_to "feedback", "mailto:#{contact_details[:email_address]}", class: "govuk-link" %>
 
               will help us to improve it.
             </span>
