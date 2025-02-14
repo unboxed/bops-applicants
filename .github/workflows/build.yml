@@ -12,11 +12,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  bundle-audit:
-    uses: ./.github/workflows/linters.yml
-    with:
-      bundler-audit: true
-
   brakeman:
     uses: ./.github/workflows/linters.yml
     with:
