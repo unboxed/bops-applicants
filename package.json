@@ -8,7 +8,7 @@
     "accessible-autocomplete": "^2.0.4",
     "esbuild": "^0.25.0",
     "govuk-frontend": "^5.0.0",
-    "jspdf": "^2.5.1",
+    "jspdf": "^3.0.1",
     "leaflet": "^1.7.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "stimulus": "^3.2.2",
